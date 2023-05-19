@@ -1,9 +1,19 @@
 import React from 'react';
-import { Route,Routes } from 'react-router-dom';
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
+// import { Route,Routes } from 'react-router-dom';
+import Profile from './components/Profile';
 export default function App() {
   return (
-    <div>
-      <p>Hello Pizza 🍕 World 👋</p>
-    </div>
+   <>
+   <h1>Auth0 Login</h1>
+   <LoginButton/>
+   <LogoutButton/>
+   <Profile/>
+   
+   
+   
+   
+   </>
   )
 }
