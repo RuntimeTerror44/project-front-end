@@ -9,10 +9,7 @@ isAuthenticated &&(
 
 <button onClick={()=>logout()}>
 
-
 Sign Out
-
-
 
 </button>
 
