@@ -20,7 +20,7 @@ function FormPersonalData(props) {
     // e.preventDefault();
     // const serverUrl = ``;
     // const obj = {
-    //   title: e.target.title.value,
+    //   title: e.target.first_name.value,
     //   release_date: e.target.release_date.value,
     //   poster_path: e.target.poster_path.value,
     //   overview: e.target.overview.value,
@@ -35,6 +35,7 @@ function FormPersonalData(props) {
   const handleChange = (e) => {
     setDate(e.target.value);
   };
+
 
   return (
     <>
@@ -112,12 +113,6 @@ function FormPersonalData(props) {
                 <Form.Control name="address" type="text" defaultValue="" />
               </InputGroup>
             </Form.Group>
-
-            {/* dateofbirth
-            -gender
-            -phonenumber
-            -profilepicture
-              -imgforcover */}
 
             <fieldset>
               <Form.Group as={Row} className="mb-3">
