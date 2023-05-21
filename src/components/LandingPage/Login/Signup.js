@@ -25,7 +25,7 @@ function Signup() {
     setErrors(err);
     if(err.username === "" && err.email === "" && err.password===""){
 
-      axios.post("",values)
+      axios.post("http://localhost:5000/users",values)
       .then(res=>{
 
         navigate('/')
