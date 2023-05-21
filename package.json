@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^5.1.0",
     "@auth0/auth0-react": "^2.1.0",
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.11.0",
