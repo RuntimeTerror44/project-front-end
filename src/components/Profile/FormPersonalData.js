@@ -16,25 +16,38 @@ import {
 } from "@chakra-ui/react";
 
 function FormPersonalData(props) {
-  const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // const serverUrl = ``;
-    // const obj = {
-    //   title: e.target.first_name.value,
-    //   release_date: e.target.release_date.value,
-    //   poster_path: e.target.poster_path.value,
-    //   overview: e.target.overview.value,
-    //   comment: e.target.comment.value,
-    // };
-    // const result = await axios.post(serverUrl, obj);
-    // tackDataFromChaildAfterUbdate(result.data);
-  };
 
   const [date, setDate] = useState("");
   const dateInputRef = useRef(null);
   const handleChange = (e) => {
     setDate(e.target.value);
   };
+  
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // const birthDate = date;
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}users`;
+    const obj = {
+      firstName: e.target.first_name.value,
+      lastName: e.target.last_name.value,
+      email : e.target.Email.value,
+      dateOfBirth : date,
+      country: e.target.countrey.value,
+      city: e.target.city.value,
+      phoneNumber: e.target.phone_number.value,
+      address: e.target.address.value,
+      gender: e.target.formHorizontalRadios.value,
+      profilePicture: e.target.profile_picture.value,
+      imgForCover: e.target.cover_picture.value
+    };
+    const result = await axios.post(serverUrl, obj);
+    // tackDataFromChaildAfterUbdate(result.data);
+    console.log(result.data);
+  };
+
+  
 
 
   return (
@@ -71,6 +84,7 @@ function FormPersonalData(props) {
                 <InputGroup hasValidation>
                   <Form.Control
                     type="date"
+                    name="date"
                     onChange={handleChange}
                     ref={dateInputRef}
                   />
