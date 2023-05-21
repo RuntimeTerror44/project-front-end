@@ -12,8 +12,6 @@ export default function App() {
    <h1>hello</h1>
   
    <PortfolioForm/>
-   
-   
 
    <FormPersonalData />  {/* form to get the user data */}
 
