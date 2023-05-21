@@ -8,6 +8,7 @@ import Profile from "./components/Landingpage/login/profile";
 export default function App() {
   return (
     <>
+      {/* <LandingPage/> */}
       <FormPersonalData /> {/* form to get the user data */}
       <h1>Auth0 Login</h1>
       <LoginButton />
