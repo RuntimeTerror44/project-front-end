@@ -1,27 +1,30 @@
+
 import React from "react";
-// import LandingPage from "./components/Landingpage/LandingPage";
+import { Route,Routes } from 'react-router-dom';
+import LandingPage from "./components/Landingpage/LandingPage";
 import LoginButton from "./components/Landingpage/login/Loginbutton";
 import LogoutButton from "./components/Landingpage/login/Logoutbutton";
-// import { Route,Routes } from 'react-router-dom';
-// import FormPersonalData from "./components/Profile/FormPersonalData";
+import FormPersonalData from "./components/Profile/FormPersonalData";
 import Profile from "./components/Landingpage/login/profile";
-import { BrowserRouter,Route,Routes } from 'react-router-dom';
-// import Home from "./components/Home/Home"
-// import Login from './components/LandingPage/Login/Login';
-// import Signup from './components/LandingPage/Login/Signup';
+import Home from "./components/Home/Home"
 import Profilepage from "./components/Profile/Profilepage";
 
 export default function App() {
   return (
     <>
-      {/* <LandingPage/> */}
-      {/* <FormPersonalData /> form to get the user data */}
-      {/* <h1>Auth0 Login</h1> */}
-      {/* <LoginButton />
-      <LogoutButton />
-      <Profile /> */}
-      {/* <Home/> */}
-      <Profilepage />
+    <Routes>
+      <Route path="/" element={<LandingPage/>}/>
+      
+       
+      <Route path="/FormPersonalData" element={<FormPersonalData />}/>
+      <Route path="/LoginButton" element={<LoginButton/>}/>
+      <Route path="/LogoutButton" element={<LogoutButton/>}/>
+      <Route path="/Profile" element={<Profile/>} />
+      <Route path="/Home" element={<Home/>}/>
+      <Route path="/Profilepage" element={<Profilepage/>} />
+     
+      </Routes>
+   
     </>
   );
 }
