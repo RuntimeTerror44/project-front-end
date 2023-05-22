@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Container, Form, FormControl, Button, Row, Col, Card, Dropdown } from 'react-bootstrap';
 import './Home.css';
 
-function HomePage() {
+function Home() {
   const [postText, setPostText] = useState('');
   const [posts, setPosts] = useState([]);
 
@@ -164,4 +164,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Home;
