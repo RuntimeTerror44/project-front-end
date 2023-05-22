@@ -1,4 +1,5 @@
-import "./LandingPage.scss";
+// import "./LandingPage.scss";
+import "./LandingPage.scss"
 import $ from "jquery";
 import { Button, Space } from "antd";
 import {
