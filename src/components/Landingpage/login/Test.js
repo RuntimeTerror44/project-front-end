@@ -1,13 +1,13 @@
-// import { useAuth0 } from "@auth0/auth0-react";
-// import LoginButton from "./Loginbutton";
-// import LogoutButton from "./Logoutbutton";
-// import { useState, useEffect } from "react";
-// import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./Loginbutton";
+import LogoutButton from "./Logoutbutton";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-// {
-// }
+{
+}
 
-// const Test = (props) => {
+const Test = (props) => {
 //   const saveData = async () => {
 //     const obj = {
 //       username: props.data1,
@@ -23,13 +23,13 @@
 
 //   saveData();
 
-//   return (
-//     <>
-//       <p>{props.data1}</p>
-//       <p>{props.data2}</p>
-//       <p>{props.data3}</p>
-//     </>
-//   );
-// };
+  return (
+    <>
+      <p>{props.data1}</p>
+      <p>{props.data2}</p>
+      <p>{props.data3}</p>
+    </>
+  );
+};
 
-// export default Test;
+export default Test;
