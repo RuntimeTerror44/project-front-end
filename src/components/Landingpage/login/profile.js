@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import axios from "axios";
-import Authtest from "../../Profile/Authtest";
+
 import Test from "./Test";
 
 const Profile = () => {
