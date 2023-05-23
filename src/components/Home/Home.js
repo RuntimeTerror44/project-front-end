@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, Container, Form, FormControl, Button, Row, Col, Card, Dropdown } from 'react-bootstrap';
-import './Home.css';
+import React, { useState } from "react";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Form,
+  FormControl,
+  Button,
+  Row,
+  Col,
+  Card,
+  Dropdown,
+} from "react-bootstrap";
+import "./Home.css";
 
 function Home() {
-  const [postText, setPostText] = useState('');
+  const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
 
   const handlePostChange = (event) => {
@@ -13,7 +24,7 @@ function Home() {
   const handlePostSubmit = (event) => {
     event.preventDefault();
 
-    if(postText.trim() === '') {
+    if (postText.trim() === "") {
       return; // Skip empty posts
     }
 
@@ -24,7 +35,7 @@ function Home() {
     };
 
     setPosts((prevPosts) => [newPost, ...prevPosts]);
-    setPostText('');
+    setPostText("");
   };
 
   const handleEditPost = (postId) => {
@@ -71,7 +82,12 @@ function Home() {
               <Nav.Link href="#about">About Us</Nav.Link>
             </Nav>
             <Form className="d-flex">
-              <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search" />
+              <FormControl
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
               <Button variant="outline-success" type="submit">
                 Search
               </Button>
@@ -114,23 +130,37 @@ function Home() {
                       onSubmit={(event) => {
                         event.preventDefault();
                         handleAddComment(post.id, event.target.comment.value);
-                        event.target.comment.value = '';
+                        event.target.comment.value = "";
                       }}
                     >
                       <Form.Group controlId={`commentForm-${post.id}`}>
-                        <Form.Control type="text" name="comment" placeholder="Add a comment"/>
+                        <Form.Control
+                          type="text"
+                          name="comment"
+                          placeholder="Add a comment"
+                        />
                       </Form.Group>
                       <Button variant="primary" type="submit">
                         Add Comment
                       </Button>
                     </Form>
                     <Dropdown align="end">
-                    <Dropdown.Toggle variant="primary" id={`dropdown-${post.id}`} className="dropdown-toggle-vertical">
-                     Options
-                    </Dropdown.Toggle>
+                      <Dropdown.Toggle
+                        variant="primary"
+                        id={`dropdown-${post.id}`}
+                        className="dropdown-toggle-vertical"
+                      >
+                        Options
+                      </Dropdown.Toggle>
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => handleEditPost(post.id)}>Edit</Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleDeletePost(post.id)}>Delete</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleEditPost(post.id)}>
+                          Edit
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => handleDeletePost(post.id)}
+                        >
+                          Delete
+                        </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </Card.Body>
@@ -138,8 +168,9 @@ function Home() {
               ))}
             </div>
           </Col>
+          //{" "}
           <Col md={4} className="people-section">
-            <h3>People with the Same Career</h3>
+            <h3>People with the Same Career</h3>{" "}
             <div className="people-list">
               <p>Person 1</p>
               <p>Person 2</p>
@@ -150,15 +181,16 @@ function Home() {
               <p>Person 7</p>
               <p>Person 8</p>
               <p>Person 9</p>
-              <p>Person 10</p>
-            </div>
-          </Col>
+              <p>Person 10</p>{" "}
+            </div>{" "}
+          </Col>{" "}
         </Row>
-      </Container>
+      </Container>{" "}
       <footer className="bg-dark text-white text-center p-4">
+        {" "}
         <Container>
-          <p>&copy; 2023 My Website. All rights reserved.</p>
-        </Container>
+          <p>&copy; 2023 My Website. All rights reserved.</p>{" "}
+        </Container>{" "}
       </footer>
     </div>
   );

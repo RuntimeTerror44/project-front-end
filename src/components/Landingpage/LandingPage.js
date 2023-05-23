@@ -1,5 +1,7 @@
-// import "./LandingPage.scss";
-import "./LandingPage.scss"
+import React, { useRef, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+
+import "./LandingPage.scss";
 import $ from "jquery";
 import { Button, Space } from "antd";
 import {
@@ -10,9 +12,11 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { Card, Col, Row } from "antd";
+import LoginButton from "./login/Loginbutton";
+import LogoutButton from "./login/Logoutbutton";
 
 export default function LandingPage() {
-  //// page structure //jquery
+  //// page structure ///////////////// jquery
   class StickyNavigation {
     constructor() {
       this.currentId = null;
@@ -97,12 +101,38 @@ export default function LandingPage() {
   }
   new StickyNavigation();
 
-  ///cards related code
+  //////////////cards related code
   const { Meta } = Card;
-  /// auth logic
+  ////////////// auth logic handle
+  const loginButtonRef = useRef(null); //loginref
+  const logoutButtonRef = useRef(null); //loginref
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0(); // to read the state of auth
+  useEffect(() => {
+    if (isAuthenticated) {
+      localStorage.setItem("isAuthenticated", "true");
+    }
+  }, [isAuthenticated]);
+
+  ///// handle login click
+  const handleButtonClick = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    loginButtonRef.current.handleButtonClick();
+  };
+
+  //handle logout click
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
+  };
 
   return (
     <>
+      <LoginButton ref={loginButtonRef} />
+      <LogoutButton ref={logoutButtonRef} />
       <div className="et-hero-tabs-container">
         <h1>
           <a href="#">main</a>
@@ -122,12 +152,31 @@ export default function LandingPage() {
         </a>
 
         <Space>
-          <Button type="primary" shape="round" size={"large"}>
-            sign up{" "}
-          </Button>
-          <Button type="primary" shape="round" size={"large"}>
-            sign in{" "}
-          </Button>
+          <>
+            {" "}
+            {!isAuthenticated ? (
+              <Button
+                type="primary"
+                shape="round"
+                size={"large"}
+                onClick={handleButtonClick}
+              >
+                {" "}
+                sign in
+              </Button>
+            ) : (
+              <Button
+                danger
+                type="primary"
+                shape="round"
+                size={"large"}
+                onClick={handleButtonClick2}
+              >
+                {" "}
+                sign out
+              </Button>
+            )}
+          </>
         </Space>
 
         <span className="et-hero-tab-slider"></span>
@@ -141,12 +190,18 @@ export default function LandingPage() {
           connections.
         </h3>
         <Space>
-          <Button type="primary" shape="round" size={"large"}>
-            sign up{" "}
-          </Button>
-          <Button type="primary" shape="round" size={"large"}>
-            sign in{" "}
-          </Button>
+          {!isAuthenticated ? (
+            <Button
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick}
+            >
+              Join Us Now{" "}
+            </Button>
+          ) : (
+            <h1>Hello</h1>
+          )}
         </Space>
       </section>
       {/*Main*/}
