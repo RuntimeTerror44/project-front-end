@@ -21,9 +21,16 @@ const LoginButton = React.forwardRef((props, ref) => {
   return (
     !isAuthenticated && (
       <>
-        <button onClick={() => loginWithRedirect()}>SignIn</button>
+        <button
+          style={{ display: "none" }}
+          ref={buttonRef}
+          onClick={() => loginWithRedirect()}
+        >
+          SignIn
+        </button>
       </>
     )
   );
 });
+
 export default LoginButton;
