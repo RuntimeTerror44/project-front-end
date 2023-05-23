@@ -15,9 +15,7 @@ return (
 
 
 <button onClick={()=>loginWithRedirect()} >
-
 SignIn
-
 </button>
 
 
