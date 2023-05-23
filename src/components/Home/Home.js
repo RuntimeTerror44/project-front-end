@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import HomePost from "./HomePost";
-import axios from 'axios';
-import './HomePost.css'
-function Home(){
+import axios from "axios";
+import "./HomePost.css";
+function Home() {
   /////////////////// get the posts from data base//////////////////////
-  const [postDataArray, setPostDataArray]= useState([])
-  const getPostFromDb= async()=>{
-    const serverUrl=`${process.env.REACT_APP_SERVER_URL}posts`
-    const result= await axios.get(serverUrl)
-    setPostDataArray(result.data)
-  }
+  const [postDataArray, setPostDataArray] = useState([]);
+  const getPostFromDb = async () => {
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
+    const result = await axios.get(serverUrl);
+    setPostDataArray(result.data);
+  };
   // console.log(postDataArray)
   // const takeDataFromFirstChild=(arr)=>{
   //   setPostDataArray(arr)
   // }
-  useEffect(()=>{
-    getPostFromDb()
+  useEffect(() => {
+    getPostFromDb();
     // console.log(postDataArray)
-  },[])
+  }, []);
 
   // console.log(postDataArray)
   /////////////////////////////////////////
-  
+
   /////////////////////////////////////////
-  
-  return(
+
+  return (
     <>
-    <HomePost postDataArray={postDataArray}/>
+      <HomePost postDataArray={postDataArray} />
     </>
-  )
+  );
 }
 export default Home;
-
 
 // import React, { useEffect, useState } from 'react';
 // import { Navbar, Nav, Container, Form, FormControl, Button, Row, Col, Card, Dropdown } from 'react-bootstrap';
@@ -45,7 +44,6 @@ export default Home;
 // const readableDate = currentDate.toDateString();
 
 // // console.log(readableDate); // Output: "Sat May 22 2023"
-
 
 //   const addPostODb= async(e)=>{
 //     // e.preventDefault()
@@ -73,7 +71,7 @@ export default Home;
 
 //   const handlePostChange = (event) => {
 //     setPostText(event.target.value);
-    
+
 //   };
 
 //   const handlePostSubmit = (event) => {
@@ -125,7 +123,7 @@ export default Home;
 
 //   return (
 //     <div>
-  
+
 //       <Navbar className="navbar-light bg-light" expand="lg">
 //         <Container fluid>
 //           <Navbar.Brand href="#home">My website</Navbar.Brand>
@@ -232,5 +230,3 @@ export default Home;
 // }
 
 // export default Home;
-
-
