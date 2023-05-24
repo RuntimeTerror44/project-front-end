@@ -1,0 +1,64 @@
+.navbar {
+    margin-bottom: 20px;
+  }
+
+.people-section {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-right: -100px;
+    margin-left: 200px;
+    width: 450px;
+  }
+  
+  .people-list p {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  footer {
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 10px;
+    margin-top: 62px;
+    height: 70px;
+    text-align: center;
+  }
+  
+  .post {
+    background-color:beige;
+    padding: 10px;
+    margin-bottom: 25px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .post p {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+.posts-container {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  .comment-section {
+    margin-top: 10px;
+    width: min-content;
+    
+  }
+  
+  .comment {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc; 
+  }
+  
+  .comment p {
+    margin: 0;
+  }
