@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import {
   MDBContainer,
@@ -103,7 +104,8 @@ const ProfileCard = (props) => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <i className="fa fa-ellipsis-v" aria-hidden="true" />
+  
+          <p></p>
                     </a>
                     <div
                       className="dropdown-menu dropdown-menu-right"
@@ -126,7 +128,7 @@ const ProfileCard = (props) => {
                     Ratione laboriosam non atque, porro cupiditate commodi?
                     Provident culpa vel sit enim!
                   </p>
-                  <img src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg" alt="Content img" />
+                  <img src="" alt="Content img" />
                 </div>
                 <div className="mb-3">
                   <div className="d-flex justify-content-between mb-2">
@@ -175,15 +177,28 @@ const ProfileCard = (props) => {
                           <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
                           <small className="text-muted">1m</small>
                         </h6>
-                        <p className="mb-1">
-                        {jobs.map((job) => (
-                      <div key={job.id}>
-                        <p>{job.content}</p>
-                       <hr></hr>
+                        <p className="mb-1"></p>
+                    {jobs.map((job) => (
+                    <Text>
+                   <img
+                   src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
+                   alt="User img"
+                   className="author-img author-img--small mr-2"
+
+                 />
+                 <h6 className="mb-1">
+                          <a href="#!" className="text-dark">
+                            John doe
+                          </a>{" "}
+                          <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
                         
-                      </div>
+                        </h6>
+                        <>{job.content}</>
+                        <hr id="meme"></hr>
+                        </Text>
+                        
                     ))}
-                        </p>
+                        
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
                             <span>
