@@ -30,7 +30,7 @@ const handleUpdatePost= async(e)=>{
 
     }
     console.log(obj)
-console.log(obj.paragraph_content)
+    console.log(obj.paragraph_content)
     const serverUrl=`${process.env.REACT_APP_SERVER_URL}posts/${props.postData.post_id}`
     console.log(serverUrl)
     const result= await axios.put(serverUrl, obj)

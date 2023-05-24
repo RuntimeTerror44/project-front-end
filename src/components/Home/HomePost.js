@@ -110,31 +110,35 @@ function HomePost(props) {
     // console.log(postDataArray)
   },[])
 
-  // const handleDeletePost = (postId) => {
-  //   // Handle delete functionality here
-  //   console.log(`Delete post with id: ${postId}`);
-  // };
 
-  // const handleAddComment = (postId, commentText) => {
-  //   const newComment = {
-  //     id: Date.now(),
-  //     text: commentText,
-  //   };
 
-  //   setPosts((prevPosts) => {
-  //     const updatedPosts = prevPosts.map((post) => {
-  //       if (post.id === postId) {
-  //         return {
-  //           ...post,
-  //           comments: [...post.comments, newComment],
-  //         };
-  //       }
-  //       return post;
-  //     });
-  //     return updatedPosts;
-  //   });
-  // };
-
+  // ...
+  
+  const handleAddComment = async (postId, commentText) => {
+    try {
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}/comments/${postId}`;
+      const obj = {
+        content: commentText,
+      };
+      const response = await axios.post(serverUrl, obj);
+      console.log(response.data);
+    } catch (error) {
+      console.log('Error adding comment', error);
+    }
+  };
+  
+  
+  
+  
+  const handleDeletePost = async (postId) => {
+    try {
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${postId}`;
+      await axios.delete(serverUrl);
+      sendReq(); 
+    } catch (error) {
+      console.log(`error deleting post ${error}`);
+    }
+  };
   return (
     <div>
       <Navbar className="navbar-light bg-light" expand="lg">
@@ -243,7 +247,7 @@ function HomePost(props) {
                             Edit
                           </Dropdown.Item>
                           <Dropdown.Item
-                            onClick={() => handleDeletePost(post.id)}
+                            onClick={() => handleDeletePost(post.post_id)}
                           >
                             Delete
                           </Dropdown.Item>
