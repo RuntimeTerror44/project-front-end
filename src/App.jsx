@@ -7,6 +7,7 @@ import LogoutButton from "./components/Landingpage/login/Logoutbutton";
 import FormPersonalData from "./components/Profile/FormPersonalData";
 import Profile from "./components/Landingpage/login/profile";
 import Home from "./components/Home/Home"
+import Job from "./components/Job/Job"
 import Profilepage from "./components/Profile/Profilepage";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
       <Route path="/LogoutButton" element={<LogoutButton/>}/>
       <Route path="/Profile" element={<Profile/>} />
       <Route path="/Home" element={<Home/>}/>
+      <Route path="/Job" element={<Job/>}/>
       <Route path="/Profilepage" element={<Profilepage/>} />
      
       </Routes>
