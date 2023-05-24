@@ -5,7 +5,7 @@ import FormPersonalData from "./components/Profile/FormPersonalData";
 import LandingPage from "./components/Landingpage/LandingPage";
 import LoginButton from "./components/Landingpage/login/Loginbutton";
 import LogoutButton from "./components/Landingpage/login/Logoutbutton";
-import PortfolioForm from "./components/PortfolioMaker/PortfolioForm";
+
 import Profile from "./components/Landingpage/login/profile";
 
 import Profilepage from "./components/Profile/Profilepage";
@@ -39,6 +39,7 @@ export default function App() {
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
             <Route path="/Profile" element={<Profile />} />
+           
 
             <Route path="/Profilepage" element={<Profilepage />} />
           </Routes>
