@@ -1,4 +1,15 @@
-import { Navbar, Nav, Container, Form, FormControl, Button, Row, Col, Card, Dropdown } from 'react-bootstrap';
+import {
+  Navbar,
+  Nav,
+  Container,
+  Form,
+  FormControl,
+  Button,
+  Row,
+  Col,
+  Card,
+  Dropdown,
+} from "react-bootstrap";
 
 import React, { useEffect, useState } from "react";
 import "./HomePost.css";
@@ -6,10 +17,10 @@ import axios from "axios";
 import { post } from "jquery";
 import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
-import Comment from './Comment'
+import Comment from "./Comment";
 
 function HomePost(props) {
-console.log(props.comments);
+  console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
   // console.log(posts);
@@ -56,23 +67,21 @@ console.log(props.comments);
 
   const handlePostChange = (event) => {
     setPostText(event.target.value);
-    
   };
 
   const handlePostSubmit = (event) => {
     event.preventDefault();
     if (postText.trim() === "") {
-      return; 
+      return;
     }
     const newPost = {
       text: postText,
       comments: [],
     };
-  
+
     setPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText(event.target.value);
   };
- 
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
@@ -82,22 +91,23 @@ console.log(props.comments);
     setShowUpdateModal(false);
   };
 
-  const takeDataFromChild =(arr)=>{
-    setPosts(arr)
+  const takeDataFromChild = (arr) => {
+    setPosts(arr);
     // props.takeDataFromFirstChild(arr)
-  }
+  };
 
-  const sendReq= async ()=>{
+  
+
+  const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
     const result = await axios.get(serverUrl);
     setPosts(result.data);
     // setPosts(props.postDataArray);
-  }
-  useEffect(()=>{
+  };
+  useEffect(() => {
     sendReq();
     // console.log(postDataArray)
-  },[])
-
+  }, []);
 
   // const handleAddComment = async (commentText) => {
   //   try {
@@ -113,15 +123,14 @@ console.log(props.comments);
   //     console.log('Error adding comment', error);
   //   }
   // };
-  
-  
+
   console.log(props.comments);
-  
-  const handleDeletePost = async(post_id) => {
+
+  const handleDeletePost = async (post_id) => {
     try {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post_id}`;
       await axios.delete(serverUrl);
-      sendReq(); 
+      sendReq();
     } catch (error) {
       console.log(`error deleting post ${error}`);
     }
@@ -129,31 +138,6 @@ console.log(props.comments);
 
   return (
     <div>
-      <Navbar className="navbar-light bg-light" expand="lg">
-        <Container fluid>
-          <Navbar.Brand href="#home">My website</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-nav" />
-          <Navbar.Collapse id="navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">HomePost</Nav.Link>
-              <Nav.Link href="#jobs">Profile</Nav.Link>
-              <Nav.Link href="#jobs">Jobs</Nav.Link>
-              <Nav.Link href="#about">About Us</Nav.Link>
-            </Nav>
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success" type="submit">
-                Search
-              </Button>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
       <Container>
         <Row>
           <Col>
@@ -164,23 +148,27 @@ console.log(props.comments);
                   as="textarea"
                   rows={3}
                   placeholder="What's on your mind?"
-                  onChange={handlePostChange}/>
+                  onChange={handlePostChange}
+                />
                 <Form.Group controlId="formFile" className="mb-3">
                   <Form.Control
                     name="profile_picture"
                     type="file"
                     onChange={handleChange}
-                    ref={dateInputRef}/>
+                    ref={dateInputRef}
+                  />
                 </Form.Group>
               </Form.Group>
               <Button
                 onClick={addPostODb}
                 className="btnpost"
                 variant="primary"
-                type="submit">
+                type="submit"
+              >
                 Post
               </Button>
             </Form>
+
             {/* profilePicture: e.target.profile_picture.value, */}
             <hr />
             {posts && (
@@ -189,9 +177,9 @@ console.log(props.comments);
                   <Card key={post.post_id} className="post">
                     <Card.Body>
                       <Card.Text>{post.paragraph_content}</Card.Text>
-                      <Card.Text>{post.photo_content}</Card.Text> 
-                       <Card.Text>{post.post_date}</Card.Text> 
-                      {post.comments && (
+                      <Card.Text>{post.photo_content}</Card.Text>
+                      <Card.Text>{post.post_date}</Card.Text>
+                      {/* {post.comments && (
                         <div className="comments-container">
                           {post.comments.map((comment) => (
                             <Card.Text key={comment.id} className="comment">
@@ -199,28 +187,13 @@ console.log(props.comments);
                             </Card.Text>
                           ))}
                         </div>
-                      )}
-
-                      <Form
-                        onSubmit={(handleAddComment) => {
-                          handleAddComment(post.id);
-                          
-                        }}>
-                        <Form.Group controlId={`commentForm-${post.id}`}>
-                          <Form.Control
-                            type="text"
-                            name="comment"
-                            placeholder="Add a comment"/>
-                        </Form.Group>
-                        <Button onClick ={()=>handleAddComment(comment.post_id)} variant="primary" type="submit">
-                          Add Comment
-                        </Button>
-                      </Form>
+                      )} */}
                       <Dropdown align="end">
                         <Dropdown.Toggle
                           variant="primary"
                           id={`dropdown-${post.id}`}
-                          className="dropdown-toggle-vertical">
+                          className="dropdown-toggle-vertical"
+                        >
                           Options
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -228,11 +201,18 @@ console.log(props.comments);
                             Edit
                           </Dropdown.Item>
                           <Dropdown.Item
-                            onClick={() => handleDeletePost(post.post_id)}>
+                            onClick={() => handleDeletePost(post.post_id)}
+                          >
                             Delete
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
+
+                      <Comment postID={post.post_id}/>
+                      
+                    {/* ///////////////////////////////////////////// */}
+
+
                     </Card.Body>
                   </Card>
                 ))}
@@ -269,7 +249,7 @@ console.log(props.comments);
         posts={posts}
         takeDataFromChild={takeDataFromChild}
       />
-      <Comment comments={props.commentsDataArray} />
+      {/* <Comment comments={props.commentsDataArray} /> */}
     </div>
   );
 }

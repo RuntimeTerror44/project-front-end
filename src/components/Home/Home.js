@@ -15,20 +15,16 @@ console.log("helllllo");
   
 
   //-----------------------------------------------------
-  const [commentsDataArray, setCommentsDataArray] = useState([]);
-  const getCommentsFromDb = async () => {
-    const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments`;
-     axios.get(serverUrl).then((result)=>{
+  // const getCommentsFromDb = async () => {
+  //   const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments`; 
+  //   const result = await axios.get(serverUrl);
+  //     setCommentsDataArray(result.data)
+  //   }
 
-      setCommentsDataArray(result.data)
-
-    })
-           
-    
-  };
+  
   useEffect(() => {
     getPostFromDb();
-    getCommentsFromDb();
+    // getCommentsFromDb();
   },[]);
   // getPostFromDb();
   // getCommentsFromDb();
@@ -36,11 +32,12 @@ console.log("helllllo");
 
   return (
     <>
-    {commentsDataArray ? 
+    {/* {commentsDataArray ? 
       <HomePost postDataArray={postDataArray}  comments={commentsDataArray}/>
     
-    : <></>}
-     
+    : <></>} */}
+           <HomePost postDataArray={postDataArray}/>
+
 
     </>
   );
