@@ -28,7 +28,7 @@ const Profile = () => {
        if(!emailExist){
           const response = await axios.post("http://localhost:4000/users", {
             email: user.email,
-            profilePicture: user.picture
+            profilepicture: user.picture
             // Add other relevant user data fields
           });}
           
@@ -43,7 +43,7 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <Test data1={user.given_name} data2={user.picture} data3={user.email} />
+      <Test data1={user.name} data2={user.picture} data3={user.email} />
     )
   );
 };

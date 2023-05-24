@@ -21,21 +21,7 @@ const ProfileCard = (props) => {
     console.log(jobs);
   }, [jobs]);
 
-  // const [comments1, setComments1] = useState([]);
-  // useEffect(() => {
-  //     const fetchComments = async () => {
-  //       try {
-  //         const response = await axios.get('http://localhost:4000/getcomments');
-  //         setComments1(response.data);
-  //         console.log(comments1)
-  //       } catch (error) {
-  //         console.error('Error fetching comments:', error);
-  //       }
-  //     };
-  
-  //     fetchComments();
-  //   }, []);
-
+ 
 
 
 
@@ -108,7 +94,7 @@ const ProfileCard = (props) => {
     <br></br><hr></hr>
   </div>
 ))}
-<p>helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</p>
+<p>add this ,,,,,</p>
                       
                       </div>
                 </MDBCardBody>
