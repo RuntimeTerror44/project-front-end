@@ -17,10 +17,24 @@ import { useParams } from "react-router-dom";
 
 const ProfileCard = (props) => {
 // console.log(props.postComment.content)
+// for(let i=0;i<props.value.length;i++){
+
+
+//   console.log(props.value[i].content)
+// }
 
   return (
     <>
-      <meta charSet="UTF-8" />
+   {props.postData.map((item,i)=>{
+
+
+
+return(
+
+
+<>
+
+<meta charSet="UTF-8" />
       <title>Social Media Post UI Design</title>
       <meta
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -93,10 +107,10 @@ const ProfileCard = (props) => {
                 </div>
                 <div className="post-block__content mb-2">
                   <p>
-                  {props.postData.paragraph_content}
+                  {item.paragraph_content}
                   {/* <p>{props.postComment.content}</p> */}
                   </p>
-                  <img src="" alt="Content img" />
+                  <img src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg" alt="Content img" />               
                 </div>
                 <div className="mb-3">
                   <div className="d-flex justify-content-between mb-2">
@@ -132,20 +146,20 @@ const ProfileCard = (props) => {
                   {/* Comment content */}
                   <div className="comment-view-box mb-3">
                     <div className="d-flex mb-2">
-                      <img
-                        src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
-                        alt="User img"
-                        className="author-img author-img--small mr-2"
-                      />
+                      {/* <img */}
+                        {/* src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg" */}
+                        {/* alt="User img" */}
+                        {/* className="author-img author-img--small mr-2" */}
+                      {/* /> */}
                       <div>
-                        <h6 className="mb-1">
-                          <a href="#!" className="text-dark">
-                            John doe
-                          </a>{" "}
-                          <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
-                          <small className="text-muted">1m</small>
-                        </h6>
-                        <p className="mb-1"></p>
+                        {/* <h6 className="mb-1"> */}
+                          {/* <a href="#!" className="text-dark"> */}
+                            {/* John doe */}
+                          {/* </a>{" "} */}
+                          {/* <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p> */}
+                          {/* <small className="text-muted">1m</small> */}
+                        {/* </h6> */}
+                        {/* <p className="mb-1"></p> */}
                     {/* {jobs.map((job) => (
                     <Text>
                    <img
@@ -167,6 +181,27 @@ const ProfileCard = (props) => {
                         
                     ))}
                          */}
+                    {props.value.map((comment) => (
+                    <Text>
+                   <img
+                   src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
+                   alt="User img"
+                   className="author-img author-img--small mr-2"
+
+                 />
+                 <h6 className="mb-1">
+                          <a href="#!" className="text-dark">
+                            John doe
+                          </a>{" "}
+                          <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
+                        
+                        </h6>
+                        <>{comment.content}</>
+                        <hr id="meme"></hr>
+                        </Text>
+                        
+                    ))}
+                        
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
                             <span>
@@ -188,6 +223,22 @@ const ProfileCard = (props) => {
         </div>
       </section>
 
+      </>
+)
+
+
+
+
+
+
+
+
+
+
+
+   })}
+
+      
       </>
   );
 };

@@ -5,7 +5,9 @@ import UsersInfo from './UsersInfo';
 import './Profilepage.css'
 import Profileposts from './Profileposts';
 import { useState,useEffect } from 'react'
+
 function Profilepage(){
+
   
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
@@ -44,7 +46,7 @@ function Profilepage(){
     const result = await axios.get(serverUrl);
     
     setComment(result.data);
-    console.log(result.data)
+    // console.log(result.data)
 
   };
 
@@ -61,7 +63,7 @@ function Profilepage(){
 
 
 
-
+  const x=comment
  
  
 
@@ -82,22 +84,43 @@ return (
 
 
 
-{jobs.map((item, i) => {
+{/* {jobs.map((item, i) => {
         return (
 
 
-<Profileposts key={i} postData={item} />
 
 
 
   );
+} */}
+
+
+
+
+
+{/* 
+        )
+                   
+}
+
+
+<Profileposts  postData={jobs} value={x}/>
+{/* {comment.map((items, ix) => {
+      
+
+
+<Profileposts key={ix} commentData={items} />
+
+// console.log(commentData.content)
+
+ 
 }
 
 
 
         )
                    
-      }
+      } */}
 {/* {comment.map((item, i) => {
         return (
 
@@ -116,8 +139,8 @@ return (
       } */}
       
 
+      <Profileposts  postData={jobs} value={x}/>
 
-     
 
 </>
 )
