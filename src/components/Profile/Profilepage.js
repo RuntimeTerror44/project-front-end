@@ -6,16 +6,31 @@ import './Profilepage.css'
 import Profileposts from './Profileposts';
 import { useState,useEffect } from 'react'
 function Profilepage(){
+  
+  const storedUserData = localStorage.getItem("userId");
+  const userData = JSON.parse(storedUserData);
+  console.log(typeof userData.id)
+
 
     const [jobs, setJobs] = useState([]);
     
   const sendReq = async () => {
-    const serverUrl = `http://localhost:4000/posts/1`;
+    const serverUrl = `http://localhost:4000/userposts/${userData.id}`;
     const result = await axios.get(serverUrl);
     
     setJobs(result.data);
 
   };
+
+  //   const [posts, setposts] = useState([]);
+    
+  // const sendReq = async () => {
+  //   const serverUrl = `http://localhost:4000/posts/1`;
+  //   const result = await axios.get(serverUrl);
+    
+  //   setJobs(result.data);
+
+  // };
   useEffect(() => {
     sendReq() ;
   }, []);
@@ -26,10 +41,6 @@ function Profilepage(){
 
  
  
-  const storedUserData = localStorage.getItem("userId");
-  const userData = JSON.parse(storedUserData);
-  console.log(userData.id)
-
 
 return (
 

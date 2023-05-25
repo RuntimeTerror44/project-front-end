@@ -18,19 +18,19 @@ import { useParams } from "react-router-dom";
 const ProfileCard = (props) => {
   const [jobs, setJobs] = useState([]);
 
-  const sendReq = async () => {
-    const serverUrl = "http://localhost:4000/getcomments";
-    const response = await axios.get(serverUrl);
-    setJobs(response.data);
-  };
+  // const sendReq = async () => {
+  //   const serverUrl = "http://localhost:4000/getcomments";
+  //   const response = await axios.get(serverUrl);
+  //   setJobs(response.data);
+  // };
 
-  useEffect(() => {
-    sendReq();
-  }, []);
+  // useEffect(() => {
+  //   sendReq();
+  // }, []);
 
-  useEffect(() => {
-    console.log(jobs);
-  }, [jobs]);
+  // useEffect(() => {
+  //   console.log(jobs);
+  // }, [jobs]);
 
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
@@ -124,9 +124,7 @@ const ProfileCard = (props) => {
                 </div>
                 <div className="post-block__content mb-2">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Ratione laboriosam non atque, porro cupiditate commodi?
-                    Provident culpa vel sit enim!
+                  {props.postData.paragraph_content}
                   </p>
                   <img src="" alt="Content img" />
                 </div>
@@ -178,7 +176,7 @@ const ProfileCard = (props) => {
                           <small className="text-muted">1m</small>
                         </h6>
                         <p className="mb-1"></p>
-                    {jobs.map((job) => (
+                    {/* {jobs.map((job) => (
                     <Text>
                    <img
                    src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
@@ -198,7 +196,7 @@ const ProfileCard = (props) => {
                         </Text>
                         
                     ))}
-                        
+                         */}
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
                             <span>
