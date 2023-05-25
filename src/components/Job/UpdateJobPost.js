@@ -3,10 +3,10 @@ import Modal from 'react-bootstrap/Modal';
 import { Navbar, Nav, Container, Form, FormControl, Button, Row, Col, Card, Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 
-function UpdatePost(props){
+function UpdateJobPost(props){
 
     //////////////////// backend post update is not ready yet ////////////
-  console.log(props.postData)
+  // console.log(props.postData)
 
     // const handleUpdateComments = async (e) => {
     //     e.preventDefault()
@@ -26,27 +26,28 @@ const [changePost, setChangePost] = useState("");
 const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
-        paragraph_content: changePost
+      job_post_content: changePost
 
     }
     console.log(obj)
-    console.log(obj.paragraph_content)
-    const serverUrl=`${process.env.REACT_APP_SERVER_URL}posts/${props.postData.post_id}`
+console.log(obj.job_post_content)
+    const serverUrl=`${process.env.REACT_APP_SERVER_URL}job/${props.postData.ID}`
     console.log(serverUrl)
     const result= await axios.put(serverUrl, obj)
     console.log(result.data)
     props.takeDataFromChild(result.data)
     props.handleClosePost()
 }
-//  const serverUrl=`${process.env.REACT_APP_SERVER_URL}posts/${props.postData.post_id}`
-//  console.log(serverUrl)
+ const serverUrl=`${process.env.REACT_APP_SERVER_URL}job/${props.postData.ID}`
+ console.log(serverUrl)
 
 
 //////////////////////////////////////////////////////////
   
     return(
         <>
-    {console.log(props.postData.paragraph_content)}
+
+    {/* {console.log(props.postData.job_post_content)} */}
         <Modal show={props.showUpdateModal} onHide={props.handleClosePost}>
         <Modal.Header closeButton>
           <Modal.Title>Update Post</Modal.Title>
@@ -54,7 +55,7 @@ const handleUpdatePost= async(e)=>{
         <Modal.Body>
         {/* onChange={(e) => setComments(e.target.value)} */}
         <form >
-          <input  defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
+          <input  defaultValue={props.postData.job_post_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
           <Button onClick={handleUpdatePost} type='submit' variant="primary">Update</Button>
         </form>
 
@@ -67,4 +68,4 @@ const handleUpdatePost= async(e)=>{
         </>
     )
     };
-export default UpdatePost;
+export default UpdateJobPost;
