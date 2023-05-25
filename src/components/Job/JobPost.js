@@ -51,13 +51,13 @@ function JobPost(props) {
         // user_id: props
         // photo_content: image,
       };
-
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}job`;
       const result = await axios.post(serverUrl, obj);
       // setPostText(result.data)
       console.log(result.data[0]);
       setPostData(result.data[0]);
       setPosts(result.data);
+      setPostText('')
     } catch (error) {
       console.log(`error add  post ${error}`);
     }
@@ -81,22 +81,22 @@ function JobPost(props) {
     setjobField(event.target.value);
   };
 
-  // const handlePostSubmit = (event) => {
-  //   event.preventDefault();
+  const handlePostSubmit = (event) => {
+    event.preventDefault();
 
-  //   if (postText.trim() === "") {
-  //     return; // Skip empty JobPosts
-  //   }
+    if (postText.trim() === "") {
+      return; // Skip empty JobPosts
+    }
 
-  //   const newPost = {
-  //     id: Date.now(),
-  //     text: postText,
-  //     comments: [],
-  //   };
+    const newPost = {
+      id: Date.now(),
+      text: postText,
+      comments: [],
+    };
 
-  //   setPosts((prevPosts) => [newPost, ...prevPosts]);
-  //   setPostText("");
-  // };
+    setPosts((prevPosts) => [newPost, ...prevPosts]);
+    setPostText("");
+  };
   console.log(JobPosts);
 
   const handleEditPost = (post) => {
@@ -128,25 +128,25 @@ function JobPost(props) {
   //   console.log(`Delete post with id: ${postId}`);
   // };
 
-  // const handleAddComment = (postId, commentText) => {
-  //   const newComment = {
-  //     id: Date.now(),
-  //     text: commentText,
-  //   };
+  const handleAddComment = (postId, commentText) => {
+    const newComment = {
+      id: Date.now(),
+      text: commentText,
+    };
 
-  //   setPosts((prevPosts) => {
-  //     const updatedPosts = prevPosts.map((post) => {
-  //       if (post.id === postId) {
-  //         return {
-  //           ...post,
-  //           comments: [...post.comments, newComment],
-  //         };
-  //       }
-  //       return post;
-  //     });
-  //     return updatedPosts;
-  //   });
-  // };
+    setPosts((prevPosts) => {
+      const updatedPosts = prevPosts.map((post) => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: [...post.comments, newComment],
+          };
+        }
+        return post;
+      });
+      return updatedPosts;
+    });
+  };
 console.log(postData)
   return (
     <div>
@@ -183,7 +183,7 @@ console.log(postData)
           <Col>
             <h1>Share your thoughts here</h1>
             {/* onSubmit={handlePostSubmit} this is in form */}
-            <Form >
+            <Form onSubmit={handlePostSubmit}>
               <Form.Group controlId="postForm">
                 <Form.Control
                   as="textarea"

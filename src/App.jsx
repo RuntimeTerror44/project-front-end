@@ -9,7 +9,7 @@ import PortfolioForm from "./components/PortfolioMaker/PortfolioForm";
 import Profile from "./components/Landingpage/login/profile";
 import Home from "./components/Home/Home"
 import Job from "./components/Job/Job"
-
+import Form from "./components/PortfolioMaker/Form";
 
 
 import Profilepage from "./components/Profile/Profilepage";
@@ -44,8 +44,10 @@ export default function App() {
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
             <Route path="/Profile" element={<Profile />} />
-
             <Route path="/Profilepage" element={<Profilepage />} />
+            <Route path="/Form" element={<Form />} />
+            <Route path="/Job" element={<Job />} />
+            <Route path="/Home" element={<Home />} />
           </Routes>
         )}
       </>
