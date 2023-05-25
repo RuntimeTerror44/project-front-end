@@ -9,31 +9,54 @@ function Profilepage(){
   
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
-  console.log(typeof userData.id)
+  // console.log(typeof userData.id)
 
-
+  const [userInfo, setuserInfo] = useState([]);
+  const [comment, setComment] = useState([]);
     const [jobs, setJobs] = useState([]);
     
   const sendReq = async () => {
-    const serverUrl = `http://localhost:4000/userposts/${userData.id}`;
+    const serverUrl = `http://localhost:4000/userposts/1`;
     const result = await axios.get(serverUrl);
     
     setJobs(result.data);
 
   };
 
-  //   const [posts, setposts] = useState([]);
-    
-  // const sendReq = async () => {
-  //   const serverUrl = `http://localhost:4000/posts/1`;
-  //   const result = await axios.get(serverUrl);
-    
-  //   setJobs(result.data);
-
-  // };
   useEffect(() => {
-    sendReq() ;
+    const getData = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/users/1');
+        setuserInfo(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+  
+
+    getData();
   }, []);
+
+
+  const getComment = async () => {
+    const serverUrl = `http://localhost:4000/comments/1`;
+    const result = await axios.get(serverUrl);
+    
+    setComment(result.data);
+    console.log(result.data)
+
+  };
+
+
+
+  useEffect(() => {
+    
+    sendReq() ;
+    getComment();
+  }, []);
+ 
+
 
 
 
@@ -46,7 +69,18 @@ return (
 
 <>
 
-<UsersInfo />
+
+
+
+
+      <UsersInfo user={userInfo} /> 
+    
+
+
+
+
+
+
 
 {jobs.map((item, i) => {
         return (
@@ -64,6 +98,22 @@ return (
         )
                    
       }
+{/* {comment.map((item, i) => {
+        return (
+
+
+<CommentComponent key={i} CommentData={item} />
+
+
+
+  );
+}
+
+
+
+        )
+                   
+      } */}
       
 
 

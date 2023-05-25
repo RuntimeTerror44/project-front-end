@@ -16,38 +16,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const ProfileCard = (props) => {
-  const [jobs, setJobs] = useState([]);
-
-  // const sendReq = async () => {
-  //   const serverUrl = "http://localhost:4000/getcomments";
-  //   const response = await axios.get(serverUrl);
-  //   setJobs(response.data);
-  // };
-
-  // useEffect(() => {
-  //   sendReq();
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log(jobs);
-  // }, [jobs]);
-
-  const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([]);
-
-  const handleCommentChange = (event) => {
-    setComment(event.target.value);
-  };
-
-  const handleCommentSubmit = (event) => {
-    event.preventDefault();
-    const newComment = {
-      id: comments.length + 1,
-      content: comment,
-    };
-    setComments([...comments, newComment]);
-    setComment("");
-  };
+// console.log(props.postComment.content)
 
   return (
     <>
@@ -125,6 +94,7 @@ const ProfileCard = (props) => {
                 <div className="post-block__content mb-2">
                   <p>
                   {props.postData.paragraph_content}
+                  {/* <p>{props.postComment.content}</p> */}
                   </p>
                   <img src="" alt="Content img" />
                 </div>
@@ -218,77 +188,7 @@ const ProfileCard = (props) => {
         </div>
       </section>
 
-      {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-      <div className="" style={{ backgroundColor: "" }}>
-        <MDBContainer>
-          <MDBRow className="justify-content-center">
-            <MDBCol md="13" lg="14" xl="10" className="mt-5">
-              <MDBCard style={{ borderRadius: "15px" }}>
-                <MDBCardBody className="p-4">
-                  <div className="d-flex flex-row mb-3">
-                    <div className="text-black">
-                      <div className="flex-shrink-0">
-                        <MDBCardImage
-                          style={{
-                            width: "100px",
-                            borderRadius: "100px",
-                            marginTop: "5px",
-                          }}
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                          alt="Generic placeholder image"
-                          fluid
-                        />
-                      </div>
-                      <div className="flex-grow-3 ms-3">
-                        <MDBCardTitle></MDBCardTitle>
-                        <MDBCardText></MDBCardText>
-                        <div
-                          className="wrapped-text justify-content-start  rounded-3 p-2 mb-2"
-                          style={{
-                            backgroundColor: "#efefef",
-                            marginTop: "30px",
-                          }}
-                        >
-                          {/* <p>{props.postData.paragraph_content}</p> */}
-                          <p>
-                            hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-                          </p>
-                          {/* <MDBBtn outline className="me-50 flex-grow-10">
-                          Like
-                        </MDBBtn> */}
-                        </div>
-                      </div>
-                      <div className="d-flex pt-15">
-                        <MDBBtn outline className="me-10 flex-grow-4">
-                          Like
-                        </MDBBtn>
-                      </div>
-                      <br />
-                    </div>
-                  </div>
-                  <div
-                    className=" justify-content-start rounded-3 p-2 mb-2"
-                    style={{ backgroundColor: "#efefef", marginTop: "10px" }}
-                  >
-                    {jobs.map((job) => (
-                      <div key={job.id}>
-                        <p>{job.content}</p>
-                        <br></br>
-                        <hr></hr>
-                      </div>
-                    ))}
-                    <p>
-                      add this
-                      hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh{" "}
-                    </p>
-                  </div>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-      </div>
-    </>
+      </>
   );
 };
 
