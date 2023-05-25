@@ -21,7 +21,7 @@ function UsersInfo(props){
     </MDBCardBody>
   </MDBCard> */}
 
-<section style={{ backgroundColor: '#eee' }}>
+<section style={{ backgroundColor: 'white' }}>
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
@@ -336,7 +336,7 @@ function UsersInfo(props){
 
 
   <meta charSet="UTF-8" />
-      <title>Social Media Post UI Design</title>
+      
       <meta
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         name="viewport"
@@ -353,7 +353,7 @@ function UsersInfo(props){
       <link rel="stylesheet" type="text/css" href="css/style.css" />
       <section className="main-content">
         <div className="container">
-          <h1 className="text-center text-uppercase">Social Media Post</h1>
+          <h1 className="text-center text-uppercase"></h1>
           <br />
           <br />
           <div className="row">
@@ -373,7 +373,7 @@ function UsersInfo(props){
                     <div>
                       <h5 className="mb-0">
                         <a href="#!" className="text-dark">
-                          Kiran Acharya
+                          Kiran Acharya aaaaaa
                         </a>
                       </h5>
                       <p className="mb-0 text-muted">SoftwreEngineer</p>

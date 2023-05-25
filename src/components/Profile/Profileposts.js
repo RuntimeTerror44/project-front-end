@@ -69,7 +69,7 @@ const ProfileCard = (props) => {
       <link rel="stylesheet" type="text/css" href="css/style.css" />
       <section className="main-content">
         <div className="container">
-          <h1 className="text-center text-uppercase">Social Media Post</h1>
+          <h1 className="text-center text-uppercase"></h1>
           <br />
           <br />
           <div className="row">
