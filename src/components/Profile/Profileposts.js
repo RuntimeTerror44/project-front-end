@@ -181,7 +181,7 @@ return(
                         
                     ))}
                          */}
-                    {props.value.map((comment) => (
+                    {/* {props.value.map((comment) => (
                     <Text>
                    <img
                    src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
@@ -200,7 +200,7 @@ return(
                         <hr id="meme"></hr>
                         </Text>
                         
-                    ))}
+                    ))} */}
                         
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
