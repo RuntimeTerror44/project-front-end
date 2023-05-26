@@ -189,8 +189,8 @@ return(
                         
                     ))}
                          */}
-                    {/* {props.value.map((comment) => (
-                    <Text>
+     
+                  
                    <img
                    src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
                    alt="User img"
@@ -204,14 +204,14 @@ return(
                           <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
                         
                         </h6>
-                        <>{comment.content}</>
+                    
                         <hr id="meme"></hr>
-                        </Text>
+            
                         
-                    ))} */}
+           
                            {/* {console.log(item.post_id)} */}
                        <Comment postID={item.post_id}/>
-                       
+
                         
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
