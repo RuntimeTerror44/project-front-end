@@ -41,6 +41,8 @@ export default function App() {
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
             <Route path="/Profile" element={<Profile />} />
+            <Route path="/Job" element={<Job />} />
+            <Route path="/Home" element={<Home />} />
 
             <Route path="/Profilepage" element={<Profilepage />} />
           </Routes>

@@ -39,9 +39,9 @@ function JobPost(props) {
 
   ///////////////////////////////////////////
 
-  const addPostODb = async () => {
+  const addPostODb = async (e) => {
     try {
-      // e.preventDefault()
+      e.preventDefault()
       const obj = {
         job_post_content: postText,
         job_title: jobTitle,
@@ -51,13 +51,13 @@ function JobPost(props) {
         // user_id: props
         // photo_content: image,
       };
-
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}job`;
       const result = await axios.post(serverUrl, obj);
       // setPostText(result.data)
       console.log(result.data[0]);
       setPostData(result.data[0]);
       setPosts(result.data);
+      setPostText("")
     } catch (error) {
       console.log(`error add  post ${error}`);
     }
@@ -116,6 +116,7 @@ function JobPost(props) {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}job`;
     const result = await axios.get(serverUrl);
     setPosts(result.data);
+    setPostText("")
     // setPosts(props.postDataArray);
   };
   useEffect(() => {
@@ -189,6 +190,7 @@ console.log(postData)
                   as="textarea"
                   rows={3}
                   placeholder="What's on your mind?"
+                 
             
                   onChange={handlePostChange}
                 />
@@ -211,14 +213,14 @@ console.log(postData)
                   onChange={handleJobField}
                 />
 
-                <Form.Group controlId="formFile" className="mb-3">
+                {/* <Form.Group controlId="formFile" className="mb-3">
                   <Form.Control
                     name="profile_picture"
                     type="file"
                     // onChange={handleChange}
                     // ref={dateInputRef}
                   />
-                </Form.Group>
+                </Form.Group> */}
               </Form.Group>
               <Button
                 onClick={addPostODb}
@@ -237,7 +239,10 @@ console.log(postData)
                 {JobPosts.map((post) => (
                   <Card key={post.id} className="post">
                     <Card.Body>
-                      <Card.Text>{post.job_post_content}</Card.Text>
+                      <Card.Text >{post.job_post_content}</Card.Text>
+                      <Card.Text>{post.job_title}</Card.Text>
+                      <Card.Text>{post.job_field}</Card.Text>
+                      <Card.Text>{post.city}</Card.Text>
                       {post.comments && (
                         <div className="comments-container">
                           {post.comments.map((comment) => (
