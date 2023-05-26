@@ -5,43 +5,128 @@ import UsersInfo from './UsersInfo';
 import './Profilepage.css'
 import Profileposts from './Profileposts';
 import { useState,useEffect } from 'react'
+
 function Profilepage(){
 
+  
+  const storedUserData = localStorage.getItem("userId");
+  const userData = JSON.parse(storedUserData);
+  // console.log(typeof userData.id)
+
+  const [userInfo, setuserInfo] = useState([]);
+  const [comment, setComment] = useState([]);
     const [jobs, setJobs] = useState([]);
     
   const sendReq = async () => {
-    const serverUrl = `http://localhost:4000/posts/1`;
+    const serverUrl = `http://localhost:4000/userposts/1`;
     const result = await axios.get(serverUrl);
     
     setJobs(result.data);
+    console.log(result.data)
 
   };
+
   useEffect(() => {
-    sendReq() ;
+    const getData = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/users/1');
+        setuserInfo(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+  
+
+    getData();
   }, []);
 
 
+  const getComment = async () => {
+    const serverUrl = `http://localhost:4000/comments/1`;
+    const result = await axios.get(serverUrl);
+    
+    setComment(result.data);
+    // console.log(result.data)
+
+  };
 
 
 
+  useEffect(() => {
+    
+    sendReq() ;
+    getComment();
+  }, []);
+ 
+
+
+
+
+
+  const x=comment
  
  
-  const storedUserData = localStorage.getItem("userId");
-  const userData = JSON.parse(storedUserData);
-  console.log(userData.id)
-
 
 return (
 
 <>
 
-<UsersInfo />
 
-{jobs.map((item, i) => {
+
+
+
+      <UsersInfo user={userInfo} /> 
+    
+
+
+
+
+
+
+
+{/* {jobs.map((item, i) => {
         return (
 
 
-<Profileposts key={i} postData={item} />
+
+
+
+  );
+} */}
+
+
+
+
+
+{/* 
+        )
+                   
+}
+
+
+<Profileposts  postData={jobs} value={x}/>
+{/* {comment.map((items, ix) => {
+      
+
+
+<Profileposts key={ix} commentData={items} />
+
+// console.log(commentData.content)
+
+ 
+}
+
+
+
+        )
+                   
+      } */}
+{/* {comment.map((item, i) => {
+        return (
+
+
+<CommentComponent key={i} CommentData={item} />
 
 
 
@@ -52,11 +137,11 @@ return (
 
         )
                    
-      }
+      } */}
       
 
+      <Profileposts  postData={jobs} value={x}/>
 
-     
 
 </>
 )
