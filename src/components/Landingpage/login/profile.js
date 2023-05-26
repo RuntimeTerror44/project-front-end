@@ -12,7 +12,7 @@ const Profile = () => {
     if (isAuthenticated) {
       const storeUserData = async () => {
         // Check if the email already exists in your database
-        const checkEmailExists = await axios.get(`http://localhost:4000/users`);
+        const checkEmailExists = await axios.get(`http://localhost:5000/users`);
         let emailExist=false;
 
         for (let i = 0; i < checkEmailExists.data.length; i++) {
@@ -26,7 +26,7 @@ const Profile = () => {
          
         }
        if(!emailExist){
-          const response = await axios.post("http://localhost:4000/users", {
+          const response = await axios.post("http://localhost:5000/users", {
             email: user.email,
             profilepicture: user.picture
             // Add other relevant user data fields

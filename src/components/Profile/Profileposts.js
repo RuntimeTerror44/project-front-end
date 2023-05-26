@@ -211,6 +211,7 @@ return(
                     ))} */}
                            {/* {console.log(item.post_id)} */}
                        <Comment postID={item.post_id}/>
+                       
                         
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
