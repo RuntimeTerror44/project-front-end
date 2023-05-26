@@ -22,6 +22,7 @@ function Profilepage(){
     const result = await axios.get(serverUrl);
     
     setJobs(result.data);
+    console.log(result.data)
 
   };
 

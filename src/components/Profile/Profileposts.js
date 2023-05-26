@@ -14,6 +14,7 @@ import {
 import "./Card.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Comment from "../Home/Comment";
 
 const ProfileCard = (props) => {
 // console.log(props.postComment.content)
@@ -23,6 +24,13 @@ const ProfileCard = (props) => {
 //   console.log(props.value[i].content)
 // }
 
+// if (!props.postData || props.postData.length === 0) {
+//   return <p>Loading...</p>;
+// }
+
+// const userDataInfo = props.postData[0];
+
+// console.log(userDataInfo.post_id)
   return (
     <>
    {props.postData.map((item,i)=>{
@@ -201,6 +209,8 @@ return(
                         </Text>
                         
                     ))} */}
+                           {/* {console.log(item.post_id)} */}
+                       <Comment postID={item.post_id}/>
                         
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
