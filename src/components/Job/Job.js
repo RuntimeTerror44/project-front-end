@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import JobPost from "./JobPost";
 import axios from 'axios';
 import './JobPost.css'
-import Test from './Test'
 function Job(){
   /////////////////// get the posts from data base//////////////////////
   const [postDataArray, setPostDataArray]= useState([])
@@ -28,7 +27,7 @@ function Job(){
   return(
     <>
     this is job page
-    <Test/>
+   
     <JobPost postDataArray={postDataArray}/>
 
     </>

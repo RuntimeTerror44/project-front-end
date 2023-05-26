@@ -82,23 +82,31 @@ console.log(obj.job_post_content)
           <Form.Label>post</Form.Label>
           <Form.Control
             type="text"
-            name="post" 
-          />
+            name="post"
+            defaultValue={props.postData.job_post_content
+            } 
+            />
           <Form.Label>city</Form.Label>
           <Form.Control
             type="text"
             name="city" 
-          />
+            defaultValue={props.postData.city
+            } 
+            />
           <Form.Label>Field</Form.Label>
           <Form.Control
             type="text"
             name="field" 
-          />
+            defaultValue={props.postData.job_field
+            } 
+            />
           <Form.Label>Title</Form.Label>
           <Form.Control
             type="text"
             name="title" 
-          />
+            defaultValue={props.postData.job_title
+            } 
+            />
         <Button  type="submit">Submit form</Button>
         </Form.Group>
         </Form>

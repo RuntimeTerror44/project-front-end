@@ -149,6 +149,17 @@ function JobPost(props) {
   //   });
   // };
 console.log(postData)
+
+const handleDeletePost = async (id) => {
+  try {
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}job/${id}`;
+    await axios.delete(serverUrl);
+    sendReq();
+  } catch (error) {
+    console.log(`error deleting job post ${error}`);
+  }
+};
+
   return (
     <div>
       <Navbar className="navbar-light bg-light" expand="lg">

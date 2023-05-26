@@ -17,7 +17,7 @@ import Profilepage from "./components/Profile/Profilepage";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function App() {
-<<<<<<<<< Temporary merge branch 1
+
   /*----------------------------saving authintication status in local storage -------------------*/
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [loading, setLoading] = useState(true);
@@ -38,38 +38,21 @@ export default function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
           </Routes>
-        ) : ( */}
+        ) : (*/}
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/FormPersonalData" element={<FormPersonalData />} />
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
             <Route path="/Profile" element={<Profile />} />
-
             <Route path="/Profilepage" element={<Profilepage />} />
+            <Route path="/FormPersonalData" element={<FormPersonalData />}/>
+  |         <Route path="/Home" element={<Home/>}/>
+            <Route path="/Job" element={<Job/>}/>
           </Routes>
         {/* )} */}
       </>
     );
   }
-=========
-  return (
-    <>
-    <Routes>
-      <Route path="/" element={<LandingPage/>}/>
-      
-       
-      <Route path="/FormPersonalData" element={<FormPersonalData />}/>
-      <Route path="/LoginButton" element={<LoginButton/>}/>
-      <Route path="/LogoutButton" element={<LogoutButton/>}/>
-      <Route path="/Profile" element={<Profile/>} />
-      <Route path="/Home" element={<Home/>}/>
-      <Route path="/Job" element={<Job/>}/>
-      <Route path="/Profilepage" element={<Profilepage/>} />
-     
-      </Routes>
-   
-    </>
-  );
->>>>>>>>> Temporary merge branch 2
+
 }
