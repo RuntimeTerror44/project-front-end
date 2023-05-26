@@ -7,7 +7,7 @@ import { param } from 'jquery';
 function UpdateComment(props){
 
     //////////////////// backend post update is not ready yet ////////////
-  console.log(props.postData)
+  // console.log(props.postData)
 
     // const handleUpdateComments = async (e) => {
     //     e.preventDefault()
@@ -31,14 +31,14 @@ const handleUpdatePost= async(e)=>{
         post_id: props.postID
 
     }
-    console.log(obj)
-    console.log(obj.content)
+    // console.log(obj)
+    // console.log(obj.content)
     const serverUrl=`${process.env.REACT_APP_SERVER_URL}comments/${props.postData.comment_id}`
-    console.log(serverUrl)
+    // console.log(serverUrl)
     const result= await axios.put(serverUrl, obj)
-    console.log(result.data)
+    // console.log(result.data)
     props.takeDataFromChild(result.data)
-    console.log(result.data)
+    // console.log(result.data)
     props.handleClosePost()
 }
 //  const serverUrl=`${process.env.REACT_APP_SERVER_URL}posts/${props.postData.post_id}`
@@ -49,7 +49,7 @@ const handleUpdatePost= async(e)=>{
   
     return(
         <>
-    {console.log(props.postData.content)}
+    {/* {console.log(props.postData.content)} */}
         <Modal show={props.showUpdateModal} onHide={props.handleClosePost}>
         <Modal.Header closeButton>
           <Modal.Title>Update Post</Modal.Title>

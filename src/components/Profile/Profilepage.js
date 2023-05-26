@@ -18,7 +18,7 @@ function Profilepage(){
     const [jobs, setJobs] = useState([]);
     
   const sendReq = async () => {
-    const serverUrl = `http://localhost:4000/userposts/1`;
+    const serverUrl = `http://localhost:5000/userposts/1`;
     const result = await axios.get(serverUrl);
     
     setJobs(result.data);
@@ -29,7 +29,7 @@ function Profilepage(){
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/users/1');
+        const response = await axios.get('http://localhost:5000/users/1');
         setuserInfo(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -43,7 +43,7 @@ function Profilepage(){
 
 
   const getComment = async () => {
-    const serverUrl = `http://localhost:4000/comments/1`;
+    const serverUrl = `http://localhost:5000/comments/1`;
     const result = await axios.get(serverUrl);
     
     setComment(result.data);
