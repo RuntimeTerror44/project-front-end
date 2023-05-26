@@ -82,15 +82,16 @@ function HomePost(props) {
     };
     addPostODb();
     setPosts((prevPosts) => [newPost, ...prevPosts]);
-    setPostText(event.target.value);
+    setPostText(""); // Clear the post text input field
   };
+  
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
     setPostData(post);
-    props.takeDataFromChild(result.data);
-
+    props.takeDataFromChild(post.data);
   };
+  
   const handleClosePost = () => {
     setShowUpdateModal(false);
   };

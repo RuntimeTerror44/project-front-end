@@ -39,6 +39,12 @@ function Comment(props) {
   const handleAddComment = async (e) => {
     try {
       e.preventDefault();
+      const commentContent = e.target.comment.value.trim(); // Trim the comment content to remove leading/trailing spaces
+
+    if (commentContent === "") {
+      // Check if the comment is empty
+      return; // Don't add an empty comment
+    }
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const obj = {
         user_id: 2,
