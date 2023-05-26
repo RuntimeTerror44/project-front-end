@@ -19,17 +19,22 @@ function Comment(props) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
-    const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
-    const result = await axios.get(serverUrl);
-    setCommentsDataArray(result.data);
+    console.log(props.postID);
+    if (props.postID){
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
+      const result = await axios.get(serverUrl);
+      setCommentsDataArray(result.data);
+    }
+
+   
   };
 
   useEffect(() => {
     getCommentsFromDb();
-    console.log(commentsDataArray);
-  }, []);
+    // console.log(commentsDataArray);
+  }, [commentsDataArray]);
 
-  useEffect(() => {}, [commentsDataArray]);
+  // useEffect(() => {}, [commentsDataArray]);
   //------///////////////////////////////////////////////////////////////////////////////////////////////////
   const handleAddComment = async (e) => {
     try {
@@ -40,7 +45,7 @@ function Comment(props) {
         content: e.target.comment.value,
       };
       const response = await axios.post(serverUrl, obj);
-      console.log(response.data);
+      // console.log(response.data);
 
       setCommentsDataArray(response.data);
       //   console.log(commentsDataArray);
@@ -60,7 +65,7 @@ function Comment(props) {
     try {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${comment_id}`;
       await axios.delete(serverUrl);
-      console.log(comment_id)
+      // console.log(comment_id)
       getCommentsFromDb();
     } catch (error) {
       console.log(`error deleting post ${error}`);
@@ -71,7 +76,7 @@ function Comment(props) {
   const handleEditPost = (item) => {
     setShowUpdateModal(true);
     setPostData(item);
-    console.log(item)
+    // console.log(item)
   };
   const handleClosePost = () => {
     setShowUpdateModal(false);
@@ -88,6 +93,7 @@ function Comment(props) {
 
   return (
     <div>
+      
       {commentsDataArray.map((item) => {
         const text = (
           <Row xs={1} md={1} className="g-4">

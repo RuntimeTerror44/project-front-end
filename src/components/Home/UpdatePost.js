@@ -6,7 +6,7 @@ import axios from 'axios';
 function UpdatePost(props){
 
     //////////////////// backend post update is not ready yet ////////////
-  console.log(props.postData)
+  // console.log(props.postData)
 
     // const handleUpdateComments = async (e) => {
     //     e.preventDefault()
@@ -46,7 +46,7 @@ const handleUpdatePost= async(e)=>{
   
     return(
         <>
-    {console.log(props.postData.paragraph_content)}
+    {/* {console.log(props.postData.paragraph_content)} */}
         <Modal show={props.showUpdateModal} onHide={props.handleClosePost}>
         <Modal.Header closeButton>
           <Modal.Title>Update Post</Modal.Title>
