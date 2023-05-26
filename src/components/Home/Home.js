@@ -5,7 +5,7 @@ import "./HomePost.css";
 function Home() {
   /////////////////// get the posts from data base//////////////////////
   const [postDataArray, setPostDataArray] = useState([]);
-console.log("helllllo");
+// console.log("helllllo");
   const getPostFromDb = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
     const result = await axios.get(serverUrl);
@@ -29,6 +29,9 @@ console.log("helllllo");
   // getPostFromDb();
   // getCommentsFromDb();
 
+  const takeDataFromChild = (arr) => {
+    setPostDataArray(arr);
+  };
 
   return (
     <>
@@ -36,7 +39,7 @@ console.log("helllllo");
       <HomePost postDataArray={postDataArray}  comments={commentsDataArray}/>
     
     : <></>} */}
-           <HomePost postDataArray={postDataArray}/>
+           <HomePost postDataArray={postDataArray} takeDataFromChild={takeDataFromChild}/>
 
 
     </>

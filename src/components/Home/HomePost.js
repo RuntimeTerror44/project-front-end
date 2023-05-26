@@ -20,7 +20,7 @@ import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
 
 function HomePost(props) {
-  console.log(props.comments);
+  // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
   // console.log(posts);
@@ -51,10 +51,12 @@ function HomePost(props) {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
       const result = await axios.post(serverUrl, obj);
       // setPostText(result.data)
-      console.log(result.data[0]);
+      props.takeDataFromChild(result.data);
+      // console.log(result.data[0]);
       setPostData(result.data[0]);
       setPosts(result.data);
-      setPostText("");
+      // setPostText("");
+      
     } catch (error) {
       console.log(`error add  post ${error}`);
     }
@@ -78,7 +80,7 @@ function HomePost(props) {
       text: postText,
       comments: [],
     };
-
+    addPostODb();
     setPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText(event.target.value);
   };
@@ -86,6 +88,8 @@ function HomePost(props) {
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
     setPostData(post);
+    props.takeDataFromChild(result.data);
+
   };
   const handleClosePost = () => {
     setShowUpdateModal(false);
@@ -107,7 +111,7 @@ function HomePost(props) {
   useEffect(() => {
     sendReq();
     // console.log(postDataArray)
-  }, []);
+  }, [posts]);
 
   // const handleAddComment = async (commentText) => {
   //   try {
@@ -124,7 +128,7 @@ function HomePost(props) {
   //   }
   // };
 
-  console.log(props.comments);
+  // console.log(props.comments);
 
   const handleDeletePost = async (post_id) => {
     try {
@@ -160,7 +164,7 @@ function HomePost(props) {
                 </Form.Group>
               </Form.Group>
               <Button
-                onClick={addPostODb}
+                onClick={handlePostSubmit}
                 className="btnpost"
                 variant="primary"
                 type="submit"
@@ -208,7 +212,11 @@ function HomePost(props) {
                         </Dropdown.Menu>
                       </Dropdown>
 
-                      <Comment postID={post.post_id}/>
+                      {/* {setTimeout(() => { */}
+                                              <Comment postID={post.post_id}/>
+
+                      {/* }, 3)} */}
+
                       
                     {/* ///////////////////////////////////////////// */}
 
