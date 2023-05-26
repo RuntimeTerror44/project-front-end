@@ -17,239 +17,142 @@ import { useParams } from "react-router-dom";
 import Comment from "../Home/Comment";
 
 const ProfileCard = (props) => {
-// console.log(props.postComment.content)
-// for(let i=0;i<props.value.length;i++){
-
-
-//   console.log(props.value[i].content)
-// }
-
-// if (!props.postData || props.postData.length === 0) {
-//   return <p>Loading...</p>;
-// }
-
-// const userDataInfo = props.postData[0];
-
-// console.log(userDataInfo.post_id)
   return (
     <>
-   {props.postData.map((item,i)=>{
-
-
-
-return(
-
-
-<>
-
-<meta charSet="UTF-8" />
-      <title>Social Media Post UI Design</title>
-      <meta
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-        name="viewport"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      />
-      <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      />
-      <link rel="stylesheet" type="text/css" href="css/style.css" />
-      <section className="main-content">
-        <div className="container">
-          <h1 className="text-center text-uppercase"></h1>
-          <br />
-          <br />
-          <div className="row">
-            <div className="col-sm-6 offset-sm-3">
-              <div className="post-block">
-                <div className="d-flex justify-content-between">
-                  <div className="d-flex mb-3">
-                    <div className="mr-2">
-                      <a href="#!" className="text-dark">
+      {props.postData.map((item, i) => {
+        return (
+          <>
+            <meta charSet="UTF-8" />
+            <title>Social Media Post UI Design</title>
+            <meta
+              content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+              name="viewport"
+            />
+            <link
+              rel="stylesheet"
+              type="text/css"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            />
+            <link
+              rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
+            <link rel="stylesheet" type="text/css" href="css/style.css" />
+            <section className="main-content">
+              <div className="container">
+                <h1 className="text-center text-uppercase"></h1>
+                <br />
+                <br />
+                <div className="row">
+                  <div className="col-sm-6 offset-sm-3">
+                    <div className="post-block">
+                      <div className="d-flex justify-content-between">
+                        <div className="d-flex mb-3">
+                          <div className="mr-2">
+                            <a href="#!" className="text-dark">
+                              <img
+                                src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
+                                alt="User"
+                                className="author-img"
+                              />
+                            </a>
+                          </div>
+                          <div>
+                            <h5 className="mb-0">
+                              <a href="#!" className="text-dark">
+                                Kiran Acharya
+                              </a>
+                            </h5>
+                            <p className="mb-0 text-muted">SoftwreEngineer</p>
+                            {/* <p className="mb-0 text-muted">5m</p>             edit date */}
+                          </div>
+                        </div>
+                        <div className="post-block__user-options">
+                          <a
+                            href="#!"
+                            id="triggerId"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <p></p>
+                          </a>
+                          <div
+                            className="dropdown-menu dropdown-menu-right"
+                            aria-labelledby="triggerId"
+                          >
+                            <a className="dropdown-item text-dark" href="#!">
+                              <i className="fa fa-pencil mr-1" />
+                              Edit
+                            </a>
+                            <a className="dropdown-item text-danger" href="#!">
+                              <i className="fa fa-trash mr-1" />
+                              Delete
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="post-block__content mb-2">
+                        <p>
+                          {item.paragraph_content}
+                          {/* <p>{props.postComment.content}</p> */}
+                        </p>
                         <img
                           src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
-                          alt="User"
-                          className="author-img"
+                          alt="Content img"
                         />
-                      </a>
-                    </div>
-                    <div>
-                      <h5 className="mb-0">
-                        <a href="#!" className="text-dark">
-                          Kiran Acharya
-                        </a>
-                      </h5>
-                      <p className="mb-0 text-muted">SoftwreEngineer</p>
-                      {/* <p className="mb-0 text-muted">5m</p>             edit date */}
-                    </div>
-                  </div>
-                  <div className="post-block__user-options">
-                    <a
-                      href="#!"
-                      id="triggerId"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-  
-          <p></p>
-                    </a>
-                    <div
-                      className="dropdown-menu dropdown-menu-right"
-                      aria-labelledby="triggerId"
-                    >
-                      <a className="dropdown-item text-dark" href="#!">
-                        <i className="fa fa-pencil mr-1" />
-                        Edit
-                      </a>
-                      <a className="dropdown-item text-danger" href="#!">
-                        <i className="fa fa-trash mr-1" />
-                        Delete
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="post-block__content mb-2">
-                  <p>
-                  {item.paragraph_content}
-                  {/* <p>{props.postComment.content}</p> */}
-                  </p>
-                  <img src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg" alt="Content img" />               
-                </div>
-                <div className="mb-3">
-                  <div className="d-flex justify-content-between mb-2">
-                    <div className="d-flex">
-                    
-                    </div>
-                  
-                  </div>
-                  <p className="mb-0">
-                   
-                  
-                  </p>
-                </div>
-                <hr />
-                <div className="post-block__comments">
-                  {/* Comment Input */}
-                  <div className="input-group mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Add your comment"
-                    />
-                    <div className="input-group-append">
-                      <button
-                        className="btn btn-primary"
-                        type="button"
-                        id="button-addon2"
-                      >
-                        <i className="fa fa-paper-plane" />
-                      </button>
-                    </div>
-                  </div>
-                  {/* Comment content */}
-                  <div className="comment-view-box mb-3">
-                    <div className="d-flex mb-2">
-                      {/* <img */}
-                        {/* src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg" */}
-                        {/* alt="User img" */}
-                        {/* className="author-img author-img--small mr-2" */}
-                      {/* /> */}
-                      <div>
-                        {/* <h6 className="mb-1"> */}
-                          {/* <a href="#!" className="text-dark"> */}
-                            {/* John doe */}
-                          {/* </a>{" "} */}
-                          {/* <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p> */}
-                          {/* <small className="text-muted">1m</small> */}
-                        {/* </h6> */}
-                        {/* <p className="mb-1"></p> */}
-                    {/* {jobs.map((job) => (
-                    <Text>
-                   <img
-                   src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
-                   alt="User img"
-                   className="author-img author-img--small mr-2"
+                      </div>
+                      <div className="mb-3">
+                        <div className="d-flex justify-content-between mb-2">
+                          <div className="d-flex"></div>
+                        </div>
+                        <p className="mb-0"></p>
+                      </div>
+                      <hr />
+                      <div className="post-block__comments">
+                        {/* Comment Input */}
+                        <div className="input-group mb-3">
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Add your comment"
+                          />
+                          <div className="input-group-append">
+                            <button
+                              className="btn btn-primary"
+                              type="button"
+                              id="button-addon2"
+                            >
+                              <i className="fa fa-paper-plane" />
+                            </button>
+                          </div>
+                        </div>
 
-                 />
-                 <h6 className="mb-1">
-                          <a href="#!" className="text-dark">
-                            John doe
-                          </a>{" "}
-                          <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
-                        
-                        </h6>
-                        <>{job.content}</>
-                        <hr id="meme"></hr>
-                        </Text>
-                        
-                    ))}
-                         */}
-                    {/* {props.value.map((comment) => (
-                    <Text>
-                   <img
-                   src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
-                   alt="User img"
-                   className="author-img author-img--small mr-2"
+                        <div className="comment-view-box mb-3">
+                          <div className="d-flex mb-2">
+                            <div>
+                              <Comment postID={item.post_id} />
 
-                 />
-                 <h6 className="mb-1">
-                          <a href="#!" className="text-dark">
-                            John doe
-                          </a>{" "}
-                          <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
-                        
-                        </h6>
-                        <>{comment.content}</>
-                        <hr id="meme"></hr>
-                        </Text>
-                        
-                    ))} */}
-                           {/* {console.log(item.post_id)} */}
-                       <Comment postID={item.post_id}/>
-                        
-                        <div className="d-flex">
-                          <a href="#!" className="text-dark mr-2">
-                            <span>
-                              <i className="fa fa-heart-o" />
-                            </span>
-                          </a>
-                         
+                              <div className="d-flex">
+                                <a href="#!" className="text-dark mr-2">
+                                  <span>
+                                    <i className="fa fa-heart-o" />
+                                  </span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/* More Comments */}
-              
-                
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      </>
-)
-
-
-
-
-
-
-
-
-
-
-
-   })}
-
-      
-      </>
+            </section>
+          </>
+        );
+      })}
+    </>
   );
 };
 

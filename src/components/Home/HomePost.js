@@ -23,7 +23,7 @@ function HomePost(props) {
   // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
-  // console.log(posts);
+
   const [image, setImage] = useState("");
   const [comment, setComment] = useState("");
   const [postData, setPostData] = useState({});
@@ -35,8 +35,6 @@ function HomePost(props) {
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
 
-  // console.log(readableDate); // Output: "Sat May 22 2023"
-  // console.log(postData);
   ///////////////////////////////////////////
 
   const addPostODb = async () => {
@@ -45,26 +43,21 @@ function HomePost(props) {
       const obj = {
         paragraph_content: postText,
         post_date: readableDate,
-        // user_id: props
+
         photo_content: image,
       };
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
       const result = await axios.post(serverUrl, obj);
-      // setPostText(result.data)
+
       props.takeDataFromChild(result.data);
-      // console.log(result.data[0]);
+
       setPostData(result.data[0]);
       setPosts(result.data);
-      // setPostText("");
     } catch (error) {
       console.log(`error add  post ${error}`);
     }
   };
   ///////////////////////////////////////////
-  // useEffect(()=>{
-  //   addPostODb()
-  // },[])
-  // console.log(postText)
 
   const handlePostChange = (event) => {
     setPostText(event.target.value);
@@ -96,36 +89,16 @@ function HomePost(props) {
 
   const takeDataFromChild = (arr) => {
     setPosts(arr);
-    // props.takeDataFromFirstChild(arr)
   };
 
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
     const result = await axios.get(serverUrl);
     setPosts(result.data);
-    // setPosts(props.postDataArray);
   };
   useEffect(() => {
     sendReq();
-    // console.log(postDataArray)
   }, [posts]);
-
-  // const handleAddComment = async (commentText) => {
-  //   try {
-  //     const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/2`;
-  //     const obj = {
-  //       user_id: 1,
-  //       content: commentText
-  //     };
-  //     console.log(obj.content)
-  //     const response = await axios.post(serverUrl, obj);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.log('Error adding comment', error);
-  //   }
-  // };
-
-  // console.log(props.comments);
 
   const handleDeletePost = async (post_id) => {
     try {
@@ -172,54 +145,160 @@ function HomePost(props) {
 
             {/* profilePicture: e.target.profile_picture.value, */}
             <hr />
-            {posts && (
+
+            <>
               <div className="posts-container">
-                {posts.map((post) => (
-                  <Card key={post.post_id} className="post">
-                    <Card.Body>
-                      <Card.Text>{post.paragraph_content}</Card.Text>
-                      <Card.Text>{post.photo_content}</Card.Text>
-                      <Card.Text>{post.post_date}</Card.Text>
-                      {/* {post.comments && (
-                        <div className="comments-container">
-                          {post.comments.map((comment) => (
-                            <Card.Text key={comment.id} className="comment">
-                              {comment.text}
-                            </Card.Text>
-                          ))}
+                {posts.map((post) => {
+                  return (
+                    <>
+                      <meta charSet="UTF-8" />
+                      <title>Social Media Post UI Design</title>
+                      <meta
+                        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+                        name="viewport"
+                      />
+                      <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                      />
+                      <link
+                        rel="stylesheet"
+                        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                      />
+                      <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="css/style.css"
+                      />
+                      <section className="main-content">
+                        <div className="container">
+                          <h1 className="text-center text-uppercase"></h1>
+                          <br />
+                          <br />
+                          <div className="row">
+                            <div className="col-sm-6 offset-sm-3">
+                              <div className="post-block">
+                                <div className="d-flex justify-content-between">
+                                  <div className="d-flex mb-3">
+                                    <div className="mr-2">
+                                      <a href="#!" className="text-dark">
+                                        <img
+                                          src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
+                                          alt="User"
+                                          className="author-img"
+                                        />
+                                      </a>
+                                    </div>
+                                    <div>
+                                      <h5 className="mb-0">
+                                        <a href="#!" className="text-dark">
+                                          Kiran Acharya
+                                        </a>
+                                      </h5>
+                                      <p className="mb-0 text-muted">
+                                        SoftwreEngineer
+                                      </p>
+                                      {/* <p className="mb-0 text-muted">5m</p>             edit date */}
+                                    </div>
+                                  </div>
+                                  <div className="post-block__user-options">
+                                    <a
+                                      href="#!"
+                                      id="triggerId"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    >
+                                      <p></p>
+                                    </a>
+                                    <div
+                                      className="dropdown-menu dropdown-menu-right"
+                                      aria-labelledby="triggerId"
+                                    >
+                                      <a
+                                        className="dropdown-item text-dark"
+                                        href="#!"
+                                      >
+                                        <i className="fa fa-pencil mr-1" />
+                                        Edit
+                                      </a>
+                                      <a
+                                        className="dropdown-item text-danger"
+                                        href="#!"
+                                      >
+                                        <i className="fa fa-trash mr-1" />
+                                        Delete
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="post-block__content mb-2">
+                                  <p>
+                                    {post.paragraph_content}
+                                    {/* <p>{props.postComment.content}</p> */}
+                                  </p>
+                                  <img
+                                    src={post.photo_content}
+                                    alt="Content img"
+                                  />
+                                  <p>{post.post_date}</p>
+                                </div>
+                                <div className="mb-3">
+                                  <div className="d-flex justify-content-between mb-2">
+                                    <div className="d-flex"></div>
+                                  </div>
+                                  <p className="mb-0"></p>
+                                </div>
+                                <hr />
+                                <div className="post-block__comments">
+                                  {/* Comment Input */}
+                                  <div className="input-group mb-3">
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="Add your comment"
+                                    />
+                                    <div className="input-group-append">
+                                      <button
+                                        className="btn btn-primary"
+                                        type="button"
+                                        id="button-addon2"
+                                      >
+                                        <i className="fa fa-paper-plane" />
+                                      </button>
+                                    </div>
+                                  </div>
+
+                                  <div className="comment-view-box mb-3">
+                                    <div className="d-flex mb-2">
+                                      <div>
+                                        <Comment postID={post.post_id} />
+
+                                        <div className="d-flex">
+                                          <a
+                                            href="#!"
+                                            className="text-dark mr-2"
+                                          >
+                                            <span>
+                                              <i className="fa fa-heart-o" />
+                                            </span>
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      )} */}
-                      <Dropdown align="end">
-                        <Dropdown.Toggle
-                          variant="primary"
-                          id={`dropdown-${post.id}`}
-                          className="dropdown-toggle-vertical"
-                        >
-                          Options
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => handleEditPost(post)}>
-                            Edit
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            onClick={() => handleDeletePost(post.post_id)}
-                          >
-                            Delete
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-
-                      {/* {setTimeout(() => { */}
-                      <Comment postID={post.post_id} />
-
-                      {/* }, 3)} */}
-
-                      {/* ///////////////////////////////////////////// */}
-                    </Card.Body>
-                  </Card>
-                ))}
+                      </section>
+                    </>
+                  );
+                })}
               </div>
-            )}
+            </>
           </Col>
           <Col md={4} className="people-section">
             <h3>People with the Same Career</h3>
