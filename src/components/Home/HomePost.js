@@ -56,7 +56,6 @@ function HomePost(props) {
       setPostData(result.data[0]);
       setPosts(result.data);
       // setPostText("");
-      
     } catch (error) {
       console.log(`error add  post ${error}`);
     }
@@ -89,7 +88,6 @@ function HomePost(props) {
     setShowUpdateModal(true);
     setPostData(post);
     props.takeDataFromChild(result.data);
-
   };
   const handleClosePost = () => {
     setShowUpdateModal(false);
@@ -99,8 +97,6 @@ function HomePost(props) {
     setPosts(arr);
     // props.takeDataFromFirstChild(arr)
   };
-
-  
 
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
@@ -213,14 +209,11 @@ function HomePost(props) {
                       </Dropdown>
 
                       {/* {setTimeout(() => { */}
-                                              <Comment postID={post.post_id}/>
+                      <Comment postID={post.post_id} />
 
                       {/* }, 3)} */}
 
-                      
-                    {/* ///////////////////////////////////////////// */}
-
-
+                      {/* ///////////////////////////////////////////// */}
                     </Card.Body>
                   </Card>
                 ))}
