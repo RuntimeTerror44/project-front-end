@@ -5,11 +5,12 @@ import FormPersonalData from "./components/Profile/FormPersonalData";
 import LandingPage from "./components/Landingpage/LandingPage";
 import LoginButton from "./components/Landingpage/login/Loginbutton";
 import LogoutButton from "./components/Landingpage/login/Logoutbutton";
-import PortfolioForm from "./components/PortfolioMaker/PortfolioForm";
+
 import Profile from "./components/Landingpage/login/profile";
 import Home from "./components/Home/Home"
 import Job from "./components/Job/Job"
-import Form from "./components/PortfolioMaker/Form";
+import Comment from './components/Home/Comment';
+
 
 
 import Profilepage from "./components/Profile/Profilepage";
@@ -33,11 +34,11 @@ export default function App() {
     /*----------*/
     return (
       <>
-        {!isAuthenticated ? (
+        {/* {!isAuthenticated ? (
           <Routes>
             <Route path="/" element={<LandingPage />} />
           </Routes>
-        ) : (
+        ) : (*/}
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/FormPersonalData" element={<FormPersonalData />} />
@@ -45,11 +46,8 @@ export default function App() {
             <Route path="/LogoutButton" element={<LogoutButton />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Profilepage" element={<Profilepage />} />
-            <Route path="/Form" element={<Form />} />
-            <Route path="/Job" element={<Job />} />
-            <Route path="/Home" element={<Home />} />
           </Routes>
-        )}
+        {/* )} */}
       </>
     );
   }

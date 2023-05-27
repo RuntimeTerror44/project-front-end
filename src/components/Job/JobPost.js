@@ -23,7 +23,7 @@ function JobPost(props) {
   const [postCity, setPostCity] = useState("");
   const [jobTitle, setjobTitle] = useState("");
   const [jobField, setjobField] = useState("");
-  const [JobPosts, setPosts] = useState([]);
+  const [JobPosts, setJobPosts] = useState([]);
   // console.log(JobPosts);
   // const [image, setImage] = useState("");
   // const [comment, setComment] = useState("");
@@ -39,9 +39,9 @@ function JobPost(props) {
 
   ///////////////////////////////////////////
 
-  const addPostODb = async () => {
+  const addPostODb = async (e) => {
     try {
-      // e.preventDefault()
+      e.preventDefault()
       const obj = {
         job_post_content: postText,
         job_title: jobTitle,
@@ -56,8 +56,8 @@ function JobPost(props) {
       // setPostText(result.data)
       console.log(result.data[0]);
       setPostData(result.data[0]);
-      setPosts(result.data);
-      setPostText('')
+      setJobPosts(result.data);
+      setPostText("")
     } catch (error) {
       console.log(`error add  post ${error}`);
     }
@@ -81,22 +81,22 @@ function JobPost(props) {
     setjobField(event.target.value);
   };
 
-  const handlePostSubmit = (event) => {
-    event.preventDefault();
+  // const handlePostSubmit = (event) => {
+  //   event.preventDefault();
 
-    if (postText.trim() === "") {
-      return; // Skip empty JobPosts
-    }
+  //   if (postText.trim() === "") {
+  //     return; // Skip empty JobPosts
+  //   }
 
-    const newPost = {
-      id: Date.now(),
-      text: postText,
-      comments: [],
-    };
+  //   const newPost = {
+  //     id: Date.now(),
+  //     text: postText,
+  //     comments: [],
+  //   };
 
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
-    setPostText("");
-  };
+  //   setPosts((prevPosts) => [newPost, ...prevPosts]);
+  //   setPostText("");
+  // };
   console.log(JobPosts);
 
   const handleEditPost = (post) => {
@@ -108,20 +108,21 @@ function JobPost(props) {
   };
 
   const takeDataFromChild = (arr) => {
-    setPosts(arr);
+    setJobPosts(arr);
     // props.takeDataFromFirstChild(arr)
   };
 
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}job`;
     const result = await axios.get(serverUrl);
-    setPosts(result.data);
-    // setPosts(props.postDataArray);
+    setJobPosts(result.data);
+    setPostText("")
+    // setJobPosts(props.postDataArray);
   };
   useEffect(() => {
     sendReq();
     // console.log(postDataArray)
-  }, []);
+  }, [JobPosts]);
 
   // const handleDeletePost = (postId) => {
   //   // Handle delete functionality here
@@ -134,19 +135,19 @@ function JobPost(props) {
       text: commentText,
     };
 
-    setPosts((prevPosts) => {
-      const updatedPosts = prevPosts.map((post) => {
-        if (post.id === postId) {
-          return {
-            ...post,
-            comments: [...post.comments, newComment],
-          };
-        }
-        return post;
-      });
-      return updatedPosts;
-    });
-  };
+  //   setPosts((prevPosts) => {
+  //     const updatedPosts = prevPosts.map((post) => {
+  //       if (post.id === postId) {
+  //         return {
+  //           ...post,
+  //           comments: [...post.comments, newComment],
+  //         };
+  //       }
+  //       return post;
+  //     });
+  //     return updatedPosts;
+  //   });
+  // };
 console.log(postData)
   return (
     <div>
@@ -189,6 +190,7 @@ console.log(postData)
                   as="textarea"
                   rows={3}
                   placeholder="What's on your mind?"
+                 
             
                   onChange={handlePostChange}
                 />
@@ -211,17 +213,17 @@ console.log(postData)
                   onChange={handleJobField}
                 />
 
-                <Form.Group controlId="formFile" className="mb-3">
+                {/* <Form.Group controlId="formFile" className="mb-3">
                   <Form.Control
                     name="profile_picture"
                     type="file"
                     // onChange={handleChange}
                     // ref={dateInputRef}
                   />
-                </Form.Group>
+                </Form.Group> */}
               </Form.Group>
               <Button
-                onClick={addPostODb}
+                onClick={handlePostSubmit}
                 className="btnpost"
                 variant="primary"
                 type="submit"
@@ -237,7 +239,10 @@ console.log(postData)
                 {JobPosts.map((post) => (
                   <Card key={post.id} className="post">
                     <Card.Body>
-                      <Card.Text>{post.job_post_content}</Card.Text>
+                      <Card.Text >{post.job_post_content}</Card.Text>
+                      <Card.Text>{post.job_title}</Card.Text>
+                      <Card.Text>{post.job_field}</Card.Text>
+                      <Card.Text>{post.city}</Card.Text>
                       {post.comments && (
                         <div className="comments-container">
                           {post.comments.map((comment) => (

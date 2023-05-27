@@ -6,33 +6,29 @@ import Test from "./Test";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
- 
 
   useEffect(() => {
     if (isAuthenticated) {
       const storeUserData = async () => {
         // Check if the email already exists in your database
-        const checkEmailExists = await axios.get(`http://localhost:4000/users`);
-        let emailExist=false;
+        const checkEmailExists = await axios.get(`http://localhost:5000/users`);
+        let emailExist = false;
 
         for (let i = 0; i < checkEmailExists.data.length; i++) {
           if (user.email == checkEmailExists.data[i].email) {
-
-             emailExist=true
+            emailExist = true;
             console.log(checkEmailExists.data[i].id);
             const storageData = checkEmailExists.data[i];
             localStorage.setItem("userId", JSON.stringify(storageData));
           }
-         
         }
-       if(!emailExist){
-          const response = await axios.post("http://localhost:4000/users", {
+        if (!emailExist) {
+          const response = await axios.post("http://localhost:5000/users", {
             email: user.email,
-            profilepicture: user.picture
+            profilepicture: user.picture,
             // Add other relevant user data fields
-          });}
-          
-       
+          });
+        }
       };
 
       // console.log("User data stored successfully:", response.data);

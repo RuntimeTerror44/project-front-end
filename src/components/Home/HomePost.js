@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Nav,
@@ -11,17 +10,20 @@ import {
   Card,
   Dropdown,
 } from "react-bootstrap";
+
+import React, { useEffect, useState } from "react";
 import "./HomePost.css";
 import axios from "axios";
 import { post } from "jquery";
 import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
-// import Comment from './Comment'
+import Comment from "./Comment";
 
 function HomePost(props) {
+  // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
-  // console.log(posts);
+
   const [image, setImage] = useState("");
   const [comment, setComment] = useState("");
   const [postData, setPostData] = useState({});
@@ -33,8 +35,6 @@ function HomePost(props) {
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
 
-  // console.log(readableDate); // Output: "Sat May 22 2023"
-  // console.log(postData);
   ///////////////////////////////////////////
 
   const addPostODb = async () => {
@@ -43,15 +43,14 @@ function HomePost(props) {
       const obj = {
         paragraph_content: postText,
         post_date: readableDate,
-        // user_id: props
+
         photo_content: image,
       };
-  
-
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
       const result = await axios.post(serverUrl, obj);
-      // setPostText(result.data)
-      console.log(result.data[0]);
+
+      props.takeDataFromChild(result.data);
+
       setPostData(result.data[0]);
       setPosts(result.data);
     } catch (error) {
@@ -59,10 +58,6 @@ function HomePost(props) {
     }
   };
   ///////////////////////////////////////////
-  // useEffect(()=>{
-  //   addPostODb()
-  // },[])
-  // console.log(postText)
 
   const handlePostChange = (event) => {
     setPostText(event.target.value);
@@ -70,102 +65,53 @@ function HomePost(props) {
 
   const handlePostSubmit = (event) => {
     event.preventDefault();
-
     if (postText.trim() === "") {
-      return; // Skip empty posts
+      return;
     }
-
     const newPost = {
-      id: Date.now(),
       text: postText,
       comments: [],
     };
-
+    addPostODb();
     setPosts((prevPosts) => [newPost, ...prevPosts]);
-    setPostText("");
+    setPostText(""); // Clear the post text input field
   };
-  console.log(posts);
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
     setPostData(post);
+    props.takeDataFromChild(post.data);
   };
+
   const handleClosePost = () => {
     setShowUpdateModal(false);
   };
 
-  const takeDataFromChild =(arr)=>{
-    setPosts(arr)
-    // props.takeDataFromFirstChild(arr)
-  }
+  const takeDataFromChild = (arr) => {
+    setPosts(arr);
+  };
 
-  const sendReq= async ()=>{
+  const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
     const result = await axios.get(serverUrl);
     setPosts(result.data);
-    // setPosts(props.postDataArray);
-  }
-  useEffect(()=>{
-    sendReq();
-    // console.log(postDataArray)
-  },[])
-
-
-
-  // ...
-  
-  const handleAddComment = async (postId, commentText) => {
-    try {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}/comments/${postId}`;
-      const obj = {
-        content: commentText,
-      };
-      const response = await axios.post(serverUrl, obj);
-      console.log(response.data);
-    } catch (error) {
-      console.log('Error adding comment', error);
-    }
   };
-  
-  
-  
-  
-  const handleDeletePost = async (postId) => {
+  useEffect(() => {
+    sendReq();
+  }, [posts]);
+
+  const handleDeletePost = async (post_id) => {
     try {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${postId}`;
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post_id}`;
       await axios.delete(serverUrl);
-      sendReq(); 
+      sendReq();
     } catch (error) {
       console.log(`error deleting post ${error}`);
     }
   };
+
   return (
     <div>
-      <Navbar className="navbar-light bg-light" expand="lg">
-        <Container fluid>
-          <Navbar.Brand href="#home">My website</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-nav" />
-          <Navbar.Collapse id="navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">HomePost</Nav.Link>
-              <Nav.Link href="#jobs">Profile</Nav.Link>
-              <Nav.Link href="#jobs">Jobs</Nav.Link>
-              <Nav.Link href="#about">About Us</Nav.Link>
-            </Nav>
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success" type="submit">
-                Search
-              </Button>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
       <Container>
         <Row>
           <Col>
@@ -178,7 +124,6 @@ function HomePost(props) {
                   placeholder="What's on your mind?"
                   onChange={handlePostChange}
                 />
-
                 <Form.Group controlId="formFile" className="mb-3">
                   <Form.Control
                     name="profile_picture"
@@ -189,7 +134,7 @@ function HomePost(props) {
                 </Form.Group>
               </Form.Group>
               <Button
-                onClick={addPostODb}
+                onClick={handlePostSubmit}
                 className="btnpost"
                 variant="primary"
                 type="submit"
@@ -200,64 +145,160 @@ function HomePost(props) {
 
             {/* profilePicture: e.target.profile_picture.value, */}
             <hr />
-            {posts && (
-              <div className="posts-container">
-                {posts.map((post) => (
-                  <Card key={post.post_id} className="post">
-                    <Card.Body>
-                      <Card.Text>{post.paragraph_content}</Card.Text>
-                      {post.comments && (
-                        <div className="comments-container">
-                          {post.comments.map((comment) => (
-                            <Card.Text key={comment.id} className="comment">
-                              {comment.text}
-                            </Card.Text>
-                          ))}
-                        </div>
-                      )}
 
-                      <Form
-                        onSubmit={(event) => {
-                          event.preventDefault();
-                          handleAddComment(post.id, event.target.comment.value);
-                          event.target.comment.value = "";
-                        }}
-                      >
-                        <Form.Group controlId={`commentForm-${post.id}`}>
-                          <Form.Control
-                            type="text"
-                            name="comment"
-                            placeholder="Add a comment"
-                          />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                          Add Comment
-                        </Button>
-                      </Form>
-                      <Dropdown align="end">
-                        <Dropdown.Toggle
-                          variant="primary"
-                          id={`dropdown-${post.id}`}
-                          className="dropdown-toggle-vertical"
-                        >
-                          Options
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => handleEditPost(post)}>
-                            Edit
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            onClick={() => handleDeletePost(post.post_id)}
-                          >
-                            Delete
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </Card.Body>
-                  </Card>
-                ))}
+            <>
+              <div className="posts-container">
+                {posts.map((post) => {
+                  return (
+                    <>
+                      <meta charSet="UTF-8" />
+                      <title>Social Media Post UI Design</title>
+                      <meta
+                        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+                        name="viewport"
+                      />
+                      <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                      />
+                      <link
+                        rel="stylesheet"
+                        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                      />
+                      <link
+                        rel="stylesheet"
+                        type="text/css"
+                        href="css/style.css"
+                      />
+                      <section className="main-content">
+                        <div className="container">
+                          <h1 className="text-center text-uppercase"></h1>
+                          <br />
+                          <br />
+                          <div className="row">
+                            <div className="col-sm-6 offset-sm-3">
+                              <div className="post-block">
+                                <div className="d-flex justify-content-between">
+                                  <div className="d-flex mb-3">
+                                    <div className="mr-2">
+                                      <a href="#!" className="text-dark">
+                                        <img
+                                          src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
+                                          alt="User"
+                                          className="author-img"
+                                        />
+                                      </a>
+                                    </div>
+                                    <div>
+                                      <h5 className="mb-0">
+                                        <a href="#!" className="text-dark">
+                                          Kiran Acharya
+                                        </a>
+                                      </h5>
+                                      <p className="mb-0 text-muted">
+                                        SoftwreEngineer
+                                      </p>
+                                      {/* <p className="mb-0 text-muted">5m</p>             edit date */}
+                                    </div>
+                                  </div>
+                                  <div className="post-block__user-options">
+                                    <a
+                                      href="#!"
+                                      id="triggerId"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    >
+                                      <p></p>
+                                    </a>
+                                    <div
+                                      className="dropdown-menu dropdown-menu-right"
+                                      aria-labelledby="triggerId"
+                                    >
+                                      <a
+                                        className="dropdown-item text-dark"
+                                        href="#!"
+                                      >
+                                        <i className="fa fa-pencil mr-1" />
+                                        Edit
+                                      </a>
+                                      <a
+                                        className="dropdown-item text-danger"
+                                        href="#!"
+                                      >
+                                        <i className="fa fa-trash mr-1" />
+                                        Delete
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="post-block__content mb-2">
+                                  <p>
+                                    {post.paragraph_content}
+                                    {/* <p>{props.postComment.content}</p> */}
+                                  </p>
+                                  <img
+                                    src={post.photo_content}
+                                    alt="Content img"
+                                  />
+                                  <p>{post.post_date}</p>
+                                </div>
+                                <div className="mb-3">
+                                  <div className="d-flex justify-content-between mb-2">
+                                    <div className="d-flex"></div>
+                                  </div>
+                                  <p className="mb-0"></p>
+                                </div>
+                                <hr />
+                                <div className="post-block__comments">
+                                  {/* Comment Input */}
+                                  <div className="input-group mb-3">
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="Add your comment"
+                                    />
+                                    <div className="input-group-append">
+                                      <button
+                                        className="btn btn-primary"
+                                        type="button"
+                                        id="button-addon2"
+                                      >
+                                        <i className="fa fa-paper-plane" />
+                                      </button>
+                                    </div>
+                                  </div>
+
+                                  <div className="comment-view-box mb-3">
+                                    <div className="d-flex mb-2">
+                                      <div>
+                                        <Comment postID={post.post_id} />
+
+                                        <div className="d-flex">
+                                          <a
+                                            href="#!"
+                                            className="text-dark mr-2"
+                                          >
+                                            <span>
+                                              <i className="fa fa-heart-o" />
+                                            </span>
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </>
+                  );
+                })}
               </div>
-            )}
+            </>
           </Col>
           <Col md={4} className="people-section">
             <h3>People with the Same Career</h3>
@@ -289,7 +330,7 @@ function HomePost(props) {
         posts={posts}
         takeDataFromChild={takeDataFromChild}
       />
-      {/* <Comment posts={posts}/> */}
+      {/* <Comment comments={props.commentsDataArray} /> */}
     </div>
   );
 }

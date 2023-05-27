@@ -2,8 +2,9 @@ import {useState, useEffect ,useRef} from 'react'
 import Modal from 'react-bootstrap/Modal';
 import { Navbar, Nav, Container, Form, FormControl, Button, Row, Col, Card, Dropdown } from 'react-bootstrap';
 import axios from 'axios';
+import { param } from 'jquery';
 
-function UpdatePost(props){
+function UpdateComment(props){
 
     //////////////////// backend post update is not ready yet ////////////
   // console.log(props.postData)
@@ -26,16 +27,18 @@ const [changePost, setChangePost] = useState("");
 const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
-        paragraph_content: changePost
+        content: changePost,
+        post_id: props.postID
 
     }
-    console.log(obj)
-    console.log(obj.paragraph_content)
-    const serverUrl=`${process.env.REACT_APP_SERVER_URL}posts/${props.postData.post_id}`
-    console.log(serverUrl)
+    // console.log(obj)
+    // console.log(obj.content)
+    const serverUrl=`${process.env.REACT_APP_SERVER_URL}comments/${props.postData.comment_id}`
+    // console.log(serverUrl)
     const result= await axios.put(serverUrl, obj)
-    console.log(result.data)
+    // console.log(result.data)
     props.takeDataFromChild(result.data)
+    // console.log(result.data)
     props.handleClosePost()
 }
 //  const serverUrl=`${process.env.REACT_APP_SERVER_URL}posts/${props.postData.post_id}`
@@ -46,7 +49,7 @@ const handleUpdatePost= async(e)=>{
   
     return(
         <>
-    {/* {console.log(props.postData.paragraph_content)} */}
+    {/* {console.log(props.postData.content)} */}
         <Modal show={props.showUpdateModal} onHide={props.handleClosePost}>
         <Modal.Header closeButton>
           <Modal.Title>Update Post</Modal.Title>
@@ -67,4 +70,4 @@ const handleUpdatePost= async(e)=>{
         </>
     )
     };
-export default UpdatePost;
+export default UpdateComment;
