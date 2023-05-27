@@ -38,23 +38,17 @@ export default function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
           </Routes>
-        ) : ( */}
+        ) : (*/}
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/FormPersonalData" element={<FormPersonalData />} />
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
             <Route path="/Profile" element={<Profile />} />
-           
-            {/* <Route path="/landing" element={<LandingPage />} /> */}
-            <Route path="/comment" element={<Comment/>} />
-            <Route path="/home" element={<Home/>} />
-            {/* <Route path="/FormPersonalData" element={<FormPersonalData />} /> */}
-            {/* <Route path="/LoginButton" element={<LoginButton />} /> */}
-            {/* <Route path="/LogoutButton" element={<LogoutButton />} /> */}
-            {/* <Route path="/Profile" element={<Profile />} /> */}
-
             <Route path="/Profilepage" element={<Profilepage />} />
+            <Route path="/FormPersonalData" element={<FormPersonalData />}/>
+  |         <Route path="/Home" element={<Home/>}/>
+            <Route path="/Job" element={<Job/>}/>
           </Routes>
         {/* )} */}
       </>

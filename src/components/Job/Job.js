@@ -27,7 +27,9 @@ function Job(){
   return(
     <>
     this is job page
+   
     <JobPost postDataArray={postDataArray}/>
+
     </>
   )
 }

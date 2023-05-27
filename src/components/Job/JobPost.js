@@ -23,7 +23,7 @@ function JobPost(props) {
   const [postCity, setPostCity] = useState("");
   const [jobTitle, setjobTitle] = useState("");
   const [jobField, setjobField] = useState("");
-  const [JobPosts, setPosts] = useState([]);
+  const [JobPosts, setJobPosts] = useState([]);
   // console.log(JobPosts);
   // const [image, setImage] = useState("");
   // const [comment, setComment] = useState("");
@@ -39,9 +39,9 @@ function JobPost(props) {
 
   ///////////////////////////////////////////
 
-  const addPostODb = async () => {
+  const addPostODb = async (e) => {
     try {
-      // e.preventDefault()
+      e.preventDefault()
       const obj = {
         job_post_content: postText,
         job_title: jobTitle,
@@ -51,13 +51,13 @@ function JobPost(props) {
         // user_id: props
         // photo_content: image,
       };
-
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}job`;
       const result = await axios.post(serverUrl, obj);
       // setPostText(result.data)
       console.log(result.data[0]);
       setPostData(result.data[0]);
-      setPosts(result.data);
+      setJobPosts(result.data);
+      setPostText("")
     } catch (error) {
       console.log(`error add  post ${error}`);
     }
@@ -81,23 +81,24 @@ function JobPost(props) {
     setjobField(event.target.value);
   };
 
-  // const handlePostSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   if (postText.trim() === "") {
-  //     return; // Skip empty JobPosts
-  //   }
-
-  //   const newPost = {
-  //     id: Date.now(),
-  //     text: postText,
-  //     comments: [],
-  //   };
-
-  //   setPosts((prevPosts) => [newPost, ...prevPosts]);
-  //   setPostText("");
-  // };
-  console.log(JobPosts);
+  const handlePostSubmit = (event) => {
+    event.preventDefault();
+    if (postText.trim() === "") {
+      return; // Skip empty JobPosts
+    }
+    const newPost = {
+      // id: Date.now(),
+      job_post_content: postText,
+      job_title:jobTitle,
+      job_field:jobField,
+      city:postCity
+      // comments: [],
+    };
+    addPostODb();
+    setJobPosts((prevPosts) => [newPost, ...prevPosts]);
+    setPostText(event.target.value);
+  };
+  // console.log(JobPosts);
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
@@ -108,20 +109,21 @@ function JobPost(props) {
   };
 
   const takeDataFromChild = (arr) => {
-    setPosts(arr);
+    setJobPosts(arr);
     // props.takeDataFromFirstChild(arr)
   };
 
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}job`;
     const result = await axios.get(serverUrl);
-    setPosts(result.data);
-    // setPosts(props.postDataArray);
+    setJobPosts(result.data);
+    setPostText("")
+    // setJobPosts(props.postDataArray);
   };
   useEffect(() => {
     sendReq();
     // console.log(postDataArray)
-  }, []);
+  }, [JobPosts]);
 
   // const handleDeletePost = (postId) => {
   //   // Handle delete functionality here
@@ -134,7 +136,7 @@ function JobPost(props) {
   //     text: commentText,
   //   };
 
-  //   setPosts((prevPosts) => {
+  //   setJobPosts((prevPosts) => {
   //     const updatedPosts = prevPosts.map((post) => {
   //       if (post.id === postId) {
   //         return {
@@ -147,7 +149,18 @@ function JobPost(props) {
   //     return updatedPosts;
   //   });
   // };
-console.log(postData)
+
+
+const handleDeletePost = async (id) => {
+  try {
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}job/${id}`;
+    await axios.delete(serverUrl);
+    sendReq();
+  } catch (error) {
+    console.log(`error deleting job post ${error}`);
+  }
+};
+
   return (
     <div>
       <Navbar className="navbar-light bg-light" expand="lg">
@@ -183,12 +196,13 @@ console.log(postData)
           <Col>
             <h1>Share your thoughts here</h1>
             {/* onSubmit={handlePostSubmit} this is in form */}
-            <Form >
+            <Form onSubmit={handlePostSubmit}>
               <Form.Group controlId="postForm">
                 <Form.Control
                   as="textarea"
                   rows={3}
                   placeholder="What's on your mind?"
+                 
             
                   onChange={handlePostChange}
                 />
@@ -211,17 +225,17 @@ console.log(postData)
                   onChange={handleJobField}
                 />
 
-                <Form.Group controlId="formFile" className="mb-3">
+                {/* <Form.Group controlId="formFile" className="mb-3">
                   <Form.Control
                     name="profile_picture"
                     type="file"
                     // onChange={handleChange}
                     // ref={dateInputRef}
                   />
-                </Form.Group>
+                </Form.Group> */}
               </Form.Group>
               <Button
-                onClick={addPostODb}
+                onClick={handlePostSubmit}
                 className="btnpost"
                 variant="primary"
                 type="submit"
@@ -237,7 +251,10 @@ console.log(postData)
                 {JobPosts.map((post) => (
                   <Card key={post.id} className="post">
                     <Card.Body>
-                      <Card.Text>{post.job_post_content}</Card.Text>
+                      <Card.Text >{post.job_post_content}</Card.Text>
+                      <Card.Text>{post.job_title}</Card.Text>
+                      <Card.Text>{post.job_field}</Card.Text>
+                      <Card.Text>{post.city}</Card.Text>
                       {post.comments && (
                         <div className="comments-container">
                           {post.comments.map((comment) => (
