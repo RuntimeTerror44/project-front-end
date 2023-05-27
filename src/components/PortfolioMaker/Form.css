@@ -1,0 +1,18 @@
+.main{
+    width: 70%;   
+    margin: auto;
+    color: rgb(126, 22, 22);
+    
+    background-color: #f2f0f0;
+}
+
+.form-control{
+    border: 2px solid rgb(30, 18, 30);
+    border-radius: 5px; 
+}
+
+.form-control:focus{
+    border-color: rgb(69, 20, 227);
+    outline: none; 
+    border-radius: 5px; 
+}
