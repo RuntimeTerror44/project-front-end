@@ -17,6 +17,14 @@ import { useParams } from "react-router-dom";
 import Comment from "../Home/Comment";
 
 const ProfileCard = (props) => {
+  let[y,setY]=useState(0);
+  const [like,setLike]=useState(false);
+  function handleLike(){
+   setY(y++)
+     setLike(true)
+
+
+  }
 // console.log(props.postComment.content)
 // for(let i=0;i<props.value.length;i++){
 
@@ -96,7 +104,7 @@ return(
                       aria-expanded="false"
                     >
   
-          <p></p>
+          <p>edit</p>
                     </a>
                     <div
                       className="dropdown-menu dropdown-menu-right"
@@ -190,22 +198,7 @@ return(
                     ))}
                          */}
      
-                  
-                   <img
-                   src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
-                   alt="User img"
-                   className="author-img author-img--small mr-2"
-
-                 />
-                 <h6 className="mb-1">
-                          <a href="#!" className="text-dark">
-                            John doe
-                          </a>{" "}
-                          <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>
-                        
-                        </h6>
-                    
-                        <hr id="meme"></hr>
+                
             
                         
            
@@ -216,9 +209,10 @@ return(
                         <div className="d-flex">
                           <a href="#!" className="text-dark mr-2">
                             <span>
-                              <i className="fa fa-heart-o" />
+                              <i className="fa fa-heart-o" onClick={handleLike}/>
                             </span>
                           </a>
+                          {y}
                          
                         </div>
                       </div>

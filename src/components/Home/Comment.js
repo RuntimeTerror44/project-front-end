@@ -19,10 +19,12 @@ import { Text } from "@chakra-ui/react";
 
 
 function Comment(props) {
+  const storedUserData = localStorage.getItem("userId");
+  const userData = JSON.parse(storedUserData);
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
-    console.log(props.postID);
+ 
     if (props.postID){
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const result = await axios.get(serverUrl);
@@ -50,7 +52,7 @@ function Comment(props) {
     }
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const obj = {
-        user_id: 2,
+        user_id: userData[0].id,
         content: e.target.comment.value,
       };
       const response = await axios.post(serverUrl, obj);
@@ -125,8 +127,9 @@ function Comment(props) {
        />
        <h6 className="mb-1">
                 <a href="#!" className="text-dark">
-                  {/* John doe local storage  */}
+                  {<p>Motasem</p>}
                 </a>{" "}
+                
                 <p className="mb-0 text-muted" id="hello">SoftwreEngineer</p>   {/* John doe local storage  */}
 
               
@@ -134,6 +137,60 @@ function Comment(props) {
               <>{item.content}</>
               <hr id="meme"></hr>
               </Text>
+
+
+
+
+
+
+              <div className="post-block__user-options">
+                    <a
+                      href="#!"
+                      id="triggerId"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      
+                    >
+  
+          <p>edit</p>
+                    </a>
+                    <div
+                      className="dropdown-menu dropdown-menu-right"
+                      aria-labelledby="triggerId"
+                    >
+                      <a className="dropdown-item text-dark" href="#!">
+                        <i className="fa fa-pencil mr-1" />
+                        Edit
+                      </a>
+                      <a className="dropdown-item text-danger" href="#!">
+                        <i className="fa fa-trash mr-1" />
+                        Delete
+                      </a>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <Dropdown align="end">
                   <Dropdown.Toggle
