@@ -22,7 +22,7 @@ function Comment(props) {
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
     // console.log(props.postID);
-    if (props.postID){
+    if (props.postID) {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
@@ -120,50 +120,64 @@ function Comment(props) {
                     </p>{" "}
                     {/* John doe local storage  */}
                   </h6>
-                  <>{item.content}</>
+                  <p
+                    style={{
+                      wordBreak: "break-word",
+                    }}
+                  >
+                    {item.content}
+                  </p>{" "}
+                  <Dropdown
+                    align="end"
+                    style={{
+                      position: "absolute",
+                      top: "-0px",
+                      right: "0px",
+                    }}
+                  >
+                    <Dropdown.Toggle
+                      variant="primary"
+                      className="dropdown-toggle-vertical"
+                    >
+                      &#8942;
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => handleEditPost(item)}>
+                        Edit
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => handleDeletePost(item.comment_id)}
+                      >
+                        Delete
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                   <hr id="meme"></hr>
                 </Text>
 
-                <Dropdown align="end">
-                  <Dropdown.Toggle
-                    variant="primary"
-                    // id={`dropdown-${post.id}`}
-                    className="dropdown-toggle-vertical"
-                  >
-                    Options
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => handleEditPost(item)}>
-                      Edit
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      onClick={() => handleDeletePost(item.comment_id)}
-                    >
-                      Delete
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
                 {/* </Card> */}
               </Col>
             </Row>
           </>
         );
         return text;
-      })}
-
+      })}{" "}
       <Form onSubmit={handleAddComment}>
-        <Form.Group>
+        <Form.Group
+          style={{
+            display: "flex ",
+          }}
+        >
           <Form.Control
             type="text"
             name="comment"
             placeholder="Add a comment"
           />
+          <Button variant="primary" type="submit">
+            <i className="fa fa-paper-plane" />
+          </Button>
         </Form.Group>
-        <Button variant="primary" type="submit">
-          <i className="fa fa-paper-plane" />
-        </Button>
       </Form>
-
       <UpdateComment
         showUpdateModal={showUpdateModal}
         handleClosePost={handleClosePost} ///done
