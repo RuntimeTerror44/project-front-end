@@ -7,9 +7,11 @@ import LoginButton from "./components/Landingpage/login/Loginbutton";
 import LogoutButton from "./components/Landingpage/login/Logoutbutton";
 
 import Profile from "./components/Landingpage/login/profile";
-import Home from "./components/Home/Home";
-import Job from "./components/Job/Job";
-import Comment from "./components/Home/Comment";
+import Home from "./components/Home/Home"
+import Job from "./components/Job/Job"
+import Comment from './components/Home/Comment';
+import Form from './components/PortfolioMaker/Form'
+
 
 import Profilepage from "./components/Profile/Profilepage";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -35,7 +37,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
           </Routes>
-        ) : (
+        ) : ( */}
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/FormPersonalData" element={<FormPersonalData />} />
@@ -52,6 +54,7 @@ export default function App() {
             <Route path="/Profile" element={<Profile />} />
 
             <Route path="/Profilepage" element={<Profilepage />} />
+            <Route path="/Form" element={<Form />} />
           </Routes>
         )}
       </>

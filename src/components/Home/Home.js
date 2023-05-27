@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import HomePost from "./HomePost";
 import axios from "axios";
 import "./HomePost.css";
+import Nav from "./Nav";
 function Home() {
   /////////////////// get the posts from data base//////////////////////
   const [postDataArray, setPostDataArray] = useState([]);
@@ -32,6 +33,7 @@ function Home() {
 
   return (
     <>
+    <Nav/>
       {/* {commentsDataArray ? 
       <HomePost postDataArray={postDataArray}  comments={commentsDataArray}/>
     

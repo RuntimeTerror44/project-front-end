@@ -17,7 +17,7 @@ import UsersInfo from "./UsersInfo";
 import "./Profilepage.css";
 import Profileposts from "./Profileposts";
 import { useState, useEffect } from "react";
-
+import Nav from "../Home/Nav";
 function Profilepage() {
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
@@ -67,6 +67,7 @@ function Profilepage() {
 
   return (
     <>
+    <Nav/>
       <UsersInfo user={userInfo} />
 
       {/* {jobs.map((item, i) => {
