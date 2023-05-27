@@ -171,14 +171,46 @@ function HomePost(props) {
                         type="text/css"
                         href="css/style.css"
                       />
-                      <section className="main-content">
+                      <section className="main-content" id="main-content">
                         <div className="container">
                           <h1 className="text-center text-uppercase"></h1>
                           <br />
                           <br />
                           <div className="row">
                             <div className="col-sm-6 offset-sm-3">
-                              <div className="post-block">
+                              <div
+                                className="post-block"
+                                style={{ position: "relative" }}
+                              >
+                                <Dropdown
+                                  align="end"
+                                  style={{
+                                    position: "absolute",
+                                    top: "25px",
+                                    right: "25px",
+                                  }}
+                                >
+                                  <Dropdown.Toggle
+                                    variant="primary"
+                                    className="dropdown-toggle-vertical"
+                                  >
+                                    &#8942;
+                                  </Dropdown.Toggle>
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item
+                                      onClick={() => handleEditPost(post)}
+                                    >
+                                      Edit
+                                    </Dropdown.Item>
+                                    <Dropdown.Item
+                                      onClick={() =>
+                                        handleDeletePost(post.post_id)
+                                      }
+                                    >
+                                      Delete
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
                                 <div className="d-flex justify-content-between">
                                   <div className="d-flex mb-3">
                                     <div className="mr-2">
@@ -209,9 +241,7 @@ function HomePost(props) {
                                       data-toggle="dropdown"
                                       aria-haspopup="true"
                                       aria-expanded="false"
-                                    >
-                                      <p></p>
-                                    </a>
+                                    ></a>
                                     <div
                                       className="dropdown-menu dropdown-menu-right"
                                       aria-labelledby="triggerId"
@@ -234,7 +264,11 @@ function HomePost(props) {
                                   </div>
                                 </div>
                                 <div className="post-block__content mb-2">
-                                  <p>
+                                  <p
+                                    style={{
+                                      wordBreak: "break-word",
+                                    }}
+                                  >
                                     {post.paragraph_content}
                                     {/* <p>{props.postComment.content}</p> */}
                                   </p>
@@ -254,20 +288,7 @@ function HomePost(props) {
                                 <div className="post-block__comments">
                                   {/* Comment Input */}
                                   <div className="input-group mb-3">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Add your comment"
-                                    />
-                                    <div className="input-group-append">
-                                      <button
-                                        className="btn btn-primary"
-                                        type="button"
-                                        id="button-addon2"
-                                      >
-                                        <i className="fa fa-paper-plane" />
-                                      </button>
-                                    </div>
+                                    <div className="input-group-append"></div>
                                   </div>
 
                                   <div className="comment-view-box mb-3">
@@ -299,21 +320,6 @@ function HomePost(props) {
                 })}
               </div>
             </>
-          </Col>
-          <Col md={4} className="people-section">
-            <h3>People with the Same Career</h3>
-            <div className="people-list">
-              <p>Person 1</p>
-              <p>Person 2</p>
-              <p>Person 3</p>
-              <p>Person 4</p>
-              <p>Person 5</p>
-              <p>Person 6</p>
-              <p>Person 7</p>
-              <p>Person 8</p>
-              <p>Person 9</p>
-              <p>Person 10</p>
-            </div>
           </Col>
         </Row>
       </Container>

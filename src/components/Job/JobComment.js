@@ -13,17 +13,16 @@ import {
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
-import UpdateComment from "./UpdateComment";
-
+import UpdateJobComment from "./UpdateJobComment";
 import { Text } from "@chakra-ui/react";
 
-function Comment(props) {
+function JobComment(props) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
     // console.log(props.postID);
-    if (props.postID) {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
+    if (props.postID){
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
     }
@@ -45,7 +44,7 @@ function Comment(props) {
         // Check if the comment is empty
         return; // Don't add an empty comment
       }
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postID}`;
       const obj = {
         user_id: 2,
         content: e.target.comment.value,
@@ -69,7 +68,7 @@ function Comment(props) {
 
   const handleDeletePost = async (comment_id) => {
     try {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${comment_id}`;
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${comment_id}`;
       await axios.delete(serverUrl);
       // console.log(comment_id)
       getCommentsFromDb();
@@ -120,65 +119,51 @@ function Comment(props) {
                     </p>{" "}
                     {/* John doe local storage  */}
                   </h6>
-                  <p
-                    style={{
-                      wordBreak: "break-word",
-                    }}
-                  >
-                    {item.content}
-                  </p>{" "}
-                  <Dropdown
-                    align="end"
-                    style={{
-                      position: "absolute",
-                      top: "-0px",
-                      right: "0px",
-                    }}
-                  >
-                    <Dropdown.Toggle
-                      variant="primary"
-                      className="dropdown-toggle-vertical"
-                    >
-                      &#8942;
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handleEditPost(item)}>
-                        Edit
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => handleDeletePost(item.comment_id)}
-                      >
-                        Delete
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  <>{item.content}</>
                   <hr id="meme"></hr>
                 </Text>
 
+                <Dropdown align="end">
+                  <Dropdown.Toggle
+                    variant="primary"
+                    // id={`dropdown-${post.id}`}
+                    className="dropdown-toggle-vertical"
+                  >
+                    Options
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => handleEditPost(item)}>
+                      Edit
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => handleDeletePost(item.comment_id)}
+                    >
+                      Delete
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
                 {/* </Card> */}
               </Col>
             </Row>
           </>
         );
         return text;
-      })}{" "}
+      })}
+
       <Form onSubmit={handleAddComment}>
-        <Form.Group
-          style={{
-            display: "flex ",
-          }}
-        >
+        <Form.Group>
           <Form.Control
             type="text"
             name="comment"
             placeholder="Add a comment"
           />
-          <Button variant="primary" type="submit">
-            <i className="fa fa-paper-plane" />
-          </Button>
         </Form.Group>
+        <Button variant="primary" type="submit">
+          <i className="fa fa-paper-plane" />
+        </Button>
       </Form>
-      <UpdateComment
+
+      <UpdateJobComment
         showUpdateModal={showUpdateModal}
         handleClosePost={handleClosePost} ///done
         postData={postData}
@@ -189,4 +174,4 @@ function Comment(props) {
     </div>
   );
 }
-export default Comment;
+export default JobComment;
