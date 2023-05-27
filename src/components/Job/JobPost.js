@@ -81,24 +81,23 @@ function JobPost(props) {
     setjobField(event.target.value);
   };
 
-  const handlePostSubmit = (event) => {
-    event.preventDefault();
-    if (postText.trim() === "") {
-      return; // Skip empty JobPosts
-    }
-    const newPost = {
-      // id: Date.now(),
-      job_post_content: postText,
-      job_title:jobTitle,
-      job_field:jobField,
-      city:postCity
-      // comments: [],
-    };
-    addPostODb();
-    setJobPosts((prevPosts) => [newPost, ...prevPosts]);
-    setPostText(event.target.value);
-  };
-  // console.log(JobPosts);
+  // const handlePostSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   if (postText.trim() === "") {
+  //     return; // Skip empty JobPosts
+  //   }
+
+  //   const newPost = {
+  //     id: Date.now(),
+  //     text: postText,
+  //     comments: [],
+  //   };
+
+  //   setPosts((prevPosts) => [newPost, ...prevPosts]);
+  //   setPostText("");
+  // };
+  console.log(JobPosts);
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
@@ -130,13 +129,13 @@ function JobPost(props) {
   //   console.log(`Delete post with id: ${postId}`);
   // };
 
-  // const handleAddComment = (postId, commentText) => {
-  //   const newComment = {
-  //     id: Date.now(),
-  //     text: commentText,
-  //   };
+  const handleAddComment = (postId, commentText) => {
+    const newComment = {
+      id: Date.now(),
+      text: commentText,
+    };
 
-  //   setJobPosts((prevPosts) => {
+  //   setPosts((prevPosts) => {
   //     const updatedPosts = prevPosts.map((post) => {
   //       if (post.id === postId) {
   //         return {
@@ -149,18 +148,7 @@ function JobPost(props) {
   //     return updatedPosts;
   //   });
   // };
-
-
-const handleDeletePost = async (id) => {
-  try {
-    const serverUrl = `${process.env.REACT_APP_SERVER_URL}job/${id}`;
-    await axios.delete(serverUrl);
-    sendReq();
-  } catch (error) {
-    console.log(`error deleting job post ${error}`);
-  }
-};
-
+console.log(postData)
   return (
     <div>
       <Navbar className="navbar-light bg-light" expand="lg">
@@ -341,6 +329,6 @@ const handleDeletePost = async (id) => {
       {/* <Comment JobPosts={JobPosts}/> */}
     </div>
   );
-}
+}}
 
 export default JobPost;
