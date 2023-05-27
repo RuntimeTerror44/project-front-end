@@ -216,7 +216,7 @@ function HomePost(props) {
                                       className="dropdown-menu dropdown-menu-right"
                                       aria-labelledby="triggerId"
                                     >
-                                      <a
+                                      < a
                                         className="dropdown-item text-dark"
                                         href="#!"
                                       >
