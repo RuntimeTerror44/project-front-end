@@ -1,5 +1,6 @@
 .navbar {
   margin-bottom: 20px;
+
 }
 
 .people-section {
@@ -61,3 +62,9 @@ footer {
 .comment p {
   margin: 0;
 }
+
+#main-content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+

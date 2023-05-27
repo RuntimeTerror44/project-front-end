@@ -13,19 +13,16 @@ import {
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
-import UpdateComment from "./UpdateComment";
-
+import UpdateJobComment from "./UpdateJobComment";
 import { Text } from "@chakra-ui/react";
 
-function Comment(props) {
-  const storedUserData = localStorage.getItem("userId");
-  const userData = JSON.parse(storedUserData);
+function JobComment(props) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
     // console.log(props.postID);
-    if (props.postID) {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
+    if (props.postID){
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
     }
@@ -47,9 +44,9 @@ function Comment(props) {
         // Check if the comment is empty
         return; // Don't add an empty comment
       }
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postID}`;
       const obj = {
-        user_id: userData[0].id,
+        user_id: 2,
         content: e.target.comment.value,
       };
       const response = await axios.post(serverUrl, obj);
@@ -71,7 +68,7 @@ function Comment(props) {
 
   const handleDeletePost = async (comment_id) => {
     try {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${comment_id}`;
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${comment_id}`;
       await axios.delete(serverUrl);
       // console.log(comment_id)
       getCommentsFromDb();
@@ -98,17 +95,17 @@ function Comment(props) {
   };
 
   return (
-    <div style={{width:"100%",position:"relative"}}>
+    <div>
       {commentsDataArray.map((item) => {
         const text = (
           <>
             <Row xs={1} md={1} className="g-4">
-              <Col >
+              <Col>
                 {/* <Card> */}
                 {/* {setPostID(post.post_id)} */}
                 {/* <Card.Img variant="top" /> */}
                 <Text>
-                  {/* <img
+                  <img
                     src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
                     alt="User img"
                     className="author-img author-img--small mr-2"
@@ -116,99 +113,57 @@ function Comment(props) {
                   <h6 className="mb-1">
                     <a href="#!" className="text-dark">
                       {/* John doe local storage  */}
-                   {/*} </a>{" "}
+                    </a>{" "}
                     <p className="mb-0 text-muted" id="hello">
                       SoftwreEngineer
                     </p>{" "}
                     {/* John doe local storage  */}
-                  {/*</h6> */}
-
-                  {/* ========================================= */}
-                  <div className="d-flex justify-content-between">
-                                  <div className="d-flex mb-3">
-                                    <div className="mr-2">
-                                      <a href="#!" className="text-name">
-                                        <img
-                                        style={{width:"35px", height:"35px"}}
-                                          src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
-                                          alt="User"
-                                          className="author-img"
-                                        />
-                                      </a>
-                                    </div>
-                                    <div>
-                                      <h5 className="mb-0">
-                                        <a href="#!" style={{fontSize:"smaller"}} className="text-dark">
-                                          Kiran Acharya
-                                        </a>
-                                      </h5>
-                                      <p style={{fontSize:"smaller"}} className="mb-0 text-muted">
-                                        SoftwreEngineer
-                                      </p>
-                                      {/* <p className="mb-0 text-muted">5m</p>             edit date */}
-                                    </div>
-                                  </div>
-                                  </div>
-                  {/* ========================================= */}
-                  <p
-                    style={{
-                      wordBreak: "break-word",
-                    }}
-                  >
-                    {item.content}
-                  </p>{" "}
-                  <Dropdown
-                    align="end"
-                    style={{
-                      position: "absolute",
-                      top: "0px",
-                      right: "16px",
-                    }}
-                  >
-                    <Dropdown.Toggle
-                      variant="primary"
-                      className="dropdown-toggle-vertical"
-                    >
-                     
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handleEditPost(item)}>
-                        Edit
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => handleDeletePost(item.comment_id)}
-                      >
-                        Delete
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  </h6>
+                  <>{item.content}</>
+                  <hr id="meme"></hr>
                 </Text>
 
+                <Dropdown align="end">
+                  <Dropdown.Toggle
+                    variant="primary"
+                    // id={`dropdown-${post.id}`}
+                    className="dropdown-toggle-vertical"
+                  >
+                    Options
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => handleEditPost(item)}>
+                      Edit
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => handleDeletePost(item.comment_id)}
+                    >
+                      Delete
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
                 {/* </Card> */}
               </Col>
-                  <hr id="meme"></hr>
             </Row>
           </>
         );
         return text;
-      })}{" "}
+      })}
+
       <Form onSubmit={handleAddComment}>
-        <Form.Group
-          style={{
-            display: "flex "
-          }}
-        >
+        <Form.Group>
           <Form.Control
             type="text"
             name="comment"
             placeholder="Add a comment"
           />
-          <Button variant="primary" type="submit">
-            <i className="fa fa-paper-plane" />
-          </Button>
         </Form.Group>
+        <Button variant="primary" type="submit">
+          <i className="fa fa-paper-plane" />
+        </Button>
       </Form>
-      <UpdateComment
+
+      <UpdateJobComment
         showUpdateModal={showUpdateModal}
         handleClosePost={handleClosePost} ///done
         postData={postData}
@@ -219,6 +174,4 @@ function Comment(props) {
     </div>
   );
 }
-export default Comment;
-
-
+export default JobComment;

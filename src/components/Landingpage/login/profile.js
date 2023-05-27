@@ -6,7 +6,6 @@ import Test from "./Test";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
- 
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -17,53 +16,19 @@ const Profile = () => {
 
         for (let i = 0; i < checkEmailExists.data.length; i++) {
           if (user.email == checkEmailExists.data[i].email) {
-
-             emailExist=true
+            emailExist = true;
             console.log(checkEmailExists.data[i].id);
             const storageData = [checkEmailExists.data[i]];
             console.log(checkEmailExists.data[i])
             localStorage.setItem("userId", JSON.stringify(storageData));
           }
-         
         }
        if(!emailExist){
-          const response = await axios.post("http://localhost:5000/users", {
+          const response = await axios.post("http://localhost:4000/users", {
             email: user.email,
             profilepicture: user.picture
-            
             // Add other relevant user data fields
-          }
-       
-          
-          
-          )
-          
-          
-     
-          const checkEmailExists = await axios.get(`http://localhost:5000/users`);
-       
-        for (let i = 0; i < checkEmailExists.data.length; i++) {
-          if (user.email == checkEmailExists.data[i].email) {
-
-             emailExist=true
-            console.log(checkEmailExists.data[i].id);
-            const storageData = [checkEmailExists.data[i]];
-
-
-                 
-
-
-
-            localStorage.setItem("userId", JSON.stringify(storageData));
-          }
-         
-        }
-          
-          
-          
-          
-          
-          ;}
+          });}
           
        
       };

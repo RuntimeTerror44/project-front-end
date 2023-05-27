@@ -187,7 +187,7 @@ const handleClose =()=>{
           </InputGroup>
         </Form.Group>
        
-      <Button  type="submit">Submit form</Button>
+
     </Form>
        
         </Modal.Body>
