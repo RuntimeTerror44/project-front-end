@@ -329,6 +329,6 @@ console.log(postData)
       {/* <Comment JobPosts={JobPosts}/> */}
     </div>
   );
-}
+}}
 
 export default JobPost;
