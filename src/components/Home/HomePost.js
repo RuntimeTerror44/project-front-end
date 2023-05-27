@@ -20,6 +20,8 @@ import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
 
 function HomePost(props) {
+  const storedUserData = localStorage.getItem("userId");
+  const userData =JSON.parse(storedUserData)
   // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -41,6 +43,7 @@ function HomePost(props) {
     try {
       // e.preventDefault()
       const obj = {
+        user_id:userData[0].id,
         paragraph_content: postText,
         post_date: readableDate,
 

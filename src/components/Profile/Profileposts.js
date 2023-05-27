@@ -17,6 +17,20 @@ import { useParams } from "react-router-dom";
 import Comment from "../Home/Comment";
 
 const ProfileCard = (props) => {
+// console.log(props.postComment.content)
+// for(let i=0;i<props.value.length;i++){
+
+
+//   console.log(props.value[i].content)
+// }
+
+// if (!props.postData || props.postData.length === 0) {
+//   return <p>Loading...</p>;
+// }
+
+// const userDataInfo = props.postData[0];
+
+// console.log(userDataInfo.post_id)
   return (
     <>
       {props.postData.map((item, i) => {

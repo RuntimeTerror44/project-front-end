@@ -8,16 +8,31 @@ import {
 } from 'mdb-react-ui-kit';
 
 function UsersInfo(props){
+  // const [data,setData]=useState({})
   const storedUserData = localStorage.getItem("userId");
-  const userData = JSON.parse(storedUserData);
- 
-  if (!props.user || props.user.length === 0) {
-    return <p>Loading...</p>;
-  }
+  const userData =JSON.parse(storedUserData);console.log(userData)
+  // if(Array.isArray(userData)){
+    
+  //   ()=>{setData(userData[0])}
+    
+    
+  //       }else{
+  //   ()=>{setData(userData)}
+    
+  
+  //       }
+    
+  // if (!props.user || props.user.length === 0) {
+  //   return <p>Loading...</p>;
+  // }
 
-  const userDataInfo = props.user[0];
+//   const userDataInfo = props.user[0];
+//   console.log( (userDataInfo))
 
-console.log(userDataInfo.firstname)
+// console.log(userDataInfo.firstname)
+
+
+
 
 
 
@@ -62,7 +77,7 @@ console.log(userDataInfo.firstname)
                   className="rounded-circle"
                   style={{ width: '150px' }}
                   fluid />
-                <p className="text-muted mb-1">Full Stack Developer</p>
+                <p className="text-muted mb-1">{userData[0].firstname}</p>
                 <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
                 <div className="d-flex justify-content-center mb-2">
                   <MDBBtn>Follow</MDBBtn>
@@ -83,7 +98,7 @@ console.log(userDataInfo.firstname)
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{userDataInfo.firstname} </MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].firstname} </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -92,7 +107,7 @@ console.log(userDataInfo.firstname)
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{userDataInfo.email}</MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].email}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -101,7 +116,7 @@ console.log(userDataInfo.firstname)
                     <MDBCardText>Phone</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].phonenumber}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -110,7 +125,7 @@ console.log(userDataInfo.firstname)
                     <MDBCardText>Mobile</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].phonenumber}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -119,7 +134,7 @@ console.log(userDataInfo.firstname)
                     <MDBCardText>Address</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Bay Area, San Francisco, CA</MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].address}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>
@@ -163,9 +178,6 @@ console.log(userDataInfo.firstname)
 
 
 </>
-
-
-
 
     )
 }

@@ -14,8 +14,22 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
+import { json } from "react-router-dom";
 
 function FormPersonalData(props) {
+  const storedData = localStorage.getItem('userId');
+ 
+  const storageData=JSON.parse(storedData)
+  console.log(storageData)
+
+  console.log(storageData[0].id)
+  
+
+// Parse the retrieved data if necessary
+
+
+// Access specific properties or values from the retrieved data
+
 
   const [date, setDate] = useState("");
   const dateInputRef = useRef(null);
@@ -28,26 +42,39 @@ function FormPersonalData(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // const birthDate = date;
-    const serverUrl = `${process.env.REACT_APP_SERVER_URL}users`;
+   
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}users/${storageData[0].id}`;
     const obj = {
-      firstName: e.target.first_name.value,
-      lastName: e.target.last_name.value,
+
+      firstname: e.target.first_name.value,
+      lastname: e.target.last_name.value,
       email : e.target.Email.value,
-      dateOfBirth : date,
+      dateofbirth : date,
       country: e.target.countrey.value,
       city: e.target.city.value,
-      phoneNumber: e.target.phone_number.value,
+      phonenumber: e.target.phone_number.value,
       address: e.target.address.value,
       gender: e.target.formHorizontalRadios.value,
       profilePicture: e.target.profile_picture.value,
       imgForCover: e.target.cover_picture.value
     };
-    const result = await axios.post(serverUrl, obj);
+    const result = await axios.put(serverUrl, obj);
     // tackDataFromChaildAfterUbdate(result.data);
     console.log(result.data);
-  };
-
   
+
+    const newData=result.data
+  
+    localStorage.setItem('userId',JSON.stringify(newData))
+    };
+
+
+
+  // const updateData = () => {
+  //   const newData = 'New Data';
+  //   localStorage.setItem('userId', newData);
+  //   setData(newData);
+  // };
 
 
   return (

@@ -21,14 +21,14 @@ import Nav from "../Home/Nav";
 function Profilepage() {
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
-  // console.log(typeof userData.id)
-
+  console.log(userData)
+ 
   const [userInfo, setuserInfo] = useState([]);
   const [comment, setComment] = useState([]);
   const [jobs, setJobs] = useState([]);
 
   const sendReq = async () => {
-    const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/1`;
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/${userData[0].id}`;
     const result = await axios.get(serverUrl);
 
     setJobs(result.data);
@@ -37,10 +37,8 @@ function Profilepage() {
 
   useEffect(() => {
     const getData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}users/1`
-        );
+      try { 
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}users/${userData[0].id}`);
         setuserInfo(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -50,17 +48,14 @@ function Profilepage() {
     getData();
   }, []);
 
-  const getComment = async () => {
-    const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/1`;
-    const result = await axios.get(serverUrl);
 
-    setComment(result.data);
-    // console.log(result.data)
-  };
+ 
+
 
   useEffect(() => {
-    sendReq();
-    getComment();
+    
+    sendReq() ;
+  
   }, []);
 
   const x = comment;
