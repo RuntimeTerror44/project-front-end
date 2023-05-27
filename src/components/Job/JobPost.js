@@ -23,7 +23,7 @@ function JobPost(props) {
   const [postCity, setPostCity] = useState("");
   const [jobTitle, setjobTitle] = useState("");
   const [jobField, setjobField] = useState("");
-  const [JobPosts, setPosts] = useState([]);
+  const [JobPosts, setJobPosts] = useState([]);
   // console.log(JobPosts);
   // const [image, setImage] = useState("");
   // const [comment, setComment] = useState("");
@@ -56,7 +56,7 @@ function JobPost(props) {
       // setPostText(result.data)
       console.log(result.data[0]);
       setPostData(result.data[0]);
-      setPosts(result.data);
+      setJobPosts(result.data);
       setPostText("")
     } catch (error) {
       console.log(`error add  post ${error}`);
@@ -81,23 +81,24 @@ function JobPost(props) {
     setjobField(event.target.value);
   };
 
-  // const handlePostSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   if (postText.trim() === "") {
-  //     return; // Skip empty JobPosts
-  //   }
-
-  //   const newPost = {
-  //     id: Date.now(),
-  //     text: postText,
-  //     comments: [],
-  //   };
-
-  //   setPosts((prevPosts) => [newPost, ...prevPosts]);
-  //   setPostText("");
-  // };
-  console.log(JobPosts);
+  const handlePostSubmit = (event) => {
+    event.preventDefault();
+    if (postText.trim() === "") {
+      return; // Skip empty JobPosts
+    }
+    const newPost = {
+      // id: Date.now(),
+      job_post_content: postText,
+      job_title:jobTitle,
+      job_field:jobField,
+      city:postCity
+      // comments: [],
+    };
+    addPostODb();
+    setJobPosts((prevPosts) => [newPost, ...prevPosts]);
+    setPostText(event.target.value);
+  };
+  // console.log(JobPosts);
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
@@ -108,21 +109,21 @@ function JobPost(props) {
   };
 
   const takeDataFromChild = (arr) => {
-    setPosts(arr);
+    setJobPosts(arr);
     // props.takeDataFromFirstChild(arr)
   };
 
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}job`;
     const result = await axios.get(serverUrl);
-    setPosts(result.data);
+    setJobPosts(result.data);
     setPostText("")
-    // setPosts(props.postDataArray);
+    // setJobPosts(props.postDataArray);
   };
   useEffect(() => {
     sendReq();
     // console.log(postDataArray)
-  }, []);
+  }, [JobPosts]);
 
   // const handleDeletePost = (postId) => {
   //   // Handle delete functionality here
@@ -135,7 +136,7 @@ function JobPost(props) {
   //     text: commentText,
   //   };
 
-  //   setPosts((prevPosts) => {
+  //   setJobPosts((prevPosts) => {
   //     const updatedPosts = prevPosts.map((post) => {
   //       if (post.id === postId) {
   //         return {
@@ -148,7 +149,7 @@ function JobPost(props) {
   //     return updatedPosts;
   //   });
   // };
-console.log(postData)
+
 
 const handleDeletePost = async (id) => {
   try {
@@ -195,7 +196,7 @@ const handleDeletePost = async (id) => {
           <Col>
             <h1>Share your thoughts here</h1>
             {/* onSubmit={handlePostSubmit} this is in form */}
-            <Form >
+            <Form onSubmit={handlePostSubmit}>
               <Form.Group controlId="postForm">
                 <Form.Control
                   as="textarea"
@@ -234,7 +235,7 @@ const handleDeletePost = async (id) => {
                 </Form.Group> */}
               </Form.Group>
               <Button
-                onClick={addPostODb}
+                onClick={handlePostSubmit}
                 className="btnpost"
                 variant="primary"
                 type="submit"

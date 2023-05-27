@@ -51,8 +51,7 @@ console.log(obj.job_post_content)
     props.takeDataFromChild(result.data)
     props.handleClosePost()
 }
- const serverUrl=`${process.env.REACT_APP_SERVER_URL}job/${props.postData.id}`
- console.log(serverUrl)
+
 
 
 //////////////////////////////////////////////////////////

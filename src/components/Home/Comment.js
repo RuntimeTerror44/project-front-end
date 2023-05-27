@@ -19,7 +19,7 @@ function Comment(props) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
-    console.log(props.postID);
+    // console.log(props.postID);
     if (props.postID){
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const result = await axios.get(serverUrl);
