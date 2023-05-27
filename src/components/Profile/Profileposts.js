@@ -125,22 +125,7 @@ const ProfileCard = (props) => {
                       <hr />
                       <div className="post-block__comments">
                         {/* Comment Input */}
-                        <div className="input-group mb-3">
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Add your comment"
-                          />
-                          <div className="input-group-append">
-                            <button
-                              className="btn btn-primary"
-                              type="button"
-                              id="button-addon2"
-                            >
-                              <i className="fa fa-paper-plane" />
-                            </button>
-                          </div>
-                        </div>
+                        
 
                         <div className="comment-view-box mb-3">
                           <div className="d-flex mb-2">
@@ -213,7 +198,7 @@ export default ProfileCard;
 //   const [comments1, setComments1] = useState([]);
 //   const [flag, setFlag] = useState(false);
 //   const sendReq = async () => {
-//     const serverUrl2 = `http://localhost:4000/getcomments`;
+//     const serverUrl2 = `${process.env.REACT_APP_SERVER_URL}getcomments`;
 //     const result2 = await axios.get(serverUrl2);
 //     setComments(result2.data);
 //   };

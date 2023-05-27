@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useRef, useEffect, useState } from "react";
 import { InputGroup } from "react-bootstrap";
-
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -15,37 +13,23 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { json } from "react-router-dom";
-
 function FormPersonalData(props) {
   const storedData = localStorage.getItem('userId');
- 
   const storageData=JSON.parse(storedData)
   console.log(storageData)
-
   console.log(storageData[0].id)
-  
-
 // Parse the retrieved data if necessary
-
-
 // Access specific properties or values from the retrieved data
-
-
   const [date, setDate] = useState("");
   const dateInputRef = useRef(null);
   const handleChange = (e) => {
     setDate(e.target.value);
   };
-  
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     // const birthDate = date;
-   
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}users/${storageData[0].id}`;
     const obj = {
-
       firstname: e.target.first_name.value,
       lastname: e.target.last_name.value,
       email : e.target.Email.value,
@@ -61,22 +45,14 @@ function FormPersonalData(props) {
     const result = await axios.put(serverUrl, obj);
     // tackDataFromChaildAfterUbdate(result.data);
     console.log(result.data);
-  
-
     const newData=result.data
-  
     localStorage.setItem('userId',JSON.stringify(newData))
     };
-
-
-
   // const updateData = () => {
   //   const newData = 'New Data';
   //   localStorage.setItem('userId', newData);
   //   setData(newData);
   // };
-
-
   return (
     <>
       {/* <Modal >                                                show={props.showFlag} onHide={props.handleClose} */}
@@ -91,7 +67,6 @@ function FormPersonalData(props) {
                 <Form.Label>First Name</Form.Label>
                 <Form.Control name="first_name" type="text" defaultValue="" />
               </Form.Group>
-
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Last Name</Form.Label>
                 <InputGroup hasValidation>
@@ -99,12 +74,10 @@ function FormPersonalData(props) {
                 </InputGroup>
               </Form.Group>
             </Row>
-
             <Form.Group>
               <Form.Label>Email</Form.Label>
               <Form.Control name="Email" type="" defaultValue="" />
             </Form.Group>
-
             <Row className="mb-2">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Bate of Birth</Form.Label>
@@ -119,7 +92,6 @@ function FormPersonalData(props) {
               </Form.Group>
               <Form.Group as={Col} controlId="formGridEmail"></Form.Group>
             </Row>
-
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Countrey</Form.Label>
@@ -136,7 +108,6 @@ function FormPersonalData(props) {
                 </InputGroup>
               </Form.Group>
             </Row>
-
             <Form.Group>
               <Form.Label>Phone Number</Form.Label>
               <InputGroup hasValidation>
@@ -147,14 +118,12 @@ function FormPersonalData(props) {
                 />
               </InputGroup>
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Address</Form.Label>
               <InputGroup hasValidation>
                 <Form.Control name="address" type="text" defaultValue="" />
               </InputGroup>
             </Form.Group>
-
             <fieldset>
               <Form.Group as={Row} className="mb-3">
                 <Form.Label as="legend" column sm={2}>
@@ -176,17 +145,14 @@ function FormPersonalData(props) {
                 </Col>
               </Form.Group>
             </fieldset>
-
             <Form.Group controlId="formFile" className="mb-3">
               <Form.Label>Profile Picture</Form.Label>
               <Form.Control name="profile_picture" type="file" />
             </Form.Group>
-
              <Form.Group controlId="formFile" className="mb-3">
               <Form.Label>Cover Picture</Form.Label>
               <Form.Control name="cover_picture" type="file" />
             </Form.Group>
-
             <Button type="submit">
               {/*onClick={props.handleClose}*/}
               Submit
@@ -202,5 +168,4 @@ function FormPersonalData(props) {
     </>
   );
 }
-
 export default FormPersonalData;

@@ -22,7 +22,7 @@ function Profilepage() {
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
   console.log(userData)
- 
+
   const [userInfo, setuserInfo] = useState([]);
   const [comment, setComment] = useState([]);
   const [jobs, setJobs] = useState([]);
@@ -30,7 +30,7 @@ function Profilepage() {
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/${userData[0].id}`;
     const result = await axios.get(serverUrl);
-
+    
     setJobs(result.data);
     console.log(result.data);
   };
@@ -44,20 +44,15 @@ function Profilepage() {
         console.error("Error fetching user data:", error);
       }
     };
-
     getData();
   }, []);
 
-
- 
-
-
+  
   useEffect(() => {
     
     sendReq() ;
-  
-  }, []);
 
+  }, []);
   const x = comment;
 
   return (
@@ -67,60 +62,34 @@ function Profilepage() {
 
       {/* {jobs.map((item, i) => {
         return (
-
-
-
-
-
-  );
+          );
 } */}
 
       {/* 
         )
                    
 }
-
-
 <Profileposts  postData={jobs} value={x}/>
 {/* {comment.map((items, ix) => {
-      
-
-
-<Profileposts key={ix} commentData={items} />
-
+  <Profileposts key={ix} commentData={items} />
 // console.log(commentData.content)
-
  
 }
-
-
-
         )
                    
       } */}
       {/* {comment.map((item, i) => {
         return (
-
-
 <CommentComponent key={i} CommentData={item} />
-
-
-
   );
 }
 
-
-
-        )
+   )
                    
       } */}
 
-      <Profileposts postData={jobs} value={x} />
+<Profileposts postData={jobs} value={x} />
     </>
   );
 }
 export default Profilepage;
-
-// <p>{props.postData.username}</p>
-// <p>{props.postData.email}</p>
-// <p>{props.postData.city}</p>

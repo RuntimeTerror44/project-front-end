@@ -28,6 +28,7 @@ function Comment(props) {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
+      // console.log(commentsDataArray);
     }
   };
 
@@ -99,6 +100,8 @@ function Comment(props) {
 
   return (
     <div style={{width:"100%",position:"relative"}}>
+            {/* {console.log(commentsDataArray)}; */}
+
       {commentsDataArray.map((item) => {
         const text = (
           <>
@@ -139,7 +142,7 @@ function Comment(props) {
                                     <div>
                                       <h5 className="mb-0">
                                         <a href="#!" style={{fontSize:"smaller"}} className="text-dark">
-                                          Kiran Acharya
+                                          {commentsDataArray.firstname}
                                         </a>
                                       </h5>
                                       <p style={{fontSize:"smaller"}} className="mb-0 text-muted">
