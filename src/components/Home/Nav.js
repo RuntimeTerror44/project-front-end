@@ -29,7 +29,7 @@ export default function Nav() {
   return (
     <>
       <LogoutButton ref={logoutButtonRef} />
-      <MDBNavbar expand="lg" light style={{ backgroundColor: "#E3F2FD" }}>
+      <MDBNavbar className="nav-bar"  expand="lg" light style={{backgroundColor: "#E3F2FD" }}>
         <MDBContainer fluid>
           <MDBNavbarBrand href="#">Brand</MDBNavbarBrand>
           <MDBNavbarToggler

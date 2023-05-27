@@ -194,7 +194,7 @@ function HomePost(props) {
                                     variant="primary"
                                     className="dropdown-toggle-vertical"
                                   >
-                                    &#8942;
+                                  
                                   </Dropdown.Toggle>
                                   <Dropdown.Menu>
                                     <Dropdown.Item
@@ -292,8 +292,8 @@ function HomePost(props) {
                                   </div>
 
                                   <div className="comment-view-box mb-3">
-                                    <div className="d-flex mb-2">
-                                      <div>
+                                    <div > {/* here was the class name d-flex mb-2 */}
+                                      <div >
                                         <Comment postID={post.post_id} />
 
                                         <div className="d-flex">
