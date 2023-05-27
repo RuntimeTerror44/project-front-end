@@ -40,7 +40,7 @@ export default function App() {
           </Routes>
         ) : (
           <Routes>
-            <Route path="/landing" element={<LandingPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/FormPersonalData" element={<FormPersonalData />} />
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
@@ -48,11 +48,11 @@ export default function App() {
 
             <Route path="/comment" element={<Comment />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/FormPersonalData" element={<FormPersonalData />} />
+           
 
             <Route path="/Profilepage" element={<Profilepage />} />
             <Route path="/Form" element={<Form />} />
-            <Route path="/Home" element={<Home />} />
+            
           </Routes>
         )}
       </>
