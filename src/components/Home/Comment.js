@@ -15,6 +15,8 @@ import axios from "axios";
 import { useRef } from "react";
 import UpdateComment from "./UpdateComment";
 
+import { Text } from "@chakra-ui/react";
+
 function Comment(props) {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
@@ -25,8 +27,6 @@ function Comment(props) {
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
     }
-
-   
   };
 
   useEffect(() => {
@@ -39,6 +39,12 @@ function Comment(props) {
   const handleAddComment = async (e) => {
     try {
       e.preventDefault();
+      const commentContent = e.target.comment.value.trim(); // Trim the comment content to remove leading/trailing spaces
+
+      if (commentContent === "") {
+        // Check if the comment is empty
+        return; // Don't add an empty comment
+      }
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const obj = {
         user_id: 2,
@@ -82,10 +88,8 @@ function Comment(props) {
     setShowUpdateModal(false);
   };
 
-
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [postData, setPostData] = useState({});
-
 
   const takeDataFromChild = (arr) => {
     setCommentsDataArray(arr);
@@ -93,22 +97,32 @@ function Comment(props) {
 
   return (
     <div>
-      
       {commentsDataArray.map((item) => {
         const text = (
-          <Row xs={1} md={1} className="g-4">
-            <Col>
-              <Card>
+          <>
+            <Row xs={1} md={1} className="g-4">
+              <Col>
+                {/* <Card> */}
                 {/* {setPostID(post.post_id)} */}
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text>
-                    <p>{item.content}</p>
-                    <p>{item.comment_date}</p>
-                    <p>{item.user_id}</p>
-                    <p>{item.post_id}</p>
-                  </Card.Text>
-                </Card.Body>
+                {/* <Card.Img variant="top" /> */}
+                <Text>
+                  <img
+                    src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
+                    alt="User img"
+                    className="author-img author-img--small mr-2"
+                  />
+                  <h6 className="mb-1">
+                    <a href="#!" className="text-dark">
+                      {/* John doe local storage  */}
+                    </a>{" "}
+                    <p className="mb-0 text-muted" id="hello">
+                      SoftwreEngineer
+                    </p>{" "}
+                    {/* John doe local storage  */}
+                  </h6>
+                  <>{item.content}</>
+                  <hr id="meme"></hr>
+                </Text>
 
                 <Dropdown align="end">
                   <Dropdown.Toggle
@@ -119,22 +133,20 @@ function Comment(props) {
                     Options
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item
-                    onClick={() => handleEditPost(item)}
-                    >
+                    <Dropdown.Item onClick={() => handleEditPost(item)}>
                       Edit
                     </Dropdown.Item>
                     <Dropdown.Item
-
-                    onClick={() => handleDeletePost(item.comment_id)}
+                      onClick={() => handleDeletePost(item.comment_id)}
                     >
                       Delete
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-              </Card>
-            </Col>
-          </Row>
+                {/* </Card> */}
+              </Col>
+            </Row>
+          </>
         );
         return text;
       })}
@@ -148,13 +160,13 @@ function Comment(props) {
           />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Add a Comment
+          <i className="fa fa-paper-plane" />
         </Button>
       </Form>
 
       <UpdateComment
         showUpdateModal={showUpdateModal}
-        handleClosePost={handleClosePost}   ///done
+        handleClosePost={handleClosePost} ///done
         postData={postData}
         posts={commentsDataArray}
         takeDataFromChild={takeDataFromChild}
