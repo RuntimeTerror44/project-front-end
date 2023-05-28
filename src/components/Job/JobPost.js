@@ -17,6 +17,7 @@ import { post } from "jquery";
 import { useRef } from "react";
 import UpdateJobPost from "./UpdateJobPost";
 // import Comment from './Comment'
+import JobComment from "./JobComment";
 
 function JobPost(props) {
   const [postText, setPostText] = useState("");
@@ -39,9 +40,9 @@ function JobPost(props) {
 
   ///////////////////////////////////////////
 
-  const addPostODb = async (e) => {
+  const addPostODb = async () => {
     try {
-      e.preventDefault()
+      // e.preventDefault()
       const obj = {
         job_post_content: postText,
         job_title: jobTitle,
@@ -81,22 +82,22 @@ function JobPost(props) {
     setjobField(event.target.value);
   };
 
-  // const handlePostSubmit = (event) => {
-  //   event.preventDefault();
+  const handlePostSubmit = (event) => {
+    event.preventDefault();
 
-  //   if (postText.trim() === "") {
-  //     return; // Skip empty JobPosts
-  //   }
+    if (postText.trim() === "") {
+      return; // Skip empty JobPosts
+    }
 
-  //   const newPost = {
-  //     id: Date.now(),
-  //     text: postText,
-  //     comments: [],
-  //   };
-
-  //   setPosts((prevPosts) => [newPost, ...prevPosts]);
-  //   setPostText("");
-  // };
+    const newPost = {
+      id: Date.now(),
+      text: postText,
+      comments: [],
+    };
+    addPostODb()
+    setJobPosts((prevPosts) => [newPost, ...prevPosts]);
+    setPostText("");
+  };
   console.log(JobPosts);
 
   const handleEditPost = (post) => {
@@ -122,20 +123,20 @@ function JobPost(props) {
   useEffect(() => {
     sendReq();
     // console.log(postDataArray)
-  }, [JobPosts]);
+  }, [JobPost]);
 
   // const handleDeletePost = (postId) => {
   //   // Handle delete functionality here
   //   console.log(`Delete post with id: ${postId}`);
   // };
 
-  const handleAddComment = (postId, commentText) => {
-    const newComment = {
-      id: Date.now(),
-      text: commentText,
-    };
+  // const handleAddComment = (postId, commentText) => {
+  //   const newComment = {
+  //     id: Date.now(),
+  //     text: commentText,
+  //   };
 
-  //   setPosts((prevPosts) => {
+  //   setJobPosts((prevPosts) => {
   //     const updatedPosts = prevPosts.map((post) => {
   //       if (post.id === postId) {
   //         return {
@@ -148,59 +149,180 @@ function JobPost(props) {
   //     return updatedPosts;
   //   });
   // };
+
+  const handleDeletePost = async (id) => {
+    try {
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}job/${id}`;
+      await axios.delete(serverUrl);
+      sendReq();
+    } catch (error) {
+      console.log(`error deleting post ${error}`);
+    }
+  };
+
 console.log(postData)
   return (
-    <div>
-      <Navbar className="navbar-light bg-light" expand="lg">
-        <Container fluid>
-          <Navbar.Brand href="#home">My website</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-nav" />
-          <Navbar.Collapse id="navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">JobPost</Nav.Link>
-              <Nav.Link href="#jobs">Profile</Nav.Link>
-              <Nav.Link href="#jobs">Jobs</Nav.Link>
-              <Nav.Link href="#about">About Us</Nav.Link>
-            </Nav>
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success" type="submit">
-                Search
-              </Button>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+    // <div>
       
       
       
-      <Container>
-        <Row>
-          <Col>
-            <h1>Share your thoughts here</h1>
-            {/* onSubmit={handlePostSubmit} this is in form */}
-            <Form onSubmit={handlePostSubmit}>
-              <Form.Group controlId="postForm">
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  placeholder="What's on your mind?"
+    //   <Container>
+    //     <Row>
+    //       <Col>
+    //         <h1>Share your thoughts here</h1>
+    //         {/* onSubmit={handlePostSubmit} this is in form */}
+    //         <Form onSubmit={handlePostSubmit}>
+    //           <Form.Group controlId="postForm">
+    //             <Form.Control
+    //               as="textarea"
+    //               rows={3}
+    //               placeholder="What's on your mind?"
                  
             
-                  onChange={handlePostChange}
-                />
-                <Form.Control
+    //               onChange={handlePostChange}
+    //             />
+    //             <Form.Control
+    //               as="textarea"
+    //               rows={1}
+    //               placeholder="Enter city name"
+    //               onChange={handlePostCity}
+    //             />
+    //             <Form.Control
+    //               as="textarea"
+    //               rows={1}
+    //               placeholder="Enter Job Title"
+    //               onChange={handleJobTitle}
+    //             />
+    //             <Form.Control
+    //               as="textarea"
+    //               rows={1}
+    //               placeholder="Enter Job Field"
+    //               onChange={handleJobField}
+    //             />
+
+    //             {/* <Form.Group controlId="formFile" className="mb-3">
+    //               <Form.Control
+    //                 name="profile_picture"
+    //                 type="file"
+    //                 // onChange={handleChange}
+    //                 // ref={dateInputRef}
+    //               />
+    //             </Form.Group> */}
+    //           </Form.Group>
+    //           <Button
+    //             onClick={handlePostSubmit}
+    //             className="btnpost"
+    //             variant="primary"
+    //             type="submit"
+    //           >
+    //             Post
+    //           </Button>
+    //         </Form>
+
+    //         {/* profilePicture: e.target.profile_picture.value, */}
+    //         <hr />
+    //         {JobPosts && (
+    //           <div className="postsosts-container">
+    //             {JobPosts.map((post) => (
+    //               <Card key={post.id} className="post">
+    //                 <Card.Body>
+    //                   <Card.Text >{post.job_post_content}</Card.Text>
+    //                   <Card.Text>{post.job_title}</Card.Text>
+    //                   <Card.Text>{post.job_field}</Card.Text>
+    //                   <Card.Text>{post.city}</Card.Text>
+    //                   {post.comments && (
+    //                     <div className="comments-container">
+    //                       {post.comments.map((comment) => (
+    //                         <Card.Text key={comment.id} className="comment">
+    //                           {comment.text}
+    //                         </Card.Text>
+    //                       ))}
+    //                     </div>
+    //                   )}
+
+    //                   <Form
+    //                     onSubmit={(event) => {
+    //                       event.preventDefault();
+    //                       handleAddComment(post.id, event.target.comment.value);
+    //                       event.target.comment.value = "";
+    //                     }}
+    //                   >
+    //                     <Form.Group controlId={`commentForm-${post.id}`}>
+    //                       <Form.Control
+    //                         type="text"
+    //                         name="comment"
+    //                         placeholder="Add a comment"
+    //                       />
+    //                     </Form.Group>
+    //                     <Button variant="primary" type="submit">
+    //                       Add Comment
+    //                     </Button>
+    //                   </Form>
+    //                   <Dropdown align="end">
+    //                     <Dropdown.Toggle
+    //                       variant="primary"
+    //                       id={`dropdown-${post.id}`}
+    //                       className="dropdown-toggle-vertical"
+    //                     >
+    //                       Options
+    //                     </Dropdown.Toggle>
+    //                     <Dropdown.Menu>
+    //                       <Dropdown.Item onClick={() => handleEditPost(post)}>
+    //                         Edit
+    //                       </Dropdown.Item>
+    //                       <Dropdown.Item
+    //                         onClick={() => handleDeletePost(post.id)}
+    //                       >
+    //                         Delete
+    //                       </Dropdown.Item>
+    //                     </Dropdown.Menu>
+    //                   </Dropdown>
+    //                 </Card.Body>
+    //               </Card>
+    //             ))}
+    //           </div>
+    //         )}
+    //       </Col>
+    //     </Row>
+    //   </Container>
+    //   <footer className="bg-dark text-white text-center p-4">
+    //     <Container>
+    //       <p>&copy; 2023 My Website. All rights reserved.</p>
+    //     </Container>
+    //   </footer>
+
+    //   <UpdateJobPost
+    //     showUpdateModal={showUpdateModal}
+    //     handleClosePost={handleClosePost}
+    //     postData={postData}
+    //     JobPosts={JobPosts}
+    //     takeDataFromChild={takeDataFromChild}
+    //   />
+    //   {/* <Comment JobPosts={JobPosts}/> */}
+    // </div>
+  
+    <div>
+    <Container>
+      <Row>
+        <Col>
+          <h1>Share your thoughts here</h1>
+          <Form onSubmit={handlePostSubmit}>
+            <Form.Group controlId="postForm">
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="What's on your mind?"
+                onChange={handlePostChange}
+              />
+              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Control
                   as="textarea"
                   rows={1}
                   placeholder="Enter city name"
                   onChange={handlePostCity}
                 />
-                <Form.Control
+              </Form.Group>
+              <Form.Control
                   as="textarea"
                   rows={1}
                   placeholder="Enter Job Title"
@@ -212,123 +334,221 @@ console.log(postData)
                   placeholder="Enter Job Field"
                   onChange={handleJobField}
                 />
+            </Form.Group>
+            <Button
+              onClick={handlePostSubmit}
+              className="btnpost"
+              variant="primary"
+              type="submit"
+            >
+              Post
+            </Button>
+          </Form>
 
-                {/* <Form.Group controlId="formFile" className="mb-3">
-                  <Form.Control
-                    name="profile_picture"
-                    type="file"
-                    // onChange={handleChange}
-                    // ref={dateInputRef}
-                  />
-                </Form.Group> */}
-              </Form.Group>
-              <Button
-                onClick={handlePostSubmit}
-                className="btnpost"
-                variant="primary"
-                type="submit"
-              >
-                Post
-              </Button>
-            </Form>
+          {/* profilePicture: e.target.profile_picture.value, */}
+          <hr />
 
-            {/* profilePicture: e.target.profile_picture.value, */}
-            <hr />
-            {JobPosts && (
-              <div className="postsosts-container">
-                {JobPosts.map((post) => (
-                  <Card key={post.id} className="post">
-                    <Card.Body>
-                      <Card.Text >{post.job_post_content}</Card.Text>
-                      <Card.Text>{post.job_title}</Card.Text>
-                      <Card.Text>{post.job_field}</Card.Text>
-                      <Card.Text>{post.city}</Card.Text>
-                      {post.comments && (
-                        <div className="comments-container">
-                          {post.comments.map((comment) => (
-                            <Card.Text key={comment.id} className="comment">
-                              {comment.text}
-                            </Card.Text>
-                          ))}
+          <>
+            <div className="posts-container">
+              {JobPosts.map((post) => {
+                return (
+                  <>
+                    <meta charSet="UTF-8" />
+                    <title>Social Media Post UI Design</title>
+                    <meta
+                      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+                      name="viewport"
+                    />
+                    <link
+                      rel="stylesheet"
+                      type="text/css"
+                      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                    />
+                    <link
+                      rel="stylesheet"
+                      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                    />
+                    <link
+                      rel="stylesheet"
+                      type="text/css"
+                      href="css/style.css"
+                    />
+                    <section className="main-content" id="main-content">
+                      <div className="container">
+                        <h1 className="text-center text-uppercase"></h1>
+                        <br />
+                        <br />
+                        <div className="row">
+                          <div className="col-sm-6 offset-sm-3">
+                            <div
+                              className="post-block"
+                              style={{ position: "relative" }}
+                            >
+                              <Dropdown
+                                align="end"
+                                style={{
+                                  position: "absolute",
+                                  top: "25px",
+                                  right: "25px",
+                                }}
+                              >
+                                <Dropdown.Toggle
+                                  variant="primary"
+                                  className="dropdown-toggle-vertical"
+                                >
+                                
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                  <Dropdown.Item
+                                    onClick={() => handleEditPost(post)}
+                                  >
+                                    Edit
+                                  </Dropdown.Item>
+                                  <Dropdown.Item
+                                    onClick={() =>
+                                      handleDeletePost(post.id)
+                                    }
+                                  >
+                                    Delete
+                                  </Dropdown.Item>
+                                </Dropdown.Menu>
+                              </Dropdown>
+                              <div className="d-flex justify-content-between">
+                                <div className="d-flex mb-3">
+                                  <div className="mr-2">
+                                    <a href="#!" className="text-dark">
+                                      <img
+                                        src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
+                                        alt="User"
+                                        className="author-img"
+                                      />
+                                    </a>
+                                  </div>
+                                  <div>
+                                    <h5 className="mb-0">
+                                      <a href="#!" className="text-dark">
+                                        Kiran Acharya
+                                      </a>
+                                    </h5>
+                                    <p className="mb-0 text-muted">
+                                      SoftwreEngineer
+                                    </p>
+                                    {/* <p className="mb-0 text-muted">5m</p>             edit date */}
+                                  </div>
+                                </div>
+                                <div className="post-block__user-options">
+                                  <a
+                                    href="#!"
+                                    id="triggerId"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                  ></a>
+                                  <div
+                                    className="dropdown-menu dropdown-menu-right"
+                                    aria-labelledby="triggerId"
+                                  >
+                                    < a
+                                      className="dropdown-item text-dark"
+                                      href="#!"
+                                    >
+                                      <i className="fa fa-pencil mr-1" />
+                                      Edit
+                                    </a>
+                                    <a
+                                      className="dropdown-item text-danger"
+                                      href="#!"
+                                    >
+                                      <i className="fa fa-trash mr-1" />
+                                      Delete
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="post-block__content mb-2">
+                                <p
+                                  style={{
+                                    wordBreak: "break-word",
+                                  }}
+                                >
+                                  {post.job_post_content}
+                                  {/* <p>{props.postComment.content}</p> */}
+                                </p>
+                                <p>
+                                  {post.job_title}
+                                
+                                </p>
+                                <p>{post.job_field}</p>
+                                <p>{post.city}</p>
+                              </div>
+                              <div className="mb-3">
+                                <div className="d-flex justify-content-between mb-2">
+                                  <div className="d-flex"></div>
+                                </div>
+                                <p className="mb-0"></p>
+                              </div>
+                              <hr />
+                              <div className="post-block__comments">
+                                {/* Comment Input */}
+                                <div className="input-group mb-3">
+                                  <div className="input-group-append"></div>
+                                </div>
+
+                                <div className="comment-view-box mb-3">
+                                  <div > {/* here was the class name d-flex mb-2 */}
+                                    <div >
+                                      <JobComment postID={post.id} />
+
+                                      <div className="d-flex">
+                                        <a
+                                          href="#!"
+                                          className="text-dark mr-2"
+                                        >
+                                          <span>
+                                            <i className="fa fa-heart-o" />
+                                          </span>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      )}
-
-                      <Form
-                        onSubmit={(event) => {
-                          event.preventDefault();
-                          handleAddComment(post.id, event.target.comment.value);
-                          event.target.comment.value = "";
-                        }}
-                      >
-                        <Form.Group controlId={`commentForm-${post.id}`}>
-                          <Form.Control
-                            type="text"
-                            name="comment"
-                            placeholder="Add a comment"
-                          />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                          Add Comment
-                        </Button>
-                      </Form>
-                      <Dropdown align="end">
-                        <Dropdown.Toggle
-                          variant="primary"
-                          id={`dropdown-${post.id}`}
-                          className="dropdown-toggle-vertical"
-                        >
-                          Options
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => handleEditPost(post)}>
-                            Edit
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            onClick={() => handleDeletePost(post.id)}
-                          >
-                            Delete
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </Card.Body>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </Col>
-          <Col md={4} className="people-section">
-            <h3>People with the Same Career</h3>
-            <div className="people-list">
-              <p>Person 1</p>
-              <p>Person 2</p>
-              <p>Person 3</p>
-              <p>Person 4</p>
-              <p>Person 5</p>
-              <p>Person 6</p>
-              <p>Person 7</p>
-              <p>Person 8</p>
-              <p>Person 9</p>
-              <p>Person 10</p>
+                      </div>
+                    </section>
+                  </>
+                );
+              })}
             </div>
-          </Col>
-        </Row>
+          </>
+        </Col>
+      </Row>
+    </Container>
+    <footer className="bg-dark text-white text-center p-4">
+      <Container>
+        <p>&copy; 2023 My Website. All rights reserved.</p>
       </Container>
-      <footer className="bg-dark text-white text-center p-4">
-        <Container>
-          <p>&copy; 2023 My Website. All rights reserved.</p>
-        </Container>
-      </footer>
+    </footer>
 
-      <UpdateJobPost
+    {/* <UpdatePost
+      showUpdateModal={showUpdateModal}
+      handleClosePost={handleClosePost}
+      postData={postData}
+      posts={posts}
+      takeDataFromChild={takeDataFromChild}
+    /> */}
+       <UpdateJobPost
         showUpdateModal={showUpdateModal}
         handleClosePost={handleClosePost}
         postData={postData}
         JobPosts={JobPosts}
         takeDataFromChild={takeDataFromChild}
       />
-      {/* <Comment JobPosts={JobPosts}/> */}
-    </div>
-  );
-}}
+    {/* <Comment comments={props.commentsDataArray} /> */}
+  </div>
+    );
+}
 
 export default JobPost;
