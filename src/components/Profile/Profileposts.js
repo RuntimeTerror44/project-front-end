@@ -1,22 +1,29 @@
 import { Text } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBBtn,
-} from "mdb-react-ui-kit";
-import "./Card.css";
+  Navbar,
+  Nav,
+  Container,
+  Form,
+  FormControl,
+  Button,
+  Row,
+  Col,
+  Card,
+  Dropdown,
+} from "react-bootstrap";
+
+import '../../test test/facebookcss.css'
+
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Comment from "../Home/Comment";
 
 const ProfileCard = (props) => {
+
+
+
+
 // console.log(props.postComment.content)
 // for(let i=0;i<props.value.length;i++){
 
@@ -35,121 +42,223 @@ const ProfileCard = (props) => {
     <>
       {props.postData.map((item, i) => {
         return (
+
+
           <>
-            <meta charSet="UTF-8" />
-            <title>Social Media Post UI Design</title>
-            <meta
-              content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-              name="viewport"
-            />
-            <link
-              rel="stylesheet"
-              type="text/css"
-              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-            />
-            <link
-              rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            />
-            <link rel="stylesheet" type="text/css" href="css/style.css" />
-            <section className="main-content">
-              <div className="container">
-                <h1 className="text-center text-uppercase"></h1>
-                <br />
-                <br />
-                <div className="row">
-                  <div className="col-sm-6 offset-sm-3">
-                    <div className="post-block">
-                      <div className="d-flex justify-content-between">
-                        <div className="d-flex mb-3">
-                          <div className="mr-2">
-                            <a href="#!" className="text-dark">
-                              <img
-                                src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
-                                alt="User"
-                                className="author-img"
-                              />
-                            </a>
-                          </div>
-                          <div>
-                            <h5 className="mb-0">
-                              <a href="#!" className="text-dark">
-                              <p>{item.firstname}</p>
-                              </a>
-                            </h5>
-                            <p className="mb-0 text-muted">{item.career}</p>
-                            {/* <p className="mb-0 text-muted">5m</p>             edit date */}
-                          </div>
-                        </div>
-                        <div className="post-block__user-options">
-                          <a
-                            href="#!"
-                            id="triggerId"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <p></p>
-                          </a>
-                          <div
-                            className="dropdown-menu dropdown-menu-right"
-                            aria-labelledby="triggerId"
-                          >
-                            <a className="dropdown-item text-dark" href="#!">
-                              <i className="fa fa-pencil mr-1" />
-                              Edit
-                            </a>
-                            <a className="dropdown-item text-danger" href="#!">
-                              <i className="fa fa-trash mr-1" />
-                              Delete
-                            </a>
-                          </div>
-                        </div>
+          
+          
+          
+          
+          
+          
+          
+          <div className="feeds" style={{marginTop:"50px"}}>
+            {/* <HomePost/> */}
+              {/*--------------- FEED 1 ------------------*/}
+             
+                <div className="feed">
+                  <div className="head">
+                    <div className="user">
+                      <div className="profile-photo">
+                        <img src="./images/profile-13.jpg" />
                       </div>
-                      <div className="post-block__content mb-2">
-                        <p>
-                          {item.paragraph_content}
-                          {/* <p>{props.postComment.content}</p> */}
-                        </p>
-                        <img
-                          src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
-                          alt="Content img"
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <div className="d-flex justify-content-between mb-2">
-                          <div className="d-flex"></div>
-                        </div>
-                        <p className="mb-0"></p>
-                      </div>
-                      <hr />
-                      <div className="post-block__comments">
-                        {/* Comment Input */}
-                        
-
-                        <div className="comment-view-box mb-3">
-                          <div className="d-flex mb-2">
-                            <div>
-                              <Comment postID={item.post_id} />
-
-                              <div className="d-flex">
-                                <a href="#!" className="text-dark mr-2">
-                                  <span>
-                                    <i className="fa fa-heart-o" />
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="info">
+                        <h3>Motasem</h3>
+                        <small>Software Engineer</small>
                       </div>
                     </div>
+                    {/* <span > */}
+                      
+                      {/* <Dropdown className="edit"
+                               
+                                >
+                                  <Dropdown.Toggle
+                                    variant="primary"
+                                    // className="dropdown-toggle-vertical"
+                                    className="uil uil-ellipsis-h"
+                                  >
+                                  
+                                  </Dropdown.Toggle>
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item
+                                      onClick={() => handleEditPost(post)}
+                                    >
+                                      Edit
+                                    </Dropdown.Item>
+                                    <Dropdown.Item
+                                      onClick={() =>
+                                        handleDeletePost(post.post_id)
+                                      }
+                                    >
+                                      Delete
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown> */}
+                    {/* </span> */}
                   </div>
-                </div>
-              </div>
-            </section>
+                  <div className="photo">
+                    <p>add image</p>
+                  </div>
+                  <div className="action-buttons">
+                    <div className="interaction-buttons"></div>
+                    <div className="bookmark">
+                      <span>
+                        <i className="uil uil-bookmark-full" />
+                      </span>
+                    </div>
+                  </div>
+                  <div className="liked-by"></div>
+                  <div className="caption">
+                    <p>
+                      <p> {item.paragraph_content}</p>
+                    </p>
+                  </div>
+                  <hr></hr>
+                  {/* <div className="comments text-muted">View all 277 comments</div> */}
+                  <br></br>
+                  <div className="profile-photo">
+                    <img src="./images/profile-13.jpg" />
+                  </div>
+                  <div className="info">
+                    {/* <p>Motasem</p> */}
+                    {/* <p>this is my comment</p> */}
+                    <Comment postID={item.post_id} />
+                  </div>
+                </div>;
+                </div>;
+                   
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           </>
+          // <>
+          //   <meta charSet="UTF-8" />
+          //   <title>Social Media Post UI Design</title>
+          //   <meta
+          //     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          //     name="viewport"
+          //   />
+          //   <link
+          //     rel="stylesheet"
+          //     type="text/css"
+          //     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          //   />
+          //   <link
+          //     rel="stylesheet"
+          //     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          //   />
+          //   <link rel="stylesheet" type="text/css" href="css/style.css" />
+          //   <section className="main-content">
+          //     <div className="container">
+          //       <h1 className="text-center text-uppercase"></h1>
+          //       <br />
+          //       <br />
+          //       <div className="row">
+          //         <div className="col-sm-6 offset-sm-3">
+          //           <div className="post-block">
+          //             <div className="d-flex justify-content-between">
+          //               <div className="d-flex mb-3">
+          //                 <div className="mr-2">
+          //                   <a href="#!" className="text-dark">
+          //                     <img
+          //                       src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
+          //                       alt="User"
+          //                       className="author-img"
+          //                     />
+          //                   </a>
+          //                 </div>
+          //                 <div>
+          //                   <h5 className="mb-0">
+          //                     <a href="#!" className="text-dark">
+          //                     <p>{item.firstname}</p>
+          //                     </a>
+          //                   </h5>
+          //                   <p className="mb-0 text-muted">{item.career}</p>
+          //                   <p className="mb-0 text-muted">5m</p>             edit date
+          //                 </div>
+          //               </div>
+          //               <div className="post-block__user-options">
+          //                 <a
+          //                   href="#!"
+          //                   id="triggerId"
+          //                   data-toggle="dropdown"
+          //                   aria-haspopup="true"
+          //                   aria-expanded="false"
+          //                 >
+          //                   <p></p>
+          //                 </a>
+          //                 <div
+          //                   className="dropdown-menu dropdown-menu-right"
+          //                   aria-labelledby="triggerId"
+          //                 >
+          //                   <a className="dropdown-item text-dark" href="#!">
+          //                     <i className="fa fa-pencil mr-1" />
+          //                     Edit
+          //                   </a>
+          //                   <a className="dropdown-item text-danger" href="#!">
+          //                     <i className="fa fa-trash mr-1" />
+          //                     Delete
+          //                   </a>
+          //                 </div>
+          //               </div>
+          //             </div>
+          //             <div className="post-block__content mb-2">
+          //               <p>
+          //                 {item.paragraph_content}
+          //                 <p>{props.postComment.content}</p>
+          //               </p>
+          //               <img
+          //                 src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
+          //                 alt="Content img"
+          //               />
+          //             </div>
+          //             <div className="mb-3">
+          //               <div className="d-flex justify-content-between mb-2">
+          //                 <div className="d-flex"></div>
+          //               </div>
+          //               <p className="mb-0"></p>
+          //             </div>
+          //             <hr />
+          //             <div className="post-block__comments">
+          //               Comment Input
+                        
+
+          //               <div className="comment-view-box mb-3">
+          //                 <div className="d-flex mb-2">
+          //                   <div>
+          //                     <Comment postID={item.post_id} />
+
+          //                     <div className="d-flex">
+          //                       <a href="#!" className="text-dark mr-2">
+          //                         <span>
+          //                           <i className="fa fa-heart-o" />
+          //                         </span>
+          //                       </a>
+          //                     </div>
+          //                   </div>
+          //                 </div>
+          //               </div>
+          //             </div>
+          //           </div>
+          //         </div>
+          //       </div>
+          //     </div>
+          //   </section>
+          // </>
+        
         );
+        
       })}
     </>
   );

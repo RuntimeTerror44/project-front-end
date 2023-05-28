@@ -39,10 +39,12 @@
 }
 
 body {
+   
     font-family: 'Poppins', sans-serif;
     color: var(--color-dark);
     background: var(--color-light);
     overflow-x: hidden;
+    background-color: red;
 }
 
 /* =============== General Style ============== */
@@ -78,7 +80,8 @@ img {
 }
 
 .btn-primary {
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
+    background-color: #516C8D;
     color: var(--color-white);
 }
 
@@ -98,6 +101,7 @@ nav {
     position: fixed;
     top: 0;
     z-index: 10;
+    background-color: #D6E4F0;
 }
 
 nav .container {
@@ -135,6 +139,7 @@ nav .create {
 main {
     position: relative;
     top: 5.4rem;
+    background-color: #F1F6F5;
 }
 
 main .container {
@@ -178,7 +183,9 @@ main .container .left .profile {
 }
 
 .left .sidebar .menu-item:hover {
-    background: var(--color-light);
+    /* background: var(--color-light);
+*/
+background-color: #D6E4F0;
 }
 
 .left .sidebar i {
@@ -211,7 +218,9 @@ main .container .left .profile {
 
 .left .sidebar .active i, 
 .left .sidebar .active h3 {
-    color: var(--color-primary);
+    /* color: var(--color-primary);
+     */
+color:   #516c8d;
 }
 
 .left .sidebar .active::before {
@@ -220,7 +229,8 @@ main .container .left .profile {
     width: 0.5rem;
     height: 100%;
     position: absolute;
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
+   background-color: #516c8d
 }
 
 .left .sidebar .menu-item:first-child.active {
@@ -377,9 +387,10 @@ main .container .left .profile {
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
-    margin: 1rem 0;
+    margin: 2.5rem 0;
     font-size: 0.85rem;
     line-height: 1.5;
+    
 }
 
 .middle .feed .head {
@@ -740,6 +751,7 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
 @media screen and (max-width: 992px) {
     nav .search-bar {
         display: none;
+        
     }
 
     main .container {

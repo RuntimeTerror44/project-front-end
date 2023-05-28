@@ -163,7 +163,7 @@ function HomePost(props) {
                 <img src="./images/profile-1.jpg" />
               </div>
               <div className="handle">
-                <h4>Motasem</h4>
+                <h4>{}</h4>
                 <p className="text-muted">......</p>
               </div>
             </a>
@@ -267,7 +267,7 @@ function HomePost(props) {
             {/*--------------- END OF STORIES ------------------*/}
             <form onSubmit={handlePostSubmit} action="" className="create-post">
               <div className="profile-photo">
-                <img src="./images/profile-1.jpg" />
+                
               </div>
               <input
                 type="text"
@@ -311,8 +311,8 @@ function HomePost(props) {
                                 >
                                   <Dropdown.Toggle
                                     variant="primary"
-                                    // className="dropdown-toggle-vertical"
-                                    className="uil uil-ellipsis-h"
+                                    className="dropdown-toggle-vertical"
+                                    // className="uil uil-ellipsis-h"
                                   >
                                   
                                   </Dropdown.Toggle>
@@ -361,8 +361,8 @@ function HomePost(props) {
                     {/* <p>this is my comment</p> */}
                     <Comment postID={post.post_id} />
                   </div>
-                </div>;
-                </div>;
+                </div>
+                </div>
                    
                 </>
                 )})}
