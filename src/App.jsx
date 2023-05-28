@@ -50,7 +50,7 @@ export default function App() {
 
             <Route path="/comment" element={<Comment />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/job" element={<Job />} />
+            <Route path="/ذ" element={<Job />} />
            
 
             <Route path="/Profilepage" element={<Profilepage />} />

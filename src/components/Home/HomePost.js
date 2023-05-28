@@ -105,14 +105,17 @@ function HomePost(props) {
     sendReq();
   }, [posts]);
 
-  const handleDeletePost = async (post_id) => {
-    try {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post_id}`;
-      await axios.delete(serverUrl);
-      sendReq();
-    } catch (error) {
-      console.log(`error deleting post ${error}`);
+  const handleDeletePost = async (post) => {
+    if (post.user_id == userData[0].id){
+      try {
+        const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
+        await axios.delete(serverUrl);
+        sendReq();
+      } catch (error) {
+        console.log(`error deleting post ${error}`);
+      }
     }
+    
   };
 
   return (
@@ -210,7 +213,7 @@ function HomePost(props) {
                                     </Dropdown.Item>
                                     <Dropdown.Item
                                       onClick={() =>
-                                        handleDeletePost(post.post_id)
+                                        handleDeletePost(post)
                                       }
                                     >
                                       Delete
