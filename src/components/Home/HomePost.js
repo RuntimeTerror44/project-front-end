@@ -54,6 +54,7 @@ function HomePost(props) {
       const result = await axios.post(serverUrl, obj);
 
       props.takeDataFromChild(result.data);
+      console.log(result.data)
 
       setPostData(result.data[0]);
       setPosts(result.data);
@@ -118,7 +119,8 @@ function HomePost(props) {
     <div>
       <Container>
         <Row>
-          <Col>
+          <Col
+          >
             <h1>Share your thoughts here</h1>
             <Form onSubmit={handlePostSubmit}>
               <Form.Group controlId="postForm">
@@ -151,7 +153,7 @@ function HomePost(props) {
             <hr />
 
             <>
-              <div className="posts-container">
+              <div className="posts-container" >
                 {posts.map((post) => {
                   return (
                     <>
@@ -183,8 +185,8 @@ function HomePost(props) {
                           <div className="row">
                             <div className="col-sm-6 offset-sm-3">
                               <div
-                                className="post-block"
-                                style={{ position: "relative" }}
+                                className="post-block" 
+                                style={{ position: "relative" ,background:'#DDE6ED'  }}
                               >
                                 <Dropdown
                                   align="end"
@@ -229,11 +231,11 @@ function HomePost(props) {
                                     <div>
                                       <h5 className="mb-0">
                                         <a href="#!" className="text-dark">
-                                          Kiran Acharya
+                                          <p>{post.firstname}</p>
                                         </a>
                                       </h5>
                                       <p className="mb-0 text-muted">
-                                        SoftwreEngineer
+                                        {post.career}
                                       </p>
                                       {/* <p className="mb-0 text-muted">5m</p>             edit date */}
                                     </div>

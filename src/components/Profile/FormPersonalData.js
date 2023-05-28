@@ -32,7 +32,7 @@ function FormPersonalData(props) {
     const obj = {
       firstname: e.target.first_name.value,
       lastname: e.target.last_name.value,
-      email : e.target.Email.value,
+      career : e.target.career.value,
       dateofbirth : date,
       country: e.target.countrey.value,
       city: e.target.city.value,
@@ -75,8 +75,8 @@ function FormPersonalData(props) {
               </Form.Group>
             </Row>
             <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control name="Email" type="" defaultValue="" />
+              <Form.Label>Career</Form.Label>
+              <Form.Control name="career" type="text" defaultValue="" />
             </Form.Group>
             <Row className="mb-2">
               <Form.Group as={Col} controlId="formGridEmail">

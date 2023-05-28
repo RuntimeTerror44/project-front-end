@@ -74,10 +74,10 @@ const ProfileCard = (props) => {
                           <div>
                             <h5 className="mb-0">
                               <a href="#!" className="text-dark">
-                                Kiran Acharya
+                              <p>{item.firstname}</p>
                               </a>
                             </h5>
-                            <p className="mb-0 text-muted">SoftwreEngineer</p>
+                            <p className="mb-0 text-muted">{item.career}</p>
                             {/* <p className="mb-0 text-muted">5m</p>             edit date */}
                           </div>
                         </div>

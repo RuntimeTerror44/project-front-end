@@ -3,6 +3,7 @@
 
 }
 
+
 .people-section {
   height: 400px;
   overflow-y: auto;
@@ -11,6 +12,7 @@
   margin-right: -100px;
   margin-left: 200px;
   width: 450px;
+
 }
 
 .people-list p {
@@ -39,6 +41,7 @@ footer {
 .post p {
   margin: 0;
   font-size: 20px;
+  
 }
 
 .posts-container {
@@ -66,5 +69,11 @@ footer {
 #main-content {
   padding-top: 0px;
   padding-bottom: 0px;
+  
+}
+
+.post-block{
+  background: aqua;
+
 }
 

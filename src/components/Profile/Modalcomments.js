@@ -5,23 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 
 
 function Modalcomments(props){
-//     const [savedComment,setSavedComment]=useState("");
-//   async function addToComments(){
-//  const url=`http://localhost:4000/comments`
-//  const data = {
-
-//     content:"This is new Comment"
-// };
-
-//  await axios.post(url,data)
-
-// setSavedData("")
-// props.handleclose()
-
-//   }
-  // const handleCommentChange = (e) => {
-  //   setSavedData(e.target.value);
-  // };
 
 return(
 
