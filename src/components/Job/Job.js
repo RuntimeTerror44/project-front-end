@@ -27,9 +27,9 @@ function Job(){
   
   return(
     <>
+   
     <Nav/>
     this is job page
-   
     <JobPost postDataArray={postDataArray}/>
 
     </>

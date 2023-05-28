@@ -8,27 +8,34 @@ import "./profile.css";
 import Test from "./Test";
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
+  const [email,setEmail]=useState(false);
   /*---------------------------checking if the user exists in the database --------------------------------------*/
-  const [emailExist, setemailExist] = useState(false);
+  // const [emailExist, setemailExist] = useState(false);
   useEffect(() => {
-    if (!user) return;
+    
     if (isAuthenticated) {
       const storeUserData = async () => {
+
         // Check if the email already exists in your database
         const checkEmailExists = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}users`
         );
+        let emailExist=false;
+
+        setEmail(emailExist)
 
         for (let i = 0; i < checkEmailExists.data.length; i++) {
           if (user.email == checkEmailExists.data[i].email) {
-            setemailExist(true);
+            // setemailExist(true);
+            emailExist=true
+            setEmail(emailExist)
             console.log(checkEmailExists.data[i].id);
             const storageData = [checkEmailExists.data[i]];
             console.log(checkEmailExists.data[i]);
             localStorage.setItem("userId", JSON.stringify(storageData));
           }
         }
-        if (emailExist == false) {
+        if (!emailExist) {
           const response = await axios.post(
             `${process.env.REACT_APP_SERVER_URL}users`,
             {
@@ -45,7 +52,7 @@ const Profile = () => {
 
           for (let i = 0; i < checkEmailExists.data.length; i++) {
             if (user.email == checkEmailExists.data[i].email) {
-              setemailExist(true);
+              // setemailExist(true);
               console.log(checkEmailExists.data[i].id);
               const storageData = [checkEmailExists.data[i]];
 
@@ -56,7 +63,9 @@ const Profile = () => {
       };
       // console.log("User data stored successfully:", response.data);
       storeUserData();
+     
     }
+    
   }, [isAuthenticated, user]);
   if (!isAuthenticated || !user) {
     // Render loading or authentication components
@@ -68,7 +77,7 @@ const Profile = () => {
   return (
     <>
       {console.log(user)}
-      {emailExist == false ? (
+      {email==false ? (
         <>
           <div
             className="container"
@@ -83,7 +92,7 @@ const Profile = () => {
             <Fade cascade damping={1.0}>
               <h1>Welcome {user.given_name}</h1>
               <h3>enjoy the experience </h3>
-              <a href="http://localhost:3000/personalform">
+              <a href="http://localhost:3000/FormPersonalData">
                 {" "}
                 <Button
                   type="primary"

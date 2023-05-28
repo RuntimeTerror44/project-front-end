@@ -28,13 +28,13 @@ const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
         content: changePost,
-        post_id: props.postID
+        job_id: props.postID
 
     }
     // console.log(obj)
     // console.log(obj.content)
-    const serverUrl=`${process.env.REACT_APP_SERVER_URL}comments/${props.postData.comment_id}`
-    // console.log(serverUrl)
+    const serverUrl=`${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postData.comment_id}`
+    console.log(serverUrl)
     const result= await axios.put(serverUrl, obj)
     // console.log(result.data)
     props.takeDataFromChild(result.data)

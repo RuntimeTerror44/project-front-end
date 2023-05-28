@@ -18,6 +18,7 @@ import { post } from "jquery";
 import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
+import Facebook from "../../test test/facebook";
 
 function HomePost(props) {
   const storedUserData = localStorage.getItem("userId");
@@ -340,7 +341,9 @@ function HomePost(props) {
         postData={postData}
         posts={posts}
         takeDataFromChild={takeDataFromChild}
+      
       />
+      
       {/* <Comment comments={props.commentsDataArray} /> */}
     </div>
   );
