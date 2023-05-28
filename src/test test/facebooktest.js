@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./facebookcss.css";
-function Facebook(props) {
+function Facebooktest(props) {
   return (
     <>
       <meta charSet="UTF-8" />
@@ -389,4 +389,4 @@ function Facebook(props) {
     </>
   );
 }
-export default Facebook;
+export default Facebooktest;
