@@ -15,6 +15,7 @@ import Form from "./components/PortfolioMaker/Form";
 import Profilepage from "./components/Profile/Profilepage";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 export default function App() {
   /*----------------------------saving authintication status in local storage -------------------*/
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -51,6 +52,7 @@ export default function App() {
            
 
             <Route path="/Profilepage" element={<Profilepage />} />
+           
             <Route path="/Form" element={<Form />} />
             
           </Routes>
