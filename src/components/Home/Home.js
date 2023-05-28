@@ -21,10 +21,11 @@ function Home() {
   //     setCommentsDataArray(result.data)
   //   }
 
+  
   useEffect(() => {
     getPostFromDb();
     // getCommentsFromDb();
-  }, []);
+  }, [postDataArray]);
   // getPostFromDb();
   // getCommentsFromDb();
 

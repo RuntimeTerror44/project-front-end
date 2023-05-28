@@ -497,7 +497,7 @@ console.log(postData)
                                 <div className="comment-view-box mb-3">
                                   <div > {/* here was the class name d-flex mb-2 */}
                                     <div >
-                                      <JobComment postID={post.id} />
+                                      <JobComment postID={post.ID} />
 
                                       <div className="d-flex">
                                         <a

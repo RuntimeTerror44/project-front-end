@@ -9,6 +9,7 @@ import {
   Col,
   Card,
   Dropdown,
+  Text,
 } from "react-bootstrap";
 
 import React, { useEffect, useState } from "react";
@@ -105,14 +106,17 @@ function HomePost(props) {
     sendReq();
   }, [posts]);
 
-  const handleDeletePost = async (post_id) => {
-    try {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post_id}`;
-      await axios.delete(serverUrl);
-      sendReq();
-    } catch (error) {
-      console.log(`error deleting post ${error}`);
+  const handleDeletePost = async (post) => {
+    if (post.user_id == userData[0].id){
+      try {
+        const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
+        await axios.delete(serverUrl);
+        sendReq();
+      } catch (error) {
+        console.log(`error deleting post ${error}`);
+      }
     }
+    
   };
 
   return (
@@ -147,9 +151,9 @@ function HomePost(props) {
             <label className="btn btn-primary" htmlFor="create-post">
               SignOut
             </label>
-            <div className="profile-photo">
+            {/* <div className="profile-photo">
               <img src="./images/profile-1.jpg" alt="" />
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
@@ -158,7 +162,7 @@ function HomePost(props) {
         <div className="container">
           {/*--------------- LEFT ------------------*/}
           <div className="left">
-            <a className="profile">
+            {/* <a className="profile">
               <div className="profile-photo">
                 <img src="./images/profile-1.jpg" />
               </div>
@@ -166,7 +170,7 @@ function HomePost(props) {
                 <h4>Motasem</h4>
                 <p className="text-muted">......</p>
               </div>
-            </a>
+            </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
               <a className="menu-item active">
@@ -183,7 +187,7 @@ function HomePost(props) {
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
                 <div className="notifications-popup">
-                  <div>
+                  {/* <div>
                     <div className="profile-photo">
                       <img src="./images/profile-2.jpg" />
                     </div>
@@ -191,8 +195,8 @@ function HomePost(props) {
                       <b>Keke Benjamin</b> accepted your friend request
                       <small className="text-muted">2 Days Ago</small>
                     </div>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <div className="profile-photo">
                       <img src="./images/profile-3.jpg" />
                     </div>
@@ -200,8 +204,8 @@ function HomePost(props) {
                       <b>John Doe</b> commented on your post
                       <small className="text-muted">1 Hour Ago</small>
                     </div>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <div className="profile-photo">
                       <img src="./images/profile-4.jpg" />
                     </div>
@@ -209,8 +213,8 @@ function HomePost(props) {
                       <b>Marry Oppong</b> and <b>283 Others</b> liked your post
                       <small className="text-muted">4 Minutes Ago</small>
                     </div>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <div className="profile-photo">
                       <img src="./images/profile-5.jpg" />
                     </div>
@@ -219,8 +223,8 @@ function HomePost(props) {
                       in
                       <small className="text-muted">2 Days Ago</small>
                     </div>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <div className="profile-photo">
                       <img src="./images/profile-6.jpg" />
                     </div>
@@ -228,8 +232,8 @@ function HomePost(props) {
                       <b>Keyley Jenner</b> commented on a post you are tagged in
                       <small className="text-muted">1 Hour Ago</small>
                     </div>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <div className="profile-photo">
                       <img src="./images/profile-7.jpg" />
                     </div>
@@ -237,7 +241,7 @@ function HomePost(props) {
                       <b>Jane Doe</b> commented on your post
                       <small className="text-muted">1 Hour Ago</small>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
@@ -265,13 +269,13 @@ function HomePost(props) {
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
-            <form onSubmit={handlePostSubmit} action="" className="create-post">
-              <div className="profile-photo">
+            <Form onSubmit={handlePostSubmit} action="" className="create-post">
+              {/* <div className="profile-photo">
                 <img src="./images/profile-1.jpg" />
-              </div>
+              </div> */}
               <input
                 type="text"
-                placeholder="What's on your mind, Diana ?"
+                placeholder="Share your thoughts "
                 id="create-post"
                 onChange={handlePostChange}
               />
@@ -281,7 +285,7 @@ function HomePost(props) {
                 className="btn btn-primary"
                
               />
-            </form>
+            </Form>
             {/*--------------- FEEDS ------------------*/}
             {posts.map((post) => {
                   return (
@@ -297,15 +301,14 @@ function HomePost(props) {
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
-                        <img src="./images/profile-13.jpg" />
+                        <img src={post.profilepicture} />
                       </div>
                       <div className="info">
-                        <h3>Motasem</h3>
-                        <small>Software Engineer</small>
+                        <h3>{post.firstname}</h3>
+                        <small>{post.career}</small>
                       </div>
                     </div>
                     {/* <span > */}
-                      
                       <Dropdown className="edit"
                                
                                 >
@@ -324,7 +327,7 @@ function HomePost(props) {
                                     </Dropdown.Item>
                                     <Dropdown.Item
                                       onClick={() =>
-                                        handleDeletePost(post.post_id)
+                                        handleDeletePost(post)
                                       }
                                     >
                                       Delete
@@ -334,7 +337,7 @@ function HomePost(props) {
                     {/* </span> */}
                   </div>
                   <div className="photo">
-                    <p>add image</p>
+                    <p>{post.photo_content}</p>
                   </div>
                   <div className="action-buttons">
                     <div className="interaction-buttons"></div>
@@ -351,19 +354,12 @@ function HomePost(props) {
                     </p>
                   </div>
                   <hr></hr>
-                  {/* <div className="comments text-muted">View all 277 comments</div> */}
                   <br></br>
-                  <div className="profile-photo">
-                    <img src="./images/profile-13.jpg" />
-                  </div>
                   <div className="info">
-                    {/* <p>Motasem</p> */}
-                    {/* <p>this is my comment</p> */}
-                    <Comment postID={post.post_id} />
+                    <div> <Comment postID={post.post_id} /></div>
                   </div>
                 </div>;
                 </div>;
-                   
                 </>
                 )})}
           
@@ -454,7 +450,7 @@ function HomePost(props) {
               {/*----- MESSAGES -----*/}
 
               {/*----- MESSAGES -----*/}
-              <div className="message">
+              {/* <div className="message">
                 <div className="profile-photo">
                   <img src="./images/profile-15.jpg" />
                 </div>
@@ -462,14 +458,14 @@ function HomePost(props) {
                   <h5>Benjamin Dwayne</h5>
                   <p className="text-muted">haha got that!</p>
                 </div>
-              </div>
+              </div> */}
             </div>
             {/*----- END OF MESSAGES -----*/}
             {/*----- FRIEND REQUEST -----*/}
             <div className="friend-requests">
               <h4>Requests</h4>
 
-              <div className="request">
+              {/* <div className="request">
                 <div className="info">
                   <div className="profile-photo">
                     <img src="./images/profile-17.jpg" />
@@ -479,7 +475,7 @@ function HomePost(props) {
                     <p className="text-muted">5 mutual friends</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           {/*--------------- END OF RIGHT ------------------*/}
