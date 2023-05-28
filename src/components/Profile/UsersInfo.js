@@ -8,42 +8,8 @@ import {
 } from 'mdb-react-ui-kit';
 
 function UsersInfo(props){
-  // const [data,setData]=useState({})
   const storedUserData = localStorage.getItem("userId");
   const userData =JSON.parse(storedUserData);console.log(userData)
-  // if(Array.isArray(userData)){
-    
-  //   ()=>{setData(userData[0])}
-    
-    
-  //       }else{
-  //   ()=>{setData(userData)}
-    
-  
-  //       }
-    
-  // if (!props.user || props.user.length === 0) {
-  //   return <p>Loading...</p>;
-  // }
-
-//   const userDataInfo = props.user[0];
-//   console.log( (userDataInfo))
-
-// console.log(userDataInfo.firstname)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return ( 
 <>

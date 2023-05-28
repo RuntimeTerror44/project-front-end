@@ -28,14 +28,14 @@ function Comment(props) {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
-      // console.log(commentsDataArray);
+      console.log(result.data);
     }
   };
 
   useEffect(() => {
     getCommentsFromDb();
     // console.log(commentsDataArray);
-  }, [commentsDataArray]);
+  }, []);
 
   // useEffect(() => {}, [commentsDataArray]);
   //------///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +54,7 @@ function Comment(props) {
         content: e.target.comment.value,
       };
       const response = await axios.post(serverUrl, obj);
-      // console.log(response.data);
+      console.log(response.data);
 
       setCommentsDataArray(response.data);
       //   console.log(commentsDataArray);
@@ -142,11 +142,11 @@ function Comment(props) {
                                     <div>
                                       <h5 className="mb-0">
                                         <a href="#!" style={{fontSize:"smaller"}} className="text-dark">
-                                          {commentsDataArray.firstname}
+                                          <p>{item.firstname}</p>
                                         </a>
                                       </h5>
                                       <p style={{fontSize:"smaller"}} className="mb-0 text-muted">
-                                        SoftwreEngineer
+                                      {item.career}
                                       </p>
                                       {/* <p className="mb-0 text-muted">5m</p>             edit date */}
                                     </div>

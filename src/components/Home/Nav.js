@@ -29,9 +29,9 @@ export default function Nav() {
   return (
     <>
       <LogoutButton ref={logoutButtonRef} />
-      <MDBNavbar className="nav-bar"  expand="lg" light style={{backgroundColor: "#E3F2FD" }}>
+      <MDBNavbar className="nav-bar"  expand="lg" light style={{backgroundColor: "#50577A" }}>
         <MDBContainer fluid>
-          <MDBNavbarBrand href="#">Brand</MDBNavbarBrand>
+          <MDBNavbarBrand href="#" style={{ color:'white'  }}>Brand</MDBNavbarBrand>
           <MDBNavbarToggler
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
@@ -43,16 +43,16 @@ export default function Nav() {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
               <MDBNavbarItem>
-                <MDBNavbarLink active aria-current="page" href="/home">
+                <MDBNavbarLink active aria-current="page" href="/home" style={{ color:'white'  }}>
                   Home
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href="jobs">jobs</MDBNavbarLink>
+                <MDBNavbarLink href="jobs" style={{ color:'white'  }}>jobs</MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBDropdown>
-                  <MDBDropdownToggle tag="a" className="nav-link" role="button">
+                  <MDBDropdownToggle tag="a" className="nav-link" role="button" style={{ color:'white'  }}>
                     Dropdown
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
