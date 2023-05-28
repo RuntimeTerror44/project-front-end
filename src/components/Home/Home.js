@@ -3,6 +3,7 @@ import HomePost from "./HomePost";
 import axios from "axios";
 import "./HomePost.css";
 import Nav from "./Nav";
+// import Feedback from "react-bootstrap/esm/Feedback";
 function Home() {
   /////////////////// get the posts from data base//////////////////////
   const [postDataArray, setPostDataArray] = useState([]);
@@ -42,6 +43,9 @@ function Home() {
         postDataArray={postDataArray}
         takeDataFromChild={takeDataFromChild}
       />
+   {/* <PostTest  postDataArray={postDataArray}
+        takeDataFromChild={takeDataFromChild}/>  */}
+  
     </>
   );
 }
