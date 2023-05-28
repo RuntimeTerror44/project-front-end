@@ -14,6 +14,7 @@ import Form from "./components/PortfolioMaker/Form";
 
 import Profilepage from "./components/Profile/Profilepage";
 import { useAuth0 } from "@auth0/auth0-react";
+import Facebook from "./test test/facebook";
 
 
 export default function App() {
@@ -54,6 +55,7 @@ export default function App() {
             <Route path="/Profilepage" element={<Profilepage />} />
            
             <Route path="/Form" element={<Form />} />
+            <Route path="/facebook" element={<Facebook />} />
             
           </Routes>
         )}
