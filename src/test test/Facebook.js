@@ -3,9 +3,33 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./facebookcss.css";
+// import PostTest from "./PostTest";
+
 function Facebook(props) {
+
+  const [postDataArray, setPostDataArray] = useState([]);
+  // console.log("helllllo");
+  const getPostFromDb = async () => {
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
+    const result = await axios.get(serverUrl);
+    setPostDataArray(result.data);
+  };
+  useEffect(() => {
+    getPostFromDb();
+  
+  }, []);
+
+
+  const takeDataFromChild = (arr) => {
+    setPostDataArray(arr);
+  };
   return (
     <>
+
+        {/* <PostTest  postDataArray={postDataArray}
+        takeDataFromChild={takeDataFromChild}/> */}
+
+
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -168,10 +192,12 @@ function Facebook(props) {
               />
             </form>
             {/*--------------- FEEDS ------------------*/}
-            <div className="feeds">
+            {/* <div className="feeds"> */}
+            {/* <PostTest  postDataArray={postDataArray}
+        takeDataFromChild={takeDataFromChild}/> */}
               {/*--------------- FEED 1 ------------------*/}
              
-                <div className="feed">
+                {/* <div className="feed">
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
@@ -204,7 +230,7 @@ function Facebook(props) {
                     </p>
                   </div>
                   <hr></hr>
-                  {/* <div className="comments text-muted">View all 277 comments</div> */}
+                  <div className="comments text-muted">View all 277 comments</div>
                   <br></br>
                   <div className="profile-photo">
                     <img src="./images/profile-13.jpg" />
@@ -213,7 +239,7 @@ function Facebook(props) {
                     <p>Motasem</p>
                     <p>this is my comment</p>
                   </div>
-                </div>;
+                </div>; */}
           
               {/* <div className="feed">
             <div className="head">
@@ -268,7 +294,7 @@ function Facebook(props) {
               {/* </div> */}
 
               {/*--------------- END OF FEED 1 ------------------*/}
-            </div>
+            {/* </div> */}
             {/*--------------- END OF FEEDS ------------------ */}
           </div>
           {/*--------------- END OF MIDDLE ------------------*/}
