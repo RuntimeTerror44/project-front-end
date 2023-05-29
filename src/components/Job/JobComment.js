@@ -17,14 +17,13 @@ import UpdateJobComment from "./UpdateJobComment";
 import { Text } from "@chakra-ui/react";
 
 function JobComment(props) {
-
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
     // console.log(props.postID);
-    if (props.postID){
+    if (props.postID) {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
@@ -49,7 +48,7 @@ function JobComment(props) {
       }
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postID}`;
       const obj = {
-        user_id:userData[0].id,
+        user_id: userData[0].id,
         content: e.target.comment.value,
       };
       const response = await axios.post(serverUrl, obj);
@@ -104,48 +103,53 @@ function JobComment(props) {
           <>
             <Row xs={1} md={1} className="g-4">
               <Col>
+                {item.user_id == userData[0].id && (
+                  <Dropdown align="end"
+                  style={{
+                    display: "flex",
+                    justifyContent: "end",
+                  }}>
+                    <Dropdown.Toggle
+                      variant="primary"
+                      // id={`dropdown-${post.id}`}
+                      className="dropdown-toggle-vertical"
+                    >
+                      Options
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => handleEditPost(item)}>
+                        Edit
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => handleDeletePost(item.comment_id)}
+                      >
+                        Delete
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                )}
+
                 {/* <Card> */}
                 {/* {setPostID(post.post_id)} */}
                 {/* <Card.Img variant="top" /> */}
                 <Text>
                   <img
-                    src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
+                    src={item.profilepicture}
                     alt="User img"
                     className="author-img author-img--small mr-2"
                   />
                   <h6 className="mb-1">
                     <a href="#!" className="text-dark">
-                      {/* John doe local storage  */}
+                      {item.firstname}
                     </a>{" "}
                     <p className="mb-0 text-muted" id="hello">
-                      SoftwreEngineer
+                      {item.career}
                     </p>{" "}
                     {/* John doe local storage  */}
                   </h6>
                   <>{item.content}</>
                   <hr id="meme"></hr>
                 </Text>
-
-                <Dropdown align="end">
-                  <Dropdown.Toggle
-                    variant="primary"
-                    // id={`dropdown-${post.id}`}
-                    className="dropdown-toggle-vertical"
-                  >
-                    Options
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => handleEditPost(item)}>
-                      Edit
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      onClick={() => handleDeletePost(item.comment_id)}
-                    >
-                      Delete
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-                {/* </Card> */}
               </Col>
             </Row>
           </>

@@ -72,7 +72,6 @@ function Comment(props) {
 
   const handleDeletePost = async (item) => {
     
-    if (item.user_id == userData[0].id){
     try {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${item.comment_id}`;
       await axios.delete(serverUrl);
@@ -81,7 +80,7 @@ function Comment(props) {
     } catch (error) {
       console.log(`error deleting post ${error}`);
     }
-  }
+  
   };
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -110,7 +109,10 @@ function Comment(props) {
           <>
             <Row xs={1} md={1} className="g-4">
               <Col >
-              {<Form>
+              
+              {(item.user_id == userData[0].id) && (
+              
+                <Form>
                   <Dropdown
                     align="end"
                     style={{
@@ -138,7 +140,9 @@ function Comment(props) {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-                </Form>}
+                </Form>
+               ) 
+              }
 
                 {/* <Card> */}
                 {/* {setPostID(post.post_id)} */}

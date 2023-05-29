@@ -39,7 +39,7 @@ const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
       job_post_content: e.target.post.value,
-      city: e.target.city.value,
+      job_city: e.target.city.value,
       job_field:e.target.field.value,
       job_title:e.target.title.value,
       user_id:userData[0].id 
@@ -93,7 +93,7 @@ console.log(obj.job_post_content)
           <Form.Control
             type="text"
             name="city" 
-            defaultValue={props.postData.city
+            defaultValue={props.postData.job_city
             } 
             />
           <Form.Label>Field</Form.Label>
