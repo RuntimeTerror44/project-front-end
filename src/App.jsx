@@ -17,6 +17,7 @@ import Profilepage from "./components/Profile/Profilepage";
 import { useAuth0 } from "@auth0/auth0-react";
 import PostTest from "./test test/PostTest";
 import Facebook from "./test test/Facebook";
+import AboutUs from "./components/AboutUs/AboutUs";
 import ProfileTemp from "./components/Profile/ProfileTemp";
 
 export default function App() {
@@ -60,8 +61,8 @@ export default function App() {
             <Route path="/portfolio" element={<Form />} />
             <Route path="/posttest" element={<PostTest />} />
             <Route path="/facebook" element={<Facebook />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/temp" element={<ProfileTemp />} />
-            
           </Routes>
         )}
       </>
