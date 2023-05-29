@@ -134,13 +134,13 @@ function ProfileTemp(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active">
+              <a href='home'className="menu-item ">
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
-              <a className="menu-item" id="notifications">
+              <a className="menu-item active" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -194,7 +194,7 @@ function ProfileTemp(props) {
                     <Form>
                       <Dropdown className="edit"
                                 >
-                                  <Dropdown.Toggle id="commentstyle"
+                                  <Dropdown.Toggle id="poststyle"
                                     variant="primary"
                                     // className="dropdown-toggle-vertical"
                                     // className="uil uil-ellipsis-h"
@@ -232,7 +232,7 @@ function ProfileTemp(props) {
                   <div className="liked-by"></div>
                   <div className="caption">
                     <p>
-                      <p> {post.paragraph_content}</p>
+                      <p style={{wordBreak:'break-word'}}> {post.paragraph_content}</p>
                     </p>
                   </div>
                   <hr></hr>

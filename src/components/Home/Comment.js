@@ -14,6 +14,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
 import UpdateComment from "./UpdateComment";
+import { background } from "@chakra-ui/react";
 
 // import { Text } from "@chakra-ui/react";
 
@@ -101,13 +102,13 @@ function Comment(props) {
   };
 
   return (
-    <div style={{width:"100%",position:"relative"}}>
+    <div style={{width:"100%"}}>
             {/* {console.log(commentsDataArray)}; */}
 
       {commentsDataArray.map((item) => {
         const text = (
           <>
-            <Row xs={1} md={1} className="g-4">
+            <Row xs={1} md={1} className="g-4" style={{backgroundColor:'#ebeff3'}}>
               <Col >
               
               {(item.user_id == userData[0].id) && (
@@ -121,6 +122,10 @@ function Comment(props) {
                       // right: "16px",
                       display: "flex",
                       justifyContent: "end",
+                  
+                    
+                   
+                      marginBottom:'20px'
                     }}
                   >
                     <Dropdown.Toggle id="commentstyle"
@@ -164,12 +169,12 @@ function Comment(props) {
                   {/*</h6> */}
 
                   {/* ========================================= */}
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between" style={{marginTop:'-50px'}} >
                                   <div className="d-flex mb-3">
                                     <div className="mr-2">
                                       <a href="#!" className="text-name">
                                         <img
-                                        style={{width:"40px", height:"40px"}}
+                                        style={{width:"40px", height:"40px",marginTop:'-3px'}}
                                           src={item.profilepicture}
                                           alt="User"
                                           className="author-img"
@@ -179,7 +184,7 @@ function Comment(props) {
                                     <div>
                                       <h5 className="mb-0">
                                         <a href="#!" style={{fontSize:"smaller"}} className="text-dark">
-                                          <p style={{marginBottom:"1px"}}>{item.firstname}</p>
+                                          <p style={{marginBottom:"-3px"}}>{item.firstname}</p>
                                         </a>
                                       </h5>
                                       <p style={{fontSize:"smaller"}} className="mb-0 text-muted">
@@ -197,6 +202,8 @@ function Comment(props) {
                     style={{
                       wordBreak: "break-word",
                       marginLeft:'50px',
+                     
+                     
                     }}
                   >
                     {item.content}
@@ -214,16 +221,17 @@ function Comment(props) {
       <Form onSubmit={handleAddComment}>
         <Form.Group
           style={{
-            display: "flex "
+            display: "flex ",
+          
           }}
         >
           <Form.Control
-        style={{borderRadius:'100px',borderWidth:"0px" ,backgroundColor:'#d1e1f0'}}
+        style={{borderRadius:'100px',borderWidth:"0px" ,backgroundColor:'#ebeff3',marginTop:'10px'}}
             type="text"
             name="comment"
             placeholder="Add a comment"
           />
-          <Button variant="primary" type="submit" style={{marginLeft:'5px'}}>
+          <Button variant="primary" type="submit" style={{marginLeft:'5px',marginTop:'10px'}}>
             <i className="fa fa-paper-plane" />
           </Button>
         </Form.Group>
