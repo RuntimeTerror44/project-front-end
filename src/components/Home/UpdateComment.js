@@ -30,6 +30,7 @@ const [changePost, setChangePost] = useState("");
 const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
+
         content: changePost,
         post_id: props.postID,
         user_id: userData[0].id

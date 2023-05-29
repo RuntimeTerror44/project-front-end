@@ -19,11 +19,7 @@ import { useRef } from "react";
 import UpdatePost from "../Home/UpdatePost";
 import Comment from "../Home/Comment";
 import '../../test test/facebookcss.css'
-
-
-
-
-function Profileposts(props) {
+function ProfileTemp(props) {
   const storedUserData = localStorage.getItem("userId");
   const userData =JSON.parse(storedUserData);
   //////////////////////////////////////////////////
@@ -242,8 +238,8 @@ function Profileposts(props) {
                   <div className="info">
                     <div> <Comment postID={post.post_id} /></div>
                   </div>
-                </div>;
-                </div>;
+                </div>
+                </div>
                 </>
                 )})}
             {/*--------------- END OF FEEDS ------------------ */}
@@ -284,7 +280,4 @@ function Profileposts(props) {
     </>
   );
 }
-
-
-
-export default Profileposts;
+export default ProfileTemp;

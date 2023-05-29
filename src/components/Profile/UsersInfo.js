@@ -17,10 +17,10 @@ function UsersInfo(props){
 
 {/* {console.log(props.userInfo[1].firstname)} */}
 
-<section style={{ backgroundColor: 'white' }}>
+<section style={{ backgroundColor: '#f1f6f5' ,marginTop:'5%'}}>
       <MDBContainer className="py-5">
         <MDBRow>
-          <MDBCol>
+          {/* <MDBCol>
             <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
               <MDBBreadcrumbItem>
                 <a href='#'>Home</a>
@@ -30,7 +30,7 @@ function UsersInfo(props){
               </MDBBreadcrumbItem>
               <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
             </MDBBreadcrumb>
-          </MDBCol>
+          </MDBCol> */}
         </MDBRow>
 
         <MDBRow>

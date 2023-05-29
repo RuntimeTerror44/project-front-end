@@ -17,21 +17,69 @@ import UsersInfo from "./UsersInfo";
 import "./Profilepage.css";
 import Profileposts from "./Profileposts";
 import { useState, useEffect } from "react";
+import ProfileTemp from "./ProfileTemp";
 import Nav from "../Home/Nav";
 function Profilepage() {
+
+
+
+
+
+  const [postDataArray, setPostDataArray] = useState([]);
+  // console.log("helllllo");
+  const getPostFromDb = async () => {
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
+    const result = await axios.get(serverUrl);
+    setPostDataArray(result.data);
+  };
+
+
+
+  useEffect(() => {
+    getPostFromDb();
+ 
+  }, []);
+
+
+  const takeDataFromChild = (arr) => {
+    setPostDataArray(arr);
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
   console.log(userData)
 
   const [userInfo, setuserInfo] = useState([]);
   const [comment, setComment] = useState([]);
-  const [jobs, setJobs] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/${userData[0].id}`;
     const result = await axios.get(serverUrl);
     
-    setJobs(result.data);
+    setPosts(result.data);
     console.log(result.data);
   };
 
@@ -57,38 +105,14 @@ function Profilepage() {
 
   return (
     <>
-    <Nav/>
+
       <UsersInfo user={userInfo} />
 
-      {/* {jobs.map((item, i) => {
-        return (
-          );
-} */}
-
-      {/* 
-        )
-                   
-}
-<Profileposts  postData={jobs} value={x}/>
-{/* {comment.map((items, ix) => {
-  <Profileposts key={ix} commentData={items} />
-// console.log(commentData.content)
  
-}
-        )
-                   
-      } */}
-      {/* {comment.map((item, i) => {
-        return (
-<CommentComponent key={i} CommentData={item} />
-  );
-}
 
-   )
-                   
-      } */}
-
-<Profileposts postData={jobs} value={x} />
+<ProfileTemp x={posts} 
+postDataArray={postDataArray}
+takeDataFromChild={takeDataFromChild}/>
     </>
   );
 }

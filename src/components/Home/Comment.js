@@ -200,7 +200,7 @@ function Comment(props) {
                   
                 {/* </Card> */}
               </Col>
-                  <hr id="meme"></hr>
+        
             </Row>
           </>
         );
