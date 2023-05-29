@@ -5,7 +5,8 @@ import axios from 'axios';
 import { param } from 'jquery';
 
 function UpdateJobComment(props){
-
+  const storedUserData = localStorage.getItem("userId");
+  const userData = JSON.parse(storedUserData);
     //////////////////// backend post update is not ready yet ////////////
   // console.log(props.postData)
 
@@ -28,8 +29,8 @@ const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
         content: changePost,
-        job_id: props.postID
-
+        job_id: props.postID,
+        user_id: userData[0].id
     }
     // console.log(obj)
     // console.log(obj.content)
