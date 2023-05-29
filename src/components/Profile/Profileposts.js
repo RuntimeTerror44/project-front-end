@@ -19,6 +19,10 @@ import { useRef } from "react";
 import UpdatePost from "../Home/UpdatePost";
 import Comment from "../Home/Comment";
 import '../../test test/facebookcss.css'
+
+
+
+
 function Profileposts(props) {
   const storedUserData = localStorage.getItem("userId");
   const userData =JSON.parse(storedUserData);
@@ -280,4 +284,7 @@ function Profileposts(props) {
     </>
   );
 }
+
+
+
 export default Profileposts;
