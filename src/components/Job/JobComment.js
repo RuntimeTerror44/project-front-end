@@ -17,6 +17,9 @@ import UpdateJobComment from "./UpdateJobComment";
 import { Text } from "@chakra-ui/react";
 
 function JobComment(props) {
+
+  const storedUserData = localStorage.getItem("userId");
+  const userData = JSON.parse(storedUserData);
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
   const getCommentsFromDb = async () => {
@@ -46,7 +49,7 @@ function JobComment(props) {
       }
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobcomments/${props.postID}`;
       const obj = {
-        user_id: 2,
+        user_id:userData[0].id,
         content: e.target.comment.value,
       };
       const response = await axios.post(serverUrl, obj);
