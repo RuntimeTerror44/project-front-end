@@ -30,8 +30,7 @@ function JobPost(props) {
   const [JobPosts, setJobPosts] = useState([]);
   const [postData, setPostData] = useState({});
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [showPostInputForm, setShowPostInputForm]=useState(false)
-  // const [closePostInputForm, setClosePostInputForm]=useState(true)
+
 
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
@@ -244,7 +243,14 @@ function JobPost(props) {
                 </span>
                 <h3>Jobs</h3>
               </a>
-
+             {/* ++++++++++++++++ */}
+             <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>create resume</h3>
+              </a>
+              {/* ++++++++++++++++ */}  
               <a className="menu-item " href="aboutus">
                 <span>
                   <i className="uil uil-chart-line" />
