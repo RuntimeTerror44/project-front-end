@@ -19,11 +19,7 @@ import { useRef } from "react";
 import UpdatePost from "../Home/UpdatePost";
 import Comment from "../Home/Comment";
 import '../../test test/facebookcss.css'
-
-
-
-
-function Profileposts(props) {
+function ProfileTemp(props) {
   const storedUserData = localStorage.getItem("userId");
   const userData =JSON.parse(storedUserData);
   //////////////////////////////////////////////////
@@ -107,6 +103,7 @@ function Profileposts(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
+            style={{borderRadius:'100px',borderWidth:"0px"}}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
@@ -178,6 +175,7 @@ function Profileposts(props) {
             {posts.map((post) => {
                   return (
                     <>
+                    {/* {console.log(post.firstname)} */}
             <div className="feeds">
             {/* <HomePost/> */}
               {/*--------------- FEED 1 ------------------*/}
@@ -185,10 +183,10 @@ function Profileposts(props) {
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
-                        <img src={post.profilepicture} />
+                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}}/>
                       </div>
                       <div className="info">
-                        <h3>{post.firstname}</h3>
+                        <h3 style={{marginBottom:'1px'}}>{post.firstname}</h3>
                         <small>{post.career}</small>
                       </div>
                     </div>
@@ -196,10 +194,10 @@ function Profileposts(props) {
                     <Form>
                       <Dropdown className="edit"
                                 >
-                                  <Dropdown.Toggle
+                                  <Dropdown.Toggle id="commentstyle"
                                     variant="primary"
                                     // className="dropdown-toggle-vertical"
-                                    className="uil uil-ellipsis-h"
+                                    // className="uil uil-ellipsis-h"
                                   >
                                   </Dropdown.Toggle>
                                   <Dropdown.Menu>
@@ -242,8 +240,8 @@ function Profileposts(props) {
                   <div className="info">
                     <div> <Comment postID={post.post_id} /></div>
                   </div>
-                </div>;
-                </div>;
+                </div>
+                </div>
                 </>
                 )})}
             {/*--------------- END OF FEEDS ------------------ */}
@@ -261,6 +259,7 @@ function Profileposts(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
+                style={{borderRadius:'100px',borderWidth:"0px"}}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
@@ -284,7 +283,4 @@ function Profileposts(props) {
     </>
   );
 }
-
-
-
-export default Profileposts;
+export default ProfileTemp;

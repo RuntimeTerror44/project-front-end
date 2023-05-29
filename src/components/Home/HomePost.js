@@ -11,6 +11,7 @@ import {
   Dropdown,
   Text,
 } from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
@@ -143,6 +144,7 @@ function HomePost(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
+            style={{borderRadius:'100px',borderWidth:"0px"}}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
@@ -167,7 +169,7 @@ function HomePost(props) {
                 <img src="./images/profile-1.jpg" />
               </div>
               <div className="handle">
-                <h4>Motasem</h4>
+                <h4>{}</h4>
                 <p className="text-muted">......</p>
               </div>
             </a> */}
@@ -180,7 +182,7 @@ function HomePost(props) {
                 <h3>Home</h3>
               </a>
 
-              <a className="menu-item" id="notifications">
+              <a href="profilepage"className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -252,7 +254,7 @@ function HomePost(props) {
                 <h3>Jobs</h3>
               </a>
 
-              <a className="menu-item">
+              <a href="aboutus"className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -274,6 +276,7 @@ function HomePost(props) {
                 <img src="./images/profile-1.jpg" />
               </div> */}
               <input
+              style={{borderRadius:'100px',borderWidth:"0px"}}
                 type="text"
                 placeholder="Share your thoughts "
                 id="create-post"
@@ -301,7 +304,7 @@ function HomePost(props) {
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
-                        <img src={post.profilepicture} />
+                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}} />
                       </div>
                       <div className="info">
                         <h3>{post.firstname}</h3>
@@ -312,10 +315,10 @@ function HomePost(props) {
                       <Dropdown className="edit"
                                
                                 >
-                                  <Dropdown.Toggle
+                                  <Dropdown.Toggle id="mm"
                                     variant="primary"
-                                    // className="dropdown-toggle-vertical"
-                                    className="uil uil-ellipsis-h"
+                                    className="dropdown-toggle-vertical"
+                                    // className="uil uil-ellipsis-h"
                                   >
                                   
                                   </Dropdown.Toggle>
@@ -358,8 +361,8 @@ function HomePost(props) {
                   <div className="info">
                     <div> <Comment postID={post.post_id} /></div>
                   </div>
-                </div>;
-                </div>;
+                </div>
+                </div>
                 </>
                 )})}
           
@@ -432,6 +435,7 @@ function HomePost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
+                style={{borderRadius:'100px',borderWidth:"0px"}}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"

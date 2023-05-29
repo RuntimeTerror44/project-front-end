@@ -27,7 +27,6 @@ function FormPersonalData(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const birthDate = date;
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}users/${storageData[0].id}`;
     const obj = {
       firstname: e.target.first_name.value,
@@ -40,7 +39,6 @@ function FormPersonalData(props) {
       address: e.target.address.value,
       gender: e.target.formHorizontalRadios.value,
       profilepicture: e.target.profile_picture.value,
-      // imgForcover: e.target.cover_picture.value
     };
     const result = await axios.put(serverUrl, obj);
     // tackDataFromChaildAfterUbdate(result.data);
