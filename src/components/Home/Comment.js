@@ -121,7 +121,7 @@ function Comment(props) {
                       justifyContent: "end",
                     }}
                   >
-                    <Dropdown.Toggle
+                    <Dropdown.Toggle id="commentstyle"
                       variant="primary"
                       className="dropdown-toggle-vertical"
                     >
@@ -165,7 +165,7 @@ function Comment(props) {
                                     <div className="mr-2">
                                       <a href="#!" className="text-name">
                                         <img
-                                        style={{width:"35px", height:"35px"}}
+                                        style={{width:"40px", height:"40px"}}
                                           src={item.profilepicture}
                                           alt="User"
                                           className="author-img"
@@ -175,7 +175,7 @@ function Comment(props) {
                                     <div>
                                       <h5 className="mb-0">
                                         <a href="#!" style={{fontSize:"smaller"}} className="text-dark">
-                                          <p>{item.firstname}</p>
+                                          <p style={{marginBottom:"1px"}}>{item.firstname}</p>
                                         </a>
                                       </h5>
                                       <p style={{fontSize:"smaller"}} className="mb-0 text-muted">
@@ -192,6 +192,7 @@ function Comment(props) {
                   <p
                     style={{
                       wordBreak: "break-word",
+                      marginLeft:'50px',
                     }}
                   >
                     {item.content}
@@ -213,11 +214,12 @@ function Comment(props) {
           }}
         >
           <Form.Control
+        style={{borderRadius:'100px',borderWidth:"0px" ,backgroundColor:'#d1e1f0'}}
             type="text"
             name="comment"
             placeholder="Add a comment"
           />
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" style={{marginLeft:'5px'}}>
             <i className="fa fa-paper-plane" />
           </Button>
         </Form.Group>
