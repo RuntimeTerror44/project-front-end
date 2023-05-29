@@ -203,7 +203,7 @@ function HomePost(props) {
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
-                <h3>Portfolio</h3>
+                <h3>create resume</h3>
               </a>
               {/* ++++++++++++++++ */}
 
