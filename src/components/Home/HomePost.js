@@ -198,6 +198,14 @@ function HomePost(props) {
                 </span>
                 <h3>Jobs</h3>
               </a>
+                {/* ++++++++++++++++ */}
+                <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>Portfolio</h3>
+              </a>
+              {/* ++++++++++++++++ */}
 
               <a href="aboutus"className="menu-item">
                 <span>
