@@ -281,7 +281,7 @@ function HomePost(props) {
                 onChange={handlePostChange}
               />
               <input
-                type="Post"
+                type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
                
