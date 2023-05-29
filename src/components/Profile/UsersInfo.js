@@ -37,17 +37,17 @@ function UsersInfo(props){
           <MDBCol lg="4">
             <MDBCard className="mb-4">
               <MDBCardBody className="text-center">
-                <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                <MDBCardImage 
+                  src={userData[0].profilepicture}
                   alt="avatar"
-                  className="rounded-circle"
-                  style={{ width: '150px' }}
+                  // className="rounded-circle"
+                  
                   fluid />
                 <p className="text-muted mb-1">{userData[0].firstname}</p>
-                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                {/* <p className="text-muted mb-4">Bay Area, San Francisco, CA</p> */}
                 <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn>Follow</MDBBtn>
-                  <MDBBtn outline className="ms-1">Message</MDBBtn>
+                  
+               
                 </div>
               </MDBCardBody>
             </MDBCard>
@@ -64,7 +64,7 @@ function UsersInfo(props){
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{userData[0].firstname} </MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].firstname+" "+userData[0].lastname} </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -88,10 +88,10 @@ function UsersInfo(props){
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
+                    <MDBCardText>Career</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{userData[0].phonenumber}</MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].career}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
