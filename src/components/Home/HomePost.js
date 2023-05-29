@@ -10,6 +10,7 @@ import {
   Card,
   Dropdown,
 } from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
@@ -176,7 +177,7 @@ function HomePost(props) {
                 <h3>Home</h3>
               </a>
 
-              <a className="menu-item" id="notifications">
+              <a href="profilepage"className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -248,7 +249,7 @@ function HomePost(props) {
                 <h3>Jobs</h3>
               </a>
 
-              <a className="menu-item">
+              <a href="aboutus"className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -276,7 +277,7 @@ function HomePost(props) {
                 onChange={handlePostChange}
               />
               <input
-                type="submit"
+                type="Post"
                 defaultValue="Post"
                 className="btn btn-primary"
                
@@ -306,10 +307,10 @@ function HomePost(props) {
                     </div>
                     {/* <span > */}
                       
-                      <Dropdown className="edit"
+                      <Dropdown  className="edit"
                                
                                 >
-                                  <Dropdown.Toggle
+                                  <Dropdown.Toggle id="mm"
                                     variant="primary"
                                     className="dropdown-toggle-vertical"
                                     // className="uil uil-ellipsis-h"

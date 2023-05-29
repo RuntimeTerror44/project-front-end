@@ -160,7 +160,7 @@ function Comment(props) {
                   >
                     {item.content}
                   </p>{" "}
-                  <Dropdown
+                  <Dropdown 
                     align="end"
                     style={{
                       position: "absolute",
@@ -168,7 +168,7 @@ function Comment(props) {
                       right: "16px",
                     }}
                   >
-                    <Dropdown.Toggle
+                    <Dropdown.Toggle id="comment"
                       variant="primary"
                       className="dropdown-toggle-vertical"
                     >

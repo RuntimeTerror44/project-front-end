@@ -13,6 +13,7 @@ import {
     Dropdown,
   } from "react-bootstrap";
   import React, { useEffect, useState } from "react";
+  import {Link} from "react-router-dom"
 // import "./PostTest.css";
 import axios from "axios";
 import { post } from "jquery";
@@ -222,19 +223,21 @@ function ProfileTemp(props){
               </a>
               {/*--------------- SIDEBAR ------------------*/}
               <div className="sidebar">
-                <a className="menu-item active">
+                <a href="home"  className="menu-item ">
                   <span>
                     <i className="uil uil-home" />
                   </span>
                   <h3>Home</h3>
                 </a>
   
-                <a className="menu-item" id="notifications">
+                <a  className="menu-item active" id="notifications">
                   <span>
                     <i className="uil uil-bell"></i>
                   </span>
                   <h3>Profile</h3>
+                  </a>
                   {/*------------- NOTIFICATION POPUP -------------*/}
+                  
                   <div className="notifications-popup">
                     <div>
                       <div className="profile-photo">
@@ -293,15 +296,15 @@ function ProfileTemp(props){
                     </div>
                   </div>
                   {/*------------- END NOTIFICATION POPUP -------------*/}
-                </a>
-                <a className="menu-item" id="messages-notifications">
+                
+                <a href="jobs"className="menu-item" id="messages-notifications">
                   <span>
                     <i className="uil uil-envelope-alt"></i>
                   </span>
                   <h3>Jobs</h3>
                 </a>
   
-                <a className="menu-item">
+                <a href="aboutus" className="menu-item">
                   <span>
                     <i className="uil uil-chart-line" />
                   </span>

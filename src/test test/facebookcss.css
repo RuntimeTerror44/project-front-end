@@ -792,3 +792,25 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
         width: 80vw; 
     }
 }
+#mm{
+
+
+    color:black;
+    background-color: white;
+  box-shadow: 0 0px 0px -4px #3b71ca;
+  font-size:   15px;
+    
+}
+#comment{
+
+
+
+  
+
+
+        color:black;
+        background-color: white;
+      box-shadow: 0 0px 0px -4px #3b71ca;
+      font-size:   15px;
+    
+}
