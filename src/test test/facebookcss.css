@@ -27,7 +27,7 @@
     --sticky-top-right: -18rem;
 
 }
-
+/* 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -36,7 +36,7 @@
     text-decoration: none;
     list-style: none;
     border: none;
-}
+} */
 
 body {
    
@@ -53,16 +53,17 @@ body {
     margin: 0 auto;
 }
 
-.profile-photo {
-    width: 2.7rem;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
+/* .profile-photo {
+    width: 2.9rem;
+    border-radius: 60%;
     overflow: hidden;
-}
+} */
 
 img {
     display: block;
-    width: 100%;
+   
+    border-radius: 100%;
+    margin:5px;
 }
 
 .btn {
@@ -81,7 +82,7 @@ img {
 
 .btn-primary {
     /* background: var(--color-primary); */
-    background-color: #516C8D;
+    background-color: #85b4ee;
     color: var(--color-white);
 }
 
@@ -91,6 +92,7 @@ img {
 
 .text-muted {
     color: var(--color-grey);
+    margin:1px;
 }
 
 /* =============== Navbar ============== */
@@ -101,7 +103,7 @@ nav {
     position: fixed;
     top: 0;
     z-index: 10;
-    background-color: #D6E4F0;
+    background-color: #9cc8ef;
 }
 
 nav .container {
@@ -151,6 +153,7 @@ main .container {
 
 /* =============== Left ============== */
 main .container .left {
+    margin-top:31px;
     height: max-content;
     position: sticky;
     top: var(--sticky-top-left);
@@ -452,6 +455,7 @@ main .container .right {
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
+    margin-top:45px;
 }
 
 .right .messages .heading {
@@ -801,7 +805,7 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
   font-size:   15px;
     
 }
-#comment{
+#commentstyle{
 
 
 

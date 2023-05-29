@@ -144,6 +144,7 @@ function HomePost(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
+            style={{borderRadius:'100px',borderWidth:"0px"}}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
@@ -275,6 +276,7 @@ function HomePost(props) {
                 <img src="./images/profile-1.jpg" />
               </div> */}
               <input
+              style={{borderRadius:'100px',borderWidth:"0px"}}
                 type="text"
                 placeholder="Share your thoughts "
                 id="create-post"
@@ -302,7 +304,7 @@ function HomePost(props) {
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
-                        <img src={post.profilepicture} />
+                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}} />
                       </div>
                       <div className="info">
                         <h3>{post.firstname}</h3>
@@ -433,6 +435,7 @@ function HomePost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
+                style={{borderRadius:'100px',borderWidth:"0px"}}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
