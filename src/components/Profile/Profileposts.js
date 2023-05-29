@@ -1,5 +1,3 @@
-import { Text } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Nav,
@@ -11,48 +9,202 @@ import {
   Col,
   Card,
   Dropdown,
+  Text,
 } from "react-bootstrap";
 
+import React, { useEffect, useState } from "react";
+// import "./PostTest.css";
+import axios from "axios";
+import { post } from "jquery";
+import { useRef } from "react";
+import UpdatePost from "../Home/UpdatePost";
+import Comment from "../Home/Comment";
 import '../../test test/facebookcss.css'
 
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import Comment from "../Home/Comment";
+function HomePost(props) {
+  const storedUserData = localStorage.getItem("userId");
+  const userData =JSON.parse(storedUserData);
+  //////////////////////////////////////////////////
+  const [postText, setPostText] = useState("");
+  const [posts, setPosts] = useState([]);
 
-const ProfileCard = (props) => {
+  const [image, setImage] = useState("");
+  const [postData, setPostData] = useState({});
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const dateInputRef = useRef(null);
+  const handleChange = (e) => {
+    setImage(e.target.value);
+  };
+
+  const currentDate = new Date();
+  const readableDate = currentDate.toDateString();
+
+  ///////////////////////////////////////////
+
+  // const [postDataArray, setPostDataArray] = useState([]);
+  // console.log("helllllo");
+  // const getPostFromDb = async () => {
+  //   const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${userData[0].id}`;
+  //   const result = await axios.get(serverUrl);
+  //   setPostDataArray(result.data);
+
+  // };
 
 
+  // useEffect(() => {
+  //   getPostFromDb();
+  // }, []);
 
+  const sendReq = async () => {
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/${userData[0].id}`;
+    const result = await axios.get(serverUrl);
+    setPosts(result.data);
+    console.log(result.data)
+  };
+  useEffect(() => {
+    sendReq();
+  }, [posts]);  //posts
 
-// console.log(props.postComment.content)
-// for(let i=0;i<props.value.length;i++){
+  //////////////////////////////////////////////////////////
 
+  const handlePostChange = (event) => {
+    setPostText(event.target.value);
+  };
 
-//   console.log(props.value[i].content)
-// }
+  const handleEditPost = (post) => {
+    setShowUpdateModal(true);
+    setPostData(post);
+    // props.takeDataFromChild(post.data);
+  };
 
-// if (!props.postData || props.postData.length === 0) {
-//   return <p>Loading...</p>;
-// }
+  const handleClosePost = () => {
+    setShowUpdateModal(false);
+  };
 
-// const userDataInfo = props.postData[0];
+  const takeDataFromChild = (arr) => {
+    setPosts(arr);
+  };
 
-// console.log(userDataInfo.post_id)
+  
+
+  const handleDeletePost = async (post) => {
+    if (post.user_id == userData[0].id){
+      try {
+        const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
+        await axios.delete(serverUrl);
+        sendReq();
+      } catch (error) {
+        console.log(`error deleting post ${error}`);
+      }
+    }
+    
+  };
+
   return (
     <>
-      {props.postData.map((item, i) => {
-        return (
+    {/* {console.log(userData[0].id)} */}
+    
+   
+    <meta charSet="UTF-8" />
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>
+        mySocial - Responsive Social Media Website Using HTML, CSS, &amp;
+        JavaScript
+      </title>
+      {/* IconScout CDN */}
+      <link
+        rel="stylesheet"
+        href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css"
+      />
+      {/* Stylesheet */}
+      <link rel="stylesheet" href="./style.css" />
+      <nav>
+        <div className="container">
+          <h2 className="logo">CareerConnect</h2>
+          <div className="search-bar">
+            <i className="uil uil-search" />
+            <input
+              type="search"
+              placeholder="Search for creators, inspirations, and projects"
+            />
+          </div>
+          <div className="create">
+            <label className="btn btn-primary" htmlFor="create-post">
+              SignOut
+            </label>
+            {/* <div className="profile-photo">
+              <img src="./images/profile-1.jpg" alt="" />
+            </div> */}
+          </div>
+        </div>
+      </nav>
+      {/*------------------------------ MAIN ---------------------------------*/}
+      <main>
+        <div className="container">
+          {/*--------------- LEFT ------------------*/}
+          <div className="left">
+            {/* <a className="profile">
+              <div className="profile-photo">
+                <img src="./images/profile-1.jpg" />
+              </div>
+              <div className="handle">
+                <h4>Motasem</h4>
+                <p className="text-muted">......</p>
+              </div>
+            </a> */}
+            {/*--------------- SIDEBAR ------------------*/}
+            <div className="sidebar">
+              <a className="menu-item active">
+                <span>
+                  <i className="uil uil-home" />
+                </span>
+                <h3>Home</h3>
+              </a>
 
+              <a className="menu-item" id="notifications">
+                <span>
+                  <i className="uil uil-bell"></i>
+                </span>
+                <h3>Profile</h3>
+                {/*------------- NOTIFICATION POPUP -------------*/}
+                <div className="notifications-popup">
+                 
+                </div>
+                {/*------------- END NOTIFICATION POPUP -------------*/}
+              </a>
+              <a className="menu-item" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>Jobs</h3>
+              </a>
 
-          <>
-          
-          
-          
-          
-          
-          
-          
-          <div className="feeds" style={{marginTop:"50px"}}>
+              <a className="menu-item">
+                <span>
+                  <i className="uil uil-chart-line" />
+                </span>
+                <h3>AbotuUs</h3>
+              </a>
+            </div>
+            {/*--------------- END OF SIDEBAR ------------------*/}
+            <label className="btn btn-primary" htmlFor="create-post">
+              Create Post
+            </label>
+          </div>
+          {/*--------------- MIDDLE ------------------*/}
+          <div className="middle">
+           
+            {/*--------------- FEEDS ------------------*/}
+
+            {/* ////////////////////////////////////////////////////////////////// */}
+            {posts.map((post) => {
+                  return (
+
+                    <>
+                    
+                 
+            <div className="feeds">
             {/* <HomePost/> */}
               {/*--------------- FEED 1 ------------------*/}
              
@@ -60,16 +212,16 @@ const ProfileCard = (props) => {
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
-                        <img src="./images/profile-13.jpg" />
+                        <img src={post.profilepicture} />
                       </div>
                       <div className="info">
-                        <h3>Motasem</h3>
-                        <small>Software Engineer</small>
+                        <h3>{post.firstname}</h3>
+                        <small>{post.career}</small>
                       </div>
                     </div>
                     {/* <span > */}
-                      
-                      {/* <Dropdown className="edit"
+                    <Form>
+                      <Dropdown className="edit"
                                
                                 >
                                   <Dropdown.Toggle
@@ -87,17 +239,18 @@ const ProfileCard = (props) => {
                                     </Dropdown.Item>
                                     <Dropdown.Item
                                       onClick={() =>
-                                        handleDeletePost(post.post_id)
+                                        handleDeletePost(post)
                                       }
                                     >
                                       Delete
                                     </Dropdown.Item>
                                   </Dropdown.Menu>
-                                </Dropdown> */}
+                                </Dropdown>
+                                </Form>
                     {/* </span> */}
                   </div>
                   <div className="photo">
-                    <p>add image</p>
+                    <p>{post.photo_content}</p>
                   </div>
                   <div className="action-buttons">
                     <div className="interaction-buttons"></div>
@@ -110,300 +263,66 @@ const ProfileCard = (props) => {
                   <div className="liked-by"></div>
                   <div className="caption">
                     <p>
-                      <p> {item.paragraph_content}</p>
+                      <p> {post.paragraph_content}</p>
                     </p>
                   </div>
                   <hr></hr>
-                  {/* <div className="comments text-muted">View all 277 comments</div> */}
                   <br></br>
-                  <div className="profile-photo">
-                    <img src="./images/profile-13.jpg" />
-                  </div>
                   <div className="info">
-                    {/* <p>Motasem</p> */}
-                    {/* <p>this is my comment</p> */}
-                    <Comment postID={item.post_id} />
+                    <div> <Comment postID={post.post_id} /></div>
                   </div>
                 </div>;
                 </div>;
-                   
+                </>
+                )})}
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          </>
-          // <>
-          //   <meta charSet="UTF-8" />
-          //   <title>Social Media Post UI Design</title>
-          //   <meta
-          //     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-          //     name="viewport"
-          //   />
-          //   <link
-          //     rel="stylesheet"
-          //     type="text/css"
-          //     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          //   />
-          //   <link
-          //     rel="stylesheet"
-          //     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          //   />
-          //   <link rel="stylesheet" type="text/css" href="css/style.css" />
-          //   <section className="main-content">
-          //     <div className="container">
-          //       <h1 className="text-center text-uppercase"></h1>
-          //       <br />
-          //       <br />
-          //       <div className="row">
-          //         <div className="col-sm-6 offset-sm-3">
-          //           <div className="post-block">
-          //             <div className="d-flex justify-content-between">
-          //               <div className="d-flex mb-3">
-          //                 <div className="mr-2">
-          //                   <a href="#!" className="text-dark">
-          //                     <img
-          //                       src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
-          //                       alt="User"
-          //                       className="author-img"
-          //                     />
-          //                   </a>
-          //                 </div>
-          //                 <div>
-          //                   <h5 className="mb-0">
-          //                     <a href="#!" className="text-dark">
-          //                     <p>{item.firstname}</p>
-          //                     </a>
-          //                   </h5>
-          //                   <p className="mb-0 text-muted">{item.career}</p>
-          //                   <p className="mb-0 text-muted">5m</p>             edit date
-          //                 </div>
-          //               </div>
-          //               <div className="post-block__user-options">
-          //                 <a
-          //                   href="#!"
-          //                   id="triggerId"
-          //                   data-toggle="dropdown"
-          //                   aria-haspopup="true"
-          //                   aria-expanded="false"
-          //                 >
-          //                   <p></p>
-          //                 </a>
-          //                 <div
-          //                   className="dropdown-menu dropdown-menu-right"
-          //                   aria-labelledby="triggerId"
-          //                 >
-          //                   <a className="dropdown-item text-dark" href="#!">
-          //                     <i className="fa fa-pencil mr-1" />
-          //                     Edit
-          //                   </a>
-          //                   <a className="dropdown-item text-danger" href="#!">
-          //                     <i className="fa fa-trash mr-1" />
-          //                     Delete
-          //                   </a>
-          //                 </div>
-          //               </div>
-          //             </div>
-          //             <div className="post-block__content mb-2">
-          //               <p>
-          //                 {item.paragraph_content}
-          //                 <p>{props.postComment.content}</p>
-          //               </p>
-          //               <img
-          //                 src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
-          //                 alt="Content img"
-          //               />
-          //             </div>
-          //             <div className="mb-3">
-          //               <div className="d-flex justify-content-between mb-2">
-          //                 <div className="d-flex"></div>
-          //               </div>
-          //               <p className="mb-0"></p>
-          //             </div>
-          //             <hr />
-          //             <div className="post-block__comments">
-          //               Comment Input
-                        
+             
+            {/*--------------- END OF FEEDS ------------------ */}
+          </div>
+          {/*--------------- END OF MIDDLE ------------------*/}
+          {/*--------------- RIGHT ------------------*/}
+          <div className="right">
+            {/*----- MESSAGES -----*/}
+            <div className="messages">
+              <div className="heading">
+                <h4>Messages</h4>
+                <i className="uil uil-edit" />
+              </div>
+              {/*----- SEARCH BAR -----*/}
+              <div className="search-bar">
+                <i className="uil uil-search" />
+                <input
+                  type="search"
+                  placeholder="Search messages"
+                  id="message-search"
+                />
+              </div>
+             
+            </div>
+            
+            <div className="friend-requests">
+              <h4>Requests</h4>
 
-          //               <div className="comment-view-box mb-3">
-          //                 <div className="d-flex mb-2">
-          //                   <div>
-          //                     <Comment postID={item.post_id} />
+           
+            </div>
+          </div>
+          {/*--------------- END OF RIGHT ------------------*/}
+        </div>
+      </main>
+      
+           
 
-          //                     <div className="d-flex">
-          //                       <a href="#!" className="text-dark mr-2">
-          //                         <span>
-          //                           <i className="fa fa-heart-o" />
-          //                         </span>
-          //                       </a>
-          //                     </div>
-          //                   </div>
-          //                 </div>
-          //               </div>
-          //             </div>
-          //           </div>
-          //         </div>
-          //       </div>
-          //     </div>
-          //   </section>
-          // </>
-        
-        );
-        
-      })}
+      <UpdatePost
+        showUpdateModal={showUpdateModal}
+        handleClosePost={handleClosePost}
+        postData={postData}
+        posts={posts}
+        takeDataFromChild={takeDataFromChild}
+      
+      />
+      
     </>
   );
-};
+}
 
-export default ProfileCard;
-
-// {jobs.map((job) => (
-//   <div key={job.id}>
-//     <p>{job.content}</p>
-//     <br></br><hr></hr>
-//   </div>
-// ))}
-
-// const [comments, setComments] = useState([]);
-
-// const handleAddComment = (comment) => {
-//   setComments([...comments, comment]);
-// };
-
-// return (
-//   // <div className="post">
-//   //   <div className="post-owner">
-//   //     <img className="post-owner-picture" src={post.owner.picture} alt={post.owner.name} />
-//   //     <h3 className="post-owner-name">{post.owner.name}</h3>
-//   //   </div>
-//   //   <div className="post-content">
-//   //     <h2 className="post-title">{post.title}</h2>
-//   //     <p className="post-description">{post.description}</p>
-//   //   </div>
-//   //   <div className="comments-section">
-//   //     <h4 className="comments-heading">Comments</h4>
-//   //     <div className="comment-list">
-//   //       {comments.map((comment) => (
-//   //         <Comment key={comment.id} comment={comment} />
-//   //       ))}
-//   //     </div>
-//   //     <form className="comment-form" onSubmit={handleAddComment}>
-//   //       <input type="text" placeholder="Add a comment" />
-//   //       <button type="submit">Post Comment</button>
-//   //     </form>
-//   //   </div>
-//   // </div>
-// );
-// };
-//   const [comments1, setComments1] = useState([]);
-//   const [flag, setFlag] = useState(false);
-//   const sendReq = async () => {
-//     const serverUrl2 = `${process.env.REACT_APP_SERVER_URL}getcomments`;
-//     const result2 = await axios.get(serverUrl2);
-//     setComments(result2.data);
-//   };
-//   useEffect(() => {
-//     sendReq();
-//   }, []);
-
-//   const handleShow = () => {
-//     setFlag(true);
-//   };
-//   const handleClose = () => {
-//     setFlag(false);
-//   };
-
-//   const [comment, setComment] = useState("");
-//   const [comments, setComments] = useState([]);
-
-//   const handleCommentChange = (event) => {
-//     setComment(event.target.value);
-//   };
-
-//   const handleCommentSubmit = (event) => {
-//     event.preventDefault();
-//     const newComment = {
-//       id: comments.length + 1,
-//       content: comment,
-//     };
-//     setComments([...comments, newComment]);
-//     setComment("");
-//   };
-
-//   return (
-//     <>
-//       <div className="" style={{ backgroundColor: "" }}>
-//         <MDBContainer>
-//           <MDBRow className="justify-content-center">
-//             <MDBCol md="13" lg="14" xl="10" className="mt-5">
-//               <MDBCard style={{ borderRadius: "15px" }}>
-//                 <MDBCardBody className="p-4">
-//                   <div className="d-flex text-black">
-//                     <div className="flex-shrink-0">
-//                       <MDBCardImage
-//                         style={{ width: "180px", borderRadius: "10px" }}
-//                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-//                         alt="Generic placeholder image"
-//                         fluid
-//                       />
-//                     </div>
-//                     <div className="flex-grow-1 ms-3">
-//                       <MDBCardTitle></MDBCardTitle>
-//                       <MDBCardText></MDBCardText>
-//                       <div
-//                         className="d-flex justify-content-start rounded-3 p-2 mb-2"
-//                         style={{ backgroundColor: "#efefef" }}
-//                       ></div>
-
-//                       <div className="d-flex pt-1">
-//                         <MDBBtn outline className="me-1 flex-grow-1">
-//                           Like
-//                         </MDBBtn>
-//                         {/* <MDBBtn className="flex-grow-1" type submit>Comment</MDBBtn> */}
-//                       </div>
-//                       <br />
-//                       <form onSubmit={handleCommentSubmit}>
-//                         {/* <input
-//                           type="text"
-//                           placeholder="Add Comment Here"
-//                           value={comment}
-//                           onChange={handleCommentChange}
-//                         /> */}
-//                         {/* <button type="submit" className="flex-grow-1">Comment</button> */}
-//                         <MDBBtn
-//                           className="flex-grow-1"
-//                           type="submit"
-//                           onClick={handleShow}
-//                         >
-//                           Comment
-//                         </MDBBtn>
-//                       </form>
-//                     </div>
-//                   </div>
-//                   <div
-//                     className="d-flex justify-content-start rounded-3 p-2 mb-2"
-//                     style={{ backgroundColor: "#efefef" }}
-//                   >
-//                     {comments.map((comment) => (
-//                       <p key={comment.id}>{comment.content}</p>
-//                     ))}
-//                   </div>
-//                 </MDBCardBody>
-//               </MDBCard>
-//             </MDBCol>
-//           </MDBRow>
-//         </MDBContainer>
-//       </div>
-//       <Modalcomments showFlag={flag} handleclose={handleClose} />
-//     </>
-//   );
-// };
+export default HomePost;

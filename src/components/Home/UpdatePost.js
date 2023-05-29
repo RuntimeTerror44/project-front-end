@@ -3,7 +3,12 @@ import Modal from 'react-bootstrap/Modal';
 import { Navbar, Nav, Container, Form, FormControl, Button, Row, Col, Card, Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 
+
+
 function UpdatePost(props){
+
+  const storedUserData = localStorage.getItem("userId");
+  const userData = JSON.parse(storedUserData);
 
     //////////////////// backend post update is not ready yet ////////////
   // console.log(props.postData)
@@ -26,7 +31,8 @@ const [changePost, setChangePost] = useState("");
 const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
-        paragraph_content: changePost
+        paragraph_content: changePost,
+        user_id: userData[0].id /////////////////////////////////////////////////
 
     }
     console.log(obj)

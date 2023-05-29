@@ -15,7 +15,7 @@ import axios from "axios";
 import { useRef } from "react";
 import UpdateComment from "./UpdateComment";
 
-import { Text } from "@chakra-ui/react";
+// import { Text } from "@chakra-ui/react";
 
 function Comment(props) {
   const storedUserData = localStorage.getItem("userId");
@@ -70,15 +70,18 @@ function Comment(props) {
   // const handleChange = (e) => {
   //   setDate(e.target.value);}
 
-  const handleDeletePost = async (comment_id) => {
+  const handleDeletePost = async (item) => {
+    
+    if (item.user_id == userData[0].id){
     try {
-      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${comment_id}`;
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${item.comment_id}`;
       await axios.delete(serverUrl);
       // console.log(comment_id)
       getCommentsFromDb();
     } catch (error) {
       console.log(`error deleting post ${error}`);
     }
+  }
   };
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,10 +110,40 @@ function Comment(props) {
           <>
             <Row xs={1} md={1} className="g-4">
               <Col >
+              {<Form>
+                  <Dropdown
+                    align="end"
+                    style={{
+                      // position: "absolute",
+                      // top: "0px",
+                      // right: "16px",
+                      display: "flex",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <Dropdown.Toggle
+                      variant="primary"
+                      className="dropdown-toggle-vertical"
+                    >
+                     
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => handleEditPost(item)}>
+                        Edit
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => handleDeletePost(item)}
+                      >
+                        Delete
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Form>}
+
                 {/* <Card> */}
                 {/* {setPostID(post.post_id)} */}
                 {/* <Card.Img variant="top" /> */}
-                <Text>
+                {/* <Text> */}
                   {/* <img
                     src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
                     alt="User img"
@@ -133,7 +166,7 @@ function Comment(props) {
                                       <a href="#!" className="text-name">
                                         <img
                                         style={{width:"35px", height:"35px"}}
-                                          src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
+                                          src={item.profilepicture}
                                           alt="User"
                                           className="author-img"
                                         />
@@ -153,6 +186,9 @@ function Comment(props) {
                                   </div>
                                   </div>
                   {/* ========================================= */}
+
+                  
+
                   <p
                     style={{
                       wordBreak: "break-word",
@@ -160,33 +196,8 @@ function Comment(props) {
                   >
                     {item.content}
                   </p>{" "}
-                  <Dropdown 
-                    align="end"
-                    style={{
-                      position: "absolute",
-                      top: "0px",
-                      right: "16px",
-                    }}
-                  >
-                    <Dropdown.Toggle id="comment"
-                      variant="primary"
-                      className="dropdown-toggle-vertical"
-                    >
-                     
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handleEditPost(item)}>
-                        Edit
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => handleDeletePost(item.comment_id)}
-                      >
-                        Delete
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Text>
 
+                  
                 {/* </Card> */}
               </Col>
         

@@ -6,6 +6,9 @@ import { param } from 'jquery';
 
 function UpdateComment(props){
 
+  const storedUserData = localStorage.getItem("userId");
+  const userData = JSON.parse(storedUserData);
+
     //////////////////// backend post update is not ready yet ////////////
   // console.log(props.postData)
 
@@ -29,7 +32,8 @@ const handleUpdatePost= async(e)=>{
     const obj={
 
         content: changePost,
-        post_id: props.postID
+        post_id: props.postID,
+        user_id: userData[0].id
 
     }
     // console.log(obj)
