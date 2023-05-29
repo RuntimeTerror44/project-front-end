@@ -40,7 +40,7 @@ function FormPersonalData(props) {
       address: e.target.address.value,
       gender: e.target.formHorizontalRadios.value,
       profilepicture: e.target.profile_picture.value,
-      imgForcover: e.target.cover_picture.value
+      // imgForcover: e.target.cover_picture.value
     };
     const result = await axios.put(serverUrl, obj);
     // tackDataFromChaildAfterUbdate(result.data);

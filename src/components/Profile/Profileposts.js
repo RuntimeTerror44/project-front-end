@@ -11,7 +11,6 @@ import {
   Dropdown,
   Text,
 } from "react-bootstrap";
-
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
 import axios from "axios";
@@ -20,14 +19,12 @@ import { useRef } from "react";
 import UpdatePost from "../Home/UpdatePost";
 import Comment from "../Home/Comment";
 import '../../test test/facebookcss.css'
-
-function HomePost(props) {
+function Profileposts(props) {
   const storedUserData = localStorage.getItem("userId");
   const userData =JSON.parse(storedUserData);
   //////////////////////////////////////////////////
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
-
   const [image, setImage] = useState("");
   const [postData, setPostData] = useState({});
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -35,26 +32,19 @@ function HomePost(props) {
   const handleChange = (e) => {
     setImage(e.target.value);
   };
-
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
-
   ///////////////////////////////////////////
-
   // const [postDataArray, setPostDataArray] = useState([]);
   // console.log("helllllo");
   // const getPostFromDb = async () => {
   //   const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${userData[0].id}`;
   //   const result = await axios.get(serverUrl);
   //   setPostDataArray(result.data);
-
   // };
-
-
   // useEffect(() => {
   //   getPostFromDb();
   // }, []);
-
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/${userData[0].id}`;
     const result = await axios.get(serverUrl);
@@ -64,29 +54,21 @@ function HomePost(props) {
   useEffect(() => {
     sendReq();
   }, [posts]);  //posts
-
   //////////////////////////////////////////////////////////
-
   const handlePostChange = (event) => {
     setPostText(event.target.value);
   };
-
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
     setPostData(post);
     // props.takeDataFromChild(post.data);
   };
-
   const handleClosePost = () => {
     setShowUpdateModal(false);
   };
-
   const takeDataFromChild = (arr) => {
     setPosts(arr);
   };
-
-  
-
   const handleDeletePost = async (post) => {
     if (post.user_id == userData[0].id){
       try {
@@ -97,14 +79,10 @@ function HomePost(props) {
         console.log(`error deleting post ${error}`);
       }
     }
-    
   };
-
   return (
     <>
     {/* {console.log(userData[0].id)} */}
-    
-   
     <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -161,7 +139,6 @@ function HomePost(props) {
                 </span>
                 <h3>Home</h3>
               </a>
-
               <a className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
@@ -169,7 +146,6 @@ function HomePost(props) {
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
                 <div className="notifications-popup">
-                 
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
@@ -179,7 +155,6 @@ function HomePost(props) {
                 </span>
                 <h3>Jobs</h3>
               </a>
-
               <a className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
@@ -194,20 +169,14 @@ function HomePost(props) {
           </div>
           {/*--------------- MIDDLE ------------------*/}
           <div className="middle">
-           
             {/*--------------- FEEDS ------------------*/}
-
             {/* ////////////////////////////////////////////////////////////////// */}
             {posts.map((post) => {
                   return (
-
                     <>
-                    
-                 
             <div className="feeds">
             {/* <HomePost/> */}
               {/*--------------- FEED 1 ------------------*/}
-             
                 <div className="feed">
                   <div className="head">
                     <div className="user">
@@ -222,14 +191,12 @@ function HomePost(props) {
                     {/* <span > */}
                     <Form>
                       <Dropdown className="edit"
-                               
                                 >
                                   <Dropdown.Toggle
                                     variant="primary"
                                     // className="dropdown-toggle-vertical"
                                     className="uil uil-ellipsis-h"
                                   >
-                                  
                                   </Dropdown.Toggle>
                                   <Dropdown.Menu>
                                     <Dropdown.Item
@@ -275,8 +242,6 @@ function HomePost(props) {
                 </div>;
                 </>
                 )})}
-          
-             
             {/*--------------- END OF FEEDS ------------------ */}
           </div>
           {/*--------------- END OF MIDDLE ------------------*/}
@@ -297,32 +262,22 @@ function HomePost(props) {
                   id="message-search"
                 />
               </div>
-             
             </div>
-            
             <div className="friend-requests">
               <h4>Requests</h4>
-
-           
             </div>
           </div>
           {/*--------------- END OF RIGHT ------------------*/}
         </div>
       </main>
-      
-           
-
       <UpdatePost
         showUpdateModal={showUpdateModal}
         handleClosePost={handleClosePost}
         postData={postData}
         posts={posts}
         takeDataFromChild={takeDataFromChild}
-      
       />
-      
     </>
   );
 }
-
-export default HomePost;
+export default Profileposts;

@@ -359,8 +359,8 @@ function HomePost(props) {
                   <div className="info">
                     <div> <Comment postID={post.post_id} /></div>
                   </div>
-                </div>;
-                </div>;
+                </div>
+                </div>
                 </>
                 )})}
           
