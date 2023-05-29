@@ -165,7 +165,8 @@ function JobPost(props) {
     }
   };
 
-
+  console.log(postData);
+  console.log(JobPosts);
   return (
     <>
       <meta charSet="UTF-8" />
@@ -267,11 +268,11 @@ function JobPost(props) {
             </div> */}
             <Form.Group>
               <textarea
-              rows="3" cols="50" name="message"  
+              rows="4" cols="50" 
               id="create-post"
-               style={{marginBottom:"8px",marginTop:"8px" ,borderRadius:'10px',borderWidth:"1px",wordBreak:"break-all"}}
+               style={{marginBottom:"8px",marginTop:"8px" ,borderRadius:'10px',borderWidth:"1px",wordBreak:"break-all" ,minWidth:"600px", whiteSpace: "preLine"}}
                 type="text-area"
-                placeholder="  Job description "
+                placeholder="Job description "
                 // id="create-post"
                 onChange={handlePostChange}
               ></textarea>

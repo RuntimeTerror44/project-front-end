@@ -57,7 +57,7 @@ export default function App() {
 
             <Route path="/Profilepage" element={<Profilepage />} />
            
-            <Route path="/Form" element={<Form />} />
+            <Route path="/portfolio" element={<Form />} />
             <Route path="/posttest" element={<PostTest />} />
             <Route path="/facebook" element={<Facebook />} />
             <Route path="/temp" element={<ProfileTemp />} />

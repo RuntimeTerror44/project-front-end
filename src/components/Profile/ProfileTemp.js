@@ -140,7 +140,7 @@ function ProfileTemp(props) {
                 </span>
                 <h3>Home</h3>
               </a>
-              <a className="menu-item active"  href="job" id="notifications">
+              <a className="menu-item active"   id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -150,12 +150,20 @@ function ProfileTemp(props) {
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item" id="messages-notifications">
+              <a className="menu-item " href="job" id="messages-notifications">
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
+                {/* ++++++++++++++++ */}
+                <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>Portfolio</h3>
+              </a>
+              {/* ++++++++++++++++ */}
               <a className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
