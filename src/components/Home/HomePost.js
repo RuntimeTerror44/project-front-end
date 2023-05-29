@@ -351,9 +351,9 @@ function HomePost(props) {
                     </div>
                   </div>
                   <div className="liked-by"></div>
-                  <div className="caption">
+                  <div className="caption" >
                     <p>
-                      <p> {post.paragraph_content}</p>
+                      <p style={{wordBreak:'break-word',fontSize:'18px'}}id="paragraphstyle"> {post.paragraph_content}</p>
                     </p>
                   </div>
                   <hr></hr>
