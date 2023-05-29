@@ -21,7 +21,7 @@ import UpdatePost from "../Home/UpdatePost";
 import Comment from "../Home/Comment";
 import '../../test test/facebookcss.css'
 
-function HomePost(props) {
+function Profileposts(props) {
   const storedUserData = localStorage.getItem("userId");
   const userData =JSON.parse(storedUserData);
   //////////////////////////////////////////////////
@@ -325,4 +325,4 @@ function HomePost(props) {
   );
 }
 
-export default HomePost;
+export default Profileposts;
