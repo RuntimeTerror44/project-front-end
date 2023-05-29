@@ -16,6 +16,7 @@ import Profilepage from "./components/Profile/Profilepage";
 import { useAuth0 } from "@auth0/auth0-react";
 import PostTest from "./test test/PostTest";
 import Facebook from "./test test/Facebook";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 export default function App() {
   /*----------------------------saving authintication status in local storage -------------------*/
@@ -58,7 +59,8 @@ export default function App() {
             <Route path="/Form" element={<Form />} />
             <Route path="/posttest" element={<PostTest />} />
             <Route path="/facebook" element={<Facebook />} />
-            
+            <Route path="/about" element={<AboutUs />} />
+
           </Routes>
         )}
       </>
