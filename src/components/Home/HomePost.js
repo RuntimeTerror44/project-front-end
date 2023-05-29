@@ -11,6 +11,7 @@ import {
   Dropdown,
   Text,
 } from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
@@ -19,7 +20,7 @@ import { post } from "jquery";
 import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
-import '../../test test/facebookcss.css'
+// import '../../test test/facebookcss.css'
 
 function HomePost(props) {
   const storedUserData = localStorage.getItem("userId");
@@ -107,7 +108,6 @@ function HomePost(props) {
   }, [posts]);
 
   const handleDeletePost = async (post) => {
-    if (post.user_id == userData[0].id){
       try {
         const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
         await axios.delete(serverUrl);
@@ -115,7 +115,7 @@ function HomePost(props) {
       } catch (error) {
         console.log(`error deleting post ${error}`);
       }
-    }
+    
     
   };
 
@@ -143,6 +143,7 @@ function HomePost(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
+            style={{borderRadius:'100px',borderWidth:"0px"}}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
@@ -167,92 +168,46 @@ function HomePost(props) {
                 <img src="./images/profile-1.jpg" />
               </div>
               <div className="handle">
-                <h4>Motasem</h4>
+                <h4>{}</h4>
                 <p className="text-muted">......</p>
               </div>
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active">
+              <a className="menu-item active" >
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
 
-              <a className="menu-item" id="notifications">
+              <a href="profilepage"className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
                 <div className="notifications-popup">
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-2.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Keke Benjamin</b> accepted your friend request
-                      <small className="text-muted">2 Days Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-3.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>John Doe</b> commented on your post
-                      <small className="text-muted">1 Hour Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-4.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Marry Oppong</b> and <b>283 Others</b> liked your post
-                      <small className="text-muted">4 Minutes Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-5.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Doris Y. Lartey</b> commented on a post you are tagged
-                      in
-                      <small className="text-muted">2 Days Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-6.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Keyley Jenner</b> commented on a post you are tagged in
-                      <small className="text-muted">1 Hour Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-7.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Jane Doe</b> commented on your post
-                      <small className="text-muted">1 Hour Ago</small>
-                    </div>
-                  </div> */}
+
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item" id="messages-notifications">
+              <a className="menu-item" href="job" id="messages-notifications">
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
+                {/* ++++++++++++++++ */}
+                <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>create resume</h3>
+              </a>
+              {/* ++++++++++++++++ */}
 
-              <a className="menu-item">
+              <a href="aboutus"className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -269,11 +224,12 @@ function HomePost(props) {
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
-            <Form onSubmit={handlePostSubmit} action="" className="create-post">
+            <Form onSubmit={handlePostSubmit} action="" style={{display:"flex"}} className="create-post">
               {/* <div className="profile-photo">
                 <img src="./images/profile-1.jpg" />
               </div> */}
               <input
+              style={{borderRadius:'100px',borderWidth:"0px"}}
                 type="text"
                 placeholder="Share your thoughts "
                 id="create-post"
@@ -301,21 +257,23 @@ function HomePost(props) {
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
-                        <img src={post.profilepicture} />
+                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}} />
                       </div>
                       <div className="info">
-                        <h3>{post.firstname}</h3>
+                        <h3>{post.firstname} {post.lastname}</h3>
                         <small>{post.career}</small>
                       </div>
                     </div>
                     {/* <span > */}
+
+                    {(post.user_id == userData[0].id)&&(
                       <Dropdown className="edit"
                                
                                 >
-                                  <Dropdown.Toggle
+                                  <Dropdown.Toggle id="mm"
                                     variant="primary"
-                                    // className="dropdown-toggle-vertical"
-                                    className="uil uil-ellipsis-h"
+                                    className="dropdown-toggle-vertical"
+                                    // className="uil uil-ellipsis-h"
                                   >
                                   
                                   </Dropdown.Toggle>
@@ -333,7 +291,7 @@ function HomePost(props) {
                                       Delete
                                     </Dropdown.Item>
                                   </Dropdown.Menu>
-                                </Dropdown>
+                                </Dropdown>)}
                     {/* </span> */}
                   </div>
                   <div className="photo">
@@ -348,9 +306,9 @@ function HomePost(props) {
                     </div>
                   </div>
                   <div className="liked-by"></div>
-                  <div className="caption">
+                  <div className="caption" >
                     <p>
-                      <p> {post.paragraph_content}</p>
+                      <p style={{wordBreak:'break-word',fontSize:'18px'}}id="paragraphstyle"> {post.paragraph_content}</p>
                     </p>
                   </div>
                   <hr></hr>
@@ -358,8 +316,8 @@ function HomePost(props) {
                   <div className="info">
                     <div> <Comment postID={post.post_id} /></div>
                   </div>
-                </div>;
-                </div>;
+                </div>
+                </div>
                 </>
                 )})}
           
@@ -432,6 +390,7 @@ function HomePost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
+                style={{borderRadius:'100px',borderWidth:"0px"}}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"

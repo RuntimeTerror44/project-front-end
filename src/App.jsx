@@ -6,6 +6,7 @@ import LandingPage from "./components/Landingpage/LandingPage";
 import LoginButton from "./components/Landingpage/login/Loginbutton";
 import LogoutButton from "./components/Landingpage/login/Logoutbutton";
 
+
 import Profile from "./components/Landingpage/login/profile";
 import Home from "./components/Home/Home";
 import Job from "./components/Job/Job";
@@ -17,6 +18,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import PostTest from "./test test/PostTest";
 import Facebook from "./test test/Facebook";
 import AboutUs from "./components/AboutUs/AboutUs";
+import ProfileTemp from "./components/Profile/ProfileTemp";
 
 export default function App() {
   /*----------------------------saving authintication status in local storage -------------------*/
@@ -51,16 +53,16 @@ export default function App() {
 
             <Route path="/comment" element={<Comment />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/jobs" element={<Job />} />
+            <Route path="/job" element={<Job />} />
            
 
             <Route path="/Profilepage" element={<Profilepage />} />
            
-            <Route path="/Form" element={<Form />} />
+            <Route path="/portfolio" element={<Form />} />
             <Route path="/posttest" element={<PostTest />} />
             <Route path="/facebook" element={<Facebook />} />
             <Route path="/about" element={<AboutUs />} />
-
+            <Route path="/temp" element={<ProfileTemp />} />
           </Routes>
         )}
       </>
