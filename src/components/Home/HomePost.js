@@ -108,7 +108,6 @@ function HomePost(props) {
   }, [posts]);
 
   const handleDeletePost = async (post) => {
-    if (post.user_id == userData[0].id){
       try {
         const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
         await axios.delete(serverUrl);
@@ -116,7 +115,7 @@ function HomePost(props) {
       } catch (error) {
         console.log(`error deleting post ${error}`);
       }
-    }
+    
     
   };
 
@@ -307,11 +306,13 @@ function HomePost(props) {
                         <img src={post.profilepicture} style={{width:'60px',height:'60px'}} />
                       </div>
                       <div className="info">
-                        <h3>{post.firstname}</h3>
+                        <h3>{post.firstname} {post.lastname}</h3>
                         <small>{post.career}</small>
                       </div>
                     </div>
                     {/* <span > */}
+
+                    {(post.user_id == userData[0].id)&&(
                       <Dropdown className="edit"
                                
                                 >
@@ -336,7 +337,7 @@ function HomePost(props) {
                                       Delete
                                     </Dropdown.Item>
                                   </Dropdown.Menu>
-                                </Dropdown>
+                                </Dropdown>)}
                     {/* </span> */}
                   </div>
                   <div className="photo">
