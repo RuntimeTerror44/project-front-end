@@ -40,7 +40,7 @@ function FormPersonalData(props) {
       address: e.target.address.value,
       gender: e.target.formHorizontalRadios.value,
       profilepicture: e.target.profile_picture.value,
-      imgForcover: e.target.cover_picture.value
+      // imgForcover: e.target.cover_picture.value
     };
     const result = await axios.put(serverUrl, obj);
     // tackDataFromChaildAfterUbdate(result.data);
@@ -147,21 +147,21 @@ function FormPersonalData(props) {
               </fieldset>
 
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Countrey</Form.Label>
+                <Form.Label>profile picture</Form.Label>
                 <Form.Control
                   name="profile_picture"
                   type="text"
                   defaultValue=""
                 />
               </Form.Group>
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Countrey</Form.Label>
+              {/* <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Label>profile picture</Form.Label>
                 <Form.Control
                   name="cover_picture"
                   type="text"
                   defaultValue=""
                 />
-              </Form.Group>
+              </Form.Group> */}
             <Button type="submit">
               {/*onClick={props.handleClose}*/}
               Submit
