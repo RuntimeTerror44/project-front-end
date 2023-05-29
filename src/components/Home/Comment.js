@@ -202,8 +202,6 @@ function Comment(props) {
                     style={{
                       wordBreak: "break-word",
                       marginLeft:'50px',
-                     
-                     
                     }}
                   >
                     {item.content}

@@ -140,7 +140,7 @@ function ProfileTemp(props) {
                 </span>
                 <h3>Home</h3>
               </a>
-              <a className="menu-item active" id="notifications">
+              <a className="menu-item active"  href="job" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
