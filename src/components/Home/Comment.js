@@ -102,7 +102,7 @@ function Comment(props) {
   };
 
   return (
-    <div style={{width:"100%",position:"relative"}}>
+    <div style={{width:"100%"}}>
             {/* {console.log(commentsDataArray)}; */}
 
       {commentsDataArray.map((item) => {
