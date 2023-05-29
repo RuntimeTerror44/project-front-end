@@ -35,7 +35,7 @@ function Comment(props) {
   useEffect(() => {
     getCommentsFromDb();
     // console.log(commentsDataArray);
-  }, []);
+  }, [commentsDataArray]);
 
   // useEffect(() => {}, [commentsDataArray]);
   //------///////////////////////////////////////////////////////////////////////////////////////////////////
