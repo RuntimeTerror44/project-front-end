@@ -5,6 +5,8 @@ import axios from 'axios';
 
 function UpdateJobPost(props){
 
+  const storedUserData = localStorage.getItem("userId");
+  const userData =JSON.parse(storedUserData)
     //////////////////// backend post update is not ready yet ////////////
   // console.log(props.postData)
 
@@ -39,18 +41,20 @@ const handleUpdatePost= async(e)=>{
       job_post_content: e.target.post.value,
       city: e.target.city.value,
       job_field:e.target.field.value,
-      job_title:e.target.title.value
+      job_title:e.target.title.value,
+      user_id:userData[0].id 
 
     }
     console.log(obj)
 console.log(obj.job_post_content)
-    const serverUrl=`${process.env.REACT_APP_SERVER_URL}job/${props.postData.id}`
+    const serverUrl=`${process.env.REACT_APP_SERVER_URL}job/${props.postData.job_id}`
     console.log(serverUrl)
     const result= await axios.put(serverUrl, obj)
     console.log(result.data)
     props.takeDataFromChild(result.data)
     props.handleClosePost()
 }
+// console.log(`${process.env.REACT_APP_SERVER_URL}job/${props.postData.job_id}`)
 
 
 
