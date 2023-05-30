@@ -177,7 +177,7 @@ function ProfileTemp(props) {
                 <h3>create resume</h3>
               </a>
               {/* ++++++++++++++++ */}
-              <a className="menu-item">
+              <a className="menu-item" href="about">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>

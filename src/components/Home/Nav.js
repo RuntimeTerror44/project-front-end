@@ -29,9 +29,9 @@ export default function Nav() {
   return (
     <>
       <LogoutButton ref={logoutButtonRef} />
-      <MDBNavbar className="nav-bar"  expand="lg" light style={{backgroundColor: "#50577A" }}>
+      <MDBNavbar className="nav-bar"  expand="lg" light style={{backgroundColor:"#85b6e2" }}>
         <MDBContainer fluid>
-          <MDBNavbarBrand href="#" style={{ color:'white'  }}>Brand</MDBNavbarBrand>
+          <MDBNavbarBrand href="#" style={{ color:'white' ,paddingLeft:"75px"  }}>CareerConnect</MDBNavbarBrand>
           <MDBNavbarToggler
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
@@ -43,32 +43,38 @@ export default function Nav() {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
               <MDBNavbarItem>
-                <MDBNavbarLink active aria-current="page" href="/home" style={{ color:'white'  }}>
+                <MDBNavbarLink active aria-current="page" href="/home" style={{ color:'white' ,paddingLeft:"300px" }}>
                   Home
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href="jobs" style={{ color:'white'  }}>jobs</MDBNavbarLink>
+                <MDBNavbarLink href="job" style={{ color:'white',paddingLeft:"100px"  }}>jobs</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href="profilepage" style={{ color:'white',paddingLeft:"100px"  }}>Profile</MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBDropdown>
-                  <MDBDropdownToggle tag="a" className="nav-link" role="button" style={{ color:'white'  }}>
+                  {/* <MDBDropdownToggle tag="a" className="nav-link" role="button" style={{ color:'white'  }}>
                     Dropdown
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
                     <MDBDropdownItem link>Action</MDBDropdownItem>
                     <MDBDropdownItem link>Another action</MDBDropdownItem>
                     <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                  </MDBDropdownMenu>
+                  </MDBDropdownMenu> */}
                 </MDBDropdown>
               </MDBNavbarItem>
               <MDBNavbarItem></MDBNavbarItem>
             </MDBNavbarNav>
             <Button
-              danger
+            id="logout"
+            style={{backgroundColor:"#85b4ee",    textTransform: "uppercase",fontFamily:"Century Gothic, Lato, sans-serif",fontSize:"20px"}}
+              danger 
               type="primary"
               shape="round"
               size={"large"}
+              className="btn btn-primary"
               onClick={handleButtonClick2}
             >
               {" "}
