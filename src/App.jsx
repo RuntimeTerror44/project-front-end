@@ -17,6 +17,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import PostTest from "./test test/PostTest";
 import Facebook from "./test test/Facebook";
 import AboutUs from "./components/AboutUs/AboutUs";
+import ProfileTemp from "./components/Profile/ProfileTemp";
+import Landing from "./components/temp/landing";
 
 export default function App() {
   /*----------------------------saving authintication status in local storage -------------------*/
@@ -37,13 +39,14 @@ export default function App() {
       <>
         {!isAuthenticated ? (
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
+            <Route path="/landing" element={<LandingPage />} />
           </Routes>
         ) : (
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/FormPersonalData" element={<FormPersonalData />} />
             <Route path="/LoginButton" element={<LoginButton />} />
             <Route path="/LogoutButton" element={<LogoutButton />} />
@@ -52,18 +55,22 @@ export default function App() {
             <Route path="/comment" element={<Comment />} />
             <Route path="/home" element={<Home />} />
             <Route path="/jobs" element={<Job />} />
-           
 
-            <Route path="/Profilepage" element={<Profilepage />} />
-           
             <Route path="/Form" element={<Form />} />
             <Route path="/posttest" element={<PostTest />} />
             <Route path="/facebook" element={<Facebook />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/job" element={<Job />} />
+            <Route path="/Profilepage" element={<Profilepage />} />
+            <Route path="/portfolio" element={<Form />} />
+            <Route path="/posttest" element={<PostTest />} />
+            <Route path="/facebook" element={<Facebook />} />
             <Route path="/about" element={<AboutUs />} />
-
+            <Route path="/temp" element={<ProfileTemp />} />
           </Routes>
         )}
       </>
     );
   }
 }
+Landing;

@@ -27,7 +27,6 @@
     --sticky-top-right: -18rem;
 
 }
-
 *:not(.abtus), *::before:not(.abtus), *::after:not(.abtus) {
     margin: 0;
     padding: 0;
@@ -36,13 +35,14 @@
     text-decoration: none;
     list-style: none;
     border: none;
-}
+} */
 
 body:not(.abtus) {
     font-family: 'Poppins', sans-serif;
     color: var(--color-dark);
     background: var(--color-light);
     overflow-x: hidden;
+    background-color: red;
 }
 
 /* =============== General Style ============== */
@@ -51,16 +51,17 @@ body:not(.abtus) {
     margin: 0 auto;
 }
 
-.profile-photo {
-    width: 2.7rem;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
+/* .profile-photo {
+    width: 2.9rem;
+    border-radius: 60%;
     overflow: hidden;
-}
+} */
 
 img {
     display: block;
-    width: 100%;
+   
+    border-radius: 100%;
+    margin:5px;
 }
 
 .btn {
@@ -78,7 +79,8 @@ img {
 }
 
 .btn-primary {
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
+    background-color: #85b4ee;
     color: var(--color-white);
 }
 
@@ -88,6 +90,7 @@ img {
 
 .text-muted {
     color: var(--color-grey);
+    margin:1px;
 }
 
 /* =============== Navbar ============== */
@@ -98,6 +101,7 @@ nav {
     position: fixed;
     top: 0;
     z-index: 10;
+    background-color: #9cc8ef;
 }
 
 nav .container {
@@ -120,6 +124,16 @@ nav .container {
     font-size: 0.9rem;
     color: var(--color-dark);
 }
+.search-bar input:focus{
+
+
+outline: none;
+    border-radius: 5px;
+    border-width: 0px;
+
+
+
+}
 
 nav .search-bar input[type="search"]::placeholder {
     color: var(--color-grey);
@@ -135,6 +149,7 @@ nav .create {
 main {
     position: relative;
     top: 5.4rem;
+    background-color: #F1F6F5;
 }
 
 main .container {
@@ -146,6 +161,7 @@ main .container {
 
 /* =============== Left ============== */
 main .container .left {
+    margin-top:31px;
     height: max-content;
     position: sticky;
     top: var(--sticky-top-left);
@@ -178,7 +194,9 @@ main .container .left .profile {
 }
 
 .left .sidebar .menu-item:hover {
-    background: var(--color-light);
+    /* background: var(--color-light);
+*/
+background-color: #D6E4F0;
 }
 
 .left .sidebar i {
@@ -206,12 +224,15 @@ main .container .left .profile {
 }
 
 .left .sidebar .active {
-    background: var(--color-light);
+    /* background: var(--color-light); */
+    background-color: #ebeff3;
 }
 
 .left .sidebar .active i, 
 .left .sidebar .active h3 {
-    color: var(--color-primary);
+    /* color: var(--color-primary);
+     */
+color:   #516c8d;
 }
 
 .left .sidebar .active::before {
@@ -220,7 +241,8 @@ main .container .left .profile {
     width: 0.5rem;
     height: 100%;
     position: absolute;
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
+   background-color: #516c8d
 }
 
 .left .sidebar .menu-item:first-child.active {
@@ -354,7 +376,7 @@ main .container .left .profile {
 /* =============== Create Post ============== */
 .middle .create-post {
     width: 100%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: space-between;
     margin-top: 1rem;
@@ -369,6 +391,7 @@ main .container .left .profile {
     padding-left: 1rem;
     background: transparent;
     color: var(--color-dark);
+    outline: none;
     margin-right: 1rem;
 }
 
@@ -377,9 +400,10 @@ main .container .left .profile {
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
-    margin: 1rem 0;
+    margin: 2.5rem 0;
     font-size: 0.85rem;
     line-height: 1.5;
+    
 }
 
 .middle .feed .head {
@@ -441,6 +465,7 @@ main .container .right {
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
+    margin-top:45px;
 }
 
 .right .messages .heading {
@@ -740,6 +765,7 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
 @media screen and (max-width: 992px) {
     nav .search-bar {
         display: none;
+        
     }
 
     main .container {
@@ -780,3 +806,76 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
         width: 80vw; 
     }
 }
+#mm{
+
+
+    color:black;
+    background-color: white;
+  box-shadow: 0 0px 0px -4px #3b71ca;
+  font-size:   15px;
+    
+}
+#commentstyle{
+
+
+
+  
+
+
+        color:black;
+        background-color: #ebeff3;
+      box-shadow: 0 0px 0px -4px #3b71ca;
+      font-size:   15px;
+    
+}
+#poststyle{
+
+
+
+    color:black;
+    background-color: white;
+  box-shadow: 0 0px 0px -4px #3b71ca;
+  font-size:   15px;
+
+
+}
+#paragraphstyle{
+
+
+    font-family: "Lucida Console", "Courier New", monospace;
+
+    
+}
+
+/* #create-post:focus{
+    width: 300px;
+    transition: 1s;
+    margin: 0 5px;
+} */
+
+/* .grid{
+
+display:grid;
+
+
+
+
+
+} */
+.info-container{
+
+
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'menu main main main right right'
+      'menu footer footer footer footer footer';
+    gap: 10px;
+    
+    padding: 10px;
+
+
+
+}
+
+

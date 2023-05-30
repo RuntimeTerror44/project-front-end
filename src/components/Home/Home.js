@@ -3,6 +3,7 @@ import HomePost from "./HomePost";
 import axios from "axios";
 import "./HomePost.css";
 import Nav from "./Nav";
+import ProfileTemp from "../Profile/ProfileTemp";
 // import Feedback from "react-bootstrap/esm/Feedback";
 function Home() {
   /////////////////// get the posts from data base//////////////////////
@@ -35,7 +36,7 @@ function Home() {
 
   return (
     <>
-    <Nav/>
+  
       {/* {commentsDataArray ? 
       <HomePost postDataArray={postDataArray}  comments={commentsDataArray}/>
     
@@ -44,6 +45,10 @@ function Home() {
         postDataArray={postDataArray}
         takeDataFromChild={takeDataFromChild}
       />
+      {/* <ProfileTemp
+        postDataArray={postDataArray}
+        takeDataFromChild={takeDataFromChild}
+      /> */}
    {/* <PostTest  postDataArray={postDataArray}
         takeDataFromChild={takeDataFromChild}/>  */}
   

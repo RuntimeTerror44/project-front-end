@@ -1,11 +1,13 @@
 import { useState,useEffect } from 'react'
 import axios from 'axios';
+import Button from "react-bootstrap";
 
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn ,MDBTypography,MDBIcon,MDBBreadcrumb,MDBBreadcrumbItem,MDBListGroup,MDBListGroupItem ,MDBProgress ,MDBProgressBar    } from 'mdb-react-ui-kit';
 import { Avatar, Space } from 'antd';
 import {
  
 } from 'mdb-react-ui-kit';
+import '../../test test/facebookcss.css'
 
 function UsersInfo(props){
   const storedUserData = localStorage.getItem("userId");
@@ -17,54 +19,53 @@ function UsersInfo(props){
 
 {/* {console.log(props.userInfo[1].firstname)} */}
 
-<section style={{ backgroundColor: 'white' }}>
-      <MDBContainer className="py-5">
+
+      {/* <MDBContainer className="py-5">
         <MDBRow>
-          <MDBCol>
-            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem>
-                <a href='#'>Home</a>
-              </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem>
-                <a href="#">User</a>
-              </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
-            </MDBBreadcrumb>
-          </MDBCol>
+   
         </MDBRow>
 
         <MDBRow>
-          <MDBCol lg="4">
+        
             <MDBCard className="mb-4">
               <MDBCardBody className="text-center">
-                <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                <MDBCardImage 
+                  src={userData[0].profilepicture}
                   alt="avatar"
-                  className="rounded-circle"
-                  style={{ width: '150px' }}
+                  // className="rounded-circle"
+                  
                   fluid />
                 <p className="text-muted mb-1">{userData[0].firstname}</p>
                 <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
                 <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn>Follow</MDBBtn>
-                  <MDBBtn outline className="ms-1">Message</MDBBtn>
+                  
+               
                 </div>
               </MDBCardBody>
-            </MDBCard>
+            </MDBCard> 
 
             <MDBCard className="mb-4 mb-lg-0">
+         
              
-            </MDBCard>
-          </MDBCol>
+            </MDBCard> 
+          
+          
+          
           <MDBCol lg="8">
-            <MDBCard className="mb-4">
+            <MDBCard className="mb-4" >
               <MDBCardBody>
+              <MDBCardImage style={{borderRadius:'200px'}}
+                  src={userData[0].profilepicture}
+                  alt="avatar"
+                  className="rounded-circle"
+                  
+                  fluid />
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{userData[0].firstname} </MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].firstname+" "+userData[0].lastname} </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -88,10 +89,10 @@ function UsersInfo(props){
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
+                    <MDBCardText>Career</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{userData[0].phonenumber}</MDBCardText>
+                    <MDBCardText className="text-muted">{userData[0].career}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -119,8 +120,71 @@ function UsersInfo(props){
             </MDBRow>
           </MDBCol>
         </MDBRow>
+      </MDBContainer> */}
+       <div className="vh-100" style={{ backgroundColor: '',marginBottom:'-350px' }}>
+      <MDBContainer >
+        <MDBRow className="justify-content-center">
+          <MDBCol md="9" lg="7" xl="5" className="mt-5" style={{width:'800px'}}>
+            <MDBCard style={{ borderRadius: '15px' ,marginTop:'100px' }} >
+              <MDBCardBody className="p-8"  >
+                <div className="d-flex text-black">
+                  <div className="flex-shrink-0">
+                    <MDBCardImage
+                      style={{ width: '180px', borderRadius: '100px' }}
+                      src={userData[0].profilepicture}
+                      alt='Generic placeholder image'
+                      fluid />
+                  </div>
+                   <div className="info-container" >
+                    {/* <MDBCardTitle>{userData[0].firstname}</MDBCardTitle> */}
+                 
+
+                    <div className=""
+                      style={{ backgroundColor: '#' }}>
+                      <div>
+                        <p className="small text-muted ">FullName</p>
+                        <p className="mb-3">{userData[0].firstname+" "+userData[0].lastname}</p>
+                      </div>
+                      <div className="">
+                        <p className="small text-muted">Phone.No</p>
+                        <p className="mb-3">{userData[0].phonenumber}</p>
+                      </div>
+                      <div>
+                        <p className="small text-muted ">City</p>
+                        <p className="mb-3">{userData[0].city}</p>
+                      </div>
+                    </div>
+                    <div className=""
+                     >
+                      <div>
+                        <p className="small text-muted ">DateOfBitrh</p>
+                        <p className="mb-3">{userData[0].dateofbirth}</p>
+                      </div>
+                      <div className="px-3">
+                        <p className="small text-muted ">Country</p>
+                        <p className="mb-3">{userData[0].country}</p>
+                      </div>
+                      <div>
+                        <p className="small text-muted " style={{padding:'0px 16px'}}>Email</p>
+                        <p className="mb">{userData[0].email}</p>
+                      </div>
+                      <a href="FormPersonalData">
+                      <button  variant="primary" type="submit" style={{marginLeft:'5px',marginTop:'10px',background:'#84a0ce',color:'white',border:'1px' ,marginLeft:'200px'}} >
+            <i className="fa fa-paper-plane" />
+          </button>
+          </a>  </div>
+                    <div className="d-flex pt-1">
+             
+                    </div>
+                  </div>
+                </div> 
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
       </MDBContainer>
-    </section>
+    </div>
+
 
 
 

@@ -25,10 +25,10 @@ return(
     </Form>
   </Modal.Body>
   <Modal.Footer>
-    <Button variant="secondary" onClick={props.handleclose}>
+    <Button variant="secondary" onClick={props.handleclose} style={{display:'inline-flex',marginLeft:'30px',marginTop:'18px'}}>
       Close
     </Button>
-    <Button variant="primary" onClick={props.handleclose}>
+    <Button variant="primary" onClick={props.handleclose} >
       Add Comment
     </Button>
   </Modal.Footer>

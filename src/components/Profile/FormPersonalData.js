@@ -14,12 +14,12 @@ import {
 } from "@chakra-ui/react";
 import { json } from "react-router-dom";
 function FormPersonalData(props) {
-  const storedData = localStorage.getItem('userId');
-  const storageData=JSON.parse(storedData)
-  console.log(storageData)
-  console.log(storageData[0].id)
-// Parse the retrieved data if necessary
-// Access specific properties or values from the retrieved data
+  const storedData = localStorage.getItem("userId");
+  const storageData = JSON.parse(storedData);
+  console.log(storageData);
+  console.log(storageData[0].id);
+  // Parse the retrieved data if necessary
+  // Access specific properties or values from the retrieved data
   const [date, setDate] = useState("");
   const dateInputRef = useRef(null);
   const handleChange = (e) => {
@@ -27,27 +27,26 @@ function FormPersonalData(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const birthDate = date;
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}users/${storageData[0].id}`;
     const obj = {
       firstname: e.target.first_name.value,
       lastname: e.target.last_name.value,
-      career : e.target.career.value,
-      dateofbirth : date,
+      career: e.target.career.value,
+      dateofbirth: date,
       country: e.target.countrey.value,
       city: e.target.city.value,
       phonenumber: e.target.phone_number.value,
       address: e.target.address.value,
       gender: e.target.formHorizontalRadios.value,
       profilepicture: e.target.profile_picture.value,
-      // imgForcover: e.target.cover_picture.value
     };
     const result = await axios.put(serverUrl, obj);
     // tackDataFromChaildAfterUbdate(result.data);
     console.log(result.data);
-    const newData=result.data
-    localStorage.setItem('userId',JSON.stringify(newData))
-    };
+    const newData = result.data;
+    localStorage.setItem("userId", JSON.stringify(newData));
+    window.location.href = "/home";
+  };
   // const updateData = () => {
   //   const newData = 'New Data';
   //   localStorage.setItem('userId', newData);
@@ -144,17 +143,17 @@ function FormPersonalData(props) {
                   />
                 </Col>
               </Form.Group>
-              </fieldset>
+            </fieldset>
 
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>profile picture</Form.Label>
-                <Form.Control
-                  name="profile_picture"
-                  type="text"
-                  defaultValue=""
-                />
-              </Form.Group>
-              {/* <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>profile picture</Form.Label>
+              <Form.Control
+                name="profile_picture"
+                type="text"
+                defaultValue=""
+              />
+            </Form.Group>
+            {/* <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>profile picture</Form.Label>
                 <Form.Control
                   name="cover_picture"
@@ -162,7 +161,7 @@ function FormPersonalData(props) {
                   defaultValue=""
                 />
               </Form.Group> */}
-            <Button type="submit">
+            <Button type="submit" style={{marginTop:"10px"}}>
               {/*onClick={props.handleClose}*/}
               Submit
             </Button>

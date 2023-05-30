@@ -4,23 +4,30 @@ import {
   Container,
   Form,
   FormControl,
-  Button,
   Row,
   Col,
   Card,
   Dropdown,
   Text,
 } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+
+import './cc7.png'
+
+
+
+
 // import "./PostTest.css";
 import axios from "axios";
 import { post } from "jquery";
-import { useRef } from "react";
+
 import UpdatePost from "../Home/UpdatePost";
 import Comment from "../Home/Comment";
 import "../../test test/facebookcss.css";
-
-function Profileposts(props) {
+import LogoutButton from "../Landingpage/login/Logoutbutton";
+import React, { useRef, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Space } from "antd";
+function ProfileTemp(props) {
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
   //////////////////////////////////////////////////
@@ -36,16 +43,7 @@ function Profileposts(props) {
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
   ///////////////////////////////////////////
-  // const [postDataArray, setPostDataArray] = useState([]);
-  // console.log("helllllo");
-  // const getPostFromDb = async () => {
-  //   const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${userData[0].id}`;
-  //   const result = await axios.get(serverUrl);
-  //   setPostDataArray(result.data);
-  // };
-  // useEffect(() => {
-  //   getPostFromDb();
-  // }, []);
+
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/${userData[0].id}`;
     const result = await axios.get(serverUrl);
@@ -81,6 +79,14 @@ function Profileposts(props) {
       }
     }
   };
+  //========================
+  const logoutButtonRef = useRef(null); //loginref
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
+  };
   return (
     <>
       {/* {console.log(userData[0].id)} */}
@@ -100,18 +106,27 @@ function Profileposts(props) {
       <link rel="stylesheet" href="./style.css" />
       <nav>
         <div className="container">
-          <h2 className="logo">CareerConnect</h2>
+        {/* <img src="./cc7.png" className="logo"/> */}
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
+              style={{ borderRadius: "100px", borderWidth: "0px" }}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
           </div>
           <div className="create">
-            <label className="btn btn-primary" htmlFor="create-post">
-              SignOut
-            </label>
+            <LogoutButton ref={logoutButtonRef} />
+            <Button
+              danger
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick2}
+            >
+              {" "}
+              sign out
+            </Button>
             {/* <div className="profile-photo">
               <img src="./images/profile-1.jpg" alt="" />
             </div> */}
@@ -134,7 +149,7 @@ function Profileposts(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item ">
+              <a href="home" className="menu-item ">
                 <span>
                   <i className="uil uil-home" />
                 </span>
@@ -149,13 +164,25 @@ function Profileposts(props) {
                 <div className="notifications-popup"></div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item" id="messages-notifications">
+              <a className="menu-item " href="job" id="messages-notifications">
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
-              <a className="menu-item">
+              {/* ++++++++++++++++ */}
+              <a
+                className="menu-item "
+                href="portfolio"
+                id="messages-notifications"
+              >
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>create resume</h3>
+              </a>
+              {/* ++++++++++++++++ */}
+              <a className="menu-item" href="about">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -174,6 +201,7 @@ function Profileposts(props) {
             {posts.map((post) => {
               return (
                 <>
+                  {/* {console.log(post.firstname)} */}
                   <div className="feeds">
                     {/* <HomePost/> */}
                     {/*--------------- FEED 1 ------------------*/}
@@ -181,10 +209,15 @@ function Profileposts(props) {
                       <div className="head">
                         <div className="user">
                           <div className="profile-photo">
-                            <img src={post.profilepicture} />
+                            <img
+                              src={post.profilepicture}
+                              style={{ width: "60px", height: "60px" }}
+                            />
                           </div>
                           <div className="info">
-                            <h3>{post.firstname}</h3>
+                            <h3 style={{ marginBottom: "1px" }}>
+                              {post.firstname}
+                            </h3>
                             <small>{post.career}</small>
                           </div>
                         </div>
@@ -192,9 +225,10 @@ function Profileposts(props) {
                         <Form>
                           <Dropdown className="edit">
                             <Dropdown.Toggle
+                              id="poststyle"
                               variant="primary"
                               // className="dropdown-toggle-vertical"
-                              className="uil uil-ellipsis-h"
+                              // className="uil uil-ellipsis-h"
                             ></Dropdown.Toggle>
                             <Dropdown.Menu>
                               <Dropdown.Item
@@ -226,7 +260,10 @@ function Profileposts(props) {
                       <div className="liked-by"></div>
                       <div className="caption">
                         <p>
-                          <p> {post.paragraph_content}</p>
+                          <p style={{ wordBreak: "break-word" }}>
+                            {" "}
+                            {post.paragraph_content}
+                          </p>
                         </p>
                       </div>
                       <hr></hr>
@@ -238,9 +275,7 @@ function Profileposts(props) {
                         </div>
                       </div>
                     </div>
-                    ;
                   </div>
-                  ;
                 </>
               );
             })}
@@ -259,6 +294,7 @@ function Profileposts(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
+                  style={{ borderRadius: "100px", borderWidth: "0px" }}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
@@ -271,6 +307,7 @@ function Profileposts(props) {
           </div>
           {/*--------------- END OF RIGHT ------------------*/}
         </div>
+        <img src="./cc7.png" className="logo"/>
       </main>
       <UpdatePost
         showUpdateModal={showUpdateModal}
@@ -282,5 +319,4 @@ function Profileposts(props) {
     </>
   );
 }
-
-export default Profileposts;
+export default ProfileTemp;

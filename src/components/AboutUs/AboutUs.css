@@ -4,27 +4,26 @@
 /* Base Styles
 ********************************************************************* */
 .abtus-html {
-    font-size: 62.5%;
-    font-size: 1em;
-    line-height: 1.6;
-    font-weight: 400;
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    color: #222;
+  font-size: 62.5%;
+  font-size: 1em;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  color: #222;
 }
 
 .abtus-heading {
-    font-weight: 300;
-    text-transform: uppercase;
-    line-height: 0.85;
-    margin: 0;
-    padding: 0;
-    color: #FFFFFF;
-    letter-spacing: -.1rem;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 0.85;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  letter-spacing: -0.1rem;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 /* Grid
@@ -494,11 +493,14 @@ a:hover {
 
 #about {
   padding: 100px 0 50px 0;
+
+  background-color: white;
 }
 /* Team Section
 ********************************************************************* */
 #team {
   padding: 50px 0 100px 0;
+  background-color: white;
 }
 #team .icon {
   font-size: 26px;
