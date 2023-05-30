@@ -4,31 +4,32 @@ import axios from "axios";
 import { Fade } from "react-awesome-reveal";
 import { Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
+
 import "./profile.css";
-import Test from "./Test";
+
 const Profile = () => {
+  //===========================================================================================
+
   const { user, isAuthenticated } = useAuth0();
-  const [email,setEmail]=useState(false);
+  const [email, setEmail] = useState(false);
   /*---------------------------checking if the user exists in the database --------------------------------------*/
   // const [emailExist, setemailExist] = useState(false);
   useEffect(() => {
-    
     if (isAuthenticated) {
       const storeUserData = async () => {
-
         // Check if the email already exists in your database
         const checkEmailExists = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}users`
         );
-        let emailExist=false;
+        let emailExist = false;
 
-        setEmail(emailExist)
+        setEmail(emailExist);
 
         for (let i = 0; i < checkEmailExists.data.length; i++) {
           if (user.email == checkEmailExists.data[i].email) {
             // setemailExist(true);
-            emailExist=true
-            setEmail(emailExist)
+            emailExist = true;
+            setEmail(emailExist);
             console.log(checkEmailExists.data[i].id);
             const storageData = [checkEmailExists.data[i]];
             console.log(checkEmailExists.data[i]);
@@ -63,9 +64,7 @@ const Profile = () => {
       };
       // console.log("User data stored successfully:", response.data);
       storeUserData();
-     
     }
-    
   }, [isAuthenticated, user]);
   if (!isAuthenticated || !user) {
     // Render loading or authentication components
@@ -77,7 +76,7 @@ const Profile = () => {
   return (
     <>
       {console.log(user)}
-      {email==false ? (
+      {email == false ? (
         <>
           <div
             className="container"
