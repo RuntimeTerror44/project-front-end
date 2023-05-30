@@ -28,7 +28,6 @@ function Comment(props) {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
-      console.log(result.data);
     }
   };
 

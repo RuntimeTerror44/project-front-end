@@ -103,7 +103,7 @@ function JobPost(props) {
     setJobPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText("");
   };
-  console.log(JobPosts);
+  // console.log(JobPosts);
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
@@ -129,6 +129,34 @@ function JobPost(props) {
     sendReq();
     // console.log(postDataArray)
   }, [JobPost]);
+
+
+  // const [filterJobField, setFilterJobField] = useState("");
+  // const [filterJobCity, setFilterJobCity] = useState("");
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  const [searchJobs, setSearchJobs] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e.target.job_field.value)
+    console.log(e.target.job_city.value)
+
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobbyfieldcity`;
+    const obj = {
+      job_field: e.target.job_field.value,
+      job_city: e.target.job_city.value
+    };
+
+    const result = await axios.post(serverUrl,obj);
+    setJobPosts(result.data);
+
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // const handleAddComment = (postId, commentText) => {
   //   const newComment = {
@@ -160,8 +188,8 @@ function JobPost(props) {
     }
   };
 
-  console.log(postData);
-  console.log(JobPosts);
+  // console.log(postData);
+  // console.log(JobPosts);
   return (
     <>
       <meta charSet="UTF-8" />
@@ -311,9 +339,7 @@ function JobPost(props) {
 
             {/*--------------- END OF STORIES ------------------*/}
             <Form onSubmit={handlePostSubmit} action="" className="create-post">
-              {/* <div className="profile-photo">
-              <img src="./images/profile-1.jpg" />
-            </div> */}
+              
             <Form.Group>
               <input
                 type="text"
@@ -354,6 +380,48 @@ function JobPost(props) {
               />
             </Form>
             {/*--------------- FEEDS ------------------*/}
+{/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+<div className="right">
+            {/*----- MESSAGES -----*/}
+            <div className="messages">
+              <div className="heading">
+                {/* <i className="uil uil-edit" /> */}
+                <h4>Find Your Job</h4>
+              </div>
+              <Form onSubmit={handleSubmit} >
+              <Form.Group style={{display:"flex", justifyContent: "space-around"}}>
+
+              <Form.Group>
+              <Form.Label>Job Field</Form.Label>
+              <Form.Control
+                name="job_field"
+                type="text"
+                defaultValue=""
+              />
+              </Form.Group>
+              <Form.Group>
+              <Form.Label>Job City</Form.Label>
+              <Form.Control
+                name="job_city"
+                type="text"
+                defaultValue=""
+                
+              />
+              
+              </Form.Group>
+              </Form.Group>
+
+               <Button type="submit" style={{margin:'30px', marginBottom:"5px"}}  >  
+                Search
+              </Button>
+              
+
+          </Form>
+            </div>
+          </div>
+
+
+{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
             {JobPosts.map((post) => {
               return (
                 <>

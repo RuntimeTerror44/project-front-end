@@ -36,6 +36,7 @@ function HomePost(props) {
   const dateInputRef = useRef(null);
   const handleChange = (e) => {
     setImage(e.target.value);
+    console.log(image);
   };
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
@@ -44,6 +45,7 @@ function HomePost(props) {
 
   const addPostODb = async () => {
     try {
+      console.log(image);
       // e.preventDefault()
       const obj = {
         user_id:userData[0].id,
@@ -282,6 +284,13 @@ function HomePost(props) {
                 onChange={handlePostChange}
               />
               <input
+              style={{borderRadius:'100px',borderWidth:"0px"}}
+                type="text"
+                placeholder="put your photo link "
+                id="create-post"
+                onChange={handleChange}
+              />
+              <input
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
@@ -341,7 +350,7 @@ function HomePost(props) {
                     {/* </span> */}
                   </div>
                   <div className="photo">
-                    <p>{post.photo_content}</p>
+                    {/* <p>{post.photo_content}</p> */}
                   </div>
                   <div className="action-buttons">
                     <div className="interaction-buttons"></div>
@@ -353,9 +362,13 @@ function HomePost(props) {
                   </div>
                   <div className="liked-by"></div>
                   <div className="caption">
-                    <p>
+                    {/* <p> */}
                       <p> {post.paragraph_content}</p>
-                    </p>
+                      {(post.photo_content !="" && post.photo_content !=null ) &&(
+                      <div className="post-photo-box" style={{marginLeft:"50px", justifyContent:"center", width:"200px", height:"200px"}}>
+                     <img style={{marginLeft:"120px",marginBottom:"5px",marginRight:"120px",marginTop:"5px", borderRadius:'0px', justifyContent:"center", width:"100%", height:"100%"}} src={post.photo_content} />
+                     </div>)}
+                    {/* </p> */}
                   </div>
                   <hr></hr>
                   <br></br>
