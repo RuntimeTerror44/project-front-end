@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 
 import './cc7.png'
-import React, { useEffect, useState } from "react";
+
 
 
 
