@@ -107,7 +107,7 @@ function AboutUs() {
       <section id="about">
         <div className="containerr">
           <div className="roww">
-            <h1 className="abtus-abtus">About</h1>
+            <h1 className="abtus-abtus">About us</h1>
             <div className="blockk" />
             <p>
           Welcome to our job connect platform! We are passionate about

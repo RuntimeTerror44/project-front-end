@@ -148,7 +148,8 @@ function HomePost(props) {
       <link rel="stylesheet" href="./style.css" />
       <nav>
         <div className="container">
-          <h2 className="logo">CareerConnect</h2>
+        <img style={{ width: "125px", hight: "70px", marginRight:"-50px", marginLeft:"-130px", marginTop:"-20px" ,marginBottom:"-20px" }} src="https://careerconnect.net.au/assets/img/logos/career-connect-01.png" alt="CareerConnect Logo" />
+
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
@@ -230,7 +231,7 @@ function HomePost(props) {
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
-                <h3>AbotuUs</h3>
+                <h3>About Us</h3>
               </a>
             </div>
             {/*--------------- END OF SIDEBAR ------------------*/}
@@ -243,35 +244,49 @@ function HomePost(props) {
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
-            <Form
-              onSubmit={handlePostSubmit}
-              action=""
-              style={{ display: "flex" }}
-              className="create-post"
-            >
-              {/* <div className="profile-photo">
-                <img src="./images/profile-1.jpg" />
-              </div> */}
-              <input
-                style={{ borderRadius: "100px", borderWidth: "0px" }}
-                type="text"
-                placeholder="Share your thoughts "
-                id="create-post"
-                onChange={handlePostChange}
-              />
-              <input
-              style={{borderRadius:'100px',borderWidth:"0px"}}
-                type="text"
-                placeholder="put your photo link "
-                id="create-post"
-                onChange={handleChange}
-              />
-              <input
-                type="submit"
-                defaultValue="Post"
-                className="btn btn-primary"
-              />
-            </Form>
+            <div className="right">
+              {/*----- MESSAGES -----*/}
+              <div className="messages">
+                <div>
+                  {/* <i className="uil uil-edit" /> */}
+                </div>
+                <Form onSubmit={handlePostSubmit}>
+                  <Form.Group style={{ justifyContent: "space-around" }}>
+                    <input
+                      style={{
+                        borderRadius: "100px",
+                        borderWidth: "0px",
+                        display: "flex",
+                        width:"500px"
+                      }}
+                      type="text"
+                      placeholder="  Share your thoughts "
+                      id="create-post"
+                      onChange={handlePostChange}
+                    />
+                    <input
+                      style={{
+                        borderRadius: "100px",
+                        borderWidth: "0px",
+                        display: "flex",
+                        width:"500px",
+                        marginTop:"15px"
+                      }}
+                      type="text"
+                      placeholder="  put your photo link "
+                      id="create-post"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  <input
+                    style={{ justifyContent: "end",marginTop:"15px" }}
+                    type="submit"
+                    defaultValue="Post"
+                    className="btn btn-primary"
+                  />
+                </Form>
+              </div>
+            </div>
             {/*--------------- FEEDS ------------------*/}
             {posts.map((post) => {
               return (

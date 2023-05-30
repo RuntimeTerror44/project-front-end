@@ -169,8 +169,8 @@ function UsersInfo(props){
                         <p className="mb">{userData[0].email}</p>
                       </div>
                       <a href="FormPersonalData">
-                      <button  variant="primary" type="submit" style={{marginLeft:'5px',marginTop:'10px',background:'#84a0ce',color:'white',border:'1px' ,marginLeft:'200px'}} >
-            <i className="fa fa-paper-plane" />
+                      <button  variant="primary" type="submit" style={{marginLeft:'5px',marginTop:'10px',background:'#84a0ce',color:'white',border:'1px' ,width:"40px",borderRadius:"5px",marginLeft:'200px'}} >
+             <i className="uil uil-edit"></i>
           </button>
           </a>  </div>
                     <div className="d-flex pt-1">
