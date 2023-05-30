@@ -1,10 +1,14 @@
+import LogoutButton from "../Landingpage/login/Logoutbutton";
+import React, { useRef, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Space } from "antd";
+
 import {
   Navbar,
   Nav,
   Container,
   Form,
   FormControl,
-  Button,
   Row,
   Col,
   Card,
@@ -13,11 +17,9 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
 import axios from "axios";
 import { post } from "jquery";
-import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
 // import '../../test test/facebookcss.css'
@@ -36,14 +38,13 @@ function HomePost(props) {
   const dateInputRef = useRef(null);
   const handleChange = (e) => {
     setImage(e.target.value);
-    console.log(image);
   };
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
 
-  ///////////////////////////////////////////
+   ///////////////////////////////////////////
 
-  const addPostODb = async () => {
+   const addPostODb = async () => {
     try {
       console.log(image);
       // e.preventDefault()
@@ -112,15 +113,21 @@ function HomePost(props) {
   }, [posts]);
 
   const handleDeletePost = async (post) => {
-      try {
-        const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
-        await axios.delete(serverUrl);
-        sendReq();
-      } catch (error) {
-        console.log(`error deleting post ${error}`);
-      }
-    
-    
+    try {
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
+      await axios.delete(serverUrl);
+      sendReq();
+    } catch (error) {
+      console.log(`error deleting post ${error}`);
+    }
+  };
+  //===============================
+  const logoutButtonRef = useRef(null); //loginref
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
   };
 
   return (
@@ -145,15 +152,23 @@ function HomePost(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
-            style={{borderRadius:'100px',borderWidth:"0px"}}
+              style={{ borderRadius: "100px", borderWidth: "0px" }}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
           </div>
           <div className="create">
-            <label className="btn btn-primary" htmlFor="create-post">
-              SignOut
-            </label>
+            <LogoutButton ref={logoutButtonRef} />
+            <Button
+              danger
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick2}
+            >
+              {" "}
+              sign out
+            </Button>
             {/* <div className="profile-photo">
               <img src="./images/profile-1.jpg" alt="" />
             </div> */}
@@ -176,7 +191,7 @@ function HomePost(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active" >
+              <a className="menu-item active">
                 <span>
                   <i className="uil uil-home" />
                 </span>
@@ -189,9 +204,7 @@ function HomePost(props) {
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
-                <div className="notifications-popup">
-
-                </div>
+                <div className="notifications-popup"></div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
               <a className="menu-item" href="job" id="messages-notifications">
@@ -200,8 +213,12 @@ function HomePost(props) {
                 </span>
                 <h3>Jobs</h3>
               </a>
-                {/* ++++++++++++++++ */}
-                <a className="menu-item " href="portfolio" id="messages-notifications">
+              {/* ++++++++++++++++ */}
+              <a
+                className="menu-item "
+                href="portfolio"
+                id="messages-notifications"
+              >
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
@@ -209,7 +226,7 @@ function HomePost(props) {
               </a>
               {/* ++++++++++++++++ */}
 
-              <a href="aboutus" className="menu-item">
+              <a href="about" className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -226,12 +243,17 @@ function HomePost(props) {
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
-            <Form onSubmit={handlePostSubmit} action="" style={{display:"flex"}} className="create-post">
+            <Form
+              onSubmit={handlePostSubmit}
+              action=""
+              style={{ display: "flex" }}
+              className="create-post"
+            >
               {/* <div className="profile-photo">
                 <img src="./images/profile-1.jpg" />
               </div> */}
               <input
-              style={{borderRadius:'100px',borderWidth:"0px"}}
+                style={{ borderRadius: "100px", borderWidth: "0px" }}
                 type="text"
                 placeholder="Share your thoughts "
                 id="create-post"
@@ -252,69 +274,66 @@ function HomePost(props) {
             </Form>
             {/*--------------- FEEDS ------------------*/}
             {posts.map((post) => {
-                  return (
+              return (
+                <>
+                  <div className="feeds">
+                    {/* <HomePost/> */}
+                    {/*--------------- FEED 1 ------------------*/}
 
-                    <>
-                    
-                 
-            <div className="feeds">
-            {/* <HomePost/> */}
-              {/*--------------- FEED 1 ------------------*/}
-             
-                <div className="feed">
-                  <div className="head">
-                    <div className="user">
-                      <div className="profile-photo">
-                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}} />
-                      </div>
-                      <div className="info">
-                        <h3>{post.firstname} {post.lastname}</h3>
-                        <small>{post.career}</small>
-                      </div>
-                    </div>
-                    {/* <span > */}
+                    <div className="feed">
+                      <div className="head">
+                        <div className="user">
+                          <div className="profile-photo">
+                            <img
+                              src={post.profilepicture}
+                              style={{ width: "60px", height: "60px" }}
+                            />
+                          </div>
+                          <div className="info">
+                            <h3>
+                              {post.firstname} {post.lastname}
+                            </h3>
+                            <small>{post.career}</small>
+                          </div>
+                        </div>
+                        {/* <span > */}
 
-                    {(post.user_id == userData[0].id)&&(
-                      <Dropdown className="edit"
-                               
-                                >
-                                  <Dropdown.Toggle id="mm"
-                                    variant="primary"
-                                    className="dropdown-toggle-vertical"
-                                    // className="uil uil-ellipsis-h"
-                                  >
-                                  
-                                  </Dropdown.Toggle>
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item
-                                      onClick={() => handleEditPost(post)}
-                                    >
-                                      Edit
-                                    </Dropdown.Item>
-                                    <Dropdown.Item
-                                      onClick={() =>
-                                        handleDeletePost(post)
-                                      }
-                                    >
-                                      Delete
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>)}
-                    {/* </span> */}
-                  </div>
-                  <div className="photo">
-                    {/* <p>{post.photo_content}</p> */}
-                  </div>
-                  <div className="action-buttons">
-                    <div className="interaction-buttons"></div>
-                    <div className="bookmark">
-                      <span>
-                        <i className="uil uil-bookmark-full" />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="liked-by"></div>
-                  <div className="caption">
+                        {post.user_id == userData[0].id && (
+                          <Dropdown className="edit">
+                            <Dropdown.Toggle
+                              id="mm"
+                              variant="primary"
+                              className="dropdown-toggle-vertical"
+                              // className="uil uil-ellipsis-h"
+                            ></Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item
+                                onClick={() => handleEditPost(post)}
+                              >
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                onClick={() => handleDeletePost(post)}
+                              >
+                                Delete
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        )}
+                        {/* </span> */}
+                      </div>
+                      <div className="photo">
+                      </div>
+                      <div className="action-buttons">
+                        <div className="interaction-buttons"></div>
+                        <div className="bookmark">
+                          <span>
+                            <i className="uil uil-bookmark-full" />
+                          </span>
+                        </div>
+                      </div>
+                      <div className="liked-by"></div>
+                      <div className="caption">
                   <p>
                       <p style={{wordBreak:'break-word',fontSize:'18px', display:"flex"}}id="paragraphstyle"> {post.paragraph_content}</p>
                     </p>
@@ -325,13 +344,16 @@ function HomePost(props) {
                      </div>)}
                     
                   </div>
-                  <hr></hr>
-                  <br></br>
-                  <div className="info">
-                    <div> <Comment postID={post.post_id} /></div>
+                      <hr></hr>
+                      <br></br>
+                      <div className="info">
+                        <div>
+                          {" "}
+                          <Comment postID={post.post_id} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                </div>
                 </>
               );
             })}
@@ -405,7 +427,7 @@ function HomePost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
-                style={{borderRadius:'100px',borderWidth:"0px"}}
+                  style={{ borderRadius: "100px", borderWidth: "0px" }}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
@@ -521,355 +543,3 @@ function HomePost(props) {
 }
 
 export default HomePost;
-
-// import {
-//   Navbar,
-//   Nav,
-//   Container,
-//   Form,
-//   FormControl,
-//   Button,
-//   Row,
-//   Col,
-//   Card,
-//   Dropdown,
-// } from "react-bootstrap";
-
-// import React, { useEffect, useState } from "react";
-// import "./HomePost.css";
-// import axios from "axios";
-// import { post } from "jquery";
-// import { useRef } from "react";
-// import UpdatePost from "./UpdatePost";
-// import Comment from "./Comment";
-
-// function HomePost(props) {
-//   const storedUserData = localStorage.getItem("userId");
-//   const userData =JSON.parse(storedUserData)
-//   // console.log(props.comments);
-//   const [postText, setPostText] = useState("");
-//   const [posts, setPosts] = useState([]);
-
-//   const [image, setImage] = useState("");
-//   const [comment, setComment] = useState("");
-//   const [postData, setPostData] = useState({});
-//   const [showUpdateModal, setShowUpdateModal] = useState(false);
-//   const dateInputRef = useRef(null);
-//   const handleChange = (e) => {
-//     setImage(e.target.value);
-//   };
-//   const currentDate = new Date();
-//   const readableDate = currentDate.toDateString();
-
-//   ///////////////////////////////////////////
-
-//   const addPostODb = async () => {
-//     try {
-//       // e.preventDefault()
-//       const obj = {
-//         user_id:userData[0].id,
-//         paragraph_content: postText,
-//         post_date: readableDate,
-
-//         photo_content: image,
-//       };
-//       const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
-//       const result = await axios.post(serverUrl, obj);
-
-//       props.takeDataFromChild(result.data);
-//       console.log(result.data)
-
-//       setPostData(result.data[0]);
-//       setPosts(result.data);
-//     } catch (error) {
-//       console.log(`error add  post ${error}`);
-//     }
-//   };
-//   ///////////////////////////////////////////
-
-//   const handlePostChange = (event) => {
-//     setPostText(event.target.value);
-//   };
-
-//   const handlePostSubmit = (event) => {
-//     event.preventDefault();
-//     if (postText.trim() === "") {
-//       return;
-//     }
-//     const newPost = {
-//       text: postText,
-//       comments: [],
-//     };
-//     addPostODb();
-//     setPosts((prevPosts) => [newPost, ...prevPosts]);
-//     setPostText(""); // Clear the post text input field
-//   };
-
-//   const handleEditPost = (post) => {
-//     setShowUpdateModal(true);
-//     setPostData(post);
-//     props.takeDataFromChild(post.data);
-//   };
-
-//   const handleClosePost = () => {
-//     setShowUpdateModal(false);
-//   };
-
-//   const takeDataFromChild = (arr) => {
-//     setPosts(arr);
-//   };
-
-//   const sendReq = async () => {
-//     const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts`;
-//     const result = await axios.get(serverUrl);
-//     setPosts(result.data);
-//   };
-//   useEffect(() => {
-//     sendReq();
-//   }, [posts]);
-
-//   const handleDeletePost = async (post_id) => {
-//     try {
-//       const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post_id}`;
-//       await axios.delete(serverUrl);
-//       sendReq();
-//     } catch (error) {
-//       console.log(`error deleting post ${error}`);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <Container>
-//         <Row>
-//           <Col
-//           >
-//             <h1>Share your thoughts here</h1>
-//             <Form onSubmit={handlePostSubmit}>
-//               <Form.Group controlId="postForm">
-//                 <Form.Control
-//                   as="textarea"
-//                   rows={3}
-//                   placeholder="What's on your mind?"
-//                   onChange={handlePostChange}
-//                 />
-//                 <Form.Group controlId="formFile" className="mb-3">
-//                   <Form.Control
-//                     name="profile_picture"
-//                     type="file"
-//                     onChange={handleChange}
-//                     ref={dateInputRef}
-//                   />
-//                 </Form.Group>
-//               </Form.Group>
-//               <Button
-//                 onClick={handlePostSubmit}
-//                 className="btnpost"
-//                 variant="primary"
-//                 type="submit"
-//               >
-//                 Post
-//               </Button>
-//             </Form>
-
-//             {/* profilePicture: e.target.profile_picture.value, */}
-//             <hr />
-
-//             <>
-//               <div className="posts-container" >
-//                 {posts.map((post) => {
-//                   return (
-//                     <>
-//                       <meta charSet="UTF-8" />
-//                       <title>Social Media Post UI Design</title>
-//                       <meta
-//                         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-//                         name="viewport"
-//                       />
-//                       <link
-//                         rel="stylesheet"
-//                         type="text/css"
-//                         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-//                       />
-//                       <link
-//                         rel="stylesheet"
-//                         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-//                       />
-//                       <link
-//                         rel="stylesheet"
-//                         type="text/css"
-//                         href="css/style.css"
-//                       />
-//                       <section className="main-content" id="main-content">
-//                         <div className="container">
-//                           <h1 className="text-center text-uppercase"></h1>
-//                           <br />
-//                           <br />
-//                           <div className="row">
-//                             <div className="col-sm-6 offset-sm-3">
-//                               <div
-//                                 className="post-block"
-//                                 style={{ position: "relative" ,background:'#DDE6ED'  }}
-//                               >
-//                                 <Dropdown
-//                                   align="end"
-//                                   style={{
-//                                     position: "absolute",
-//                                     top: "25px",
-//                                     right: "25px",
-//                                   }}
-//                                 >
-//                                   <Dropdown.Toggle
-//                                     variant="primary"
-//                                     className="dropdown-toggle-vertical"
-//                                   >
-
-//                                   </Dropdown.Toggle>
-//                                   <Dropdown.Menu>
-//                                     <Dropdown.Item
-//                                       onClick={() => handleEditPost(post)}
-//                                     >
-//                                       Edit
-//                                     </Dropdown.Item>
-//                                     <Dropdown.Item
-//                                       onClick={() =>
-//                                         handleDeletePost(post.post_id)
-//                                       }
-//                                     >
-//                                       Delete
-//                                     </Dropdown.Item>
-//                                   </Dropdown.Menu>
-//                                 </Dropdown>
-//                                 <div className="d-flex justify-content-between">
-//                                   <div className="d-flex mb-3">
-//                                     <div className="mr-2">
-//                                       <a href="#!" className="text-dark">
-//                                         <img
-//                                           src="https://www.planetware.com/wpimages/2019/11/canada-in-pictures-beautiful-places-to-photograph-morraine-lake.jpg"
-//                                           alt="User"
-//                                           className="author-img"
-//                                         />
-//                                       </a>
-//                                     </div>
-//                                     <div>
-//                                       <h5 className="mb-0">
-//                                         <a href="#!" className="text-dark">
-//                                           <p>{post.firstname}</p>
-//                                         </a>
-//                                       </h5>
-//                                       <p className="mb-0 text-muted">
-//                                         {post.career}
-//                                       </p>
-//                                       {/* <p className="mb-0 text-muted">5m</p>             edit date */}
-//                                     </div>
-//                                   </div>
-//                                   <div className="post-block__user-options">
-//                                     <a
-//                                       href="#!"
-//                                       id="triggerId"
-//                                       data-toggle="dropdown"
-//                                       aria-haspopup="true"
-//                                       aria-expanded="false"
-//                                     ></a>
-//                                     <div
-//                                       className="dropdown-menu dropdown-menu-right"
-//                                       aria-labelledby="triggerId"
-//                                     >
-//                                       < a
-//                                         className="dropdown-item text-dark"
-//                                         href="#!"
-//                                       >
-//                                         <i className="fa fa-pencil mr-1" />
-//                                         Edit
-//                                       </a>
-//                                       <a
-//                                         className="dropdown-item text-danger"
-//                                         href="#!"
-//                                       >
-//                                         <i className="fa fa-trash mr-1" />
-//                                         Delete
-//                                       </a>
-//                                     </div>
-//                                   </div>
-//                                 </div>
-//                                 <div className="post-block__content mb-2">
-//                                   <p
-//                                     style={{
-//                                       wordBreak: "break-word",
-//                                     }}
-//                                   >
-//                                     {post.paragraph_content}
-//                                     {/* <p>{props.postComment.content}</p> */}
-//                                   </p>
-//                                   <img
-//                                     src={post.photo_content}
-//                                     alt="Content img"
-//                                   />
-//                                   <p>{post.post_date}</p>
-//                                 </div>
-//                                 <div className="mb-3">
-//                                   <div className="d-flex justify-content-between mb-2">
-//                                     <div className="d-flex"></div>
-//                                   </div>
-//                                   <p className="mb-0"></p>
-//                                 </div>
-//                                 <hr />
-//                                 <div className="post-block__comments">
-//                                   {/* Comment Input */}
-//                                   <div className="input-group mb-3">
-//                                     <div className="input-group-append"></div>
-//                                   </div>
-
-//                                   <div className="comment-view-box mb-3">
-//                                     <div > {/* here was the class name d-flex mb-2 */}
-//                                       <div >
-//                                         <Comment postID={post.post_id} />
-
-//                                         <div className="d-flex">
-//                                           <a
-//                                             href="#!"
-//                                             className="text-dark mr-2"
-//                                           >
-//                                             <span>
-//                                               <i className="fa fa-heart-o" />
-//                                             </span>
-//                                           </a>
-//                                         </div>
-//                                       </div>
-//                                     </div>
-//                                   </div>
-//                                 </div>
-//                               </div>
-//                             </div>
-//                           </div>
-//                         </div>
-//                       </section>
-//                     </>
-//                   );
-//                 })}
-//               </div>
-//             </>
-//           </Col>
-//         </Row>
-//       </Container>
-//       <footer className="bg-dark text-white text-center p-4">
-//         <Container>
-//           <p>&copy; 2023 My Website. All rights reserved.</p>
-//         </Container>
-//       </footer>
-
-//       <UpdatePost
-//         showUpdateModal={showUpdateModal}
-//         handleClosePost={handleClosePost}
-//         postData={postData}
-//         posts={posts}
-//         takeDataFromChild={takeDataFromChild}
-
-//       />
-
-//       {/* <Comment comments={props.commentsDataArray} /> */}
-//     </div>
-//   );
-// }
-
-// export default HomePost;

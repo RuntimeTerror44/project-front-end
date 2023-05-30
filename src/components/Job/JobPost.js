@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Nav,
@@ -6,17 +5,25 @@ import {
   Container,
   Form,
   FormControl,
-  Button,
   Row,
   Col,
   Card,
   Dropdown,
 } from "react-bootstrap";
 
+import LogoutButton from "../Landingpage/login/Logoutbutton";
+import React, { useRef, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Space } from "antd";
+
+//=========================
+
+//==========================
+
 // import "./JobPost.css";
 import axios from "axios";
 import { post } from "jquery";
-import { useRef } from "react";
+
 import UpdateJobPost from "./UpdateJobPost";
 // import Comment from './Comment'
 import JobComment from "./JobComment";
@@ -30,7 +37,6 @@ function JobPost(props) {
   const [JobPosts, setJobPosts] = useState([]);
   const [postData, setPostData] = useState({});
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-
 
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
@@ -192,8 +198,16 @@ function JobPost(props) {
     }
   };
 
-  // console.log(postData);
-  // console.log(JobPosts);
+  console.log(postData);
+  console.log(JobPosts);
+
+  const logoutButtonRef = useRef(null); //loginref
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
+  };
   return (
     <>
       <meta charSet="UTF-8" />
@@ -216,15 +230,23 @@ function JobPost(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
-            style={{borderRadius:'100px',borderWidth:"0px"}}
+              style={{ borderRadius: "100px", borderWidth: "0px" }}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
           </div>
           <div className="create">
-            <label className="btn btn-primary" htmlFor="create-post">
-              SignOut
-            </label>
+            <LogoutButton ref={logoutButtonRef} />
+            <Button
+              danger
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick2}
+            >
+              {" "}
+              sign out
+            </Button>
             {/* <div className="profile-photo">
             <img src="./images/profile-1.jpg" alt="" />
           </div> */}
@@ -254,32 +276,38 @@ function JobPost(props) {
                 <h3>Home</h3>
               </a>
 
-              <a className="menu-item"  href="profilepage" id="notifications">
+              <a className="menu-item" href="profilepage" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
-                <div className="notifications-popup">
-
-                </div>
+                <div className="notifications-popup"></div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item active " href="job" id="messages-notifications">
+              <a
+                className="menu-item active "
+                href="job"
+                id="messages-notifications"
+              >
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
-             {/* ++++++++++++++++ */}
-             <a className="menu-item " href="portfolio" id="messages-notifications">
+              {/* ++++++++++++++++ */}
+              <a
+                className="menu-item "
+                href="portfolio"
+                id="messages-notifications"
+              >
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>create resume</h3>
               </a>
-              {/* ++++++++++++++++ */}  
-              <a className="menu-item " href="aboutus">
+              {/* ++++++++++++++++ */}
+              <a className="menu-item " href="about">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -311,41 +339,71 @@ function JobPost(props) {
               </Form.Group>
              
               <Form.Group>
-              <input
-             
-              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
-                type="text"
-                placeholder="enter city"
-                id="create-post"
-                onChange={handlePostCity}
-              />
+                <textarea
+                  rows="4"
+                  cols="50"
+                  id="create-post"
+                  style={{
+                    marginBottom: "8px",
+                    marginTop: "8px",
+                    borderRadius: "10px",
+                    borderWidth: "1px",
+                    wordBreak: "break-all",
+                    minWidth: "600px",
+                    whiteSpace: "preLine",
+                  }}
+                  type="text-area"
+                  placeholder="Job description "
+                  // id="create-post"
+                  onChange={handlePostChange}
+                ></textarea>
+              </Form.Group>
+
+              <Form.Group>
+                <input
+                  style={{
+                    marginBottom: "8px",
+                    borderRadius: "100px",
+                    borderWidth: "1px",
+                  }}
+                  type="text"
+                  placeholder="enter city"
+                  id="create-post"
+                  onChange={handlePostCity}
+                />
               </Form.Group>
               <Form.Group>
-              <input
-              
-              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
-                type="text"
-                placeholder="enter job Field"
-                id="create-post"
-                onChange={handleJobField}
-              />
+                <input
+                  style={{
+                    marginBottom: "8px",
+                    borderRadius: "100px",
+                    borderWidth: "1px",
+                  }}
+                  type="text"
+                  placeholder="enter job Field"
+                  id="create-post"
+                  onChange={handleJobField}
+                />
               </Form.Group>
               <Form.Group>
-              <input
-              
-              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
-                type="text"
-                placeholder="enter job title"
-                id="create-post"
-                onChange={handleJobTitle}
-              />
+                <input
+                  style={{
+                    marginBottom: "8px",
+                    borderRadius: "100px",
+                    borderWidth: "1px",
+                  }}
+                  type="text"
+                  placeholder="enter job title"
+                  id="create-post"
+                  onChange={handleJobTitle}
+                />
               </Form.Group>
-              <input 
-              style={{borderRadius:'100px',borderWidth:"1px"}}
+              <input
+                style={{ borderRadius: "100px", borderWidth: "1px" }}
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
-              /> 
+              />
             </Form>
             {/*--------------- FEEDS ------------------*/}
 {/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -400,7 +458,10 @@ function JobPost(props) {
                       <div className="head">
                         <div className="user">
                           <div className="profile-photo">
-                            <img src={post.profilepicture}  style={{width:'60px',height:'60px'}} />
+                            <img
+                              src={post.profilepicture}
+                              style={{ width: "60px", height: "60px" }}
+                            />
                           </div>
                           <div className="info">
                             <h3>{post.firstname}</h3>
@@ -410,7 +471,8 @@ function JobPost(props) {
 
                         {post.user_id == userData[0].id && (
                           <Dropdown className="edit">
-                            <Dropdown.Toggle  id="mm"
+                            <Dropdown.Toggle
+                              id="mm"
                               variant="primary"
                               className="dropdown-toggle-vertical"
                               // className="uil uil-ellipsis-h"
@@ -457,14 +519,11 @@ function JobPost(props) {
                       <br></br>
                       <div className="info">
                         <div>
-                          {" "}
                           <JobComment postID={post.job_id} />
                         </div>
                       </div>
                     </div>
-              
                   </div>
-                
                 </>
               );
             })}
@@ -482,7 +541,7 @@ function JobPost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
-                 style={{borderRadius:'100px',borderWidth:"0px"}}
+                  style={{ borderRadius: "100px", borderWidth: "0px" }}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"

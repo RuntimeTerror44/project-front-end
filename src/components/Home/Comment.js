@@ -10,6 +10,7 @@ import {
   Card,
   Dropdown,
 } from "react-bootstrap";
+import {notification } from 'antd';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
@@ -19,10 +20,21 @@ import { background } from "@chakra-ui/react";
 // import { Text } from "@chakra-ui/react";
 
 function Comment(props) {
+  const openNotification = () => {
+    notification.open({
+      message: '',
+      description:
+        'Comment Added',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
+
   const getCommentsFromDb = async () => {
     // console.log(props.postID);
     if (props.postID) {
@@ -159,58 +171,48 @@ function Comment(props) {
                       SoftwreEngineer
                     </p>{" "}
                     {/* John doe local storage  */}
-                {/*</h6> */}
-                {/* ========================================= */}
-                <div
-                  className="d-flex justify-content-between"
-                  style={{ marginTop: "-50px" }}
-                >
-                  <div className="d-flex mb-3">
-                    <div className="mr-2">
-                      <a href="#!" className="text-name">
-                        <img
-                          style={{
-                            width: "40px",
-                            height: "40px",
-                            marginTop: "-3px",
-                          }}
-                          src={item.profilepicture}
-                          alt="User"
-                          className="author-img"
-                        />
-                      </a>
-                    </div>
-                    <div>
-                      <h5 className="mb-0">
-                        <a
-                          href="#!"
-                          style={{ fontSize: "smaller" }}
-                          className="text-dark"
-                        >
-                          <p style={{ marginBottom: "-3px" }}>
-                            {item.firstname}
-                          </p>
-                        </a>
-                      </h5>
-                      <p
-                        style={{ fontSize: "smaller" }}
-                        className="mb-0 text-muted"
-                      >
-                        {item.career}
-                      </p>
-                      {/* <p className="mb-0 text-muted">5m</p>             edit date */}
-                    </div>
-                  </div>
-                </div>
-                {/* ========================================= */}
-                <p
-                  style={{
-                    wordBreak: "break-word",
-                    marginLeft: "50px",
-                  }}
-                >
-                  {item.content}
-                </p>{" "}
+                  {/*</h6> */}
+
+                  {/* ========================================= */}
+                  <div className="d-flex justify-content-between"  >
+                                  <div className="d-flex mb-3">
+                                    <div className="mr-2">
+                                      <a href="#!" className="text-name">
+                                        <img
+                                        style={{width:"40px", height:"40px",marginTop:'-3px'}}
+                                          src={item.profilepicture}
+                                          alt="User"
+                                          className="author-img"
+                                        />
+                                      </a>
+                                    </div>
+                                    <div>
+                                      <h5 className="mb-0">
+                                        <a href="#!" style={{fontSize:"smaller"}} className="text-dark">
+                                          <p style={{marginBottom:"-3px"}}>{item.firstname}</p>
+                                        </a>
+                                      </h5>
+                                      <p style={{fontSize:"smaller"}} className="mb-0 text-muted">
+                                      {item.career}
+                                      </p>
+                                      {/* <p className="mb-0 text-muted">5m</p>             edit date */}
+                                    </div>
+                                  </div>
+                                  </div>
+                  {/* ========================================= */}
+
+                  
+
+                  <p
+                    style={{
+                      wordBreak: "break-word",
+                      marginLeft:'50px',
+                    }}
+                  >
+                    {item.content}
+                  </p>{" "}
+
+                  
                 {/* </Card> */}
               </Col>
             </Row>
@@ -218,7 +220,7 @@ function Comment(props) {
         );
         return text;
       })}{" "}
-      <Form onSubmit={handleAddComment}>
+      <Form onSubmit={handleAddComment} >
         <Form.Group
           style={{
             display: "flex ",
@@ -235,15 +237,12 @@ function Comment(props) {
             name="comment"
             placeholder="Add a comment"
           />
-          <Button
-            variant="primary"
-            type="submit"
-            style={{ marginLeft: "5px", marginTop: "10px" }}
-          >
+          <Button variant="primary" type="submit" style={{marginLeft:'5px',marginTop:'10px'}} onClick={openNotification}>
             <i className="fa fa-paper-plane" />
           </Button>
         </Form.Group>
       </Form>
+   
       <UpdateComment
         showUpdateModal={showUpdateModal}
         handleClosePost={handleClosePost} ///done
