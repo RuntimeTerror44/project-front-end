@@ -27,6 +27,7 @@
     "dotenv": "^16.0.3",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.12.12",
+    "gsap": "^3.11.5",
     "jquery": "^3.7.0",
     "mdb-react-ui-kit": "^6.0.0",
     "particles-bg": "^2.5.5",
@@ -41,6 +42,7 @@
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
     "tsparticles": "^2.9.3",
+    "typicons.font": "^2.1.2",
     "underscore": "^1.13.6",
     "web-vitals": "^3.3.1"
   },

@@ -8,6 +8,7 @@ import axios from "axios";
 import { saveAs } from "file-saver";
 import Success from "./Success";
 import './Form.css'
+import Nav from '../Home/Nav'
 const Form = () => {
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -72,6 +73,7 @@ const Form = () => {
 
   return (
     <div className="main">
+      <Nav/>
       <div className="d-flex justify-content-center">
         <h1 className="text-center">{FormTitle[page]}</h1>
       </div>

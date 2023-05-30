@@ -103,6 +103,7 @@ function ProfileTemp(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
+            style={{borderRadius:'100px',borderWidth:"0px"}}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
@@ -133,13 +134,13 @@ function ProfileTemp(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active">
+              <a href='home'className="menu-item ">
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
-              <a className="menu-item" id="notifications">
+              <a className="menu-item active"   id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -149,12 +150,20 @@ function ProfileTemp(props) {
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item" id="messages-notifications">
+              <a className="menu-item " href="job" id="messages-notifications">
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
+                {/* ++++++++++++++++ */}
+                <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>create resume</h3>
+              </a>
+              {/* ++++++++++++++++ */}
               <a className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
@@ -174,6 +183,7 @@ function ProfileTemp(props) {
             {posts.map((post) => {
                   return (
                     <>
+                    {/* {console.log(post.firstname)} */}
             <div className="feeds">
             {/* <HomePost/> */}
               {/*--------------- FEED 1 ------------------*/}
@@ -181,10 +191,10 @@ function ProfileTemp(props) {
                   <div className="head">
                     <div className="user">
                       <div className="profile-photo">
-                        <img src={post.profilepicture} />
+                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}}/>
                       </div>
                       <div className="info">
-                        <h3>{post.firstname}</h3>
+                        <h3 style={{marginBottom:'1px'}}>{post.firstname}</h3>
                         <small>{post.career}</small>
                       </div>
                     </div>
@@ -192,10 +202,10 @@ function ProfileTemp(props) {
                     <Form>
                       <Dropdown className="edit"
                                 >
-                                  <Dropdown.Toggle
+                                  <Dropdown.Toggle id="poststyle"
                                     variant="primary"
                                     // className="dropdown-toggle-vertical"
-                                    className="uil uil-ellipsis-h"
+                                    // className="uil uil-ellipsis-h"
                                   >
                                   </Dropdown.Toggle>
                                   <Dropdown.Menu>
@@ -230,7 +240,7 @@ function ProfileTemp(props) {
                   <div className="liked-by"></div>
                   <div className="caption">
                     <p>
-                      <p> {post.paragraph_content}</p>
+                      <p style={{wordBreak:'break-word'}}> {post.paragraph_content}</p>
                     </p>
                   </div>
                   <hr></hr>
@@ -257,6 +267,7 @@ function ProfileTemp(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
+                style={{borderRadius:'100px',borderWidth:"0px"}}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
