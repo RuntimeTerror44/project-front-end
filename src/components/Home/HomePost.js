@@ -42,9 +42,9 @@ function HomePost(props) {
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
 
-   ///////////////////////////////////////////
+  ///////////////////////////////////////////
 
-   const addPostODb = async () => {
+  const addPostODb = async () => {
     try {
       console.log(image);
       // e.preventDefault()
@@ -86,7 +86,7 @@ function HomePost(props) {
 
     setPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText(""); // Clear the post text input field
-    event.target.reset()
+    event.target.reset();
   };
 
   const handleEditPost = (post) => {
@@ -243,35 +243,51 @@ function HomePost(props) {
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
-            <Form
-              onSubmit={handlePostSubmit}
-              action=""
-              style={{ display: "flex" }}
-              className="create-post"
-            >
-              {/* <div className="profile-photo">
-                <img src="./images/profile-1.jpg" />
-              </div> */}
-              <input
-                style={{ borderRadius: "100px", borderWidth: "0px" }}
-                type="text"
-                placeholder="Share your thoughts "
-                id="create-post"
-                onChange={handlePostChange}
-              />
-              <input
-              style={{borderRadius:'100px',borderWidth:"0px"}}
-                type="text"
-                placeholder="put your photo link "
-                id="create-post"
-                onChange={handleChange}
-              />
-              <input
-                type="submit"
-                defaultValue="Post"
-                className="btn btn-primary"
-              />
-            </Form>
+            <div className="right">
+              {/*----- MESSAGES -----*/}
+              <div className="messages">
+                <div>
+                  {/* <i className="uil uil-edit" /> */}
+                  <h4>Find Your Job</h4>
+                </div>
+                <Form onSubmit={handlePostSubmit}>
+                  <Form.Group style={{ justifyContent: "space-around" }}>
+                    <input
+                      style={{
+                        borderRadius: "100px",
+                        borderWidth: "0px",
+                        display: "flex",
+                        width:"500px"
+                      }}
+                      type="text"
+                      placeholder="  Share your thoughts "
+                      id="create-post"
+                      onChange={handlePostChange}
+                    />
+                    <input
+                      style={{
+                        borderRadius: "100px",
+                        borderWidth: "0px",
+                        display: "flex",
+                        width:"500px",
+                        marginTop:"15px" 
+                      }}
+                      type="text"
+                      placeholder="  put your photo link "
+                      id="create-post"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+
+                  <input
+                    style={{ justifyContent: "end",marginTop:"15px" }}
+                    type="submit"
+                    defaultValue="Post"
+                    className="btn btn-primary"
+                  />
+                </Form>
+              </div>
+            </div>
             {/*--------------- FEEDS ------------------*/}
             {posts.map((post) => {
               return (
@@ -322,8 +338,7 @@ function HomePost(props) {
                         )}
                         {/* </span> */}
                       </div>
-                      <div className="photo">
-                      </div>
+                      <div className="photo"></div>
                       <div className="action-buttons">
                         <div className="interaction-buttons"></div>
                         <div className="bookmark">
@@ -334,15 +349,35 @@ function HomePost(props) {
                       </div>
                       <div className="liked-by"></div>
                       <div className="caption">
-                  <p>
-                      <p style={{wordBreak:'break-word',fontSize:'18px', display:"flex"}}id="paragraphstyle"> {post.paragraph_content}</p>
-                    </p>
+                        <p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                              display: "flex",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.paragraph_content}
+                          </p>
+                        </p>
 
-                      {(post.photo_content !="" && post.photo_content !=null ) &&(
-                     <img style={{margin:"auto", borderRadius:'0px', justifyContent:"center",borderRadius:"7px", width:"90%", height:"100%"}} src={post.photo_content} />
-                     )}
-                    
-                  </div>
+                        {post.photo_content != "" &&
+                          post.photo_content != null && (
+                            <img
+                              style={{
+                                margin: "auto",
+                                borderRadius: "0px",
+                                justifyContent: "center",
+                                borderRadius: "7px",
+                                width: "90%",
+                                height: "100%",
+                              }}
+                              src={post.photo_content}
+                            />
+                          )}
+                      </div>
                       <hr></hr>
                       <br></br>
                       <div className="info">

@@ -157,7 +157,7 @@ function JobComment(props) {
                     {/* John doe local storage  */}
                  {/* </h6> */}
                  {/* =============added for styling============= */} 
-                 <div className="d-flex justify-content-between" style={{marginTop:'-50px'}} >
+                 <div className="d-flex justify-content-between" >
                                   <div className="d-flex mb-3">
                                     <div className="mr-2">
                                       <a href="#!" className="text-name">
@@ -187,10 +187,12 @@ function JobComment(props) {
                     style={{
                       wordBreak: "break-word",
                       marginLeft:'50px',
+                      marginBottom:"20px"
                     }}
                   >
                     {item.content}
-                  </p>{" "}
+                  </p>
+                  <hr></hr>
                   
             
               </Col>
