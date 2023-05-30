@@ -444,10 +444,11 @@ function JobPost(props) {
                       <div className="liked-by"></div>
                       <div className="caption">
                         <p>
-                          <p  style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_post_content}</p>
-                          <p> {post.job_city}</p>
-                          <p> {post.job_field}</p>
-                          <p> {post.job_title}</p>
+                        <p style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_field}</p>
+                        <p style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_title}</p>
+                        <p style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_city}</p>
+                          <p style={{fontSize:'18px'}}> {post.job_post_content}</p>
+                          <p style={{wordBreak:'break-word',fontSize:'19px'}} id="paragraphstyle"> {post.email}</p>
                         </p>
                       </div>
                       <div></div>

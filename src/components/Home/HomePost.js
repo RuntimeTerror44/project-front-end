@@ -316,12 +316,11 @@ function HomePost(props) {
                   <div className="liked-by"></div>
                   <div className="caption">
                   <p>
-                      <p style={{wordBreak:'break-word',fontSize:'18px'}}id="paragraphstyle"> {post.paragraph_content}</p>
+                      <p style={{wordBreak:'break-word',fontSize:'18px', display:"flex"}}id="paragraphstyle"> {post.paragraph_content}</p>
                     </p>
 
-                      <p> {post.paragraph_content}</p>
                       {(post.photo_content !="" && post.photo_content !=null ) &&(
-                      <div className="post-photo-box" style={{marginLeft:"50px", justifyContent:"center", width:"200px", height:"200px"}}>
+                      <div className="post-photo-box" style={{display:"flex",marginLeft:"50px", justifyContent:"center", width:"200px", height:"200px"}}>
                      <img style={{marginLeft:"120px",marginBottom:"5px",marginRight:"120px",marginTop:"5px", borderRadius:'0px', justifyContent:"center", width:"100%", height:"100%"}} src={post.photo_content} />
                      </div>)}
                     

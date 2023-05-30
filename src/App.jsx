@@ -54,7 +54,6 @@ export default function App() {
 
             <Route path="/comment" element={<Comment />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/jobs" element={<Job />} />
 
             <Route path="/Form" element={<Form />} />
             <Route path="/posttest" element={<PostTest />} />
