@@ -356,7 +356,7 @@ function HomePost(props) {
                 </>
               );
             })}
-
+            
             {/* <div className="feed">
             <div className="head">
               <div className="user">

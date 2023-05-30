@@ -55,14 +55,14 @@ export default function Nav() {
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBDropdown>
-                  {/* <MDBDropdownToggle tag="a" className="nav-link" role="button" style={{ color:'white'  }}>
+                  <MDBDropdownToggle tag="a" className="nav-link" role="button" style={{ color:'white'  }}>
                     Dropdown
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
                     <MDBDropdownItem link>Action</MDBDropdownItem>
                     <MDBDropdownItem link>Another action</MDBDropdownItem>
                     <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                  </MDBDropdownMenu> */}
+                  </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavbarItem>
               <MDBNavbarItem></MDBNavbarItem>
@@ -83,6 +83,34 @@ export default function Nav() {
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>
+
+{/* <link rel="stylesheet" href="./style.css" />
+      <nav >
+        <div className="container">
+          <h2 className="logo" style={{paddingRight:"300px"}}>CareerConnect</h2>
+          <a href="home"><h5 className="navbarr">Home</h5></a>
+          <a href="job"><h5 className="navbarr">Job</h5></a>
+          <a href="profilepage"><h5 className="navbarr">Profile</h5></a>
+     
+      
+          <div className="create">
+            <LogoutButton ref={logoutButtonRef} />
+            <Button
+              danger
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick2}
+            >
+              {" "}
+              sign out
+            </Button>
+            {/* <div className="profile-photo">
+              <img src="./images/profile-1.jpg" alt="" />
+            </div> */}
+          {/* </div>
+        </div> 
+      </nav> */}
     </>
   );
 }

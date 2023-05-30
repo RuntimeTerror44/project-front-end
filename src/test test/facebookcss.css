@@ -49,7 +49,12 @@ body:not(.abtus) {
 .container {
     width: 80%;
     margin: 0 auto;
+
 }
+/* .containerr {
+    width: 80%;
+    margin: 0 auto;
+} */
 
 /* .profile-photo {
     width: 2.9rem;
@@ -157,6 +162,7 @@ main .container {
     grid-template-columns: 18vw auto  20vw;
     column-gap: 2rem;
     position: relative;
+    
 }
 
 /* =============== Left ============== */
@@ -455,9 +461,9 @@ color:   #516c8d;
 /* =============== Right ============== */
 main .container .right {
     height: max-content;
-    position: sticky;
+    /* position: sticky;
     top: var(--sticky-top-right);
-    bottom: 0;
+    bottom: 0; */
 }
 
 /* =============== Messages ============== */
@@ -847,23 +853,8 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
     
 }
 
-/* #create-post:focus{
-    width: 300px;
-    transition: 1s;
-    margin: 0 5px;
-} */
-
-/* .grid{
-
-display:grid;
-
-
-
-
-
-} */
 .info-container{
-
+    
 
     display: grid;
     grid-template-areas:
@@ -873,9 +864,31 @@ display:grid;
     gap: 10px;
     
     padding: 10px;
-
-
-
 }
 
+/* .containerr{
+    width: 80%;
+    margin: 0 auto;
+} */
+/* .navbarr{
+    padding-top: 10px;
+    padding-left: 40px;
+    margin-right: 70px;
+    color: black;
+} */
 
+      /* #create-post:focus{
+          width: 300px;
+          transition: 1s;
+          margin: 0 5px;
+      } */
+      
+      /* .grid{
+      
+      display:grid;
+      
+      
+      
+      
+      
+      } */

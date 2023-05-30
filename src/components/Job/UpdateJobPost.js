@@ -110,7 +110,7 @@ console.log(obj.job_post_content)
             defaultValue={props.postData.job_title
             } 
             />
-        <Button  type="submit">Submit form</Button>
+        <Button style={{marginTop:"10px"}}  type="submit">Submit form</Button>
         </Form.Group>
         </Form>
         </Modal.Body>
