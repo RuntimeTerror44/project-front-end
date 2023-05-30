@@ -192,7 +192,7 @@ function AboutUs() {
             <div className="three columnss">
               {" "}
               <img
-                src="https://ca.slack-edge.com/TNGRRLUMA-U04UXLQ4866-119cbc5c2c08-512"
+                src="https://media.licdn.com/dms/image/C4E03AQHMkbqWQvJwNA/profile-displayphoto-shrink_800_800/0/1657108303529?e=1691020800&v=beta&t=SCR4toNuMHwks0_34A6Ne5RWXwVfnUo_3O0fyN4W_T8"
                 width={250}
                 height={210}
                 alt=""
@@ -200,28 +200,37 @@ function AboutUs() {
               />
               <h4>Anas Alsmadi</h4>
               <p>FullStack Web Developer</p>
+              <a href="https://github.com/Anasalsmadi11" target="_blank" rel="noopener noreferrer">
               <span className="typcn icon typcn-social-github" />
-              <span className="typcn typcn-social-linkedin-circular icon" />{" "}
+              </a>
+              <a href="https://www.linkedin.com/in/anas-alsmadi-4585691a4/" target="_blank" rel="noopener noreferrer"> 
+              <span className="typcn typcn-social-linkedin-circular icon" />
+              </a>
             </div>
             <div className="three columnss">
               {" "}
               <img
-                src="https://ca.slack-edge.com/TNGRRLUMA-U04UXLQ4866-119cbc5c2c08-512"
+                src="https://media.licdn.com/dms/image/D4D03AQF2QVaD7rVcDA/profile-displayphoto-shrink_800_800/0/1664100027251?e=1691020800&v=beta&t=Q5ry1Ec176HSwTF3-waaX_p0zeAabRgqWggveZekiDQ"
                 width={210}
                 height={210}
                 alt=""
                 className="animated-image"
 
               />
-              <h4>Anas Alsmadi</h4>
+              <h4>Mohammad Al-jamal</h4>
               <p>FullStack Web Developer</p>
-              <span className="typcn icon typcn-social-github"/>
-              <span className="typcn typcn-social-linkedin-circular icon" />{" "}
+              <a href="https://github.com/Mohammad-Aljamal" target="_blank" rel="noopener noreferrer">
+              <span className="typcn icon typcn-social-github" />
+              </a>
+              <a href="https://www.linkedin.com/in/mohammad-aljamal-2783751a3/" target="_blank" rel="noopener noreferrer"> 
+              <span className="typcn typcn-social-linkedin-circular icon" />
+              </a>
             </div>
+            
             <div className="three columnss">
               {" "}
               <img
-                src="http://placehold.it/220x220"
+                src="https://ca.slack-edge.com/TNGRRLUMA-U04UXLQU9QA-2ddcf4374186-512"
                 width={210}
                 height={210}
                 alt=""
@@ -230,15 +239,19 @@ function AboutUs() {
               />
               <h4>Mohannad abu qare'a</h4>
               <p>FullStack Web Developer</p>
+              <a href="https://github.com/mohannaddQA" target="_blank" rel="noopener noreferrer">
               <span className="typcn icon typcn-social-github" />
-              <span className="typcn typcn-social-linkedin-circular icon" />{" "}
+              </a>
+              <a href="https://www.linkedin.com/in/mohannadqa/" target="_blank" rel="noopener noreferrer"> 
+              <span className="typcn typcn-social-linkedin-circular icon" />
+              </a>
             </div>
           </div>
           <div className="roww roww-center" style={{ marginTop: '30px' }}>
             <div className="three columnss">
               {" "}
               <img
-                src="http://placehold.it/220x220"
+                src="https://media.licdn.com/dms/image/C4D03AQFAp2EtptkmzQ/profile-displayphoto-shrink_800_800/0/1630698403792?e=1691020800&v=beta&t=OZU59CxLdBVxPc7jIe2jJKEP7qGOwtp8_s705TnblYY"
                 width={210}
                 height={210}
                 alt=""
@@ -247,13 +260,17 @@ function AboutUs() {
               />
               <h4>Esraa Obeido</h4>
               <p>FullStack Web Developer</p>
+              <a href="https://github.com/esraaobeido" target="_blank" rel="noopener noreferrer">
               <span className="typcn icon typcn-social-github" />
-              <span className="typcn typcn-social-linkedin-circular icon" />{" "}
+              </a>
+              <a href="https://www.linkedin.com/in/esraa-obeido/" target="_blank" rel="noopener noreferrer"> 
+              <span className="typcn typcn-social-linkedin-circular icon" />
+              </a>
             </div>
             <div className="three columnss">
               {" "}
               <img
-                src="http://placehold.it/220x220"
+                src="https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-11.jpg"
                 width={210}
                 height={210}
                 alt=""
@@ -262,8 +279,12 @@ function AboutUs() {
               />
               <h4>Motasem Sulaiman</h4>
               <p>FullStack Web Developer</p>
+              <a href="https://github.com/Motasem-Sulaiman" target="_blank" rel="noopener noreferrer">
               <span className="typcn icon typcn-social-github" />
-              <span className="typcn typcn-social-linkedin-circular icon"/>{" "}
+              </a>
+              <a href="https://www.linkedin.com/in/motasem-sulaiman-2832b3251/" target="_blank" rel="noopener noreferrer"> 
+              <span className="typcn typcn-social-linkedin-circular icon" />
+              </a>
             </div>
           </div>
         </div>
@@ -337,125 +358,7 @@ function AboutUs() {
             </div>
           </div>
         </div>
-      </section>
-      {/* Portfolio Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– */}
-      <section id="portfolio">
-        <div className="containerr">
-          <h1>Work</h1>
-          <div className="blockk" />
-          <div className="roww">
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work One"
-              />
-            </div>
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work Two"
-              />
-            </div>
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work Three"
-              />
-            </div>
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work Four"
-              />
-            </div>
-          </div>
-          <div className="roww" style={{ marginTop: 30 }}>
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work Five"
-              />
-            </div>
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work Six"
-              />
-            </div>
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work Seven"
-              />
-            </div>
-            <div className="three columnss">
-              {" "}
-              <img
-                src="http://placehold.it/220x220"
-                className="imagee"
-                alt="Work Eight"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Testimonials Section
-–––––––––––––––––––––––––––––––––––––––––––––––––– */}
-      <section id="testimonial">
-        <div className="containerr">
-          <div className="quoteLoop">
-            <blockquote className="quote">
-              {" "}
-              <img
-                src="http://placehold.it/100x100"
-                width={100}
-                height={100}
-                alt=""
-              />
-              <h5>
-                &nbsp;
-                <br />
-                ”Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.”
-                <br />
-                <small>Steve Bruce, Sed ut perspiciatis unde omnis</small>
-              </h5>
-            </blockquote>
-            <blockquote className="quote">
-              {" "}
-              <img
-                src="http://placehold.it/100x100"
-                width={100}
-                height={100}
-                alt=""
-              />
-              <h5>
-                &nbsp;
-                <br />
-                “Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam.”
-                <br />
-                <small>Tom Jones, Sed ut perspiciatis unde omnis</small>
-              </h5>
-            </blockquote>
-          </div>
-        </div>
-      </section>    
+      </section>          
     </body>
     </>
   );
