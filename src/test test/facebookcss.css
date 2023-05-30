@@ -853,4 +853,29 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
     margin: 0 5px;
 } */
 
+/* .grid{
+
+display:grid;
+
+
+
+
+
+} */
+.info-container{
+
+
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'menu main main main right right'
+      'menu footer footer footer footer footer';
+    gap: 10px;
+    
+    padding: 10px;
+
+
+
+}
+
 

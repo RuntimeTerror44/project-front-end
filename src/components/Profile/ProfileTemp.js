@@ -11,6 +11,7 @@ import {
   Dropdown,
   Text,
 } from "react-bootstrap";
+import './cc7.png'
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
 import axios from "axios";
@@ -99,7 +100,7 @@ function ProfileTemp(props) {
       <link rel="stylesheet" href="./style.css" />
       <nav>
         <div className="container">
-          <h2 className="logo">CareerConnect</h2>
+        {/* <img src="./cc7.png" className="logo"/> */}
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
@@ -280,6 +281,7 @@ function ProfileTemp(props) {
           </div>
           {/*--------------- END OF RIGHT ------------------*/}
         </div>
+        <img src="./cc7.png" className="logo"/>
       </main>
       <UpdatePost
         showUpdateModal={showUpdateModal}
