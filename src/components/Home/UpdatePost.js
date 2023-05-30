@@ -28,10 +28,18 @@ const [changePost, setChangePost] = useState("");
   const handleChange = (e) => {
     setChangePost(e.target.value);
   };
+
+  const [changePhoto, setChangePhoto] = useState("");
+  const dateInputphotoRef = useRef(null);
+  const handlePhotoChange = (e) => {
+    setChangePhoto(e.target.value);
+  };
+
 const handleUpdatePost= async(e)=>{
     e.preventDefault()
     const obj={
         paragraph_content: changePost,
+        photo_content: changePhoto,
         user_id: userData[0].id /////////////////////////////////////////////////
 
     }
@@ -60,13 +68,15 @@ const handleUpdatePost= async(e)=>{
         <Modal.Body>
         {/* onChange={(e) => setComments(e.target.value)} */}
         <form >
-          <input style={{borderWidth:'1px',width:'300px'}} defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
+        <input style={{borderWidth:'1px',width:'300px'}} defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
+          
+          <input  style={{borderWidth:'1px',width:'300px'}} defaultValue={props.postData.photo_content} type="text"  name='post' onChange={handlePhotoChange} ref={dateInputphotoRef} />
           <Button onClick={handleUpdatePost} type='submit' variant="primary" style={{display:'inline-flex',marginLeft:'30px',marginTop:'18px'}}>Update</Button>
         </form>
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClosePost}>Cancel</Button>
+          <Button style={{justifyContent:"end"}}  variant="secondary" onClick={props.handleClosePost}>Cancel</Button>
           {/* <Button variant="primary" onClick={(e)=>handleUpdateComments(e)}>Update</Button> */}
         </Modal.Footer>
       </Modal>
