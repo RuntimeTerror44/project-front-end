@@ -11,7 +11,7 @@ import {
   Dropdown,
   Text,
 } from "react-bootstrap";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
@@ -20,11 +20,11 @@ import { post } from "jquery";
 import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
-import '../../test test/facebookcss.css'
+import "../../test test/facebookcss.css";
 
 function HomePost(props) {
   const storedUserData = localStorage.getItem("userId");
-  const userData =JSON.parse(storedUserData)
+  const userData = JSON.parse(storedUserData);
   // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -46,7 +46,7 @@ function HomePost(props) {
     try {
       // e.preventDefault()
       const obj = {
-        user_id:userData[0].id,
+        user_id: userData[0].id,
         paragraph_content: postText,
         post_date: readableDate,
 
@@ -56,7 +56,7 @@ function HomePost(props) {
       const result = await axios.post(serverUrl, obj);
 
       props.takeDataFromChild(result.data);
-      console.log(result.data)
+      console.log(result.data);
 
       setPostData(result.data[0]);
       setPosts(result.data);
@@ -108,7 +108,7 @@ function HomePost(props) {
   }, [posts]);
 
   const handleDeletePost = async (post) => {
-    if (post.user_id == userData[0].id){
+    if (post.user_id == userData[0].id) {
       try {
         const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
         await axios.delete(serverUrl);
@@ -117,14 +117,11 @@ function HomePost(props) {
         console.log(`error deleting post ${error}`);
       }
     }
-    
   };
 
   return (
     <>
-    
-   
-    <meta charSet="UTF-8" />
+      <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>
@@ -181,7 +178,7 @@ function HomePost(props) {
                 <h3>Home</h3>
               </a>
 
-              <a href="profilepage"className="menu-item" id="notifications">
+              <a href="profilepage" className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -253,7 +250,7 @@ function HomePost(props) {
                 <h3>Jobs</h3>
               </a>
 
-              <a href="aboutus"className="menu-item">
+              <a href="aboutus" className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -284,87 +281,80 @@ function HomePost(props) {
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
-               
               />
             </Form>
             {/*--------------- FEEDS ------------------*/}
             {posts.map((post) => {
-                  return (
+              return (
+                <>
+                  <div className="feeds">
+                    {/* <HomePost/> */}
+                    {/*--------------- FEED 1 ------------------*/}
 
-                    <>
-                    
-                 
-            <div className="feeds">
-            {/* <HomePost/> */}
-              {/*--------------- FEED 1 ------------------*/}
-             
-                <div className="feed">
-                  <div className="head">
-                    <div className="user">
-                      <div className="profile-photo">
-                        <img src={post.profilepicture} />
+                    <div className="feed">
+                      <div className="head">
+                        <div className="user">
+                          <div className="profile-photo">
+                            <img src={post.profilepicture} />
+                          </div>
+                          <div className="info">
+                            <h3>{post.firstname}</h3>
+                            <small>{post.career}</small>
+                          </div>
+                        </div>
+                        {/* <span > */}
+                        <Dropdown className="edit">
+                          <Dropdown.Toggle
+                            id="mm"
+                            variant="primary"
+                            className="dropdown-toggle-vertical"
+                            // className="uil uil-ellipsis-h"
+                          ></Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            <Dropdown.Item onClick={() => handleEditPost(post)}>
+                              Edit
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              onClick={() => handleDeletePost(post)}
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                        {/* </span> */}
                       </div>
+                      <div className="photo">
+                        <p>{post.photo_content}</p>
+                      </div>
+                      <div className="action-buttons">
+                        <div className="interaction-buttons"></div>
+                        <div className="bookmark">
+                          <span>
+                            <i className="uil uil-bookmark-full" />
+                          </span>
+                        </div>
+                      </div>
+                      <div className="liked-by"></div>
+                      <div className="caption">
+                        <p>
+                          <p> {post.paragraph_content}</p>
+                        </p>
+                      </div>
+                      <hr></hr>
+                      <br></br>
                       <div className="info">
-                        <h3>{post.firstname}</h3>
-                        <small>{post.career}</small>
+                        <div>
+                          {" "}
+                          <Comment postID={post.post_id} />
+                        </div>
                       </div>
                     </div>
-                    {/* <span > */}
-                      <Dropdown className="edit"
-                               
-                                >
-                                  <Dropdown.Toggle id="mm"
-                                    variant="primary"
-                                    className="dropdown-toggle-vertical"
-                                    // className="uil uil-ellipsis-h"
-                                  >
-                                  
-                                  </Dropdown.Toggle>
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item
-                                      onClick={() => handleEditPost(post)}
-                                    >
-                                      Edit
-                                    </Dropdown.Item>
-                                    <Dropdown.Item
-                                      onClick={() =>
-                                        handleDeletePost(post)
-                                      }
-                                    >
-                                      Delete
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                    {/* </span> */}
                   </div>
-                  <div className="photo">
-                    <p>{post.photo_content}</p>
-                  </div>
-                  <div className="action-buttons">
-                    <div className="interaction-buttons"></div>
-                    <div className="bookmark">
-                      <span>
-                        <i className="uil uil-bookmark-full" />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="liked-by"></div>
-                  <div className="caption">
-                    <p>
-                      <p> {post.paragraph_content}</p>
-                    </p>
-                  </div>
-                  <hr></hr>
-                  <br></br>
-                  <div className="info">
-                    <div> <Comment postID={post.post_id} /></div>
-                  </div>
-                </div>
-                </div>
                 </>
-                )})}
-          
-              {/* <div className="feed">
+              );
+            })}
+
+            {/* <div className="feed">
             <div className="head">
               <div className="user">
                 <div className="profile-photo">
@@ -413,10 +403,10 @@ function HomePost(props) {
                   <p>Motasem</p>
                   <p>this is my comment</p>
                    */}
-              {/* </div> */}
-              {/* </div> */}
+            {/* </div> */}
+            {/* </div> */}
 
-              {/*--------------- END OF FEED 1 ------------------*/}
+            {/*--------------- END OF FEED 1 ------------------*/}
             {/* </div> */}
             {/*--------------- END OF FEEDS ------------------ */}
           </div>
@@ -535,8 +525,6 @@ function HomePost(props) {
           </div>
         </div>
       </div>
-     
-           
 
       <UpdatePost
         showUpdateModal={showUpdateModal}
@@ -544,31 +532,12 @@ function HomePost(props) {
         postData={postData}
         posts={posts}
         takeDataFromChild={takeDataFromChild}
-      
       />
-      
     </>
   );
 }
 
 export default HomePost;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import {
 //   Navbar,
@@ -756,7 +725,7 @@ export default HomePost;
 //                           <div className="row">
 //                             <div className="col-sm-6 offset-sm-3">
 //                               <div
-//                                 className="post-block" 
+//                                 className="post-block"
 //                                 style={{ position: "relative" ,background:'#DDE6ED'  }}
 //                               >
 //                                 <Dropdown
@@ -771,7 +740,7 @@ export default HomePost;
 //                                     variant="primary"
 //                                     className="dropdown-toggle-vertical"
 //                                   >
-                                  
+
 //                                   </Dropdown.Toggle>
 //                                   <Dropdown.Menu>
 //                                     <Dropdown.Item
@@ -912,9 +881,9 @@ export default HomePost;
 //         postData={postData}
 //         posts={posts}
 //         takeDataFromChild={takeDataFromChild}
-      
+
 //       />
-      
+
 //       {/* <Comment comments={props.commentsDataArray} /> */}
 //     </div>
 //   );
