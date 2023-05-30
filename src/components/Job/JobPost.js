@@ -140,30 +140,26 @@ function JobPost(props) {
     // console.log(postDataArray)
   }, [JobPost]);
 
-
   // const [filterJobField, setFilterJobField] = useState("");
   // const [filterJobCity, setFilterJobCity] = useState("");
 
-
-
   //////////////////////////////////////////////////////////////////////////////////////////////////
-  
+
   const [searchJobs, setSearchJobs] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.job_field.value)
-    console.log(e.target.job_city.value)
+    console.log(e.target.job_field.value);
+    console.log(e.target.job_city.value);
 
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobbyfieldcity`;
     const obj = {
       job_field: e.target.job_field.value,
-      job_city: e.target.job_city.value
+      job_city: e.target.job_city.value,
     };
 
-    const result = await axios.post(serverUrl,obj);
+    const result = await axios.post(serverUrl, obj);
     setJobPosts(result.data);
-
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,19 +321,6 @@ function JobPost(props) {
 
             {/*--------------- END OF STORIES ------------------*/}
             <Form onSubmit={handlePostSubmit} action="" className="create-post">
-              
-            <Form.Group>
-              <textarea
-              rows="4" cols="50" 
-              id="create-post"
-               style={{marginBottom:"8px",marginTop:"8px" ,borderRadius:'10px',borderWidth:"1px",wordBreak:"break-all" ,minWidth:"600px", whiteSpace: "preLine"}}
-                type="text-area"
-                placeholder="Job description "
-                // id="create-post"
-                onChange={handlePostChange}
-              ></textarea>
-              </Form.Group>
-             
               <Form.Group>
                 <textarea
                   rows="4"
@@ -406,48 +389,50 @@ function JobPost(props) {
               />
             </Form>
             {/*--------------- FEEDS ------------------*/}
-{/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-<div className="right">
-            {/*----- MESSAGES -----*/}
-            <div className="messages">
-              <div className="heading">
-                {/* <i className="uil uil-edit" /> */}
-                <h4>Find Your Job</h4>
-              </div>
-              <Form onSubmit={handleSubmit} >
-              <Form.Group style={{display:"flex", justifyContent: "space-around"}}>
-
-              <Form.Group>
-              <Form.Label>Job Field</Form.Label>
-              <Form.Control
-                name="job_field"
-                type="text"
-                defaultValue=""
-              />
-              </Form.Group>
-              <Form.Group>
-              <Form.Label>Job City</Form.Label>
-              <Form.Control
-                name="job_city"
-                type="text"
-                defaultValue=""
-                
-              />
-              
-              </Form.Group>
-              </Form.Group>
-
-               <Button type="submit" style={{margin:'30px', marginBottom:"5px"}}  >  
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            <div className="right">
+              {/*----- MESSAGES -----*/}
+              <div className="messages">
+                <div >
+                  {/* <i className="uil uil-edit" /> */}
+                  <h4>Find Your Job</h4>
+                </div>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group
+                    style={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <Form.Group>
+                      <Form.Label>Job Field</Form.Label>
+                      <Form.Control
+                        name="job_field"
+                        type="text"
+                        defaultValue=""
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Job City</Form.Label>
+                      <Form.Control
+                        name="job_city"
+                        type="text"
+                        defaultValue=""
+                      />
+                    </Form.Group>
+                  </Form.Group>
+                  {/* <Button  type="submit" style={{margin:'30px', marginBottom:"5px", borderRadius: "100px", borderWidth: "1px"}}  >  
                 Search
-              </Button>
-              
+              </Button> */}
 
-          </Form>
+                  <input
+                    style={{ margin:'30px', marginBottom:"5px", borderRadius: "100px", borderWidth: "1px" }}
+                    type="submit"
+                    defaultValue="Post"
+                    className="btn btn-primary"
+                  />
+                </Form>
+              </div>
             </div>
-          </div>
 
-
-{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
             {JobPosts.map((post) => {
               return (
                 <>
@@ -506,11 +491,50 @@ function JobPost(props) {
                       <div className="liked-by"></div>
                       <div className="caption">
                         <p>
-                        <p style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_field}</p>
-                        <p style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_title}</p>
-                        <p style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_city}</p>
-                          <p style={{fontSize:'18px'}}> {post.job_post_content}</p>
-                          <p style={{wordBreak:'break-word',fontSize:'19px'}} id="paragraphstyle"> {post.email}</p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_field}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_title}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_city}
+                          </p>
+                          <p style={{ fontSize: "18px" }}>
+                            {" "}
+                            {post.job_post_content}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "19px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.email}
+                          </p>
                         </p>
                       </div>
                       <div></div>

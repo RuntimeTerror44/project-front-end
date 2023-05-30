@@ -339,9 +339,8 @@ function HomePost(props) {
                     </p>
 
                       {(post.photo_content !="" && post.photo_content !=null ) &&(
-                      <div className="post-photo-box" style={{display:"flex",marginLeft:"50px", justifyContent:"center", width:"200px", height:"200px"}}>
-                     <img style={{marginLeft:"120px",marginBottom:"5px",marginRight:"120px",marginTop:"5px", borderRadius:'0px', justifyContent:"center", width:"100%", height:"100%"}} src={post.photo_content} />
-                     </div>)}
+                     <img style={{margin:"auto", borderRadius:'0px', justifyContent:"center",borderRadius:"7px", width:"90%", height:"100%"}} src={post.photo_content} />
+                     )}
                     
                   </div>
                       <hr></hr>
