@@ -79,7 +79,7 @@ function FormPersonalData(props) {
             </Form.Group>
             <Row className="mb-2">
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Bate of Birth</Form.Label>
+                <Form.Label>Date of Birth</Form.Label>
                 <InputGroup hasValidation>
                   <Form.Control
                     type="date"

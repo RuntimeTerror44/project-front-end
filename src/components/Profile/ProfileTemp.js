@@ -247,7 +247,6 @@ function ProfileTemp(props) {
                         {/* </span> */}
                       </div>
                       <div className="photo">
-                        <p>{post.photo_content}</p>
                       </div>
                       <div className="action-buttons">
                         <div className="interaction-buttons"></div>
@@ -259,13 +258,17 @@ function ProfileTemp(props) {
                       </div>
                       <div className="liked-by"></div>
                       <div className="caption">
-                        <p>
-                          <p style={{ wordBreak: "break-word" }}>
-                            {" "}
-                            {post.paragraph_content}
-                          </p>
-                        </p>
-                      </div>
+                    
+                      <p style={{wordBreak:'break-word',fontSize:'18px', display:"flex"}}id="paragraphstyle"> {post.paragraph_content}</p>
+                      <div>
+                      
+                      {(post.photo_content !="" && post.photo_content !=null ) &&(
+                     <img style={{margin:"auto", borderRadius:'0px', justifyContent:"center",borderRadius:"7px", width:"90%", height:"100%"}} src={post.photo_content} />
+                     )}
+                   </div>
+                    <p>
+                    </p>
+                  </div>
                       <hr></hr>
                       <br></br>
                       <div className="info">

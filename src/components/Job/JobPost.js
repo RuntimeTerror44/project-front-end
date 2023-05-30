@@ -113,7 +113,7 @@ function JobPost(props) {
     setJobPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText("");
   };
-  console.log(JobPosts);
+  // console.log(JobPosts);
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
@@ -139,6 +139,30 @@ function JobPost(props) {
     sendReq();
     // console.log(postDataArray)
   }, [JobPost]);
+
+  // const [filterJobField, setFilterJobField] = useState("");
+  // const [filterJobCity, setFilterJobCity] = useState("");
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const [searchJobs, setSearchJobs] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e.target.job_field.value);
+    console.log(e.target.job_city.value);
+
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobbyfieldcity`;
+    const obj = {
+      job_field: e.target.job_field.value,
+      job_city: e.target.job_city.value,
+    };
+
+    const result = await axios.post(serverUrl, obj);
+    setJobPosts(result.data);
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // const handleAddComment = (postId, commentText) => {
   //   const newComment = {
@@ -297,9 +321,6 @@ function JobPost(props) {
 
             {/*--------------- END OF STORIES ------------------*/}
             <Form onSubmit={handlePostSubmit} action="" className="create-post">
-              {/* <div className="profile-photo">
-              <img src="./images/profile-1.jpg" />
-            </div> */}
               <Form.Group>
                 <textarea
                   rows="4"
@@ -368,6 +389,50 @@ function JobPost(props) {
               />
             </Form>
             {/*--------------- FEEDS ------------------*/}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            <div className="right">
+              {/*----- MESSAGES -----*/}
+              <div className="messages">
+                <div >
+                  {/* <i className="uil uil-edit" /> */}
+                  <h4>Find Your Job</h4>
+                </div>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group
+                    style={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <Form.Group>
+                      <Form.Label>Job Field</Form.Label>
+                      <Form.Control
+                        name="job_field"
+                        type="text"
+                        defaultValue=""
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Job City</Form.Label>
+                      <Form.Control
+                        name="job_city"
+                        type="text"
+                        defaultValue=""
+                      />
+                    </Form.Group>
+                  </Form.Group>
+                  {/* <Button  type="submit" style={{margin:'30px', marginBottom:"5px", borderRadius: "100px", borderWidth: "1px"}}  >  
+                Search
+              </Button> */}
+
+                  <input
+                    style={{ margin:'30px', marginBottom:"5px", borderRadius: "100px", borderWidth: "1px" }}
+                    type="submit"
+                    defaultValue="Post"
+                    className="btn btn-primary"
+                  />
+                </Form>
+              </div>
+            </div>
+
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
             {JobPosts.map((post) => {
               return (
                 <>
@@ -434,11 +499,42 @@ function JobPost(props) {
                             id="paragraphstyle"
                           >
                             {" "}
+                            {post.job_field}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_title}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_city}
+                          </p>
+                          <p style={{ fontSize: "18px" }}>
+                            {" "}
                             {post.job_post_content}
                           </p>
-                          <p> {post.job_city}</p>
-                          <p> {post.job_field}</p>
-                          <p> {post.job_title}</p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "19px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.email}
+                          </p>
                         </p>
                       </div>
                       <div></div>
@@ -447,7 +543,6 @@ function JobPost(props) {
                       <br></br>
                       <div className="info">
                         <div>
-                          {" "}
                           <JobComment postID={post.job_id} />
                         </div>
                       </div>
