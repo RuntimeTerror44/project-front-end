@@ -133,7 +133,7 @@ function UsersInfo(props){
                       alt='Generic placeholder image'
                       fluid />
                   </div>
-                  <div className=" ms-3 justify-content-center " >
+                   {/* <div className=" ms-3 justify-content-center " >
                     <MDBCardTitle>{userData[0].firstname}</MDBCardTitle>
                     <MDBCardText>{userData[0].career}</MDBCardText>
 
@@ -168,11 +168,10 @@ function UsersInfo(props){
                       </div>
                     </div>
                     <div className="d-flex pt-1">
-                      {/* <MDBBtn outline className="me-1 flex-grow-1">Chat</MDBBtn>
-                      <MDBBtn className="flex-grow-1">Follow</MDBBtn> */}
+             
                     </div>
-                  </div>
-                </div>
+                  </div> */}
+                </div> 
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

@@ -425,9 +425,9 @@ function JobPost(props) {
                         </div>
                       </div>
                     </div>
-                    ;
+                    
                   </div>
-                  ;
+                  
                 </>
               );
             })}

@@ -10,6 +10,7 @@ import {
   Card,
   Dropdown,
 } from "react-bootstrap";
+import {notification } from 'antd';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
@@ -19,10 +20,21 @@ import { background } from "@chakra-ui/react";
 // import { Text } from "@chakra-ui/react";
 
 function Comment(props) {
+  const openNotification = () => {
+    notification.open({
+      message: '',
+      description:
+        'Comment Added',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const [commentsDataArray, setCommentsDataArray] = useState([]);
+
   const getCommentsFromDb = async () => {
     // console.log(props.postID);
     if (props.postID) {
@@ -125,7 +137,7 @@ function Comment(props) {
                   
                     
                    
-                      marginBottom:'20px'
+                     
                     }}
                   >
                     <Dropdown.Toggle id="commentstyle"
@@ -169,7 +181,7 @@ function Comment(props) {
                   {/*</h6> */}
 
                   {/* ========================================= */}
-                  <div className="d-flex justify-content-between" style={{marginTop:'-50px'}} >
+                  <div className="d-flex justify-content-between"  >
                                   <div className="d-flex mb-3">
                                     <div className="mr-2">
                                       <a href="#!" className="text-name">
@@ -218,7 +230,7 @@ function Comment(props) {
         );
         return text;
       })}{" "}
-      <Form onSubmit={handleAddComment}>
+      <Form onSubmit={handleAddComment} >
         <Form.Group
           style={{
             display: "flex ",
@@ -231,11 +243,12 @@ function Comment(props) {
             name="comment"
             placeholder="Add a comment"
           />
-          <Button variant="primary" type="submit" style={{marginLeft:'5px',marginTop:'10px'}}>
+          <Button variant="primary" type="submit" style={{marginLeft:'5px',marginTop:'10px'}} onClick={openNotification}>
             <i className="fa fa-paper-plane" />
           </Button>
         </Form.Group>
       </Form>
+   
       <UpdateComment
         showUpdateModal={showUpdateModal}
         handleClosePost={handleClosePost} ///done
