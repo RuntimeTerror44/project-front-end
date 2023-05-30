@@ -732,6 +732,8 @@ fieldset {
   content: "";
   display: table;
   clear: both;
+  margin-top: 80px;
+margin-bottom: 0px;
 }
 /* Misc
 ********************************************************************* */
@@ -739,6 +741,7 @@ fieldset {
 .icon {
   padding-right: 10px;
   color: #e55d87;
+  height: 400px;
 }
 .blockk {
   width: 70px;
@@ -757,6 +760,7 @@ fieldset {
   justify-content: center;
   align-content: center;
   align-items: center;
+  
 }
 
 img.animated-image {
@@ -767,8 +771,18 @@ img.animated-image {
   -webkit-box-reflect: below 3px
     linear-gradient(transparent, transparent, rgba(255, 255, 255, 0.3));
   transition: 0.6s;
+  margin-bottom: 25px;
 }
 
 img.animated-image:hover {
   transform: perspective(500px) rotateY(0deg);
 }
+/* #anas{
+  height: 230px;
+  margin-bottom: 130px;
+}
+#esraa{
+  height: 220px;
+  margin-bottom: 150px;
+
+} */
