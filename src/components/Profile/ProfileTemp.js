@@ -4,24 +4,27 @@ import {
   Container,
   Form,
   FormControl,
-  Button,
   Row,
   Col,
   Card,
   Dropdown,
   Text,
 } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+
 // import "./PostTest.css";
 import axios from "axios";
 import { post } from "jquery";
-import { useRef } from "react";
+
 import UpdatePost from "../Home/UpdatePost";
 import Comment from "../Home/Comment";
-import '../../test test/facebookcss.css'
+import "../../test test/facebookcss.css";
+import LogoutButton from "../Landingpage/login/Logoutbutton";
+import React, { useRef, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Space } from "antd";
 function ProfileTemp(props) {
   const storedUserData = localStorage.getItem("userId");
-  const userData =JSON.parse(storedUserData);
+  const userData = JSON.parse(storedUserData);
   //////////////////////////////////////////////////
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -35,25 +38,16 @@ function ProfileTemp(props) {
   const currentDate = new Date();
   const readableDate = currentDate.toDateString();
   ///////////////////////////////////////////
-  // const [postDataArray, setPostDataArray] = useState([]);
-  // console.log("helllllo");
-  // const getPostFromDb = async () => {
-  //   const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${userData[0].id}`;
-  //   const result = await axios.get(serverUrl);
-  //   setPostDataArray(result.data);
-  // };
-  // useEffect(() => {
-  //   getPostFromDb();
-  // }, []);
+
   const sendReq = async () => {
     const serverUrl = `${process.env.REACT_APP_SERVER_URL}userposts/${userData[0].id}`;
     const result = await axios.get(serverUrl);
     setPosts(result.data);
-    console.log(result.data)
+    console.log(result.data);
   };
   useEffect(() => {
     sendReq();
-  }, [posts]);  //posts
+  }, [posts]); //posts
   //////////////////////////////////////////////////////////
   const handlePostChange = (event) => {
     setPostText(event.target.value);
@@ -70,7 +64,7 @@ function ProfileTemp(props) {
     setPosts(arr);
   };
   const handleDeletePost = async (post) => {
-    if (post.user_id == userData[0].id){
+    if (post.user_id == userData[0].id) {
       try {
         const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
         await axios.delete(serverUrl);
@@ -80,10 +74,18 @@ function ProfileTemp(props) {
       }
     }
   };
+  //========================
+  const logoutButtonRef = useRef(null); //loginref
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
+  };
   return (
     <>
-    {/* {console.log(userData[0].id)} */}
-    <meta charSet="UTF-8" />
+      {/* {console.log(userData[0].id)} */}
+      <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>
@@ -103,15 +105,23 @@ function ProfileTemp(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
-            style={{borderRadius:'100px',borderWidth:"0px"}}
+              style={{ borderRadius: "100px", borderWidth: "0px" }}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
           </div>
           <div className="create">
-            <label className="btn btn-primary" htmlFor="create-post">
-              SignOut
-            </label>
+            <LogoutButton ref={logoutButtonRef} />
+            <Button
+              danger
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick2}
+            >
+              {" "}
+              sign out
+            </Button>
             {/* <div className="profile-photo">
               <img src="./images/profile-1.jpg" alt="" />
             </div> */}
@@ -134,20 +144,19 @@ function ProfileTemp(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a href='home'className="menu-item ">
+              <a href="home" className="menu-item ">
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
-              <a className="menu-item active"   id="notifications">
+              <a className="menu-item active" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
-                <div className="notifications-popup">
-                </div>
+                <div className="notifications-popup"></div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
               <a className="menu-item " href="job" id="messages-notifications">
@@ -156,8 +165,12 @@ function ProfileTemp(props) {
                 </span>
                 <h3>Jobs</h3>
               </a>
-                {/* ++++++++++++++++ */}
-                <a className="menu-item " href="portfolio" id="messages-notifications">
+              {/* ++++++++++++++++ */}
+              <a
+                className="menu-item "
+                href="portfolio"
+                id="messages-notifications"
+              >
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
@@ -181,77 +194,86 @@ function ProfileTemp(props) {
             {/*--------------- FEEDS ------------------*/}
             {/* ////////////////////////////////////////////////////////////////// */}
             {posts.map((post) => {
-                  return (
-                    <>
-                    {/* {console.log(post.firstname)} */}
-            <div className="feeds">
-            {/* <HomePost/> */}
-              {/*--------------- FEED 1 ------------------*/}
-                <div className="feed">
-                  <div className="head">
-                    <div className="user">
-                      <div className="profile-photo">
-                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}}/>
+              return (
+                <>
+                  {/* {console.log(post.firstname)} */}
+                  <div className="feeds">
+                    {/* <HomePost/> */}
+                    {/*--------------- FEED 1 ------------------*/}
+                    <div className="feed">
+                      <div className="head">
+                        <div className="user">
+                          <div className="profile-photo">
+                            <img
+                              src={post.profilepicture}
+                              style={{ width: "60px", height: "60px" }}
+                            />
+                          </div>
+                          <div className="info">
+                            <h3 style={{ marginBottom: "1px" }}>
+                              {post.firstname}
+                            </h3>
+                            <small>{post.career}</small>
+                          </div>
+                        </div>
+                        {/* <span > */}
+                        <Form>
+                          <Dropdown className="edit">
+                            <Dropdown.Toggle
+                              id="poststyle"
+                              variant="primary"
+                              // className="dropdown-toggle-vertical"
+                              // className="uil uil-ellipsis-h"
+                            ></Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item
+                                onClick={() => handleEditPost(post)}
+                              >
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                onClick={() => handleDeletePost(post)}
+                              >
+                                Delete
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </Form>
+                        {/* </span> */}
                       </div>
+                      <div className="photo">
+                        <p>{post.photo_content}</p>
+                      </div>
+                      <div className="action-buttons">
+                        <div className="interaction-buttons"></div>
+                        <div className="bookmark">
+                          <span>
+                            <i className="uil uil-bookmark-full" />
+                          </span>
+                        </div>
+                      </div>
+                      <div className="liked-by"></div>
+                      <div className="caption">
+                        <p>
+                          <p style={{ wordBreak: "break-word" }}>
+                            {" "}
+                            {post.paragraph_content}
+                          </p>
+                        </p>
+                      </div>
+                      <hr></hr>
+                      <br></br>
                       <div className="info">
-                        <h3 style={{marginBottom:'1px'}}>{post.firstname}</h3>
-                        <small>{post.career}</small>
+                        <div>
+                          {" "}
+                          <Comment postID={post.post_id} />
+                        </div>
                       </div>
                     </div>
-                    {/* <span > */}
-                    <Form>
-                      <Dropdown className="edit"
-                                >
-                                  <Dropdown.Toggle id="poststyle"
-                                    variant="primary"
-                                    // className="dropdown-toggle-vertical"
-                                    // className="uil uil-ellipsis-h"
-                                  >
-                                  </Dropdown.Toggle>
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item
-                                      onClick={() => handleEditPost(post)}
-                                    >
-                                      Edit
-                                    </Dropdown.Item>
-                                    <Dropdown.Item
-                                      onClick={() =>
-                                        handleDeletePost(post)
-                                      }
-                                    >
-                                      Delete
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                                </Form>
-                    {/* </span> */}
                   </div>
-                  <div className="photo">
-                    <p>{post.photo_content}</p>
-                  </div>
-                  <div className="action-buttons">
-                    <div className="interaction-buttons"></div>
-                    <div className="bookmark">
-                      <span>
-                        <i className="uil uil-bookmark-full" />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="liked-by"></div>
-                  <div className="caption">
-                    <p>
-                      <p style={{wordBreak:'break-word'}}> {post.paragraph_content}</p>
-                    </p>
-                  </div>
-                  <hr></hr>
-                  <br></br>
-                  <div className="info">
-                    <div> <Comment postID={post.post_id} /></div>
-                  </div>
-                </div>
-                </div>
                 </>
-                )})}
+              );
+            })}
             {/*--------------- END OF FEEDS ------------------ */}
           </div>
           {/*--------------- END OF MIDDLE ------------------*/}
@@ -267,7 +289,7 @@ function ProfileTemp(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
-                style={{borderRadius:'100px',borderWidth:"0px"}}
+                  style={{ borderRadius: "100px", borderWidth: "0px" }}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"

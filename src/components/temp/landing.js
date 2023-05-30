@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./landing.css";
 import LoginButton from "../Landingpage/login/Loginbutton";
-
+import LogoutButton from "../Landingpage/login/Logoutbutton";
 import { Button, Space } from "antd";
 export default function Landing() {
   const loginButtonRef = useRef(null); //loginref
@@ -24,7 +24,13 @@ export default function Landing() {
   };
 
   //handle logout click
-
+  //handle logout click
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
+  };
   $(document).ready(function () {
     var curPage = 1;
     var numOfPages = $(".skw-page").length;
@@ -79,7 +85,7 @@ export default function Landing() {
   return (
     <>
       <LoginButton ref={loginButtonRef} />
-
+      <LogoutButton ref={logoutButtonRef} />
       <div className="skw-pages">
         <div className="skw-page skw-page-1 active">
           <div className="skw-page__half skw-page__half--left">
@@ -98,14 +104,36 @@ export default function Landing() {
                   organization seeking exceptional talent, weve got you covered.
                 </p>
                 <br />
-                <Button
-                  type="primary"
-                  shape="round"
-                  size={"large"}
-                  onClick={handleButtonClick}
-                >
-                  sign in{" "}
-                </Button>
+                <>
+                  {" "}
+                  {!isAuthenticated ? (
+                    <Button
+                      type="primary"
+                      shape="round"
+                      size={"large"}
+                      onClick={handleButtonClick}
+                    >
+                      {" "}
+                      sign in
+                    </Button>
+                  ) : (
+                    <>
+                      <Button
+                        danger
+                        type="primary"
+                        shape="round"
+                        size={"large"}
+                        onClick={handleButtonClick2}
+                      >
+                        {" "}
+                        sign out
+                      </Button>
+                      <br></br>
+                      <p>OR</p>
+                      <a href="/home">continue to your home</a>
+                    </>
+                  )}
+                </>
               </div>
             </div>
           </div>
@@ -181,27 +209,26 @@ export default function Landing() {
             <div className="skw-page__skewed">
               <div className="skw-page__content">
                 <h2 className="skw-page__heading">
-                  <Button
-                    type="primary"
-                    shape="round"
-                    size={"large"}
-                    onClick={handleButtonClick}
-                  >
-                    join us now{" "}
-                  </Button>{" "}
+                  {!isAuthenticated ? (
+                    <Button
+                      type="primary"
+                      shape="round"
+                      size={"large"}
+                      onClick={handleButtonClick}
+                    >
+                      Join Us Now{" "}
+                    </Button>
+                  ) : (
+                    <>
+                      <a href="/home">continue to your home</a>
+                      <br></br>
+                      <p>OR</p>
+                      <p className="skw-page__description">
+                        check more about us <a href="/about">here</a>
+                      </p>
+                    </>
+                  )}
                 </h2>
-
-                <p className="skw-page__description">
-                  check more about us here
-                  <br />
-                  <a
-                    className="skw-page__link"
-                    href="https://twitter.com/NikolayTalanov"
-                    target="_blank"
-                  >
-                    Twitter
-                  </a>
-                </p>
               </div>
             </div>
           </div>
