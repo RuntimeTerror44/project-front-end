@@ -854,3 +854,7 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
     margin: 0 5px;
 } */
 
+#logout:hover {
+/* background-color: #0b5ee1; */
+background-color: #3265b9;
+}
