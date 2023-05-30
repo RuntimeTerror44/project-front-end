@@ -6,7 +6,6 @@ import "typicons.font";
 import { color } from "framer-motion";
 
 
-
 function AboutUs() {
   /*----------------------------------------------------*/
   /* Quote Loop
@@ -77,22 +76,59 @@ function AboutUs() {
     });
   });
 
-  TweenMax.staggerFrom(".abtus-heading", 0.8, { opacity: 0, y: 20, delay: 0.2 }, 0.4);
+  TweenMax.staggerFrom(".heading", 0.8, { opacity: 0, y: 20, delay: 0.2 }, 0.4);
  
   return (
     <>
-    <body id="body" className="abtus-html">
+    <div className="aboutus">
+    <body id="body">
+      
+
+
       {/* Header Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */}
-      <header id="header" className="abtus">
-        <div className="titlee">
-          <div>
-            <span className="typcn icon typcn-arrow-repeat" />
+      <header id="header">
+        <div className="main_nav">
+          <div className="containerr">
+            <div className="mobile-toggle">
+              {" "}
+              <span /> <span /> <span />{" "}
+            </div>
+            <nav id = "nav">
+              <ul>
+                <li>
+                  <a className="smoothscroll" href="#header">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a className="smoothscroll" href="#about">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a className="smoothscroll" href="#skills">
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a className="smoothscroll" href="#portfolio">
+                    Work
+                  </a>
+                </li>
+             
+              </ul>
+            </nav>
           </div>
-          <div clatitleessName="smallsep abtus-heading" className="smallsep abtus" />
-          <h1 className="abtus-heading abtus abtus-h1"> Career Connect</h1>
-          <h2 className="abtus-heading abtus abtus-h2">Empowering dreams, building careers</h2>
-          <a className="smoothscroll abtus" href="#about">
+        </div>
+        <div className="">
+          <div>
+            <span className="typcn icon typcn-arrow-repeat heading" />
+          </div>
+          <div clatitleessName="smallsep heading" />
+          <h1 className="heading"> Career Connect</h1>
+          <h2 className="heading">Empowering dreams, building careers</h2>
+          <a className="smoothscroll" href="#about">
             <div className="mouse">
               <div className="wheel" />
             </div>
@@ -107,7 +143,7 @@ function AboutUs() {
       <section id="about">
         <div className="containerr">
           <div className="roww">
-            <h1 className="abtus-abtus">About</h1>
+            <h1>About</h1>
             <div className="blockk" />
             <p>
           Welcome to our job connect platform! We are passionate about
@@ -125,7 +161,7 @@ function AboutUs() {
           </div>
           <div className="roww">
             <div className="six columnss">
-              <h3 >
+              <h3>
                 <span className="typcn typcn-device-desktop icon" />
                 Our Process
               </h3>
@@ -136,7 +172,7 @@ function AboutUs() {
               </p>
             </div>
             <div className="six columnss">
-              <h3 >
+              <h3>
                 <span className="typcn typcn-pen icon" />
                 Our Approach
               </h3>
@@ -149,7 +185,7 @@ function AboutUs() {
             </div>
             <div className="roww">
               <div className="six columnss">
-                <h3 >
+                <h3>
                   <span className="typcn typcn-cog-outline icon" />
                   Our Goal
                 </h3>
@@ -160,7 +196,7 @@ function AboutUs() {
                 </p>
               </div>
               <div className="six columnss">
-                <h3 >
+                <h3>
                   <span className="typcn typcn-lightbulb icon" />
                   Our Mission
                 </h3>
@@ -276,7 +312,7 @@ function AboutUs() {
           <div className="blockk" />
           <div className="roww">
             <div className="one-third columnn">
-              <h3 >Jobs</h3>
+              <h3>Jobs</h3>
               <p>
                 Our website can offer a comprehensive job search platform
                 where job seekers can explore and apply for relevant job
@@ -284,7 +320,7 @@ function AboutUs() {
               </p>
             </div>
             <div className="one-third columnn">
-              <h3 >Employer Recruitment</h3>
+              <h3>Employer Recruitment</h3>
               <p>
                 We Provide a platform where employers can create job
                 listings, showcase their company culture, and manage
@@ -292,7 +328,7 @@ function AboutUs() {
               </p>
             </div>
             <div className="one-third columnn">
-              <h3 >Social Media</h3>
+              <h3>Social Media</h3>
               <p>
                 We Enhance user experience and create an enjoyable social
                 community around your platform. Implement social media
@@ -456,7 +492,8 @@ function AboutUs() {
           </div>
         </div>
       </section>    
-    </body>
+      </body>
+      </div>
     </>
   );
 }

@@ -11,7 +11,7 @@ import {
   Dropdown,
   Text,
 } from "react-bootstrap";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
@@ -24,7 +24,7 @@ import Comment from "./Comment";
 
 function HomePost(props) {
   const storedUserData = localStorage.getItem("userId");
-  const userData =JSON.parse(storedUserData)
+  const userData = JSON.parse(storedUserData);
   // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -46,7 +46,7 @@ function HomePost(props) {
     try {
       // e.preventDefault()
       const obj = {
-        user_id:userData[0].id,
+        user_id: userData[0].id,
         paragraph_content: postText,
         post_date: readableDate,
 
@@ -56,7 +56,7 @@ function HomePost(props) {
       const result = await axios.post(serverUrl, obj);
 
       props.takeDataFromChild(result.data);
-      console.log(result.data)
+      console.log(result.data);
 
       setPostData(result.data[0]);
       setPosts(result.data);
@@ -123,9 +123,7 @@ function HomePost(props) {
 
   return (
     <>
-    
-   
-    <meta charSet="UTF-8" />
+      <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>
@@ -183,7 +181,7 @@ function HomePost(props) {
                 <h3>Home</h3>
               </a>
 
-              <a href="profilepage"className="menu-item" id="notifications">
+              <a href="profilepage" className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -209,7 +207,7 @@ function HomePost(props) {
               </a>
               {/* ++++++++++++++++ */}
 
-              <a href="aboutus"className="menu-item">
+              <a href="aboutus" className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -241,7 +239,6 @@ function HomePost(props) {
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
-               
               />
             </Form>
             {/*--------------- FEEDS ------------------*/}
@@ -321,9 +318,10 @@ function HomePost(props) {
                 </div>
                 </div>
                 </>
-                )})}
-          
-              {/* <div className="feed">
+              );
+            })}
+
+            {/* <div className="feed">
             <div className="head">
               <div className="user">
                 <div className="profile-photo">
@@ -372,10 +370,10 @@ function HomePost(props) {
                   <p>Motasem</p>
                   <p>this is my comment</p>
                    */}
-              {/* </div> */}
-              {/* </div> */}
+            {/* </div> */}
+            {/* </div> */}
 
-              {/*--------------- END OF FEED 1 ------------------*/}
+            {/*--------------- END OF FEED 1 ------------------*/}
             {/* </div> */}
             {/*--------------- END OF FEEDS ------------------ */}
           </div>
@@ -495,8 +493,6 @@ function HomePost(props) {
           </div>
         </div>
       </div>
-     
-           
 
       <UpdatePost
         showUpdateModal={showUpdateModal}
@@ -504,31 +500,12 @@ function HomePost(props) {
         postData={postData}
         posts={posts}
         takeDataFromChild={takeDataFromChild}
-      
       />
-      
     </>
   );
 }
 
 export default HomePost;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import {
 //   Navbar,
@@ -716,7 +693,7 @@ export default HomePost;
 //                           <div className="row">
 //                             <div className="col-sm-6 offset-sm-3">
 //                               <div
-//                                 className="post-block" 
+//                                 className="post-block"
 //                                 style={{ position: "relative" ,background:'#DDE6ED'  }}
 //                               >
 //                                 <Dropdown
@@ -731,7 +708,7 @@ export default HomePost;
 //                                     variant="primary"
 //                                     className="dropdown-toggle-vertical"
 //                                   >
-                                  
+
 //                                   </Dropdown.Toggle>
 //                                   <Dropdown.Menu>
 //                                     <Dropdown.Item
@@ -872,9 +849,9 @@ export default HomePost;
 //         postData={postData}
 //         posts={posts}
 //         takeDataFromChild={takeDataFromChild}
-      
+
 //       />
-      
+
 //       {/* <Comment comments={props.commentsDataArray} /> */}
 //     </div>
 //   );
