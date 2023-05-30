@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Nav,
+  Modal,
   Container,
   Form,
   FormControl,
@@ -11,6 +12,7 @@ import {
   Card,
   Dropdown,
 } from "react-bootstrap";
+
 // import "./JobPost.css";
 import axios from "axios";
 import { post } from "jquery";
@@ -18,7 +20,8 @@ import { useRef } from "react";
 import UpdateJobPost from "./UpdateJobPost";
 // import Comment from './Comment'
 import JobComment from "./JobComment";
-import "../../test test/facebookcss.css";
+// import '../../test test/facebookcss.css';
+// import './JobPost.css'
 function JobPost(props) {
   const [postText, setPostText] = useState("");
   const [postCity, setPostCity] = useState("");
@@ -27,6 +30,7 @@ function JobPost(props) {
   const [JobPosts, setJobPosts] = useState([]);
   const [postData, setPostData] = useState({});
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+
 
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
@@ -184,6 +188,7 @@ function JobPost(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
+            style={{borderRadius:'100px',borderWidth:"0px"}}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
@@ -214,86 +219,39 @@ function JobPost(props) {
           </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active">
+              <a className="menu-item " href="home">
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
 
-              <a className="menu-item" id="notifications">
+              <a className="menu-item"  href="profilepage" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
                 <div className="notifications-popup">
-                  {/* <div>
-                  <div className="profile-photo">
-                    <img src="./images/profile-2.jpg" />
-                  </div>
-                  <div className="notification-body">
-                    <b>Keke Benjamin</b> accepted your friend request
-                    <small className="text-muted">2 Days Ago</small>
-                  </div>
-                </div> */}
-                  {/* <div>
-                  <div className="profile-photo">
-                    <img src="./images/profile-3.jpg" />
-                  </div>
-                  <div className="notification-body">
-                    <b>John Doe</b> commented on your post
-                    <small className="text-muted">1 Hour Ago</small>
-                  </div>
-                </div> */}
-                  {/* <div>
-                  <div className="profile-photo">
-                    <img src="./images/profile-4.jpg" />
-                  </div>
-                  <div className="notification-body">
-                    <b>Marry Oppong</b> and <b>283 Others</b> liked your post
-                    <small className="text-muted">4 Minutes Ago</small>
-                  </div>
-                </div> */}
-                  {/* <div>
-                  <div className="profile-photo">
-                    <img src="./images/profile-5.jpg" />
-                  </div>
-                  <div className="notification-body">
-                    <b>Doris Y. Lartey</b> commented on a post you are tagged
-                    in
-                    <small className="text-muted">2 Days Ago</small>
-                  </div>
-                </div> */}
-                  {/* <div>
-                  <div className="profile-photo">
-                    <img src="./images/profile-6.jpg" />
-                  </div>
-                  <div className="notification-body">
-                    <b>Keyley Jenner</b> commented on a post you are tagged in
-                    <small className="text-muted">1 Hour Ago</small>
-                  </div>
-                </div> */}
-                  {/* <div>
-                  <div className="profile-photo">
-                    <img src="./images/profile-7.jpg" />
-                  </div>
-                  <div className="notification-body">
-                    <b>Jane Doe</b> commented on your post
-                    <small className="text-muted">1 Hour Ago</small>
-                  </div>
-                </div> */}
+
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item" id="messages-notifications">
+              <a className="menu-item active " href="job" id="messages-notifications">
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
-
-              <a className="menu-item">
+             {/* ++++++++++++++++ */}
+             <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>create resume</h3>
+              </a>
+              {/* ++++++++++++++++ */}  
+              <a className="menu-item " href="aboutus">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -315,16 +273,21 @@ function JobPost(props) {
               <img src="./images/profile-1.jpg" />
             </div> */}
             <Form.Group>
-              <input
-                type="text"
-                placeholder="Share your thoughts "
+              <textarea
+              rows="4" cols="50" 
+              id="create-post"
+               style={{marginBottom:"8px",marginTop:"8px" ,borderRadius:'10px',borderWidth:"1px",wordBreak:"break-all" ,minWidth:"600px", whiteSpace: "preLine"}}
+                type="text-area"
+                placeholder="Job description "
                 // id="create-post"
                 onChange={handlePostChange}
-              />
+              ></textarea>
               </Form.Group>
-              <br></br>
+             
               <Form.Group>
               <input
+             
+              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
                 type="text"
                 placeholder="enter city"
                 id="create-post"
@@ -333,6 +296,8 @@ function JobPost(props) {
               </Form.Group>
               <Form.Group>
               <input
+              
+              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
                 type="text"
                 placeholder="enter job Field"
                 id="create-post"
@@ -341,17 +306,20 @@ function JobPost(props) {
               </Form.Group>
               <Form.Group>
               <input
+              
+              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
                 type="text"
                 placeholder="enter job title"
                 id="create-post"
                 onChange={handleJobTitle}
               />
               </Form.Group>
-              <input
+              <input 
+              style={{borderRadius:'100px',borderWidth:"1px"}}
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
-              />
+              /> 
             </Form>
             {/*--------------- FEEDS ------------------*/}
             {JobPosts.map((post) => {
@@ -364,7 +332,7 @@ function JobPost(props) {
                       <div className="head">
                         <div className="user">
                           <div className="profile-photo">
-                            <img src={post.profilepicture} />
+                            <img src={post.profilepicture}  style={{width:'60px',height:'60px'}} />
                           </div>
                           <div className="info">
                             <h3>{post.firstname}</h3>
@@ -374,10 +342,10 @@ function JobPost(props) {
 
                         {post.user_id == userData[0].id && (
                           <Dropdown className="edit">
-                            <Dropdown.Toggle
+                            <Dropdown.Toggle  id="mm"
                               variant="primary"
-                              // className="dropdown-toggle-vertical"
-                              className="uil uil-ellipsis-h"
+                              className="dropdown-toggle-vertical"
+                              // className="uil uil-ellipsis-h"
                             ></Dropdown.Toggle>
                             <Dropdown.Menu>
                               <Dropdown.Item
@@ -408,7 +376,7 @@ function JobPost(props) {
                       <div className="liked-by"></div>
                       <div className="caption">
                         <p>
-                          <p> {post.job_post_content}</p>
+                          <p  style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_post_content}</p>
                           <p> {post.job_city}</p>
                           <p> {post.job_field}</p>
                           <p> {post.job_title}</p>
@@ -425,9 +393,9 @@ function JobPost(props) {
                         </div>
                       </div>
                     </div>
-                    
+              
                   </div>
-                  
+                
                 </>
               );
             })}
@@ -445,6 +413,7 @@ function JobPost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
+                 style={{borderRadius:'100px',borderWidth:"0px"}}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
