@@ -1,30 +1,32 @@
+import LogoutButton from "../Landingpage/login/Logoutbutton";
+import React, { useRef, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Space } from "antd";
+
 import {
   Navbar,
   Nav,
   Container,
   Form,
   FormControl,
-  Button,
   Row,
   Col,
   Card,
   Dropdown,
   Text,
 } from "react-bootstrap";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
-import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
 import axios from "axios";
 import { post } from "jquery";
-import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
 // import '../../test test/facebookcss.css'
 
 function HomePost(props) {
   const storedUserData = localStorage.getItem("userId");
-  const userData =JSON.parse(storedUserData)
+  const userData = JSON.parse(storedUserData);
   // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -46,7 +48,7 @@ function HomePost(props) {
     try {
       // e.preventDefault()
       const obj = {
-        user_id:userData[0].id,
+        user_id: userData[0].id,
         paragraph_content: postText,
         post_date: readableDate,
 
@@ -56,7 +58,7 @@ function HomePost(props) {
       const result = await axios.post(serverUrl, obj);
 
       props.takeDataFromChild(result.data);
-      console.log(result.data)
+      console.log(result.data);
 
       setPostData(result.data[0]);
       setPosts(result.data);
@@ -80,8 +82,10 @@ function HomePost(props) {
       comments: [],
     };
     addPostODb();
+
     setPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText(""); // Clear the post text input field
+    event.target.reset()
   };
 
   const handleEditPost = (post) => {
@@ -108,22 +112,26 @@ function HomePost(props) {
   }, [posts]);
 
   const handleDeletePost = async (post) => {
-      try {
-        const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
-        await axios.delete(serverUrl);
-        sendReq();
-      } catch (error) {
-        console.log(`error deleting post ${error}`);
-      }
-    
-    
+    try {
+      const serverUrl = `${process.env.REACT_APP_SERVER_URL}posts/${post.post_id}`;
+      await axios.delete(serverUrl);
+      sendReq();
+    } catch (error) {
+      console.log(`error deleting post ${error}`);
+    }
+  };
+  //===============================
+  const logoutButtonRef = useRef(null); //loginref
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
   };
 
   return (
     <>
-    
-   
-    <meta charSet="UTF-8" />
+      <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>
@@ -143,15 +151,23 @@ function HomePost(props) {
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
-            style={{borderRadius:'100px',borderWidth:"0px"}}
+              style={{ borderRadius: "100px", borderWidth: "0px" }}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
           </div>
           <div className="create">
-            <label className="btn btn-primary" htmlFor="create-post">
-              SignOut
-            </label>
+            <LogoutButton ref={logoutButtonRef} />
+            <Button
+              danger
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick2}
+            >
+              {" "}
+              sign out
+            </Button>
             {/* <div className="profile-photo">
               <img src="./images/profile-1.jpg" alt="" />
             </div> */}
@@ -174,22 +190,20 @@ function HomePost(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active" >
+              <a className="menu-item active">
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
 
-              <a href="profilepage"className="menu-item" id="notifications">
+              <a href="profilepage" className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
-                <div className="notifications-popup">
-
-                </div>
+                <div className="notifications-popup"></div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
               <a className="menu-item" href="job" id="messages-notifications">
@@ -198,8 +212,12 @@ function HomePost(props) {
                 </span>
                 <h3>Jobs</h3>
               </a>
-                {/* ++++++++++++++++ */}
-                <a className="menu-item " href="portfolio" id="messages-notifications">
+              {/* ++++++++++++++++ */}
+              <a
+                className="menu-item "
+                href="portfolio"
+                id="messages-notifications"
+              >
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
@@ -207,7 +225,7 @@ function HomePost(props) {
               </a>
               {/* ++++++++++++++++ */}
 
-              <a href="aboutus"className="menu-item">
+              <a href="about" className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -224,12 +242,17 @@ function HomePost(props) {
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
-            <Form onSubmit={handlePostSubmit} action="" style={{display:"flex"}} className="create-post">
+            <Form
+              onSubmit={handlePostSubmit}
+              action=""
+              style={{ display: "flex" }}
+              className="create-post"
+            >
               {/* <div className="profile-photo">
                 <img src="./images/profile-1.jpg" />
               </div> */}
               <input
-              style={{borderRadius:'100px',borderWidth:"0px"}}
+                style={{ borderRadius: "100px", borderWidth: "0px" }}
                 type="text"
                 placeholder="Share your thoughts "
                 id="create-post"
@@ -239,89 +262,99 @@ function HomePost(props) {
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
-               
               />
             </Form>
             {/*--------------- FEEDS ------------------*/}
             {posts.map((post) => {
-                  return (
+              return (
+                <>
+                  <div className="feeds">
+                    {/* <HomePost/> */}
+                    {/*--------------- FEED 1 ------------------*/}
 
-                    <>
-                    
-                 
-            <div className="feeds">
-            {/* <HomePost/> */}
-              {/*--------------- FEED 1 ------------------*/}
-             
-                <div className="feed">
-                  <div className="head">
-                    <div className="user">
-                      <div className="profile-photo">
-                        <img src={post.profilepicture} style={{width:'60px',height:'60px'}} />
+                    <div className="feed">
+                      <div className="head">
+                        <div className="user">
+                          <div className="profile-photo">
+                            <img
+                              src={post.profilepicture}
+                              style={{ width: "60px", height: "60px" }}
+                            />
+                          </div>
+                          <div className="info">
+                            <h3>
+                              {post.firstname} {post.lastname}
+                            </h3>
+                            <small>{post.career}</small>
+                          </div>
+                        </div>
+                        {/* <span > */}
+
+                        {post.user_id == userData[0].id && (
+                          <Dropdown className="edit">
+                            <Dropdown.Toggle
+                              id="mm"
+                              variant="primary"
+                              className="dropdown-toggle-vertical"
+                              // className="uil uil-ellipsis-h"
+                            ></Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item
+                                onClick={() => handleEditPost(post)}
+                              >
+                                Edit
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                onClick={() => handleDeletePost(post)}
+                              >
+                                Delete
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        )}
+                        {/* </span> */}
                       </div>
+                      <div className="photo">
+                        <p>{post.photo_content}</p>
+                      </div>
+                      <div className="action-buttons">
+                        <div className="interaction-buttons"></div>
+                        <div className="bookmark">
+                          <span>
+                            <i className="uil uil-bookmark-full" />
+                          </span>
+                        </div>
+                      </div>
+                      <div className="liked-by"></div>
+                      <div className="caption">
+                        <p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.paragraph_content}
+                          </p>
+                        </p>
+                      </div>
+                      <hr></hr>
+                      <br></br>
                       <div className="info">
-                        <h3>{post.firstname} {post.lastname}</h3>
-                        <small>{post.career}</small>
+                        <div>
+                          {" "}
+                          <Comment postID={post.post_id} />
+                        </div>
                       </div>
                     </div>
-                    {/* <span > */}
-
-                    {(post.user_id == userData[0].id)&&(
-                      <Dropdown className="edit"
-                               
-                                >
-                                  <Dropdown.Toggle id="mm"
-                                    variant="primary"
-                                    className="dropdown-toggle-vertical"
-                                    // className="uil uil-ellipsis-h"
-                                  >
-                                  
-                                  </Dropdown.Toggle>
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item
-                                      onClick={() => handleEditPost(post)}
-                                    >
-                                      Edit
-                                    </Dropdown.Item>
-                                    <Dropdown.Item
-                                      onClick={() =>
-                                        handleDeletePost(post)
-                                      }
-                                    >
-                                      Delete
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>)}
-                    {/* </span> */}
                   </div>
-                  <div className="photo">
-                    <p>{post.photo_content}</p>
-                  </div>
-                  <div className="action-buttons">
-                    <div className="interaction-buttons"></div>
-                    <div className="bookmark">
-                      <span>
-                        <i className="uil uil-bookmark-full" />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="liked-by"></div>
-                  <div className="caption" >
-                    <p>
-                      <p style={{wordBreak:'break-word',fontSize:'18px'}}id="paragraphstyle"> {post.paragraph_content}</p>
-                    </p>
-                  </div>
-                  <hr></hr>
-                  <br></br>
-                  <div className="info">
-                    <div> <Comment postID={post.post_id} /></div>
-                  </div>
-                </div>
-                </div>
                 </>
-                )})}
-          
-              {/* <div className="feed">
+              );
+            })}
+
+            {/* <div className="feed">
             <div className="head">
               <div className="user">
                 <div className="profile-photo">
@@ -370,10 +403,10 @@ function HomePost(props) {
                   <p>Motasem</p>
                   <p>this is my comment</p>
                    */}
-              {/* </div> */}
-              {/* </div> */}
+            {/* </div> */}
+            {/* </div> */}
 
-              {/*--------------- END OF FEED 1 ------------------*/}
+            {/*--------------- END OF FEED 1 ------------------*/}
             {/* </div> */}
             {/*--------------- END OF FEEDS ------------------ */}
           </div>
@@ -390,7 +423,7 @@ function HomePost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
-                style={{borderRadius:'100px',borderWidth:"0px"}}
+                  style={{ borderRadius: "100px", borderWidth: "0px" }}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
@@ -493,8 +526,6 @@ function HomePost(props) {
           </div>
         </div>
       </div>
-     
-           
 
       <UpdatePost
         showUpdateModal={showUpdateModal}
@@ -502,31 +533,12 @@ function HomePost(props) {
         postData={postData}
         posts={posts}
         takeDataFromChild={takeDataFromChild}
-      
       />
-      
     </>
   );
 }
 
 export default HomePost;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import {
 //   Navbar,
@@ -714,7 +726,7 @@ export default HomePost;
 //                           <div className="row">
 //                             <div className="col-sm-6 offset-sm-3">
 //                               <div
-//                                 className="post-block" 
+//                                 className="post-block"
 //                                 style={{ position: "relative" ,background:'#DDE6ED'  }}
 //                               >
 //                                 <Dropdown
@@ -729,7 +741,7 @@ export default HomePost;
 //                                     variant="primary"
 //                                     className="dropdown-toggle-vertical"
 //                                   >
-                                  
+
 //                                   </Dropdown.Toggle>
 //                                   <Dropdown.Menu>
 //                                     <Dropdown.Item
@@ -870,9 +882,9 @@ export default HomePost;
 //         postData={postData}
 //         posts={posts}
 //         takeDataFromChild={takeDataFromChild}
-      
+
 //       />
-      
+
 //       {/* <Comment comments={props.commentsDataArray} /> */}
 //     </div>
 //   );

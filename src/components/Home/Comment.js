@@ -41,7 +41,6 @@ function Comment(props) {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${props.postID}`;
       const result = await axios.get(serverUrl);
       setCommentsDataArray(result.data);
-      console.log(result.data);
     }
   };
 
@@ -70,6 +69,7 @@ function Comment(props) {
       console.log(response.data);
 
       setCommentsDataArray(response.data);
+      e.target.reset()
       //   console.log(commentsDataArray);
     } catch (error) {
       console.log("Error adding comment", error);
@@ -84,7 +84,6 @@ function Comment(props) {
   //   setDate(e.target.value);}
 
   const handleDeletePost = async (item) => {
-    
     try {
       const serverUrl = `${process.env.REACT_APP_SERVER_URL}comments/${item.comment_id}`;
       await axios.delete(serverUrl);
@@ -93,7 +92,6 @@ function Comment(props) {
     } catch (error) {
       console.log(`error deleting post ${error}`);
     }
-  
   };
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -114,58 +112,53 @@ function Comment(props) {
   };
 
   return (
-    <div style={{width:"100%"}}>
-            {/* {console.log(commentsDataArray)}; */}
-
+    <div style={{ width: "100%" }}>
+      {/* {console.log(commentsDataArray)}; */}
       {commentsDataArray.map((item) => {
         const text = (
           <>
-            <Row xs={1} md={1} className="g-4" style={{backgroundColor:'#ebeff3'}}>
-              <Col >
-              
-              {(item.user_id == userData[0].id) && (
-              
-                <Form>
-                  <Dropdown
-                    align="end"
-                    style={{
-                      // position: "absolute",
-                      // top: "0px",
-                      // right: "16px",
-                      display: "flex",
-                      justifyContent: "end",
-                  
-                    
-                   
-                     
-                    }}
-                  >
-                    <Dropdown.Toggle id="commentstyle"
-                      variant="primary"
-                      className="dropdown-toggle-vertical"
-                    >
-                     
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handleEditPost(item)}>
-                        Edit
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => handleDeletePost(item)}
-                      >
-                        Delete
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Form>
-               ) 
-              }
+            <Row
+              xs={1}
+              md={1}
+              className="g-4"
+              style={{ backgroundColor: "#ebeff3" }}
+            >
+              <Col>
+                {item.user_id == userData[0].id && (
+                  <Form>
+                    <Dropdown
+                      align="end"
+                      style={{
+                        // position: "absolute",
+                        // top: "0px",
+                        // right: "16px",
+                        display: "flex",
+                        justifyContent: "end",
 
+                        marginBottom: "20px",
+                      }}
+                    >
+                      <Dropdown.Toggle
+                        id="commentstyle"
+                        variant="primary"
+                        className="dropdown-toggle-vertical"
+                      ></Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => handleEditPost(item)}>
+                          Edit
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleDeletePost(item)}>
+                          Delete
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </Form>
+                )}
                 {/* <Card> */}
                 {/* {setPostID(post.post_id)} */}
                 {/* <Card.Img variant="top" /> */}
                 {/* <Text> */}
-                  {/* <img
+                {/* <img
                     src="https://expertphotography.b-cdn.net/wp-content/uploads/2011/06/how-to-take-good-pictures-waterlilly.jpg"
                     alt="User img"
                     className="author-img author-img--small mr-2"
@@ -173,7 +166,7 @@ function Comment(props) {
                   <h6 className="mb-1">
                     <a href="#!" className="text-dark">
                       {/* John doe local storage  */}
-                   {/*} </a>{" "}
+                {/*} </a>{" "}
                     <p className="mb-0 text-muted" id="hello">
                       SoftwreEngineer
                     </p>{" "}
@@ -222,7 +215,6 @@ function Comment(props) {
                   
                 {/* </Card> */}
               </Col>
-        
             </Row>
           </>
         );
@@ -232,11 +224,15 @@ function Comment(props) {
         <Form.Group
           style={{
             display: "flex ",
-          
           }}
         >
           <Form.Control
-        style={{borderRadius:'100px',borderWidth:"0px" ,backgroundColor:'#ebeff3',marginTop:'10px'}}
+            style={{
+              borderRadius: "100px",
+              borderWidth: "0px",
+              backgroundColor: "#ebeff3",
+              marginTop: "10px",
+            }}
             type="text"
             name="comment"
             placeholder="Add a comment"
@@ -259,5 +255,3 @@ function Comment(props) {
   );
 }
 export default Comment;
-
-
