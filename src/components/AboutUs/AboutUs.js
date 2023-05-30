@@ -189,12 +189,12 @@ function AboutUs() {
             </p>
           </div>
           <div className="roww roww-center">
-            <div className="three columnss">
+            <div className="three columnss " id="anas">
               {" "}
               <img
                 src="https://media.licdn.com/dms/image/C4E03AQHMkbqWQvJwNA/profile-displayphoto-shrink_800_800/0/1657108303529?e=1691020800&v=beta&t=SCR4toNuMHwks0_34A6Ne5RWXwVfnUo_3O0fyN4W_T8"
                 width={250}
-                height={210}
+                height={250}
                 alt=""
                 className="animated-image"
               />
@@ -227,7 +227,7 @@ function AboutUs() {
               </a>
             </div>
             
-            <div className="three columnss">
+            <div className="three columnss" id="Mohannad">
               {" "}
               <img
                 src="https://ca.slack-edge.com/TNGRRLUMA-U04UXLQU9QA-2ddcf4374186-512"
@@ -248,7 +248,7 @@ function AboutUs() {
             </div>
           </div>
           <div className="roww roww-center" style={{ marginTop: '30px' }}>
-            <div className="three columnss">
+            <div className="three columnss" id="esraa">
               {" "}
               <img
                 src="https://media.licdn.com/dms/image/C4D03AQFAp2EtptkmzQ/profile-displayphoto-shrink_800_800/0/1630698403792?e=1691020800&v=beta&t=OZU59CxLdBVxPc7jIe2jJKEP7qGOwtp8_s705TnblYY"
