@@ -10,7 +10,7 @@ import {
   Card,
   Dropdown,
 } from "react-bootstrap";
-
+import SameCareer from './SameCareer';
 import LogoutButton from "../Landingpage/login/Logoutbutton";
 import React, { useRef, useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -112,6 +112,7 @@ function JobPost(props) {
     addPostODb();
     setJobPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText("");
+    event.target.reset()
   };
   // console.log(JobPosts);
 
@@ -222,7 +223,8 @@ function JobPost(props) {
       <link rel="stylesheet" href="./style.css" />
       <nav>
         <div className="container">
-          <img style={{ width: "125px", hight: "70px", marginRight:"-50px", marginLeft:"-130px", marginTop:"-20px" ,marginBottom:"-20px" }} src="https://careerconnect.net.au/assets/img/logos/career-connect-01.png" alt="CareerConnect Logo" />
+        <img style={{ width: "125px", hight: "70px", marginRight:"-50px", marginLeft:"-130px", marginTop:"-20px" ,marginBottom:"-20px" }} src="https://careerconnect.net.au/assets/img/logos/career-connect-01.png" alt="CareerConnect Logo" />
+
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
@@ -307,7 +309,7 @@ function JobPost(props) {
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
-                <h3>AbotuUs</h3>
+                <h3>About Us</h3>
               </a>
             </div>
             {/*--------------- END OF SIDEBAR ------------------*/}
@@ -316,7 +318,7 @@ function JobPost(props) {
             </label>
           </div>
           {/*--------------- MIDDLE ------------------*/}
-          <div className="middle">
+          <div style={{width:"600px"}} className="middle">
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
@@ -332,7 +334,8 @@ function JobPost(props) {
                     borderRadius: "10px",
                     borderWidth: "1px",
                     wordBreak: "break-all",
-                    minWidth: "600px",
+                    // minWidth: "600px",
+                    width:"557px",
                     whiteSpace: "preLine",
                   }}
                   type="text-area"
@@ -490,11 +493,12 @@ function JobPost(props) {
                       </div>
                       <div className="liked-by"></div>
                       <div className="caption">
-                        <p>
+                        <div>
                           <p
                             style={{
                               wordBreak: "break-word",
                               fontSize: "18px",
+                              
                             }}
                             id="paragraphstyle"
                           >
@@ -535,7 +539,7 @@ function JobPost(props) {
                             {" "}
                             {post.email}
                           </p>
-                        </p>
+                        </div>
                       </div>
                       <div></div>
                       <div></div>
@@ -576,19 +580,17 @@ function JobPost(props) {
             {/*----- END OF MESSAGES -----*/}
             {/*----- FRIEND REQUEST -----*/}
             <div className="friend-requests">
-              <h4>Requests</h4>
+              <h4>People With Same Career</h4>
 
-              {/* <div className="request">
+              <div className="request" style={{marginLeft:"0px"}}>
               <div className="info">
                 <div className="profile-photo">
-                  <img src="./images/profile-17.jpg" />
                 </div>
                 <div>
-                  <h5>Megan Baldwin</h5>
-                  <p className="text-muted">5 mutual friends</p>
+                  <SameCareer/>
                 </div>
               </div>
-            </div> */}
+            </div>
             </div>
           </div>
           {/*--------------- END OF RIGHT ------------------*/}

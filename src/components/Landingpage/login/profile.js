@@ -4,7 +4,7 @@ import axios from "axios";
 import { Fade } from "react-awesome-reveal";
 import { Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
-
+import backg from "./EE.png";
 import "./profile.css";
 
 const Profile = () => {
@@ -78,7 +78,9 @@ const Profile = () => {
       {console.log(user)}
       {email == false ? (
         <>
-          <div
+        <div style={{backgroundSize:"cover", backgroundImage: `url(${backg})` }}>
+
+        <div
             className="container"
             style={{
               display: "flex",
@@ -89,8 +91,8 @@ const Profile = () => {
             }}
           >
             <Fade cascade damping={1.0}>
-              <h1>Welcome {user.given_name}</h1>
-              <h3>enjoy the experience </h3>
+              <h1 style={{fontWeight:"bold"}}>Welcome {user.given_name}</h1>
+              <h3 style={{fontWeight:"bold"}}>enjoy the experience </h3>
               <a href="http://localhost:3000/FormPersonalData">
                 {" "}
                 <Button
@@ -101,9 +103,15 @@ const Profile = () => {
               </a>
             </Fade>
           </div>
+
+        </div>
+
+          
         </>
       ) : (
         <>
+          <div style={{backgroundSize:"cover",  backgroundImage: `url(${backg})` }}>
+
           <div
             className="container"
             style={{
@@ -115,8 +123,8 @@ const Profile = () => {
             }}
           >
             <Fade cascade damping={1.0}>
-              <h1>Welcome {user.given_name}</h1>
-              <h3>enjoy the experience </h3>
+              <h1 style={{fontWeight:"bold"}}>Welcome {user.given_name}</h1>
+              <h3 style={{fontWeight:"bold"}}>enjoy the experience </h3>
               <a href="http://localhost:3000/home">
                 {" "}
                 <Button
@@ -127,6 +135,8 @@ const Profile = () => {
               </a>
             </Fade>
           </div>
+          </div>
+          
         </>
       )}
     </>

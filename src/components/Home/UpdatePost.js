@@ -67,16 +67,19 @@ const handleUpdatePost= async(e)=>{
         </Modal.Header>
         <Modal.Body>
         {/* onChange={(e) => setComments(e.target.value)} */}
-        <form >
-        <input style={{borderWidth:'1px',width:'300px'}} defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
+        <form style={{display:"grid" ,gridTemplateRows:"auto auto", gap:"10px"}}>
+
+        <input style={{borderWidth:'1px',width:'450px',borderRadius:"20px"}} defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
           
-          <input  style={{borderWidth:'1px',width:'300px'}} defaultValue={props.postData.photo_content} type="text"  name='post' onChange={handlePhotoChange} ref={dateInputphotoRef} />
-          <Button onClick={handleUpdatePost} type='submit' variant="primary" style={{display:'inline-flex',marginLeft:'30px',marginTop:'18px'}}>Update</Button>
+          <input  style={{borderWidth:'1px',width:'450px',borderRadius:"20px"}} defaultValue={props.postData.photo_content} type="text"  name='post' onChange={handlePhotoChange} ref={dateInputphotoRef} />
+
         </form>
 
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{justifyContent:"end"}}  variant="secondary" onClick={props.handleClosePost}>Cancel</Button>
+          <Button onClick={handleUpdatePost} type='submit' variant="primary" style={{display:"inline-flex",justifyContent:"start",marginRight:"150px"}}>Update</Button>
+
+          <Button style={{justifyContent:"start" }}  variant="secondary" onClick={props.handleClosePost}>Cancel</Button>
           {/* <Button variant="primary" onClick={(e)=>handleUpdateComments(e)}>Update</Button> */}
         </Modal.Footer>
       </Modal>

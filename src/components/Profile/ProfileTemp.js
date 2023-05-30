@@ -106,7 +106,8 @@ function ProfileTemp(props) {
       <link rel="stylesheet" href="./style.css" />
       <nav>
         <div className="container">
-        {/* <img src="./cc7.png" className="logo"/> */}
+        <img style={{ width: "125px", hight: "70px", marginRight:"-50px", marginLeft:"-130px", marginTop:"-20px" ,marginBottom:"-20px" }} src="https://careerconnect.net.au/assets/img/logos/career-connect-01.png" alt="CareerConnect Logo" />
+
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
@@ -186,7 +187,7 @@ function ProfileTemp(props) {
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
-                <h3>AbotuUs</h3>
+                <h3>About Us</h3>
               </a>
             </div>
             {/*--------------- END OF SIDEBAR ------------------*/}
