@@ -80,8 +80,10 @@ function HomePost(props) {
       comments: [],
     };
     addPostODb();
+
     setPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText(""); // Clear the post text input field
+    event.target.reset()
   };
 
   const handleEditPost = (post) => {

@@ -74,7 +74,7 @@ const Form = () => {
   return (
     <div className="main">
       <Nav/>
-      <div className="d-flex justify-content-center">
+      <div id="main-resume" className="d-flex justify-content-center">
         <h1 className="text-center">{FormTitle[page]}</h1>
       </div>
       <div className="progressbar">

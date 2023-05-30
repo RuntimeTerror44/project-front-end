@@ -57,6 +57,7 @@ function Comment(props) {
       console.log(response.data);
 
       setCommentsDataArray(response.data);
+      e.target.reset()
       //   console.log(commentsDataArray);
     } catch (error) {
       console.log("Error adding comment", error);
