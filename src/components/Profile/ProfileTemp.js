@@ -134,13 +134,13 @@ function ProfileTemp(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active">
+              <a href='home'className="menu-item ">
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
-              <a className="menu-item" id="notifications">
+              <a className="menu-item active"   id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
@@ -150,12 +150,20 @@ function ProfileTemp(props) {
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item" id="messages-notifications">
+              <a className="menu-item " href="job" id="messages-notifications">
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
+                {/* ++++++++++++++++ */}
+                <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>create resume</h3>
+              </a>
+              {/* ++++++++++++++++ */}
               <a className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
@@ -194,7 +202,7 @@ function ProfileTemp(props) {
                     <Form>
                       <Dropdown className="edit"
                                 >
-                                  <Dropdown.Toggle id="commentstyle"
+                                  <Dropdown.Toggle id="poststyle"
                                     variant="primary"
                                     // className="dropdown-toggle-vertical"
                                     // className="uil uil-ellipsis-h"
@@ -232,13 +240,15 @@ function ProfileTemp(props) {
                   <div className="liked-by"></div>
                   <div className="caption">
                     
-                      <p> {post.paragraph_content}</p>
+                  <p style={{wordBreak:'break-word'}}> {post.paragraph_content}</p>
                       <div>
                       {(post.photo_content !="" ) &&(
                       <div className="post-photo-box" style={{marginLeft:"50px", justifyContent:"center", width:"200px", height:"200px"}}>
                      <img style={{marginLeft:"120px",marginBottom:"5px",marginRight:"120px",marginTop:"5px", borderRadius:'0px', justifyContent:"center", width:"100%", height:"100%"}} src={post.photo_content} />
                      </div>)}
                    </div>
+                    <p>
+                    </p>
                   </div>
                   <hr></hr>
                   <br></br>

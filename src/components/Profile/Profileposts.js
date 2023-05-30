@@ -137,13 +137,13 @@ function Profileposts(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active">
+              <a className="menu-item ">
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
-              <a className="menu-item" id="notifications">
+              <a className="menu-item active" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>

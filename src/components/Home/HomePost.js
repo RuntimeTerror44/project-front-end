@@ -11,7 +11,7 @@ import {
   Dropdown,
   Text,
 } from "react-bootstrap";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 // import "./PostTest.css";
@@ -20,11 +20,11 @@ import { post } from "jquery";
 import { useRef } from "react";
 import UpdatePost from "./UpdatePost";
 import Comment from "./Comment";
-import '../../test test/facebookcss.css'
+// import '../../test test/facebookcss.css'
 
 function HomePost(props) {
   const storedUserData = localStorage.getItem("userId");
-  const userData =JSON.parse(storedUserData)
+  const userData = JSON.parse(storedUserData);
   // console.log(props.comments);
   const [postText, setPostText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -48,7 +48,7 @@ function HomePost(props) {
       console.log(image);
       // e.preventDefault()
       const obj = {
-        user_id:userData[0].id,
+        user_id: userData[0].id,
         paragraph_content: postText,
         post_date: readableDate,
 
@@ -58,7 +58,7 @@ function HomePost(props) {
       const result = await axios.post(serverUrl, obj);
 
       props.takeDataFromChild(result.data);
-      console.log(result.data)
+      console.log(result.data);
 
       setPostData(result.data[0]);
       setPosts(result.data);
@@ -82,8 +82,10 @@ function HomePost(props) {
       comments: [],
     };
     addPostODb();
+
     setPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText(""); // Clear the post text input field
+    event.target.reset()
   };
 
   const handleEditPost = (post) => {
@@ -123,9 +125,7 @@ function HomePost(props) {
 
   return (
     <>
-    
-   
-    <meta charSet="UTF-8" />
+      <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>
@@ -176,86 +176,40 @@ function HomePost(props) {
             </a> */}
             {/*--------------- SIDEBAR ------------------*/}
             <div className="sidebar">
-              <a className="menu-item active">
+              <a className="menu-item active" >
                 <span>
                   <i className="uil uil-home" />
                 </span>
                 <h3>Home</h3>
               </a>
 
-              <a href="profilepage"className="menu-item" id="notifications">
+              <a href="profilepage" className="menu-item" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
                 <div className="notifications-popup">
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-2.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Keke Benjamin</b> accepted your friend request
-                      <small className="text-muted">2 Days Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-3.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>John Doe</b> commented on your post
-                      <small className="text-muted">1 Hour Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-4.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Marry Oppong</b> and <b>283 Others</b> liked your post
-                      <small className="text-muted">4 Minutes Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-5.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Doris Y. Lartey</b> commented on a post you are tagged
-                      in
-                      <small className="text-muted">2 Days Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-6.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Keyley Jenner</b> commented on a post you are tagged in
-                      <small className="text-muted">1 Hour Ago</small>
-                    </div>
-                  </div> */}
-                  {/* <div>
-                    <div className="profile-photo">
-                      <img src="./images/profile-7.jpg" />
-                    </div>
-                    <div className="notification-body">
-                      <b>Jane Doe</b> commented on your post
-                      <small className="text-muted">1 Hour Ago</small>
-                    </div>
-                  </div> */}
+
                 </div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item" id="messages-notifications">
+              <a className="menu-item" href="job" id="messages-notifications">
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
+                {/* ++++++++++++++++ */}
+                <a className="menu-item " href="portfolio" id="messages-notifications">
+                <span>
+                  <i className="uil uil-envelope-alt"></i>
+                </span>
+                <h3>create resume</h3>
+              </a>
+              {/* ++++++++++++++++ */}
 
-              <a href="aboutus"className="menu-item">
+              <a href="aboutus" className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
@@ -272,7 +226,7 @@ function HomePost(props) {
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
-            <Form onSubmit={handlePostSubmit} action="" className="create-post">
+            <Form onSubmit={handlePostSubmit} action="" style={{display:"flex"}} className="create-post">
               {/* <div className="profile-photo">
                 <img src="./images/profile-1.jpg" />
               </div> */}
@@ -294,7 +248,6 @@ function HomePost(props) {
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
-               
               />
             </Form>
             {/*--------------- FEEDS ------------------*/}
@@ -362,13 +315,16 @@ function HomePost(props) {
                   </div>
                   <div className="liked-by"></div>
                   <div className="caption">
-                    {/* <p> */}
+                  <p>
+                      <p style={{wordBreak:'break-word',fontSize:'18px'}}id="paragraphstyle"> {post.paragraph_content}</p>
+                    </p>
+
                       <p> {post.paragraph_content}</p>
                       {(post.photo_content !="" && post.photo_content !=null ) &&(
                       <div className="post-photo-box" style={{marginLeft:"50px", justifyContent:"center", width:"200px", height:"200px"}}>
                      <img style={{marginLeft:"120px",marginBottom:"5px",marginRight:"120px",marginTop:"5px", borderRadius:'0px', justifyContent:"center", width:"100%", height:"100%"}} src={post.photo_content} />
                      </div>)}
-                    {/* </p> */}
+                    
                   </div>
                   <hr></hr>
                   <br></br>
@@ -378,9 +334,10 @@ function HomePost(props) {
                 </div>
                 </div>
                 </>
-                )})}
-          
-              {/* <div className="feed">
+              );
+            })}
+
+            {/* <div className="feed">
             <div className="head">
               <div className="user">
                 <div className="profile-photo">
@@ -429,10 +386,10 @@ function HomePost(props) {
                   <p>Motasem</p>
                   <p>this is my comment</p>
                    */}
-              {/* </div> */}
-              {/* </div> */}
+            {/* </div> */}
+            {/* </div> */}
 
-              {/*--------------- END OF FEED 1 ------------------*/}
+            {/*--------------- END OF FEED 1 ------------------*/}
             {/* </div> */}
             {/*--------------- END OF FEEDS ------------------ */}
           </div>
@@ -552,8 +509,6 @@ function HomePost(props) {
           </div>
         </div>
       </div>
-     
-           
 
       <UpdatePost
         showUpdateModal={showUpdateModal}
@@ -561,31 +516,12 @@ function HomePost(props) {
         postData={postData}
         posts={posts}
         takeDataFromChild={takeDataFromChild}
-      
       />
-      
     </>
   );
 }
 
 export default HomePost;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import {
 //   Navbar,
@@ -773,7 +709,7 @@ export default HomePost;
 //                           <div className="row">
 //                             <div className="col-sm-6 offset-sm-3">
 //                               <div
-//                                 className="post-block" 
+//                                 className="post-block"
 //                                 style={{ position: "relative" ,background:'#DDE6ED'  }}
 //                               >
 //                                 <Dropdown
@@ -788,7 +724,7 @@ export default HomePost;
 //                                     variant="primary"
 //                                     className="dropdown-toggle-vertical"
 //                                   >
-                                  
+
 //                                   </Dropdown.Toggle>
 //                                   <Dropdown.Menu>
 //                                     <Dropdown.Item
@@ -929,9 +865,9 @@ export default HomePost;
 //         postData={postData}
 //         posts={posts}
 //         takeDataFromChild={takeDataFromChild}
-      
+
 //       />
-      
+
 //       {/* <Comment comments={props.commentsDataArray} /> */}
 //     </div>
 //   );

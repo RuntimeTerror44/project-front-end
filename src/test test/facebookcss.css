@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 
-:root {
+:not(.abtus) {
     --primary-color-hue: 252;
     --dark-color-lightness: 17%;
     --light-color-lightness: 95%;
@@ -27,8 +27,7 @@
     --sticky-top-right: -18rem;
 
 }
-/* 
-*, *::before, *::after {
+*:not(.abtus), *::before:not(.abtus), *::after:not(.abtus) {
     margin: 0;
     padding: 0;
     outline: 0;
@@ -38,8 +37,7 @@
     border: none;
 } */
 
-body {
-   
+body:not(.abtus) {
     font-family: 'Poppins', sans-serif;
     color: var(--color-dark);
     background: var(--color-light);
@@ -125,6 +123,16 @@ nav .container {
     margin-left: 1rem;
     font-size: 0.9rem;
     color: var(--color-dark);
+}
+.search-bar input:focus{
+
+
+outline: none;
+    border-radius: 5px;
+    border-width: 0px;
+
+
+
 }
 
 nav .search-bar input[type="search"]::placeholder {
@@ -216,7 +224,8 @@ background-color: #D6E4F0;
 }
 
 .left .sidebar .active {
-    background: var(--color-light);
+    /* background: var(--color-light); */
+    background-color: #ebeff3;
 }
 
 .left .sidebar .active i, 
@@ -382,6 +391,7 @@ color:   #516c8d;
     padding-left: 1rem;
     background: transparent;
     color: var(--color-dark);
+    outline: none;
     margin-right: 1rem;
 }
 
@@ -813,8 +823,36 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
 
 
         color:black;
-        background-color: white;
+        background-color: #ebeff3;
       box-shadow: 0 0px 0px -4px #3b71ca;
       font-size:   15px;
     
+}
+#poststyle{
+
+
+
+    color:black;
+    background-color: white;
+  box-shadow: 0 0px 0px -4px #3b71ca;
+  font-size:   15px;
+
+
+}
+#paragraphstyle{
+
+
+    font-family: "Lucida Console", "Courier New", monospace;
+
+    
+}
+/* #create-post:focus{
+    width: 300px;
+    transition: 1s;
+    margin: 0 5px;
+} */
+
+#logout:hover {
+/* background-color: #0b5ee1; */
+background-color: #3265b9;
 }
