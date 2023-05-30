@@ -494,11 +494,14 @@ a:hover {
 
 #about {
   padding: 100px 0 50px 0;
+
+  background-color: white;
 }
 /* Team Section
 ********************************************************************* */
 #team {
   padding: 50px 0 100px 0;
+  background-color: white;
 }
 #team .icon {
   font-size: 26px;

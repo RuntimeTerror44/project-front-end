@@ -207,7 +207,7 @@ function HomePost(props) {
               </a>
               {/* ++++++++++++++++ */}
 
-              <a href="aboutus" className="menu-item">
+              <a href="about" className="menu-item">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
