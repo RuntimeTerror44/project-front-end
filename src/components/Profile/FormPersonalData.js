@@ -161,7 +161,7 @@ function FormPersonalData(props) {
                   defaultValue=""
                 />
               </Form.Group> */}
-            <Button type="submit">
+            <Button type="submit" style={{marginTop:"10px"}}>
               {/*onClick={props.handleClose}*/}
               Submit
             </Button>

@@ -60,8 +60,8 @@ const handleUpdatePost= async(e)=>{
         <Modal.Body>
         {/* onChange={(e) => setComments(e.target.value)} */}
         <form >
-          <input  defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
-          <Button onClick={handleUpdatePost} type='submit' variant="primary">Update</Button>
+          <input style={{borderWidth:'1px',width:'300px'}} defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
+          <Button onClick={handleUpdatePost} type='submit' variant="primary" style={{display:'inline-flex',marginLeft:'30px',marginTop:'18px'}}>Update</Button>
         </form>
 
         </Modal.Body>
