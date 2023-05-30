@@ -222,7 +222,7 @@ function JobPost(props) {
       <link rel="stylesheet" href="./style.css" />
       <nav>
         <div className="container">
-          <h2 className="logo">CareerConnect</h2>
+          <img style={{ width: "125px", hight: "70px", marginRight:"-50px", marginLeft:"-130px", marginTop:"-20px" ,marginBottom:"-20px" }} src="https://careerconnect.net.au/assets/img/logos/career-connect-01.png" alt="CareerConnect Logo" />
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
