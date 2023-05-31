@@ -5,7 +5,7 @@ import { Fade } from "react-awesome-reveal";
 import { Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import backg from "./EE.png";
-import "./profile.css";
+
 
 const Profile = () => {
   //===========================================================================================
