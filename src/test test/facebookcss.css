@@ -45,22 +45,13 @@ body:not(.abtus) {
     background-color: red;
 }
 
-/* =============== General Style ============== */
+
 .container {
     width: 80%;
     margin: 0 auto;
 
 }
-/* .containerr {
-    width: 80%;
-    margin: 0 auto;
-} */
 
-/* .profile-photo {
-    width: 2.9rem;
-    border-radius: 60%;
-    overflow: hidden;
-} */
 
 img {
     display: block;
@@ -84,7 +75,7 @@ img {
 }
 
 .btn-primary {
-    /* background: var(--color-primary); */
+   
     background-color: #85b4ee;
     color: var(--color-white);
 }
@@ -98,7 +89,7 @@ img {
     margin:1px;
 }
 
-/* =============== Navbar ============== */
+
 nav {
     width: 100%;
     background: var(--color-white);
@@ -150,7 +141,7 @@ nav .create {
     gap: 2rem;
 }
 
-/* =============== Main ============== */
+
 main {
     position: relative;
     top: 5.4rem;
@@ -165,7 +156,6 @@ main .container {
     
 }
 
-/* =============== Left ============== */
 main .container .left {
     margin-top:31px;
     height: max-content;
@@ -183,7 +173,7 @@ main .container .left .profile {
     width: 100%;
 }
 
-/* =============== Sidebar ============== */
+
 .left .sidebar {
     margin-top: 1rem;
     background: var(--color-white);
@@ -200,8 +190,8 @@ main .container .left .profile {
 }
 
 .left .sidebar .menu-item:hover {
-    /* background: var(--color-light);
-*/
+  
+
 background-color: #D6E4F0;
 }
 
@@ -230,14 +220,13 @@ background-color: #D6E4F0;
 }
 
 .left .sidebar .active {
-    /* background: var(--color-light); */
+    
     background-color: #ebeff3;
 }
 
 .left .sidebar .active i, 
 .left .sidebar .active h3 {
-    /* color: var(--color-primary);
-     */
+ 
 color:   #516c8d;
 }
 
@@ -247,7 +236,7 @@ color:   #516c8d;
     width: 0.5rem;
     height: 100%;
     position: absolute;
-    /* background: var(--color-primary); */
+ 
    background-color: #516c8d
 }
 
@@ -269,7 +258,6 @@ color:   #516c8d;
     margin-bottom: 0.7rem;
 }
 
-/* =============== Notification Popup ============== */
 .left .notifications-popup {
     position: absolute;
     top: 0;
@@ -305,8 +293,7 @@ color:   #516c8d;
     display: block;
 }
 
-/* =============== Middle ============== */
-/* =============== Stories ============== */
+
 .middle .stories {
     display: flex;
     justify-content: space-between;
@@ -379,10 +366,9 @@ color:   #516c8d;
     border: 3px solid var(--color-light);
 }
 
-/* =============== Create Post ============== */
 .middle .create-post {
     width: 100%;
-    /* display: flex; */
+  
     align-items: center;
     justify-content: space-between;
     margin-top: 1rem;
@@ -401,7 +387,7 @@ color:   #516c8d;
     margin-right: 1rem;
 }
 
-/* =============== Feeds ============== */
+
 .middle .feeds .feed {
     background: var(--color-white);
     border-radius: var(--card-border-radius);
@@ -458,15 +444,13 @@ color:   #516c8d;
     margin-left: 0.5rem;
 }
 
-/* =============== Right ============== */
+
 main .container .right {
     height: max-content;
-    /* position: sticky;
-    top: var(--sticky-top-right);
-    bottom: 0; */
+
 }
 
-/* =============== Messages ============== */
+
 .right .messages {
     background: var(--color-white);
     border-radius: var(--card-border-radius);
@@ -547,7 +531,7 @@ main .container .right {
     right: 0;
 }
 
-/* =============== Friend Requests ============== */
+
 .right .friend-requests {
     margin-top: 1rem;
 }
@@ -575,7 +559,6 @@ main .container .right {
     gap: 1rem;
 }
 
-/* =============== Theme Customization ============== */
 .customize-theme {
     background: rgba(0, 0, 0, 0.5);
     width: 100vw;
@@ -598,7 +581,7 @@ main .container .right {
     box-shadow: 0 0 1rem var(--color-primary);
 }
 
-/* =============== Font Size ============== */
+
 .customize-theme .font-size {
     margin-top: 5rem;
 }
@@ -634,7 +617,7 @@ main .container .right {
     background: var(--color-primary);
 }
 
-/* =============== Color ============== */
+
 .customize-theme .color {
     margin-top: 2rem;
 }
@@ -678,7 +661,7 @@ main .container .right {
     border: 5px solid var(--color-secondary);
 }
 
-/* =============== Background ============== */
+
 .customize-theme .background {
     margin-top: 2rem;
 }
@@ -728,9 +711,7 @@ main .container .right {
     margin-right: 1rem;
 }
 
-/* ================= 
-MEDIA QUERIES FOR SMALL LAPTOP AND BIG TABLETS 
-==================== */
+
 
 @media screen and (max-width: 1200px) {
     .container {
@@ -764,9 +745,7 @@ MEDIA QUERIES FOR SMALL LAPTOP AND BIG TABLETS
     }
 }
 
-/* ================= 
-MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
-==================== */
+
 
 @media screen and (max-width: 992px) {
     nav .search-bar {
@@ -786,7 +765,7 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
         right: 0;
     }
 
-    /* Notification Popup */
+
     .left .notifications-popup { 
         position: absolute;
         left: -20rem;
@@ -866,29 +845,3 @@ MEDIA QUERIES FOR SMALL TABLETS AND MOBILE PHONES
     padding: 10px;
 }
 
-/* .containerr{
-    width: 80%;
-    margin: 0 auto;
-} */
-/* .navbarr{
-    padding-top: 10px;
-    padding-left: 40px;
-    margin-right: 70px;
-    color: black;
-} */
-
-      /* #create-post:focus{
-          width: 300px;
-          transition: 1s;
-          margin: 0 5px;
-      } */
-      
-      /* .grid{
-      
-      display:grid;
-      
-      
-      
-      
-      
-      } */
