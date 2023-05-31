@@ -210,6 +210,7 @@ export default function Landing() {
               <div className="skw-page__content">
                 <h2 className="skw-page__heading">
                   {!isAuthenticated ? (
+                    <>
                     <Button
                       type="primary"
                       shape="round"
@@ -218,6 +219,11 @@ export default function Landing() {
                     >
                       Join Us Now{" "}
                     </Button>
+                    <p>OR</p>
+                    <p className="skw-page__description">
+                      check more about us <a href="/about">here</a>
+                    </p>
+                    </>
                   ) : (
                     <>
                       <a href="/home">continue to your home</a>
