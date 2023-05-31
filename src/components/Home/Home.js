@@ -36,21 +36,21 @@ function Home() {
 
   return (
     <>
-  
-      {/* {commentsDataArray ? 
+  <h3>Welcome to home page</h3>
+      {commentsDataArray ? 
       <HomePost postDataArray={postDataArray}  comments={commentsDataArray}/>
     
-    : <></>} */}
+    : <></>}
       <HomePost
         postDataArray={postDataArray}
         takeDataFromChild={takeDataFromChild}
       />
-      {/* <ProfileTemp
+      <ProfileTemp
         postDataArray={postDataArray}
         takeDataFromChild={takeDataFromChild}
-      /> */}
-   {/* <PostTest  postDataArray={postDataArray}
-        takeDataFromChild={takeDataFromChild}/>  */}
+      />
+   <PostTest  postDataArray={postDataArray}
+        takeDataFromChild={takeDataFromChild}/> 
   
     </>
   );
