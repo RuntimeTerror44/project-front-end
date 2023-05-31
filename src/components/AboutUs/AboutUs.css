@@ -573,7 +573,7 @@ a:hover {
 .imagee:hover {
   opacity: 0.6;
   transition: 0.3s;
-  background-image: url();
+ 
   background-repeat: no-repeat;
   background-position: center;
 }
