@@ -14,12 +14,12 @@ import {
 } from "@chakra-ui/react";
 import { json } from "react-router-dom";
 function FormPersonalData(props) {
-  const storedData = localStorage.getItem('userId');
-  const storageData=JSON.parse(storedData)
-  console.log(storageData)
-  console.log(storageData[0].id)
-// Parse the retrieved data if necessary
-// Access specific properties or values from the retrieved data
+  const storedData = localStorage.getItem("userId");
+  const storageData = JSON.parse(storedData);
+  console.log(storageData);
+  console.log(storageData[0].id);
+  // Parse the retrieved data if necessary
+  // Access specific properties or values from the retrieved data
   const [date, setDate] = useState("");
   const dateInputRef = useRef(null);
   const handleChange = (e) => {
@@ -31,8 +31,8 @@ function FormPersonalData(props) {
     const obj = {
       firstname: e.target.first_name.value,
       lastname: e.target.last_name.value,
-      career : e.target.career.value,
-      dateofbirth : date,
+      career: e.target.career.value,
+      dateofbirth: date,
       country: e.target.countrey.value,
       city: e.target.city.value,
       phonenumber: e.target.phone_number.value,
@@ -43,9 +43,10 @@ function FormPersonalData(props) {
     const result = await axios.put(serverUrl, obj);
     // tackDataFromChaildAfterUbdate(result.data);
     console.log(result.data);
-    const newData=result.data
-    localStorage.setItem('userId',JSON.stringify(newData))
-    };
+    const newData = result.data;
+    localStorage.setItem("userId", JSON.stringify(newData));
+    window.location.href = "/home";
+  };
   // const updateData = () => {
   //   const newData = 'New Data';
   //   localStorage.setItem('userId', newData);
@@ -78,7 +79,7 @@ function FormPersonalData(props) {
             </Form.Group>
             <Row className="mb-2">
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Bate of Birth</Form.Label>
+                <Form.Label>Date of Birth</Form.Label>
                 <InputGroup hasValidation>
                   <Form.Control
                     type="date"
@@ -142,17 +143,17 @@ function FormPersonalData(props) {
                   />
                 </Col>
               </Form.Group>
-              </fieldset>
+            </fieldset>
 
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>profile picture</Form.Label>
-                <Form.Control
-                  name="profile_picture"
-                  type="text"
-                  defaultValue=""
-                />
-              </Form.Group>
-              {/* <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>profile picture</Form.Label>
+              <Form.Control
+                name="profile_picture"
+                type="text"
+                defaultValue=""
+              />
+            </Form.Group>
+            {/* <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>profile picture</Form.Label>
                 <Form.Control
                   name="cover_picture"
@@ -160,7 +161,7 @@ function FormPersonalData(props) {
                   defaultValue=""
                 />
               </Form.Group> */}
-            <Button type="submit">
+            <Button type="submit" style={{marginTop:"10px"}}>
               {/*onClick={props.handleClose}*/}
               Submit
             </Button>

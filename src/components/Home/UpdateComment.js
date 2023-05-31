@@ -57,18 +57,22 @@ const handleUpdatePost= async(e)=>{
     {/* {console.log(props.postData.content)} */}
         <Modal show={props.showUpdateModal} onHide={props.handleClosePost}>
         <Modal.Header closeButton>
-          <Modal.Title>Update Post</Modal.Title>
+          <Modal.Title>Update Comment</Modal.Title>
         </Modal.Header>
+
+
+
         <Modal.Body>
+
         {/* onChange={(e) => setComments(e.target.value)} */}
         <form >
-          <input  defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
-          <Button onClick={handleUpdatePost} type='submit' variant="primary">Update</Button>
+          <input style={{borderWidth:'1px',width:'300px'}} defaultValue={props.postData.paragraph_content} type="text"  name='post' onChange={handleChange} ref={dateInputRef} />
+          <Button onClick={handleUpdatePost} type='submit' variant="primary" style={{display:'inline-flex',marginLeft:'30px',marginTop:'18px'}}>Update</Button>
         </form>
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClosePost}>Cancel</Button>
+          <Button variant="secondary" onClick={props.handleClosePost} >Cancel</Button>
           {/* <Button variant="primary" onClick={(e)=>handleUpdateComments(e)}>Update</Button> */}
         </Modal.Footer>
       </Modal>

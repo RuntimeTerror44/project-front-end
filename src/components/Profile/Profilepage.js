@@ -15,7 +15,6 @@ import { Avatar, Space } from "antd";
 import axios from "axios";
 import UsersInfo from "./UsersInfo";
 import "./Profilepage.css";
-import Profileposts from "./Profileposts";
 import { useState, useEffect } from "react";
 import ProfileTemp from "./ProfileTemp";
 import Nav from "../Home/Nav";

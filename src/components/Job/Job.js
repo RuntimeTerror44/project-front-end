@@ -11,7 +11,7 @@ function Job(){
     const result= await axios.get(serverUrl)
     setPostDataArray(result.data)
   }
-  console.log(postDataArray)
+  // console.log(postDataArray)
   // const takeDataFromFirstChild=(arr)=>{
   //   setPostDataArray(arr)
   // }

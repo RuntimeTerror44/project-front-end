@@ -1,9 +1,9 @@
-.main{
+#main-resume{
     width: 70%;   
     margin: auto;
-    color: rgb(126, 22, 22);
-    
+    color: rgb(126, 22, 22); 
     background-color: #f2f0f0;
+    margin-top: 85px;
 }
 
 .form-control{

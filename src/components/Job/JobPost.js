@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Nav,
@@ -6,17 +5,25 @@ import {
   Container,
   Form,
   FormControl,
-  Button,
   Row,
   Col,
   Card,
   Dropdown,
 } from "react-bootstrap";
+import SameCareer from './SameCareer';
+import LogoutButton from "../Landingpage/login/Logoutbutton";
+import React, { useRef, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Space } from "antd";
+
+//=========================
+
+//==========================
 
 // import "./JobPost.css";
 import axios from "axios";
 import { post } from "jquery";
-import { useRef } from "react";
+
 import UpdateJobPost from "./UpdateJobPost";
 // import Comment from './Comment'
 import JobComment from "./JobComment";
@@ -30,7 +37,6 @@ function JobPost(props) {
   const [JobPosts, setJobPosts] = useState([]);
   const [postData, setPostData] = useState({});
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-
 
   const storedUserData = localStorage.getItem("userId");
   const userData = JSON.parse(storedUserData);
@@ -106,8 +112,9 @@ function JobPost(props) {
     addPostODb();
     setJobPosts((prevPosts) => [newPost, ...prevPosts]);
     setPostText("");
+    event.target.reset()
   };
-  console.log(JobPosts);
+  // console.log(JobPosts);
 
   const handleEditPost = (post) => {
     setShowUpdateModal(true);
@@ -133,6 +140,30 @@ function JobPost(props) {
     sendReq();
     // console.log(postDataArray)
   }, [JobPost]);
+
+  // const [filterJobField, setFilterJobField] = useState("");
+  // const [filterJobCity, setFilterJobCity] = useState("");
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const [searchJobs, setSearchJobs] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e.target.job_field.value);
+    console.log(e.target.job_city.value);
+
+    const serverUrl = `${process.env.REACT_APP_SERVER_URL}jobbyfieldcity`;
+    const obj = {
+      job_field: e.target.job_field.value,
+      job_city: e.target.job_city.value,
+    };
+
+    const result = await axios.post(serverUrl, obj);
+    setJobPosts(result.data);
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // const handleAddComment = (postId, commentText) => {
   //   const newComment = {
@@ -166,6 +197,14 @@ function JobPost(props) {
 
   console.log(postData);
   console.log(JobPosts);
+
+  const logoutButtonRef = useRef(null); //loginref
+  const handleButtonClick2 = () => {
+    // Call the button click handler in Component1
+    // by accessing the ref and invoking its click method
+    // This will trigger the click event on the button in Component1
+    logoutButtonRef.current.handleButtonClick();
+  };
   return (
     <>
       <meta charSet="UTF-8" />
@@ -184,19 +223,28 @@ function JobPost(props) {
       <link rel="stylesheet" href="./style.css" />
       <nav>
         <div className="container">
-          <h2 className="logo">CareerConnect</h2>
+        <img style={{ width: "125px", hight: "70px", marginRight:"-50px", marginLeft:"-130px", marginTop:"-20px" ,marginBottom:"-20px" }} src="https://careerconnect.net.au/assets/img/logos/career-connect-01.png" alt="CareerConnect Logo" />
+
           <div className="search-bar">
             <i className="uil uil-search" />
             <input
-            style={{borderRadius:'100px',borderWidth:"0px"}}
+              style={{ borderRadius: "100px", borderWidth: "0px" }}
               type="search"
               placeholder="Search for creators, inspirations, and projects"
             />
           </div>
           <div className="create">
-            <label className="btn btn-primary" htmlFor="create-post">
-              SignOut
-            </label>
+            <LogoutButton ref={logoutButtonRef} />
+            <Button
+              danger
+              type="primary"
+              shape="round"
+              size={"large"}
+              onClick={handleButtonClick2}
+            >
+              {" "}
+              sign out
+            </Button>
             {/* <div className="profile-photo">
             <img src="./images/profile-1.jpg" alt="" />
           </div> */}
@@ -226,36 +274,42 @@ function JobPost(props) {
                 <h3>Home</h3>
               </a>
 
-              <a className="menu-item"  href="profilepage" id="notifications">
+              <a className="menu-item" href="profilepage" id="notifications">
                 <span>
                   <i className="uil uil-bell"></i>
                 </span>
                 <h3>Profile</h3>
                 {/*------------- NOTIFICATION POPUP -------------*/}
-                <div className="notifications-popup">
-
-                </div>
+                <div className="notifications-popup"></div>
                 {/*------------- END NOTIFICATION POPUP -------------*/}
               </a>
-              <a className="menu-item active " href="job" id="messages-notifications">
+              <a
+                className="menu-item active "
+                href="job"
+                id="messages-notifications"
+              >
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>Jobs</h3>
               </a>
-             {/* ++++++++++++++++ */}
-             <a className="menu-item " href="portfolio" id="messages-notifications">
+              {/* ++++++++++++++++ */}
+              <a
+                className="menu-item "
+                href="portfolio"
+                id="messages-notifications"
+              >
                 <span>
                   <i className="uil uil-envelope-alt"></i>
                 </span>
                 <h3>create resume</h3>
               </a>
-              {/* ++++++++++++++++ */}  
-              <a className="menu-item " href="aboutus">
+              {/* ++++++++++++++++ */}
+              <a className="menu-item " href="about">
                 <span>
                   <i className="uil uil-chart-line" />
                 </span>
-                <h3>AbotuUs</h3>
+                <h3>About Us</h3>
               </a>
             </div>
             {/*--------------- END OF SIDEBAR ------------------*/}
@@ -264,64 +318,124 @@ function JobPost(props) {
             </label>
           </div>
           {/*--------------- MIDDLE ------------------*/}
-          <div className="middle">
+          <div style={{width:"600px"}} className="middle">
             {/*--------------- STORIES ------------------*/}
 
             {/*--------------- END OF STORIES ------------------*/}
             <Form onSubmit={handlePostSubmit} action="" className="create-post">
-              {/* <div className="profile-photo">
-              <img src="./images/profile-1.jpg" />
-            </div> */}
-            <Form.Group>
-              <textarea
-              rows="4" cols="50" 
-              id="create-post"
-               style={{marginBottom:"8px",marginTop:"8px" ,borderRadius:'10px',borderWidth:"1px",wordBreak:"break-all" ,minWidth:"600px", whiteSpace: "preLine"}}
-                type="text-area"
-                placeholder="Job description "
-                // id="create-post"
-                onChange={handlePostChange}
-              ></textarea>
-              </Form.Group>
-             
               <Form.Group>
-              <input
-             
-              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
-                type="text"
-                placeholder="enter city"
-                id="create-post"
-                onChange={handlePostCity}
-              />
+                <textarea
+                  rows="4"
+                  cols="50"
+                  id="create-post"
+                  style={{
+                    marginBottom: "8px",
+                    marginTop: "8px",
+                    borderRadius: "10px",
+                    borderWidth: "1px",
+                    wordBreak: "break-all",
+                    // minWidth: "600px",
+                    width:"557px",
+                    whiteSpace: "preLine",
+                  }}
+                  type="text-area"
+                  placeholder="Job description "
+                  // id="create-post"
+                  onChange={handlePostChange}
+                ></textarea>
+              </Form.Group>
+
+              <Form.Group>
+                <input
+                  style={{
+                    marginBottom: "8px",
+                    borderRadius: "100px",
+                    borderWidth: "1px",
+                  }}
+                  type="text"
+                  placeholder="enter city"
+                  id="create-post"
+                  onChange={handlePostCity}
+                />
               </Form.Group>
               <Form.Group>
-              <input
-              
-              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
-                type="text"
-                placeholder="enter job Field"
-                id="create-post"
-                onChange={handleJobField}
-              />
+                <input
+                  style={{
+                    marginBottom: "8px",
+                    borderRadius: "100px",
+                    borderWidth: "1px",
+                  }}
+                  type="text"
+                  placeholder="enter job Field"
+                  id="create-post"
+                  onChange={handleJobField}
+                />
               </Form.Group>
               <Form.Group>
-              <input
-              
-              style={{marginBottom:"8px" , borderRadius:'100px',borderWidth:"1px"}}
-                type="text"
-                placeholder="enter job title"
-                id="create-post"
-                onChange={handleJobTitle}
-              />
+                <input
+                  style={{
+                    marginBottom: "8px",
+                    borderRadius: "100px",
+                    borderWidth: "1px",
+                  }}
+                  type="text"
+                  placeholder="enter job title"
+                  id="create-post"
+                  onChange={handleJobTitle}
+                />
               </Form.Group>
-              <input 
-              style={{borderRadius:'100px',borderWidth:"1px"}}
+              <input
+                style={{ borderRadius: "100px", borderWidth: "1px" }}
                 type="submit"
                 defaultValue="Post"
                 className="btn btn-primary"
-              /> 
+              />
             </Form>
             {/*--------------- FEEDS ------------------*/}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            <div className="right">
+              {/*----- MESSAGES -----*/}
+              <div className="messages">
+                <div >
+                  {/* <i className="uil uil-edit" /> */}
+                  <h4>Find Your Job</h4>
+                </div>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group
+                    style={{ display: "flex", justifyContent: "space-around" }}
+                  >
+                    <Form.Group>
+                      <Form.Label>Job Field</Form.Label>
+                      <Form.Control
+                        name="job_field"
+                        type="text"
+                        defaultValue=""
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Job City</Form.Label>
+                      <Form.Control
+                        name="job_city"
+                        type="text"
+                        defaultValue=""
+                      />
+                    </Form.Group>
+                  </Form.Group>
+                  {/* <Button  type="submit" style={{margin:'30px', marginBottom:"5px", borderRadius: "100px", borderWidth: "1px"}}  >  
+                Search
+              </Button> */}
+
+                  <input
+                    style={{ margin:'30px', marginBottom:"5px", borderRadius: "100px", borderWidth: "1px" }}
+                    type="submit"
+                    defaultValue="Post"
+                    className="btn btn-primary"
+                  />
+                </Form>
+              </div>
+            </div>
+
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
             {JobPosts.map((post) => {
               return (
                 <>
@@ -332,7 +446,10 @@ function JobPost(props) {
                       <div className="head">
                         <div className="user">
                           <div className="profile-photo">
-                            <img src={post.profilepicture}  style={{width:'60px',height:'60px'}} />
+                            <img
+                              src={post.profilepicture}
+                              style={{ width: "60px", height: "60px" }}
+                            />
                           </div>
                           <div className="info">
                             <h3>{post.firstname}</h3>
@@ -342,7 +459,8 @@ function JobPost(props) {
 
                         {post.user_id == userData[0].id && (
                           <Dropdown className="edit">
-                            <Dropdown.Toggle  id="mm"
+                            <Dropdown.Toggle
+                              id="mm"
                               variant="primary"
                               className="dropdown-toggle-vertical"
                               // className="uil uil-ellipsis-h"
@@ -375,12 +493,53 @@ function JobPost(props) {
                       </div>
                       <div className="liked-by"></div>
                       <div className="caption">
-                        <p>
-                          <p  style={{wordBreak:'break-word',fontSize:'18px'}} id="paragraphstyle"> {post.job_post_content}</p>
-                          <p> {post.job_city}</p>
-                          <p> {post.job_field}</p>
-                          <p> {post.job_title}</p>
-                        </p>
+                        <div>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                              
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_field}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_title}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "18px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.job_city}
+                          </p>
+                          <p style={{ fontSize: "18px" }}>
+                            {" "}
+                            {post.job_post_content}
+                          </p>
+                          <p
+                            style={{
+                              wordBreak: "break-word",
+                              fontSize: "19px",
+                            }}
+                            id="paragraphstyle"
+                          >
+                            {" "}
+                            {post.email}
+                          </p>
+                        </div>
                       </div>
                       <div></div>
                       <div></div>
@@ -388,14 +547,11 @@ function JobPost(props) {
                       <br></br>
                       <div className="info">
                         <div>
-                          {" "}
                           <JobComment postID={post.job_id} />
                         </div>
                       </div>
                     </div>
-              
                   </div>
-                
                 </>
               );
             })}
@@ -413,7 +569,7 @@ function JobPost(props) {
               <div className="search-bar">
                 <i className="uil uil-search" />
                 <input
-                 style={{borderRadius:'100px',borderWidth:"0px"}}
+                  style={{ borderRadius: "100px", borderWidth: "0px" }}
                   type="search"
                   placeholder="Search messages"
                   id="message-search"
@@ -424,19 +580,17 @@ function JobPost(props) {
             {/*----- END OF MESSAGES -----*/}
             {/*----- FRIEND REQUEST -----*/}
             <div className="friend-requests">
-              <h4>Requests</h4>
+              <h4>People With Same Career</h4>
 
-              {/* <div className="request">
+              <div className="request" style={{marginLeft:"0px"}}>
               <div className="info">
                 <div className="profile-photo">
-                  <img src="./images/profile-17.jpg" />
                 </div>
                 <div>
-                  <h5>Megan Baldwin</h5>
-                  <p className="text-muted">5 mutual friends</p>
+                  <SameCareer/>
                 </div>
               </div>
-            </div> */}
+            </div>
             </div>
           </div>
           {/*--------------- END OF RIGHT ------------------*/}
