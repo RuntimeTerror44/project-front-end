@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "mdb-react-ui-kit/dist/css/mdb.min.css"; //
 import "@fortawesome/fontawesome-free/css/all.min.css"; //
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./App.jsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;

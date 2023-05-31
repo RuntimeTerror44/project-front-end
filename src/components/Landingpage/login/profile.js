@@ -4,7 +4,7 @@ import axios from "axios";
 import { Fade } from "react-awesome-reveal";
 import { Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import backg from "./EE.png";
+// import backg from "./EE.png";
 
 
 const Profile = () => {

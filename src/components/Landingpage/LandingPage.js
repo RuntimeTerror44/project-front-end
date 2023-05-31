@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import "./LandingPage.scss";
+// import "./LandingPage.scss";
 import $ from "jquery";
 import { Button, Space } from "antd";
 import {

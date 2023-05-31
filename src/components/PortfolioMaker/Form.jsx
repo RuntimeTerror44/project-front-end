@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Education from "./Education";
-import Experiences from "./Experiences";
-import PersonalDetails from "./PersonalDetails";
-import Project from "./Project";
-import Extras from "./Extras";
+import Education from "./Education.jsx";
+import Experiences from "./Experiences.jsx";
+import PersonalDetails from "./PersonalDetails.jsx";
+import Project from "./Project.jsx";
+import Extras from "./Extras.jsx";
 import axios from "axios";
 import { saveAs } from "file-saver";
-import Success from "./Success";
+import Success from "./Success.jsx";
 import './Form.css'
 import Nav from '../Home/Nav'
 const Form = () => {

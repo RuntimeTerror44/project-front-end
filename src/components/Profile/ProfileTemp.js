@@ -11,7 +11,7 @@ import {
   Text,
 } from "react-bootstrap";
 
-import './cc7.png'
+// import './cc7.png'
 
 
 
