@@ -321,42 +321,7 @@ function AboutUs() {
               </p>
             </div>
           </div>
-          <div className="roww">
-            <div className="eight columnss">
-              <div className="progressBar">
-                <h4>Data Analysis</h4>
-                <div className="progressBarContainer">
-                  <div className="progressBarValue value-90" />
-                </div>
-              </div>
-              <div className="progressBar">
-                <h4>Application Programmer</h4>
-                <div className="progressBarContainer">
-                  <div className="progressBarValue value-80" />
-                </div>
-              </div>
-              <div className="progressBar">
-                <h4>Cyber ​​Security</h4>
-                <div className="progressBarContainer">
-                  <div className="progressBarValue value-30" />
-                </div>
-              </div>
-              <div className="progressBar">
-                <h4>Data Protection</h4>
-                <div className="progressBarContainer">
-                  <div className="progressBarValue value-70" />
-                </div>
-              </div>
-            </div>
-            <div className="four columnss">
-              <p>
-                It should be noted that our website is designed to serve the
-                needs of job seekers and employers within the ever-evolving
-                job market, Check out the available and most in-demand jobs
-                this year.
-              </p>
-            </div>
-          </div>
+         
         </div>
       </section>          
     </body>
